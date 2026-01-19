@@ -3503,12 +3503,101 @@ observer.observe(document.body, {
 });
 
 // Dev
-document.addEventListener('click', function (e) {
+// document.addEventListener('click', function (e) {
+//   const btn = e.target.closest('.book-demo-btn');
+//   if (!btn) return;
+  
+//   const entry = btn.dataset.entry;
+
+//   if(entry == "product_page"){
+//     const form = btn.closest('form[action="/cart/add"]');
+//     if (!form) return;
+//     const variantInput = form.querySelector('input[name="id"]');
+//     const variantId = variantInput ? variantInput.value : null;
+//   }
+
+//   const category = btn.dataset.category;
+
+//   debugger;
+//   window.location.href =
+//     `/pages/demoform?entry=${entry}&category=${category}`;
+// });
+
+async function getDemoCartItems() {
+  const res = await fetch('/cart.js');
+  const cart = await res.json();
+
+  return cart.items
+    // .filter(item => item.properties && item.properties._demo === 'true')
+    .map(item => ({
+      variant: item.variant_id,
+      product: item.handle,
+      quantity: item.quantity
+    }));
+}
+
+document.addEventListener('click', async function (e) {
   const btn = e.target.closest('.book-demo-btn');
   if (!btn) return;
 
-  const category = btn.dataset.category;
+  debugger;
 
-  window.location.href =
-    `/pages/demoform?entry=category&category=${category}`;
+  // Base URL
+  const url = new URL('/pages/demoform', window.location.origin);
+
+  // Entry point (default-safe)
+  const entry = btn.dataset.entry || 'default';
+  url.searchParams.set('entry', entry);
+
+
+  // COMMON CONTEXT (picked from button if present)
+  const contextKeys = ['category', 'subcategory', 'product'];
+
+  contextKeys.forEach(key => {
+    if (btn.dataset[key]) {
+      url.searchParams.set(key, btn.dataset[key]);
+    }
+  });
+
+
+  // PRODUCT CONTEXT (product page OR demo-cart item)
+  if (entry === 'product') {
+    let variantId = null;
+
+    // Case 1: Product page
+    const form = document.querySelector('form[action="/cart/add"]')
+    if (form) {
+      const variantInput = form.querySelector('[name="id"]') ;
+      variantId = variantInput ? variantInput.value : null;
+    }
+    // Case 2: Cart / demo cart button
+    if (!variantId && btn.dataset.variant) {
+      variantId = btn.dataset.variant;
+    }
+    // if (!variantId) {
+    //   alert('Please select a variant first');
+    //   return;
+    // }
+
+    url.searchParams.set('variant', variantId);
+  }
+
+  // CART FLOW
+  // ToDo fetch('/cart/clear.js'); after demo form submission
+  if (entry === 'cart') {
+    const items = await getDemoCartItems();
+
+    if (!items.length) {
+      alert('No demo items found in cart');
+      return;
+    }
+
+    items.forEach(item => {
+      url.searchParams.append('variants[]', item.variant);
+      url.searchParams.append('products[]', item.product);
+    });
+  }
+
+  // Redirect
+  window.location.href = url.toString();
 });
