@@ -6229,9 +6229,9 @@ html.js .animate--ambient>.bls-loaded-image,
   display: none;
 }
 /* HIDE PRICE FROM ALL PRODUCTS */
-/* .price,
+.price,
 .price__regular,
-.price-item, */
+.price-item,
 .product__price,
 .product-single__price,
 .card-information__text,
@@ -6242,7 +6242,7 @@ html.js .animate--ambient>.bls-loaded-image,
 
 /* Hide checkout button only (keep subtotal visible) */
 .cart__checkout,
-.cart__footer .button.cart__checkout-button,
+.cart__footer .button,
 button[name="checkout"],
 a[href="/checkout"] {
   display: none !important;

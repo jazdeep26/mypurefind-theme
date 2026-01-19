@@ -802,6 +802,37 @@
                                         >
                                           <i class="picon-minus fs-12"></i>
                                         </button>
+                                        <a
+  href="/pages/book-demo"
+  class="book-demo-btn w-full text-center whitespace-nowrap min-height-48 mb-15"
+>
+  Book Demo
+</a>
+
+<style>
+.book-demo-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-top: 10px;
+  padding: 14px;
+  background: transparent;
+  color: #000;
+  font-size: 16px;
+  font-weight: 600;
+  border: 2px solid #000;
+  border-radius: var(--btn-border-radius);
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.book-demo-btn:hover {
+  background: #000;
+  color: #fff;
+}
+</style>
+
                                         <input
                                           class="quantity__input bg-unset border-none text-center width-50 appearance-none p-0-important product-detail__input"
                                           type="number"
@@ -1444,7 +1475,6 @@
                         </div>
                       </stock-countdown>
                     {%- endif -%}
-
                   {%- when 'pickup_availability' %}
                     {{ 'component-pickup-availability.css' | asset_url | stylesheet_tag }}
                     {%- assign pick_up_availabilities = product.selected_or_first_available_variant.store_availabilities
@@ -1505,20 +1535,7 @@
                       </div>
                     {% endif -%}
                 {%- endcase -%}
-                
               {%- endfor -%}
-                                  <button
-                      type="button"
-                      class="button button--secondary book-demo-btn product"
-                      data-entry="product"
-                      data-category="{{product.collections.first.handle}}"
-                      data-subcategory="{{product.type}}"
-                      data-product="{{ product.handle }}"
-                      data-variant-id="{{ product.selected_or_first_available_variant.id }}"
-                      data-has-only-default-variant="{{ product.has_only_default_variant }}"
-                    >
-                      Book Free Home Demo
-                    </button>
               <div class="bls__product-tabs-content hidden mt-25">
                 <div class="loading"></div>
               </div>

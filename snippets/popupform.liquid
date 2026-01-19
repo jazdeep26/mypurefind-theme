@@ -1,0 +1,356 @@
+<style>
+html.demo-lock,
+body.demo-lock{
+  overflow:hidden;
+  height:100%;
+}
+
+/* Overlay */
+.demo-overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.65);
+  z-index:9999999;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  opacity:0;
+  transition:.25s;
+}
+
+.demo-overlay.active{
+  display:flex;
+  opacity:1;
+}
+
+/* Popup */
+.demo-popup{
+  background:#fff;
+  width:100%;
+  max-width:820px;
+  max-height:90vh;
+  overflow-y:auto;
+  border-radius:18px;
+  padding:28px;
+  position:relative;
+  animation:scaleIn .25s ease;
+}
+
+@keyframes scaleIn{
+  from{transform:scale(.95);opacity:0}
+  to{transform:scale(1);opacity:1}
+}
+
+@media(max-width:768px){
+  .demo-popup{padding:18px;border-radius:14px}
+}
+
+.close-btn{
+  position:absolute;
+  top:14px;
+  right:16px;
+  font-size:22px;
+  cursor:pointer;
+}
+
+.product-box{
+  display:flex;
+  gap:14px;
+  padding:14px;
+  border:1px solid #eee;
+  border-radius:12px;
+  margin-bottom:18px;
+  align-items:center;
+}
+.product-box img{width:64px;border-radius:8px}
+
+@media(max-width:480px){
+  .product-box{flex-direction:column;align-items:flex-start}
+}
+
+input,select{
+  width:100%;
+  padding:14px;
+  border:1px solid #ddd;
+  border-radius:12px;
+  margin-top:12px;
+  font-size:15px;
+}
+
+.grid{display:flex;gap:12px}
+.grid input{flex:1}
+@media(max-width:640px){.grid{flex-direction:column}}
+
+.phone-wrap{display:flex;gap:8px;margin-top:12px}
+.phone-wrap span{
+  padding:14px;
+  border:1px solid #ddd;
+  border-radius:12px;
+  background:#f7f7f7;
+  font-weight:600;
+}
+
+.time-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(110px,1fr));
+  gap:10px;
+  margin-top:12px;
+}
+.time-slot{
+  padding:12px;
+  background:#fa297d;
+  color:#fff;
+  border:none;
+  border-radius:10px;
+  cursor:pointer;
+  font-weight:600;
+}
+.time-slot.active{background:#d61f69}
+
+.mobile-time{display:none}
+@media(max-width:768px){
+  .time-grid{display:none}
+  .mobile-time{display:block}
+}
+
+.continue-btn{
+  background:#fa297d;
+  color:#fff;
+  padding:16px;
+  border:none;
+  width:100%;
+  border-radius:14px;
+  margin-top:20px;
+  font-size:16px;
+  cursor:pointer;
+}
+
+.info-box{
+  background:#eef4ff;
+  border:1px solid #cddfff;
+  padding:12px;
+  border-radius:10px;
+  font-size:14px;
+  margin-bottom:16px;
+}
+</style>
+
+<!-- POPUP 1 -->
+<div id="popup1" class="demo-overlay">
+  <div class="demo-popup">
+    <span class="close-btn" onclick="closeAll()">×</span>
+
+    <h2>Book a Demo</h2>
+
+    <div class="product-box">
+      <img src="{{ product.featured_image | img_url:'200x' }}">
+      <div>
+        <strong>{{ product.title }}</strong><br>
+        {{ product.price | money }}
+      </div>
+    </div>
+
+    <label><strong>Select Date</strong></label>
+    <input type="date" id="demoDate">
+
+    <label style="margin-top:14px;display:block"><strong>Select Time</strong></label>
+    <div class="time-grid" id="timeGrid"></div>
+
+    <select id="mobileTime" class="mobile-time">
+      <option value="">Select Time</option>
+    </select>
+
+    <p id="summary" style="margin-top:12px;font-weight:600"></p>
+    <button class="continue-btn" onclick="goNext()" type="button">Continue</button>
+  </div>
+</div>
+
+<!-- POPUP 2 -->
+<div id="popup2" class="demo-overlay">
+  <div class="demo-popup">
+    <span class="close-btn" onclick="closeAll()">×</span>
+
+    <h2>Enter your details</h2>
+
+    <div class="info-box">
+      Home demo is available in <strong>Bangalore, Karnataka</strong> only.
+    </div>
+
+    <div class="product-box">
+      <img src="{{ product.featured_image | img_url:'200x' }}">
+      <div>
+        <strong id="finalProduct"></strong><br>
+        <span id="finalDateTime"></span>
+      </div>
+    </div>
+
+    {% form 'contact', id:'demoForm' %}
+      <input type="hidden" name="return_to" value="/pages/thank-you">
+
+      <div class="grid">
+        <input name="contact[first_name]" placeholder="First Name *" required>
+        <input name="contact[last_name]" placeholder="Last Name *" required>
+      </div>
+
+      <div class="phone-wrap">
+        <span>+91</span>
+        <input id="phoneInput" name="contact[phone]" placeholder="10 digit mobile number" required>
+      </div>
+
+      <input type="email" name="contact[email]" placeholder="Email *" required>
+      <input name="contact[address1]" placeholder="House No, Floor no," required>
+      <input name="contact[address2]" placeholder="Address">
+
+      <div class="grid">
+        <input name="contact[city]" value="Bangalore">
+        <input name="contact[state]" value="Karnataka">
+        <input name="contact[pincode]" placeholder="Pincode" required>
+      </div>
+
+      <input type="hidden" name="contact[Demo Product]" id="hiddenProduct">
+      <input type="hidden" name="contact[Demo Variant]" id="hiddenVariant">
+      <input type="hidden" name="contact[Variant ID]" id="hiddenVariantId">
+      <input type="hidden" name="contact[Demo Date & Time]" id="hiddenTime">
+
+      <button class="continue-btn" type="submit">CONFIRM BOOKING</button>
+    {% endform %}
+  </div>
+</div>
+
+<script>
+const popup1=document.getElementById('popup1');
+const popup2=document.getElementById('popup2');
+const summary=document.getElementById('summary');
+
+let demoDate='',demoTime='';
+let productTitle="{{ product.title }}";
+let selectedVariantTitle='',selectedVariantId='';
+
+/* 🔥 SHOPIFY-SAFE TRIGGER */
+document.addEventListener('click',function(e){
+  const btn=e.target.closest('.demo-trigger');
+  if(!btn) return;
+
+  e.preventDefault();
+  e.stopPropagation();
+
+  captureVariant();
+  popup1.classList.add('active');
+  document.documentElement.classList.add('demo-lock');
+  document.body.classList.add('demo-lock');
+});
+
+function closeAll(){
+  popup1.classList.remove('active');
+  popup2.classList.remove('active');
+  document.documentElement.classList.remove('demo-lock');
+  document.body.classList.remove('demo-lock');
+}
+
+function captureVariant(){
+  const productJson={{ product | json }};
+  const id=document.querySelector('[name="id"]')?.value;
+  const v=productJson.variants.find(x=>x.id==id);
+  selectedVariantTitle=v?v.title:'Default';
+  selectedVariantId=v?v.id:'';
+}
+
+function generateTimes(){
+  const grid=document.getElementById('timeGrid');
+  const mobile=document.getElementById('mobileTime');
+
+  for(let h=10;h<=19;h++){
+    ['00','30'].forEach(m=>{
+      if(h===19&&m==='30')return;
+      let hour=h>12?h-12:h;
+      let time=`${hour}:${m} ${h>=12?'PM':'AM'}`;
+
+      let b=document.createElement('button');
+      b.type='button';
+      b.className='time-slot';
+      b.textContent=time;
+      b.onclick=()=>selectTime(time,b);
+      grid.appendChild(b);
+
+      let o=document.createElement('option');
+      o.value=time;o.textContent=time;
+      mobile.appendChild(o);
+    });
+  }
+  mobile.onchange=()=>selectTime(mobile.value);
+}
+
+function selectTime(t,btn){
+  if(btn){
+    document.querySelectorAll('.time-slot').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+  }
+  demoTime=t;
+  demoDate=document.getElementById('demoDate').value;
+  summary.textContent=`${demoDate} at ${demoTime}`;
+}
+
+function goNext(){
+  if(!demoDate||!demoTime){alert('Select date & time');return;}
+  popup1.classList.remove('active');
+  popup2.classList.add('active');
+
+  document.getElementById('finalProduct').textContent=
+    `${productTitle} (${selectedVariantTitle})`;
+  document.getElementById('finalDateTime').textContent=
+    `${demoDate} at ${demoTime}`;
+
+  hiddenProduct.value=productTitle;
+  hiddenVariant.value=selectedVariantTitle;
+  hiddenVariantId.value=selectedVariantId;
+  hiddenTime.value=`${demoDate} at ${demoTime}`;
+}
+
+generateTimes();
+
+/* phone lock */
+const phone=document.getElementById('phoneInput');
+phone.addEventListener('input',()=>phone.value=phone.value.replace(/\D/g,'').slice(0,10));
+
+document.addEventListener("DOMContentLoaded", function () {
+
+  const form = document.getElementById("demoForm");
+  if (!form) {
+    console.error("Demo form not found");
+    return;
+  }
+
+  let isWebhookSent = false;
+
+  form.addEventListener("submit", function (e) {
+
+    if (isWebhookSent) return; // allow Shopify submit after webhook
+
+    e.preventDefault();
+
+    const fd = new FormData(form);
+
+    /* add extra data manually (safety) */
+    fd.append("product", document.getElementById("hiddenProduct").value);
+    fd.append("variant", document.getElementById("hiddenVariant").value);
+    fd.append("variant_id", document.getElementById("hiddenVariantId").value);
+    fd.append("demo_time", document.getElementById("hiddenTime").value);
+
+    fetch("https://connect.pabbly.com/workflow/sendwebhookdata/IjU3NjcwNTZkMDYzZTA0Mzc1MjY5NTUzMDUxMzAi_pc", {
+      method: "POST",
+      body: fd
+    })
+    .then(res => res.text())
+    .then(() => {
+      console.log("Webhook sent successfully");
+      isWebhookSent = true;
+      form.submit(); // now allow Shopify to submit
+    })
+    .catch(err => {
+      console.error("Webhook failed", err);
+      alert("Something went wrong. Please try again.");
+    });
+  });
+
+});
+</script>
