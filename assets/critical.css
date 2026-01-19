@@ -783,7 +783,8 @@ button,
 .btn,
 .btn-primary,
 body .shopify-payment-button__more-options {
-  background: linear-gradient(to bottom, var(--btn-primary-bg-hover) 50%, var(--btn-primary-bg) 50%) no-repeat scroll right bottom / 100% 210% var(--btn-primary-bg);
+  /* background: linear-gradient(to bottom, var(--btn-primary-bg-hover) 50%, var(--btn-primary-bg) 50%) no-repeat scroll right bottom / 100% 210% var(--btn-primary-bg); */
+  background: var(--btn-primary-bg);
   color: var(--btn-primary-color);
   border-color: var(--btn-primary-bg);
 }

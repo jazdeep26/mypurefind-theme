@@ -3501,3 +3501,14 @@ observer.observe(document.body, {
   childList: true,
   subtree: true
 });
+
+// Dev
+document.addEventListener('click', function (e) {
+  const btn = e.target.closest('.book-demo-btn');
+  if (!btn) return;
+
+  const category = btn.dataset.category;
+
+  window.location.href =
+    `/pages/demoform?entry=category&category=${category}`;
+});
