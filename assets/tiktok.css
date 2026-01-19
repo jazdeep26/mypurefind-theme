@@ -1,0 +1,29 @@
+.tiktok-column .tiktok-embed {
+  margin: 0;
+}
+
+.tiktok-wrap {
+  display: grid;
+  gap: var(--bs-gutter-x);
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(325px, 1fr);
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-behavior: smooth;
+
+}
+
+.tiktok-wrap::-webkit-scrollbar {
+  height: 4px;
+  border-radius: 10px;
+  background-color: #f5f5f5;
+}
+
+.tiktok-wrap::-webkit-scrollbar-thumb {
+  background-color: var(--grey-color);
+  border-radius: 10px;
+}
+
+.tiktok-column {
+  max-width: calc(325px + var(--bs-gutter-x));
+}

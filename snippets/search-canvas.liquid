@@ -1,0 +1,102 @@
+{{ 'product.css' | asset_url | stylesheet_tag }}
+{%- liquid
+  assign quick_search = settings.quick_search
+  assign search_suggest = settings.search_suggest
+-%}
+<div class="bls__canvas bls__canvas-right">
+  <div class="mini_search_header">
+    <h4 class="widget-title text-center">{{ 'templates.search.title' | t }}</h4>
+    <button class="button-close"><i class="lnr lnr-cross"></i></button>
+  </div>
+  <div class="search-modal__content">
+    <form
+      action="{{ routes.search_url }}"
+      id="search_mini_form"
+      method="get"
+      role="search"
+      class="search search-modal__form"
+    >
+      <div class="field">
+        <input
+          class="search__input field__input"
+          type="search"
+          name="q"
+          value="{{ search.terms | escape }}"
+          placeholder="{{ 'general.search.search' | t }}"
+          maxlength="128"
+          {%- if settings.predictive_search_type == 'search_suggest' -%}
+            role="combobox"
+            aria-expanded="false"
+            aria-owns="predictive-search-results"
+            aria-controls="predictive-search-results"
+            aria-haspopup="listbox"
+            aria-autocomplete="list"
+            autocorrect="off"
+            autocomplete="off"
+            autocapitalize="off"
+            spellcheck="false"
+          {%- endif -%}
+        >
+        <input type="hidden" name="options[unavailable_products]" value="{{ settings.unavailable_pr }}">
+        <input type="hidden" name="options[prefix]" value="last">
+        <input type="hidden" name="options[fields]" value="title,vendor,product_type,variants.title">
+        <input
+          type="hidden"
+          name="type"
+          value="{% if settings.search_for == 'search_for_all' %}product,collection{% else %}product{% endif %}"
+        >
+        <button class="search__button field__button rounded-30" aria-label="{{ 'general.search.search' | t }}">
+          <i class="picon-magnifier fs-22"></i>
+        </button>
+      </div>
+      {%- if quick_search != blank -%}
+        {%- capture link_quick_search -%}
+                    {{ routes.search_url }}?type=product&options%5Bfields%5D=title,vendor,product_type,variants.title,variants.sku&options%5Bunavailable_products%5D={{ settings.unavailable_pr }}&options%5Bprefix%5D=last&q=
+                {%- endcapture -%}
+        <div id="quick-search" class="quick-search mt-10 d-flex align-items-center">
+          <p class="quick-search-title  m-0">{{ 'general.search.quick_search' | t }}</p>
+          <ul class="quick-search-list p-0 pl-10 my-0 list-none d-flex">
+            {%- assign quick_search = quick_search | replace: ' ,', ',' | replace: ', ', ',' | split: ',' -%}
+            {%- for qr in quick_search -%}
+              {%- assign quick_text = qr | strip -%}
+              {%- if quick_text -%}
+                <li>
+                  <a class="quick-url" href="{{ link_quick_search }}{{ quick_text }}">
+                    {{ quick_text }}
+                  </a>
+                </li>
+              {%- endif -%}
+            {%- endfor -%}
+          </ul>
+        </div>
+      {%- endif -%}
+    </form>
+    {%- if settings.predictive_search -%}
+      <div id="predictive-search" class="predictive-search--header h-full overflow-auto">
+        <div class="predictive-search" data-predictive-search>
+          {%- if search_suggest -%}
+            {%- assign collection = collections[search_suggest] -%}
+            {%- if collection.products.size > 0 -%}
+              <div class="search-suggest search-list-item mt-25 pt-25">
+                <h6 class="m-0 fs-20">
+                  {{ 'general.search.popular_products' | t }}
+                </h6>
+                <div id="search-results">
+                  <div id="search-results-list" class="search-results-list list list-view-items">
+                    {%- for product in collection.products limit: 5 -%}
+                      {%- render 'product-popular-list-item' | product: product -%}
+                    {%- endfor -%}
+                  </div>
+                </div>
+              </div>
+            {%- endif -%}
+          {%- endif -%}
+          <div class="predictive-search__loading-state mt-15">
+            <div class="loading-search"></div>
+          </div>
+        </div>
+        <span class="predictive-search-status visually-hidden" role="status" aria-hidden="true"></span>
+      </div>
+    {%- endif -%}
+  </div>
+</div>

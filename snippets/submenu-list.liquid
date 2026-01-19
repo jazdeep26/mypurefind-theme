@@ -1,0 +1,179 @@
+{%- liquid
+  assign menu_type = menu_type
+-%}
+{% if link.links.size > 0 %}
+  {% if menu_type != 'dropdown' %}
+    <div class="fw-600 submenu-mobile-title justify-content-between">
+      <a role="link" class="back-main-menu pointer">
+        <i class="lnr lnr-chevron-left"></i>
+        {{ link.title }}
+      </a>
+      <i class="lnr lnr-cross fs-20 close-menu pointer"></i>
+    </div>
+    <ul
+      class="list-unstyled column-menu grid-cols px-30 px-1025-0"
+    >
+      {% for child_link in link.links %}
+        <li class="subchildmenu-title menu-link level-1{% if child_link.links.size > 0 %} menu-parent{% endif %} relative">
+          <a
+            data-menu-level2
+            class="menu_item-link mb-10 site-nav level-2 {% if child_link.links.size > 0 %}open-children{% endif %}"
+            href="{{ child_link.url }}"
+          >
+            {% liquid
+              assign label_setting = ''
+              assign show_label = false
+
+              if child_link.title contains '[hot]'
+                assign label_setting = label_setting | append: 'hot'
+                assign show_label = true
+              endif
+
+              if child_link.title contains '[new]'
+                assign label_setting = label_setting | append: 'new'
+                assign show_label = true
+              endif
+
+              if child_link.title contains '[sale]'
+                assign label_setting = label_setting | append: 'sale'
+                assign show_label = true
+              endif
+
+              assign child_link_title = child_link.title
+              assign clean_title = child_link_title
+              assign clean_title = clean_title | replace: '[hot]', ''
+              assign clean_title = clean_title | replace: '[new]', ''
+              assign clean_title = clean_title | replace: '[sale]', ''
+              assign clean_title = clean_title | strip
+            %}
+            <span>{{- clean_title -}}</span>
+            {% if show_label %}
+              <span class="menu_label rounded-2 text-center heading_weight relative absolute-1025 whitespace-nowrap uppercase  {{ label_setting }}">
+                {{- label_setting -}}
+              </span>
+            {% endif %}
+          </a>
+          {% if child_link.links.size > 0 %}
+            <ul class="subchildmenu sub-column pl-0 list-none">
+              <li class="fw-600 submenu-mobile-title justify-content-between">
+                <a role="link" class="back-main-menu-lv1 pointer">
+                  <i class="lnr lnr-chevron-left"></i>
+                  {{ child_link.title }}
+                </a>
+                <i class="lnr lnr-cross fs-20 close-menu pointer"></i>
+              </li>
+              <li>
+                <ul class="pl-0 list-none">
+                  {% for grandchild_link in child_link.links %}
+                    {% liquid
+                      assign label_setting = ''
+                      assign show_label = false
+
+                      if grandchild_link.title contains '[hot]'
+                        assign label_setting = label_setting | append: 'hot'
+                        assign show_label = true
+                      endif
+
+                      if grandchild_link.title contains '[new]'
+                        assign label_setting = label_setting | append: 'new'
+                        assign show_label = true
+                      endif
+
+                      if grandchild_link.title contains '[sale]'
+                        assign label_setting = label_setting | append: 'sale'
+                        assign show_label = true
+                      endif
+
+                      assign grandchild_link_title = grandchild_link.title
+                      assign clean_title = grandchild_link_title
+                      assign clean_title = clean_title | replace: '[hot]', ''
+                      assign clean_title = clean_title | replace: '[new]', ''
+                      assign clean_title = clean_title | replace: '[sale]', ''
+                      assign clean_title = clean_title | strip
+                    %}
+                    <li class="menu-link level-2">
+                      <a
+                        class="menu_item-link py-5"
+                        href="{{ grandchild_link.url }}"
+                        aria-label="{{ grandchild_link.title }}"
+                      >
+                        <span>{{- clean_title -}}</span>
+                        {% if show_label %}
+                          <span class="menu_label rounded-2 text-center heading_weight relative absolute-1025 whitespace-nowrap uppercase  {{ label_setting }}">
+                            {{- label_setting -}}
+                          </span>
+                        {% endif %}
+                      </a>
+                    </li>
+                  {% endfor %}
+                </ul>
+              </li>
+            </ul>
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    {%- for childlink in link.links -%}
+      <li class="level-2 relative">
+        {% liquid
+          assign label_setting = ''
+          assign show_label = false
+
+          if childlink.title contains '[hot]'
+            assign label_setting = label_setting | append: 'hot'
+            assign show_label = true
+          endif
+
+          if childlink.title contains '[new]'
+            assign label_setting = label_setting | append: 'new'
+            assign show_label = true
+          endif
+
+          if childlink.title contains '[sale]'
+            assign label_setting = label_setting | append: 'sale'
+            assign show_label = true
+          endif
+
+          assign child_link_title = childlink.title
+          assign clean_title = child_link_title
+          assign clean_title = clean_title | replace: '[hot]', ''
+          assign clean_title = clean_title | replace: '[new]', ''
+          assign clean_title = clean_title | replace: '[sale]', ''
+          assign clean_title = clean_title | strip
+        %}
+        <a href="{{ childlink.url }}" class="site-nav level-2">
+          <span>{{ clean_title }}</span>
+          {%- if childlink.links != blank -%}
+            <i class="absolute position-center-y right-15 ad lnr lnr-chevron-right fs-14" aria-hidden="true"></i>
+          {%- endif -%}
+          {% if show_label %}
+            <span class="menu_label rounded-2 text-center heading_weight relative absolute-1025 whitespace-nowrap uppercase  {{ label_setting }}">
+              {{- label_setting -}}
+            </span>
+          {% endif %}
+        </a>
+        {%- if childlink.links != blank -%}
+          {%- assign menu_title = childlink.title -%}
+          <div class="open-children-toggle"></div>
+          <ul class="subchildmenu subLinks p-0 list-none my-0  absolute top-0 gradient">
+            <li class="fw-600 submenu-mobile-title justify-content-between">
+              <a role="link" class="back-main-menu-lv3 pointer">
+                <i class="lnr lnr-chevron-left"></i>
+                {{ menu_title }}
+              </a>
+              <i class="lnr lnr-cross fs-20 close-menu pointer"></i>
+            </li>
+            {%- for lvl3link in childlink.links -%}
+              <li class="relative level-3 menu-item">
+                <a href="{{ lvl3link.url }}" class="site-nav level-3">
+                  <span>{{ lvl3link.title }}</span>
+                </a>
+              </li>
+            {%- endfor -%}
+          </ul>
+        {%- endif -%}
+      </li>
+    {%- endfor -%}
+  {% endif %}
+{% endif %}

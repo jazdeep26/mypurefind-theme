@@ -1,0 +1,92 @@
+/* colection links */
+@media only screen and (min-width: 1200px) {
+    .bls__collection-link-grid {
+        max-width: var(--content-box-link);
+        margin: auto;
+    }
+}
+
+.bls__collection-link-grid .link__collection-count {
+    vertical-align: middle;
+    opacity: 0.8;
+    font-weight: calc(var(--link-font-weight) - 100);
+    font-size: clamp(12px, 3vw, 14px);
+    position: relative;
+    top: -7px;
+    right: -5px;
+}
+
+.bls__collection-link-grid .link__collection-count span {
+    display: none;
+}
+
+.bls__collection-link-grid .bls__collection-links {
+    width: auto;
+}
+
+.bls__collection-links a:not(.btn-link) {
+    padding: 8.5px 38px;
+}
+
+.bls__collection-links a.btn-link {
+    padding: 0 2.5rem;
+}
+
+.bls__collection-links a.btn-link::before {
+    display: none;
+}
+
+@media only screen and (max-width: 767px) {
+    .bls__collection-link {
+        --bls-gutter-x: 1rem !important;
+    }
+
+    .bls__collection-link-grid .row {
+        --bs-gutter-x: 1rem !important;
+    }
+
+    .bls__collection-links a:not(.btn-link) {
+        padding: 3.5px 20px;
+    }
+
+    .bls__collection-links a.btn-link {
+        padding: 0 1.5rem;
+    }
+
+    .bls__collection-link-grid .link__collection-count {
+        top: -6px;
+    }
+}
+
+.bls__collection-links a {
+    --btn-text-transform: none;
+    font-size: var(--link-font-size);
+    font-weight: var(--link-font-weight);
+}
+.bls__collection-links a.font-size-big {
+    font-size: clamp(16px, 3vw, var(--link-font-size));
+}
+.bls__collection-link .bls__section-header.clt-white * {
+    color: var(--color-white);
+}
+
+.bls__collection-links.clt-white a.btn-primary {
+    background-color: var(--color-white);
+    border-color: var(--color-white);
+    color: var(--heading-color);
+}
+
+.bls__collection-links.clt-white a.btn-secondary {
+    background-color: transparent;
+    border-color: var(--color-white);
+    color: var(--color-white);
+}
+
+.bls__collection-links.clt-white a.btn-secondary:hover {
+    background-color: var(--color-white);
+    color: var(--heading-color);
+}
+
+.bls__collection-links.clt-white a.btn-link {
+    --btn-link-color: var(--color-white);
+}

@@ -1,0 +1,668 @@
+{{ 'scrolling-text.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign sold_out = false
+  assign th_st = settings
+  assign option_name = 'Color'
+  if th_st.option_name_color != blank
+    assign option_name = th_st.option_name_color | split: ','
+  endif
+  assign color_swatches_style = th_st.color_swatches_style
+  assign color_type = th_st.swatch_type
+  assign show_quick_view = th_st.show_quick_view
+  assign show_add_to_cart = th_st.show_add_to_cart
+  assign show_wishlist = th_st.show_wishlist
+  assign show_compare = th_st.show_compare
+  assign show_review = th_st.show_review
+  assign enable_hover_image = th_st.enable_hover_image
+  assign enable_text_sale_scrolling = th_st.enable_text_sale_scrolling
+  assign text_scrolling_sale = th_st.text_scrolling_sale
+  assign color_text_sale_scrolling = th_st.color_text_sale_scrolling
+  assign bg_text_sale_scrolling = th_st.bg_text_sale_scrolling
+  assign text_sale_font_size = th_st.text_sale_font_size
+  assign text_sale_font_weight = th_st.text_sale_font_weight
+  assign text_sale_time = th_st.text_sale_time
+  assign text_sale_spacing = th_st.text_sale_spacing
+  assign text_sale_tf = th_st.text_sale_tf
+  assign hidden_price = th_st.hidden_price
+  assign show_action = true
+  if show_add_to_cart != true and show_compare != true and show_wishlist != true and show_quick_view != true
+    assign show_action = false
+  endif
+  assign show_product_action_on_mobile = th_st.show_product_action_on_mobile
+  assign product_style = th_st.product_style
+  assign product_name_t_transfrom = th_st.product_name_t_transfrom
+  assign product_name_line = th_st.product_name_line
+  assign enable_sale_label = th_st.enable_sale_label
+  assign enable_sold_out = th_st.enable_sold_out
+  assign enable_preorder = th_st.enable_preorder
+  assign product_label_style = th_st.product_label_style
+  assign hidden_button_add_to_cart = th_st.hidden_button_add_to_cart
+  assign compare_at_price = product.compare_at_price
+  assign remove_wishlist = th_st.remove_wishlist
+  assign sale_type = th_st.product_label_sale_type
+  assign price = product.price
+  assign sale = false
+  if compare_at_price > price and compare_at_price != blank
+    assign sale = true
+  endif
+  assign product_avail = false
+  assign product_qty = 0
+  assign pre_order = false
+  if product.has_only_default_variant == false
+    for itemColor in option_name
+      if product.options_with_values[0].name == itemColor
+        if product.options_with_values.size < 2
+          for variant in product.variants limit: 1
+            assign product_qty = product_qty | plus: variant.inventory_quantity
+            assign product_avail = variant.available
+            assign product_management = variant.inventory_management
+            assign compare_at_price = variant.compare_at_price
+            assign price = variant.price
+          endfor
+          if product_management != null
+            if product_qty < 1
+              if product_avail == true
+                assign pre_order = true
+                assign sold_out = false
+              else
+                assign pre_order = false
+                assign sold_out = true
+              endif
+            else
+              assign pre_order = false
+              assign sold_out = false
+            endif
+          else
+            assign pre_order = false
+            assign sold_out = false
+          endif
+        else
+          assign prod = product.variants | where: 'option1', product.options_with_values[0].values[0]
+          assign product_management = 'shopify'
+          for p in prod
+            assign product_qty = product_qty | plus: p.inventory_quantity
+            if p.available
+              assign product_avail = true
+            endif
+            if p.inventory_management == null
+              assign product_management = 'null'
+            endif
+          endfor
+          assign compare_at_price = prod[0].compare_at_price
+          assign price = prod[0].price
+          if product_management != null
+            if product_qty < 1
+              if product_avail == true
+                assign pre_order = true
+                assign sold_out = false
+              else
+                assign pre_order = false
+                assign sold_out = true
+              endif
+            else
+              assign pre_order = false
+              assign sold_out = false
+            endif
+          else
+            assign pre_order = false
+            assign sold_out = false
+          endif
+        endif
+      else
+        assign product_management = 'shopify'
+        for variant in product.variants
+          assign product_qty = product_qty | plus: variant.inventory_quantity
+          if variant.available == true
+            assign product_avail = true
+          endif
+          if variant.inventory_management == null
+            assign product_management = 'null'
+          endif
+        endfor
+        assign compare_at_price = product.variants[0].compare_at_price
+        assign price = product.variants[0].price
+
+        if product_management != 'null'
+          if product_qty < 1
+            if product_avail == true
+              assign pre_order = true
+              assign sold_out = false
+            else
+              assign pre_order = false
+              assign sold_out = true
+            endif
+          else
+            assign pre_order = false
+            assign sold_out = false
+          endif
+        else
+          assign pre_order = false
+          assign sold_out = false
+        endif
+      endif
+    endfor
+  else
+    if product.available != true
+      assign sold_out = true
+    endif
+    assign qty = 0
+    for v in product.variants
+      if v.inventory_quantity
+        assign qty = qty | plus: v.inventory_quantity
+      endif
+    endfor
+    if qty < 1 and product.available == true
+      assign pre_order = true
+      assign sold_out = false
+    endif
+    for v in product.variants
+      if v.inventory_management == null
+        assign pre_order = false
+        assign sold_out = false
+      endif
+    endfor
+  endif
+
+  assign label = false
+  assign subscription = product.selling_plan_groups.size
+  if sold_out == true or sale == true or pre_order == true or product.metafields.bls.custom_product_badge or subscription > 0
+    assign label = true
+  endif
+
+  assign d_none = ''
+  if sold_out == true or hidden_button_add_to_cart == true
+    assign d_none = 'd-none'
+  endif
+  assign p = compare_at_price | minus: price
+
+  if product == blank
+    assign pre_order = false
+    assign sold_out = false
+  endif
+  assign enabled_animations = th_st.animations_enabled
+-%}
+
+{%- capture style -%}
+  {%- if color_text_sale_scrolling != blank -%}
+    --s-text-color: {{ color_text_sale_scrolling }};
+  {%- endif -%}
+  {%- if bg_text_sale_scrolling != blank -%}
+    --bg-text-sale-scrolling: {{ bg_text_sale_scrolling }};
+  {%- endif -%}
+  --text-font-size: {{ text_sale_font_size }}px;
+  --text-font-weight: {{ text_sale_font_weight }};
+  --text-time: {{ text_sale_time }}s;
+  --text-spacing: {{ text_sale_spacing }}px;
+{%- endcapture -%}
+
+<div
+  class="bls__product-item  {% if enabled_animations %}scroll-trigger animate--slide-in{% endif %} {{ product_label_style }} {{ color_swatches_style }} {%- if show_product_action_on_mobile -%}show__action-mobile{%- endif -%}"
+  data-product-handle="{{ product.handle }}"
+  {% if enabled_animations %}
+    data-cascade
+    style="--animation-order: {{ forloop.index }};"
+  {% endif %}
+>
+  {%- if product_style == 'bls__product-style-3' %}
+    <div class="overflow-hidden">
+  {%- endif -%}
+  <div class="bls__product-img overflow-hidden relative{% if enable_sale_label != true %} sale-off{% endif %}{% if enable_sold_out != true %} sold-out-off{% endif %}{% if enable_preorder != true %} pre-order-off{% endif %}">
+    {%- if label -%}
+      <div class="bls__product-label fs-12 pointer-events-none absolute">
+        {% if product.selling_plan_groups.size > 0 %}
+          <div class="bls__selling_plan-label">
+            {{- 'products.product.label.subscription' | t -}}
+          </div>
+        {% endif %}
+        {%- if enable_sale_label and compare_at_price > price and compare_at_price != blank -%}
+          <div class="bls__sale-label">
+            {%- if sale_type == 'text' -%}
+              {{- 'products.product.label.sale' | t -}}
+            {% elsif sale_type == 'percent' %}
+              {%- if p > 0 -%}
+                {%- assign p = p | times: 100.0 | divided_by: compare_at_price | round -%}
+              {%- endif -%}
+              -
+              {{- p -}}
+              %
+            {% elsif sale_type == 'price' %}
+              - {{ p | money }}
+            {% endif %}
+          </div>
+        {%- endif -%}
+        {%- if enable_sold_out and sold_out -%}
+          <div class="bls__sold-out-label">
+            {{ 'products.product.sold_out' | t }}
+          </div>
+        {%- else -%}
+          {%- if enable_preorder and pre_order -%}
+            <div class="bls__pre-order-label">
+              {{ 'products.product.pre_order' | t }}
+            </div>
+          {%- endif -%}
+        {%- endif -%}
+        {% if product.metafields.bls.custom_product_badge %}
+          <div class="bls__custom-label">
+            {{ product.metafields.bls.custom_product_badge }}
+          </div>
+        {% endif %}
+      </div>
+    {%- endif -%}
+    {%- if enable_text_sale_scrolling and compare_at_price > price and compare_at_price != blank -%}
+      {% liquid
+        assign percent_number = p | append: '%'
+        if sale_type == 'percent'
+          if p > 0
+            assign percent_number = p | append: '%'
+          endif
+        elsif sale_type == 'price'
+          assign percent_number = p | money | prepend: '-'
+        endif
+      %}
+      <div
+        class="bls__product-text-scrolling absolute d-flex align-items-center overflow-hidden"
+        style="{{ style | strip | strip_newlines }}"
+        data-text-product-scrolling="{{ text_scrolling_sale }}"
+      >
+        {%- for i in (0..4) -%}
+          <div class=" d-flex align-items-center {{ text_sale_tf }}">
+            {%- for i in (0..4) -%}
+              <div class="bls__product-text-scrolling-content">
+                <span class="sale-content-product">
+                  {% if sale_type == 'price' or sale_type == 'percent' %}
+                    {{- text_scrolling_sale | replace: '[percent_sale]', percent_number -}}
+                  {% else %}
+                    {{- text_scrolling_sale | replace: '[percent_sale]', '' -}}
+                  {% endif %}
+                </span>
+                <span class="scroll-line">
+                  <svg
+                    width="9"
+                    height="12"
+                    viewBox="0 0 9 12"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path d="M8.45115 5.14843L3.46899 11.8984C3.44574 11.9299 3.41543 11.9555 3.38049 11.9731C3.34555 11.9908 3.30696 11.9999 3.26782 12C3.23487 12 3.20223 11.9935 3.17187 11.9807C3.12021 11.9593 3.07723 11.9212 3.04983 11.8724C3.02242 11.8237 3.01218 11.7671 3.02075 11.7119L3.70849 7.24997H0.750003C0.703741 7.24997 0.658387 7.23713 0.618987 7.21289C0.579587 7.18865 0.547686 7.15395 0.526835 7.11265C0.505983 7.07135 0.496999 7.02508 0.500882 6.97899C0.504765 6.93289 0.521363 6.88877 0.548828 6.85154L5.53099 0.101566C5.56418 0.0565804 5.61149 0.0240191 5.66537 0.00908492C5.71924 -0.00584928 5.77657 -0.00229448 5.82819 0.0191813C5.8798 0.0406571 5.92273 0.0788144 5.95011 0.127556C5.97749 0.176298 5.98775 0.232811 5.97924 0.288065L5.29149 4.74998H8.24998C8.29624 4.74997 8.3416 4.76281 8.38101 4.78705C8.42041 4.8113 8.45232 4.846 8.47317 4.8873C8.49402 4.9286 8.503 4.97488 8.49912 5.02098C8.49523 5.06708 8.47862 5.1112 8.45115 5.14843Z" fill="#ACDC54" />
+                  </svg>
+                </span>
+              </div>
+            {%- endfor -%}
+          </div>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+    {%- assign img = product.media -%}
+
+    <a
+      class="bls__img-url{% if enable_hover_image %} bls__hover-image{% endif %}"
+      href="{{ product.url | within: collection }}"
+    >
+      <div class="bls__product-main-img">
+        {%- if product.has_only_default_variant -%}
+          {%- if img[0] != blank -%}
+            {%- render 'responsive-image' | image: img[0] | type: 'product' | cls: 'bls__product-grid bls__product-img-sw' -%}
+          {%- else -%}
+            {%- render 'responsive-image' | type: 'product' | cls: 'bls__product-grid-plh' -%}
+          {%- endif -%}
+        {%- else -%}
+          {%- assign hasColor = false -%}
+          {%- for o in product.options_with_values -%}
+            {%- for itemColor in option_name -%}
+              {%- if o.name == itemColor -%}
+                {%- assign hasColor = true -%}
+              {%- endif -%}
+            {%- endfor -%}
+          {%- endfor -%}
+          {%- if hasColor -%}
+            {%- for variant in product.variants limit: 1 -%}
+              {%- if variant.featured_image != blank -%}
+                {%- render 'responsive-image' | image: variant.featured_image | type: 'product' | cls: 'bls__product-grid bls__product-img-sw' -%}
+              {%- else -%}
+                {%- if img[0] != blank -%}
+                  {%- render 'responsive-image' | image: img[0] | type: 'product' | cls: 'bls__product-grid bls__product-img-sw' -%}
+                {%- else -%}
+                  {%- render 'responsive-image' | type: 'product' | cls: 'bls__product-grid-plh' -%}
+                {%- endif -%}
+              {%- endif -%}
+            {%- endfor -%}
+          {%- else -%}
+            {%- if img[0] != blank -%}
+              {%- render 'responsive-image' | image: img[0] | type: 'product' | cls: 'bls__product-grid bls__product-img-sw' -%}
+            {%- else -%}
+              {%- render 'responsive-image' | type: 'product' | cls: 'bls__product-grid-plh' -%}
+            {%- endif -%}
+          {%- endif -%}
+        {%- endif -%}
+      </div>
+      {%- if enable_hover_image -%}
+        {%- if img[1] != blank -%}
+          <div class="bls__product-hover-img opacity-0 absolute inset-0">
+            {%- render 'responsive-image' | image: img[1] | type: 'product' | cls: 'bls__product-grid' -%}
+          </div>
+        {%- endif -%}
+      {%- endif -%}
+    </a>
+
+    {%- if show_action or disable_action != true -%}
+      {%- if product_style == 'bls__product-style-1'
+        or product_style == 'bls__product-style-3'
+        or product_style == 'bls__product-style-2'
+      %}
+        {%- if product_style == 'bls__product-style-2' %}
+          {%- if show_add_to_cart -%}
+            {%- if product.metafields.custom.external_affiliate == blank -%}
+              {%- if show_add_to_cart and sold_out == false and tpl == blank and hidden_button_add_to_cart == false -%}
+                <quick-buy
+                  class="bls__product-addtocart bls__product-addtocart-js {{ d_none }}"
+                  data-product-variant-id="{{ product.selected_or_first_available_variant.id }}"
+                >
+                  <button
+                    class="bls__js-addtocart btn-secondary border-none button bls_tooltip button--full-width"
+                    type="button"
+                    name="add"
+                    role="button"
+                    aria-label="
+                      {%- if pre_order -%}
+                          {{- 'products.product.pre_order' | t -}}
+                      {%- else -%}
+                          {{- 'products.product.add_to_cart' | t -}}
+                      {%- endif -%}
+                    "
+                  >
+                    <span class="fs-18 picon-bag hidden-loading"></span>
+                    {%- if pre_order -%}
+                      <span class="bls_tooltip-content">{{ 'products.product.pre_order' | t }}</span>
+                      <span class="add-cart bls__button-content hidden-loading">
+                        {{- 'products.product.pre_order' | t -}}
+                      </span>
+                    {%- else -%}
+                      <span class="bls_tooltip-content">{{ 'products.product.add_to_cart' | t }}</span>
+                      <span class="add-cart bls__button-content hidden-loading">
+                        {{- 'products.product.add_to_cart' | t -}}
+                      </span>
+                    {%- endif -%}
+                  </button>
+                </quick-buy>
+              {%- endif -%}
+            {%- endif -%}
+          {%- endif -%}
+        {%- endif -%}
+        <div class="bls__product-action d-flex {% if enable_text_sale_scrolling and compare_at_price > price and compare_at_price != blank %} spacing-bottom{% endif %}">
+          {%- if show_wishlist or show_compare or show_quick_view or show_add_to_cart- %}
+            <div class="bls__product-action-inner flex">
+              {%- if product_style == 'bls__product-style-1' -%}
+                {%- if product.metafields.custom.external_affiliate == blank -%}
+                  {%- if show_add_to_cart
+                    and sold_out == false
+                    and tpl == blank
+                    and hidden_button_add_to_cart == false
+                  -%}
+                    <quick-buy
+                      class="bls__product-addtocart bls__product-addtocart-js {{ d_none }}"
+                      data-product-variant-id="{{ product.selected_or_first_available_variant.id }}"
+                    >
+                      <button
+                        class="bls__js-addtocart btn-secondary border-none button bls_tooltip button--full-width"
+                        type="button"
+                        name="add"
+                        role="button"
+                        aria-label="
+                          {%- if pre_order -%}
+                              {{- 'products.product.pre_order' | t -}}
+                          {%- else -%}
+                              {{- 'products.product.add_to_cart' | t -}}
+                          {%- endif -%}
+                        "
+                      >
+                        <span class="bls__product-icon">
+                          <i class="picon-bag"></i>
+                        </span>
+                        {%- if pre_order -%}
+                          <span class="bls_tooltip-content">{{ 'products.product.pre_order' | t }}</span>
+                          <span class="add-cart bls__button-content hidden-loading">
+                            {{- 'products.product.pre_order' | t -}}
+                          </span>
+                        {%- else -%}
+                          <span class="bls_tooltip-content">{{ 'products.product.add_to_cart' | t }}</span>
+                          <span class="add-cart bls__button-content hidden-loading">
+                            {{- 'products.product.add_to_cart' | t -}}
+                          </span>
+                        {%- endif -%}
+                      </button>
+                    </quick-buy>
+                  {%- endif -%}
+                {%- endif -%}
+              {%- endif -%}
+              {%- if show_wishlist -%}
+                <button
+                  type="button"
+                  name="add"
+                  role="button"
+                  aria-label="button"
+                  class="btn-reset bls__product-wishlist bls__product-wishlist-js bls__product-action-btn-js bls_tooltip"
+                  data-pro-add-wishlist="{{ 'products.product.wishlist' | t }}"
+                  data-pro-remove-wishlist="{{ 'products.product.browse_wishlist' | t }}"
+                  data-remove-wishlist="{{ 'products.product.remove_wishlist' | t }}"
+                  data-product-handle="{{ product.handle }}"
+                  data-action="{% if remove_wishlist == 'on_wishlist_icon' %}remove{% else %}redirect{% endif %}"
+                >
+                  <span class="bls__product-icon picon-heart"></span>
+                  <span class="bls_tooltip-content">{{ 'products.product.wishlist' | t }}</span>
+                </button>
+              {%- endif -%}
+              {%- if show_compare -%}
+                <button
+                  type="button"
+                  name="add"
+                  role="button"
+                  aria-label="button"
+                  class="btn-reset bls__product-compare bls__product-compare-js bls__product-action-btn-js bls_tooltip"
+                  data-pro-add-compare="{{ 'products.product.compare' | t }}"
+                  data-pro-remove-compare="{{ 'products.product.browse_compare' | t }}"
+                  data-product-handle="{{ product.handle }}"
+                >
+                  <span class="bls__product-icon picon-copy"> </span>
+                  <span class="bls_tooltip-content">{{ 'products.product.compare' | t }}</span>
+                </button>
+              {%- endif -%}
+              {%- if tpl == blank -%}
+                {%- if show_quick_view -%}
+                  <button
+                    type="button"
+                    name="add"
+                    role="button"
+                    aria-label="button"
+                    class="btn-reset bls__product-quickview bls_tooltip"
+                  >
+                    <span class="bls__product-icon picon-magnifier"> </span>
+                    <span class="bls_tooltip-content">{{ 'products.product.quickview' | t }}</span>
+                  </button>
+                {%- endif -%}
+              {%- endif -%}
+            </div>
+          {%- endif -%}
+        </div>
+      {%- else -%}
+        {%- if tpl == blank and show_quick_view -%}
+          <div class="bls__product-action bls__quick-view-inner d-flex absolute">
+            <div class="bls__product-action-inner flex">
+              <button
+                type="button"
+                name="add"
+                role="button"
+                aria-label="button"
+                class="btn-secondary bls__product-quickview bls_tooltip"
+              >
+                <span class="bls__product-icon origin-style hidden-loading">
+                  {{ 'products.product.quickview' | t }}
+                </span>
+              </button>
+            </div>
+          </div>
+        {%- endif -%}
+      {%- endif -%}
+    {%- endif -%}
+  </div>
+  <div class="bls__product-details pt-15 relative">
+    {%- if th_st.show_vendors -%}
+      <div class="bls__product-vendor fs-small mb-5">
+        {{ product.vendor | link_to_vendor }}
+      </div>
+    {%- endif -%}
+    {%- if product_style == 'bls__product-style-4' %}
+      <div class="flex flex-wrap align-items-center gap-10">
+    {%- endif -%}
+    <div class="h3 bls__product-name regular mb-5  {% if product_style == 'bls__product-style-4' %}flex-1{% endif %}">
+      <a
+        class="limited-line {{ product_name_t_transfrom }}"
+        style="--line-clamp: {{ product_name_line }}"
+        href="{{ product.url | within: collection }}"
+      >
+        {{ product.title }}
+      </a>
+    </div>
+    {%- if product_style == 'bls__product-style-4' %}
+      {%- if show_wishlist or show_compare -%}
+        <div class="bls__product-action-inner flex gap-5 mb-5">
+          {%- if show_wishlist -%}
+            <button
+              type="button"
+              name="add"
+              role="button"
+              aria-label="button"
+              class="btn-reset bls__product-wishlist bls__product-wishlist-js bls__product-action-btn-js bls_tooltip"
+              data-pro-add-wishlist="{{ 'products.product.wishlist' | t }}"
+              data-pro-remove-wishlist="{{ 'products.product.browse_wishlist' | t }}"
+              data-remove-wishlist="{{ 'products.product.remove_wishlist' | t }}"
+              data-product-handle="{{ product.handle }}"
+              data-action="{% if remove_wishlist == 'on_wishlist_icon' %}remove{% else %}redirect{% endif %}"
+            >
+              <span class="bls__product-icon picon-heart"></span>
+              <span class="bls_tooltip-content">{{ 'products.product.wishlist' | t }}</span>
+            </button>
+          {%- endif -%}
+          {%- if show_compare -%}
+            <button
+              type="button"
+              name="add"
+              role="button"
+              aria-label="button"
+              class="btn-reset bls__product-compare bls__product-compare-js bls__product-action-btn-js bls_tooltip"
+              data-pro-add-compare="{{ 'products.product.compare' | t }}"
+              data-pro-remove-compare="{{ 'products.product.browse_compare' | t }}"
+              data-product-handle="{{ product.handle }}"
+            >
+              <span class="bls__product-icon picon-copy"> </span>
+              <span class="bls_tooltip-content">{{ 'products.product.compare' | t }}</span>
+            </button>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+      </div>
+    {%- endif -%}
+    {%- if show_review -%}
+      {% render 'product-review' | review_star: true | product: product %}
+    {%- endif -%}
+    {% if hidden_price == false %}
+      <div class="bls__product-price mb-4">
+        {%- render 'price', product: product, use_variant: true, price_class: 'price--large' -%}
+      </div>
+    {% endif %}
+    {% if product_style == 'bls__product-style-4' %}
+      <div class="bls__product-action d-flex  {% if enable_text_sale_scrolling and compare_at_price > price and compare_at_price != blank %}spacing-bottom{% endif %}">
+        {%- if show_add_to_cart and sold_out == false and tpl == blank -%}
+          <quick-buy
+            class="bls__product-addtocart bls__product-addtocart-js {{ d_none }}"
+            data-product-variant-id="{{ product.selected_or_first_available_variant.id }}"
+          >
+            <button
+              class="bls__js-addtocart  {% if lookbook == true %} btn-primary {% else %} btn-reset {% endif %} bls_tooltip w-full"
+              type="button"
+              name="add"
+              role="button"
+              aria-label="
+                {%- if pre_order -%}
+                    {{- 'products.product.pre_order' | t -}}
+                {%- else -%}
+                    {{- 'products.product.add_to_cart' | t -}}
+                {%- endif -%}
+              "
+            >
+              {%- if pre_order -%}
+                <span class="add-cart bls__button-content hidden-loading">
+                  {{- 'products.product.pre_order' | t -}}
+                </span>
+              {%- else -%}
+                <span class="add-cart bls__button-content hidden-loading">
+                  {{- 'products.product.add_to_cart' | t -}}
+                </span>
+              {%- endif -%}
+            </button>
+          </quick-buy>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+    {%- if color_type != 'radio' and color_type != 'dropdown' and th_st.enable_sw_only_product_detail == false -%}
+      {%- render 'product-color-swatches' | product: product -%}
+    {%- endif -%}
+    {% if product_style == 'bls__product-style-3' %}
+      <div class="bls__product-action d-flex  {% if enable_text_sale_scrolling and compare_at_price > price and compare_at_price != blank %}spacing-bottom{% endif %}">
+        {%- if show_add_to_cart and sold_out == false and tpl == blank -%}
+          <quick-buy
+            class="bls__product-addtocart bls__product-addtocart-js {{ d_none }}"
+            data-product-variant-id="{{ product.selected_or_first_available_variant.id }}"
+          >
+            <button
+              class="bls__js-addtocart btn-primary mt-10 bls_tooltip w-full"
+              type="button"
+              name="add"
+              role="button"
+              aria-label="
+                {%- if pre_order -%}
+                    {{- 'products.product.pre_order' | t -}}
+                {%- else -%}
+                    {{- 'products.product.add_to_cart' | t -}}
+                {%- endif -%}
+              "
+            >
+              {%- if pre_order -%}
+                <span class="add-cart bls__button-content hidden-loading">
+                  {{- 'products.product.pre_order' | t -}}
+                </span>
+              {%- else -%}
+                <span class="add-cart bls__button-content hidden-loading">
+                  {{- 'products.product.add_to_cart' | t -}}
+                </span>
+              {%- endif -%}
+            </button>
+          </quick-buy>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+  </div>
+  {%- if product_style == 'bls__product-style-3' %}
+    </div>
+  {%- endif -%}
+  {%- unless product.has_only_default_variant -%}
+    <script type="application/json" class="productinfo">
+      {{ product.variants | json }}
+    </script>
+    <script type="application/json" class="productVariantsQty">
+      [
+      {%- for variant in product.variants -%}
+        {%- liquid
+              assign id = '"id":' | append: variant.id
+              assign option = '"option":"' | append: variant.option1 | append: '"'
+              assign quantity = '"qty":' | append: variant.inventory_quantity
+              assign available = '"available":' | append: variant.available
+              assign mamagement = '"mamagement":"' | append: variant.inventory_management | append: '"'
+          -%}
+          { {{ id }},{{ option }},{{ quantity }},{{ available }},{{ mamagement }}}
+        {%- unless forloop.last -%},{%- endunless forloop.last -%}
+      {%- endfor -%}
+      ]
+    </script>
+  {%- endunless -%}
+</div>

@@ -1,0 +1,470 @@
+{% doc %}
+  @prompt
+    Make section "KWEEN" WRITE THIS WORD IN STYLISH WAY
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-kween-text-{{ ai_gen_id }} {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: {{ block.settings.padding_top }}px 20px {{ block.settings.padding_bottom }}px;
+    background: {{ block.settings.background_color }};
+  }
+
+  .ai-kween-text__wrapper-{{ ai_gen_id }} {
+    position: relative;
+    display: inline-block;
+    width: {{ block.settings.desktop_width_percent }}%;
+  }
+
+  .ai-kween-text__main-{{ ai_gen_id }} {
+    font-size: {{ block.settings.font_size }}px;
+    font-weight: {{ block.settings.font_weight }};
+    letter-spacing: {{ block.settings.letter_spacing }}px;
+    text-align: center;
+    margin: 0;
+    position: relative;
+    z-index: 2;
+    {% if block.settings.text_style == 'gradient' %}
+      background: {{ block.settings.gradient_color_1 }};
+      background: linear-gradient(
+        {{ block.settings.gradient_angle }}deg,
+        {{ block.settings.gradient_color_1 }} 0%,
+        {{ block.settings.gradient_color_2 }} 50%,
+        {{ block.settings.gradient_color_3 }} 100%
+      );
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    {% elsif block.settings.text_style == 'outline' %}
+      color: transparent;
+      -webkit-text-stroke: {{ block.settings.outline_width }}px {{ block.settings.text_color }};
+      text-stroke: {{ block.settings.outline_width }}px {{ block.settings.text_color }};
+    {% elsif block.settings.text_style == 'shadow' %}
+      color: {{ block.settings.text_color }};
+      text-shadow: {{ block.settings.shadow_x }}px {{ block.settings.shadow_y }}px {{ block.settings.shadow_blur }}px {{ block.settings.shadow_color }};
+    {% else %}
+      color: {{ block.settings.text_color }};
+    {% endif %}
+    {% if block.settings.text_transform == 'uppercase' %}
+      text-transform: uppercase;
+    {% elsif block.settings.text_transform == 'lowercase' %}
+      text-transform: lowercase;
+    {% elsif block.settings.text_transform == 'capitalize' %}
+      text-transform: capitalize;
+    {% endif %}
+  }
+
+  {% if block.settings.show_decorative_line %}
+    .ai-kween-text__main-{{ ai_gen_id }}::before,
+    .ai-kween-text__main-{{ ai_gen_id }}::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      width: {{ block.settings.line_width }}px;
+      height: {{ block.settings.line_height }}px;
+      background: {{ block.settings.line_color }};
+      transform: translateY(-50%);
+    }
+
+    .ai-kween-text__main-{{ ai_gen_id }}::before {
+      left: -{{ block.settings.line_width | plus: 20 }}px;
+    }
+
+    .ai-kween-text__main-{{ ai_gen_id }}::after {
+      right: -{{ block.settings.line_width | plus: 20 }}px;
+    }
+  {% endif %}
+
+  {% if block.settings.show_background_shape %}
+    .ai-kween-text__background-{{ ai_gen_id }} {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 1;
+      opacity: {{ block.settings.shape_opacity }};
+      {% if block.settings.shape_style == 'circle' %}
+        width: 120%;
+        height: 120%;
+        border-radius: 50%;
+        background: {{ block.settings.shape_color }};
+      {% elsif block.settings.shape_style == 'rectangle' %}
+        width: 110%;
+        height: 110%;
+        background: {{ block.settings.shape_color }};
+        border-radius: {{ block.settings.shape_border_radius }}px;
+      {% elsif block.settings.shape_style == 'underline' %}
+        width: 100%;
+        height: {{ block.settings.underline_height }}px;
+        background: {{ block.settings.shape_color }};
+        top: auto;
+        bottom: 10%;
+      {% endif %}
+    }
+  {% endif %}
+
+  @media screen and (max-width: 749px) {
+    .ai-kween-text__main-{{ ai_gen_id }} {
+      font-size: {{ block.settings.font_size | times: 0.6 }}px;
+    }
+
+    .ai-kween-text__wrapper-{{ ai_gen_id }} {
+      width: 100%;
+    }
+
+    {% if block.settings.show_decorative_line %}
+      .ai-kween-text__main-{{ ai_gen_id }}::before,
+      .ai-kween-text__main-{{ ai_gen_id }}::after {
+        width: {{ block.settings.line_width | times: 0.6 }}px;
+      }
+
+      .ai-kween-text__main-{{ ai_gen_id }}::before {
+        left: -{{ block.settings.line_width | times: 0.6 | plus: 10 }}px;
+      }
+
+      .ai-kween-text__main-{{ ai_gen_id }}::after {
+        right: -{{ block.settings.line_width | times: 0.6 | plus: 10 }}px;
+      }
+    {% endif %}
+  }
+{% endstyle %}
+
+<div class="ai-kween-text-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-kween-text__wrapper-{{ ai_gen_id }}">
+    {% if block.settings.show_background_shape %}
+      <div class="ai-kween-text__background-{{ ai_gen_id }}"></div>
+    {% endif %}
+    <h2 class="ai-kween-text__main-{{ ai_gen_id }}">
+      {{ block.settings.text }}
+    </h2>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Stylish text",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Text"
+    },
+    {
+      "type": "text",
+      "id": "text",
+      "label": "Text",
+      "default": "KWEEN"
+    },
+    {
+      "type": "range",
+      "id": "font_size",
+      "label": "Font size",
+      "min": 30,
+      "max": 200,
+      "step": 5,
+      "unit": "px",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "font_weight",
+      "label": "Font weight",
+      "min": 100,
+      "max": 900,
+      "step": 100,
+      "default": 700
+    },
+    {
+      "type": "range",
+      "id": "letter_spacing",
+      "label": "Letter spacing",
+      "min": 0,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 5
+    },
+    {
+      "type": "select",
+      "id": "text_transform",
+      "label": "Text transform",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "uppercase",
+          "label": "Uppercase"
+        },
+        {
+          "value": "lowercase",
+          "label": "Lowercase"
+        },
+        {
+          "value": "capitalize",
+          "label": "Capitalize"
+        }
+      ],
+      "default": "uppercase"
+    },
+    {
+      "type": "header",
+      "content": "Style"
+    },
+    {
+      "type": "select",
+      "id": "text_style",
+      "label": "Text style",
+      "options": [
+        {
+          "value": "solid",
+          "label": "Solid color"
+        },
+        {
+          "value": "gradient",
+          "label": "Gradient"
+        },
+        {
+          "value": "outline",
+          "label": "Outline"
+        },
+        {
+          "value": "shadow",
+          "label": "Shadow"
+        }
+      ],
+      "default": "gradient"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#111111"
+    },
+    {
+      "type": "color",
+      "id": "gradient_color_1",
+      "label": "Gradient color 1",
+      "default": "#FF6B9D"
+    },
+    {
+      "type": "color",
+      "id": "gradient_color_2",
+      "label": "Gradient color 2",
+      "default": "#C239B3"
+    },
+    {
+      "type": "color",
+      "id": "gradient_color_3",
+      "label": "Gradient color 3",
+      "default": "#7301FA"
+    },
+    {
+      "type": "range",
+      "id": "gradient_angle",
+      "label": "Gradient angle",
+      "min": 0,
+      "max": 360,
+      "step": 15,
+      "unit": "deg",
+      "default": 45
+    },
+    {
+      "type": "range",
+      "id": "outline_width",
+      "label": "Outline width",
+      "min": 1,
+      "max": 5,
+      "step": 1,
+      "unit": "px",
+      "default": 2
+    },
+    {
+      "type": "range",
+      "id": "shadow_x",
+      "label": "Shadow horizontal offset",
+      "min": 0,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "shadow_y",
+      "label": "Shadow vertical offset",
+      "min": 0,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "shadow_blur",
+      "label": "Shadow blur",
+      "min": 0,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "default": 10
+    },
+    {
+      "type": "color",
+      "id": "shadow_color",
+      "label": "Shadow color",
+      "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "Decorative lines"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_decorative_line",
+      "label": "Show decorative lines",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "line_width",
+      "label": "Line width",
+      "min": 20,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "line_height",
+      "label": "Line thickness",
+      "min": 1,
+      "max": 10,
+      "step": 1,
+      "unit": "px",
+      "default": 3
+    },
+    {
+      "type": "color",
+      "id": "line_color",
+      "label": "Line color",
+      "default": "#111111"
+    },
+    {
+      "type": "header",
+      "content": "Background shape"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_background_shape",
+      "label": "Show background shape",
+      "default": false
+    },
+    {
+      "type": "select",
+      "id": "shape_style",
+      "label": "Shape style",
+      "options": [
+        {
+          "value": "circle",
+          "label": "Circle"
+        },
+        {
+          "value": "rectangle",
+          "label": "Rectangle"
+        },
+        {
+          "value": "underline",
+          "label": "Underline"
+        }
+      ],
+      "default": "circle"
+    },
+    {
+      "type": "color",
+      "id": "shape_color",
+      "label": "Shape color",
+      "default": "#FFD700"
+    },
+    {
+      "type": "range",
+      "id": "shape_opacity",
+      "label": "Shape opacity",
+      "min": 0,
+      "max": 1,
+      "step": 0.1,
+      "default": 0.3
+    },
+    {
+      "type": "range",
+      "id": "shape_border_radius",
+      "label": "Shape border radius",
+      "min": 0,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "underline_height",
+      "label": "Underline height",
+      "min": 5,
+      "max": 30,
+      "step": 5,
+      "unit": "px",
+      "default": 15
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "desktop_width_percent",
+      "label": "Desktop width",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    }
+  ],
+  "presets": [
+    {
+      "name": "Stylish text"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,426 @@
+{%- liquid
+  assign st = section.settings
+  assign sec_blocks = section.blocks
+  assign container = st.container
+  assign homepage_only = st.homepage_only
+  assign s_text_time = st.s_text_time
+  assign s_text_spacing = st.s_text_spacing
+  assign text_title = st.text_title
+  assign spacing_icon = st.spacing_icon
+  assign show_close = st.show_close
+  assign bar_font_size = st.bar_font_size
+  assign bar_font_weight = st.bar_font_weight
+  assign bar_uppercase = st.bar_uppercase
+  assign show_mobile = st.show_mobile
+  assign show = false
+  if homepage_only
+    if request.page_type == 'index'
+      assign show = true
+    endif
+  else
+    assign show = true
+  endif
+-%}
+{%- capture style -%}
+  --announcement-bar-font-size : {{ bar_font_size }}px;
+  --announcement-bar-font-weight : {{ bar_font_weight }};
+  --s-text-time: {{ s_text_time }}s;
+  --s-text-spacing: {{ s_text_spacing }}px;
+{%- endcapture -%}
+{% if show %}
+  <section
+    data-section-id="{{ section.id }}"
+    id="announcement-bar"
+    class="color-{{ section.settings.color_scheme }} {% if text_title %}scroll-text-title{% endif %} gradient announcement-bar relative active{% if show_mobile == blank %} d-none d-sm-block {% endif %}"
+    style="{{ style | strip | strip_newlines }}"
+  >
+    <div class="{{ container }} section-full">
+      {% if sec_blocks.size > 1 and st.text_action == 'marquee' %}
+        <div class="marquee d-flex overflow-hidden">
+      {% endif %}
+      {%- if sec_blocks.size > 1 -%}
+        {%- if st.text_action != 'marquee' -%}
+          <div class="slider-announcementBar">
+            <div class="swiper-announcementBar relative overflow-hidden">
+              <div class="swiper-wrapper">
+                {%- for i in (0..5) -%}
+                  {%- for block in sec_blocks -%}
+                    {%- case block.type -%}
+                      {%- when 'announcement' -%}
+                        {%- liquid
+                          assign blo_settings = block.settings
+                        -%}
+                        {%- if blo_settings.text != blank -%}
+                          <div {{ block.shopify_attributes }} class="swiper-slide">
+                            <div class="d-flex flex-wrap align-items-center announcement-bar-content justify-content-center text-center py-10 px-15 {% if bar_uppercase %}uppercase{% endif %}">
+                              {{ blo_settings.text }}
+                              {% if blo_settings.countdown_deadline != blank %}
+                                <div
+                                  class="countdown-announcementBar d-flex align-items-center"
+                                  data-block-id="{{ block.id }}"
+                                  data-block-deadline="{{ blo_settings.countdown_deadline }}"
+                                >
+                                  <div class="countdown-container d-flex align-items-center">
+                                    <span class="days_announcementBar">00</span>
+                                    <span class="timer-announcementbar-text">
+                                      {{ 'sections.times_bn.days' | t -}}
+                                    </span>
+                                  </div>
+                                  <div class="countdown-container d-flex align-items-center">
+                                    <span class="hours_announcementBar">00</span>
+                                    <span class="timer-announcementbar-text">
+                                      {{ 'sections.times_bn.hour' | t -}}
+                                    </span>
+                                  </div>
+                                  <div class="countdown-container d-flex align-items-center">
+                                    <span class="minutes_announcementBar">00</span>
+                                    <span class="timer-announcementbar-text">
+                                      {{ 'sections.times_bn.mins' | t -}}
+                                    </span>
+                                  </div>
+                                  <div class="countdown-container d-flex align-items-center">
+                                    <span class="seconds_announcementBar">00</span>
+                                    <span class="timer-announcementbar-text">
+                                      {{ 'sections.times_bn.secs' | t -}}
+                                    </span>
+                                  </div>
+                                </div>
+                              {% endif %}
+                            </div>
+                          </div>
+                        {%- endif -%}
+                    {%- endcase -%}
+                  {%- endfor -%}
+                {%- endfor -%}
+              </div>
+              <div class="swiper-arrow swiper-button-prev">
+                <i class="lnr lnr-chevron-left"></i>
+              </div>
+              <div class="swiper-arrow swiper-button-next">
+                <i class="lnr lnr-chevron-right"></i>
+              </div>
+            </div>
+          </div>
+        {%- else -%}
+          {%- for i in (0..5) -%}
+            <div class="d-flex announcement-scroll">
+              {%- for block in sec_blocks -%}
+                {%- case block.type -%}
+                  {%- when 'announcement' -%}
+                    {%- liquid
+                      assign blo_settings = block.settings
+                    -%}
+                    {%- if blo_settings.text != blank -%}
+                      <div
+                        {{ block.shopify_attributes }}
+                        class="d-flex flex-wrap align-items-center announcement-bar-content justify-content-center text-center py-10 {% if bar_uppercase %}uppercase{% endif %}"
+                      >
+                        {{ blo_settings.text }}
+                        <span class="scroll-line {% if  spacing_icon == 'icon_circle' %} d-flex align-items-center {% endif %}">
+                          {% if spacing_icon == 'icon_line' %}
+                            <span class="icon-line"></span>
+                          {% elsif spacing_icon == 'icon_circle' %}
+                            <i class="picon-circle fs-9"></i>
+                          {% elsif spacing_icon == 'icon_flash' %}
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="18"
+                              height="26"
+                              viewBox="0 0 18 26"
+                              fill="currentColor"
+                            >
+                              <path fill-rule="evenodd" clip-rule="evenodd" d="M10.5559 0.648142C10.0871 1.25336 2.33014 12.3472 2.35695 12.3741C2.37446 12.3915 3.641 12.4051 5.17152 12.4042C6.70204 12.4033 7.96318 12.4184 7.97414 12.4379C7.98504 12.4573 6.19186 15.3972 3.98929 18.9708C1.78671 22.5445 -0.00845001 25.4768 2.99199e-05 25.4871C0.00850985 25.4973 4.06197 21.7805 9.0077 17.2274L18 8.94911L14.6837 8.93491C12.8597 8.92709 11.3674 8.90864 11.3674 8.89383C11.3674 8.87901 12.6439 7.00941 14.2041 4.73916C15.7643 2.4689 17.0554 0.573199 17.0733 0.526505C17.1024 0.450681 16.7664 0.44165 13.9109 0.44165H10.7159L10.5559 0.648142Z" fill="currentColor"/>
+                            </svg>
+                          {% endif %}
+                        </span>
+                        {% if blo_settings.countdown_deadline != blank %}
+                          <div
+                            class="countdown-announcementBar d-flex align-items-center"
+                            data-block-id="{{ block.id }}"
+                            data-block-deadline="{{ blo_settings.countdown_deadline }}"
+                          >
+                            <div class="countdown-container">
+                              <span class="days_announcementBar">00</span>
+                              <span class="timer-announcementbar-text">{{ 'sections.times_bn.days' | t }}</span>
+                            </div>
+                            <div class="countdown-container">
+                              <span class="hours_announcementBar">00</span>
+                              <span class="timer-announcementbar-text">{{ 'sections.times_bn.hour' | t }}</span>
+                            </div>
+                            <div class="countdown-container">
+                              <span class="minutes_announcementBar">00</span>
+                              <span class="timer-announcementbar-text">{{ 'sections.times_bn.mins' | t }}</span>
+                            </div>
+                            <div class="countdown-container">
+                              <span class="seconds_announcementBar">00</span>
+                              <span class="timer-announcementbar-text">{{ 'sections.times_bn.secs' | t }}</span>
+                            </div>
+                          </div>
+                        {% endif %}
+                      </div>
+                    {%- endif -%}
+                {%- endcase -%}
+              {%- endfor -%}
+            </div>
+          {%- endfor -%}
+        {%- endif -%}
+      {%- else -%}
+        {%- for block in sec_blocks -%}
+          {%- case block.type -%}
+            {%- when 'announcement' -%}
+              {%- liquid
+                assign blo_settings = block.settings
+              -%}
+              {%- if blo_settings.text != blank -%}
+                <div
+                  {{ block.shopify_attributes }}
+                  class="d-flex flex-wrap align-items-center justify-content-center announcement-bar-content text-center py-10 px-15  {% if bar_uppercase %}uppercase{% endif %}"
+                >
+                  {{ blo_settings.text }}
+                  {% if blo_settings.countdown_deadline != blank %}
+                    <div
+                      class="countdown-announcementBar d-flex align-items-center"
+                      data-block-id="{{ block.id }}"
+                      data-block-deadline="{{ blo_settings.countdown_deadline }}"
+                    >
+                      <div class="countdown-container">
+                        <span class="days_announcementBar">00</span>
+                        <span class="timer-announcementbar-text">{{ 'sections.times_bn.days' | t }}</span>
+                      </div>
+                      <div class="countdown-container">
+                        <span class="hours_announcementBar">00</span>
+                        <span class="timer-announcementbar-text">{{ 'sections.times_bn.hour' | t }}</span>
+                      </div>
+                      <div class="countdown-container">
+                        <span class="minutes_announcementBar">00</span>
+                        <span class="timer-announcementbar-text">{{ 'sections.times_bn.mins' | t }}</span>
+                      </div>
+                      <div class="countdown-container">
+                        <span class="seconds_announcementBar">00</span>
+                        <span class="timer-announcementbar-text">{{ 'sections.times_bn.secs' | t }}</span>
+                      </div>
+                    </div>
+                  {% endif %}
+                </div>
+              {%- endif -%}
+          {%- endcase -%}
+        {%- endfor -%}
+      {%- endif -%}
+      {% if sec_blocks.size > 1 and st.text_action == 'marquee' %}
+        </div>
+      {% endif %}
+      {% if show_close %}
+        <a
+          rel="nofollow"
+          href="#"
+          class="announcement-close absolute right-15 position-center-y"
+          aria-label="close"
+        >
+          <i class="lnr lnr-cross"></i>
+        </a>
+      {% endif %}
+    </div>
+  </section>
+  <script>
+    function getCookieA(cname) {
+      let name = cname + '=';
+      let decodedCookie = decodeURIComponent(document.cookie);
+      let ca = decodedCookie.split(';');
+      for (let i = 0; i < ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) == ' ') {
+          c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+          return c.substring(name.length, c.length);
+        }
+      }
+      return '';
+    }
+    if (getCookieA('announcement_bar')) {
+      document.querySelector('.announcement_bar').remove();
+    }
+  </script>
+{% endif %}
+
+{% schema %}
+{
+  "name": "t:sections.announment-bar.name",
+  "class": "announcement_bar",
+  "enabled_on": {
+    "groups": ["header"]
+  },
+  "limit": 1,
+  "settings": [
+    {
+      "type": "select",
+      "id": "container",
+      "label": "t:sections.all.layout.label",
+      "default": "container",
+      "options": [
+        {
+          "value": "container",
+          "label": "t:sections.all.layout.options__1.label"
+        },
+        {
+          "value": "container-fluid",
+          "label": "t:sections.all.layout.options__2.label"
+        },
+        {
+          "value": "strecth-width",
+          "label": "t:sections.all.layout.options__3.label"
+        },
+        {
+          "value": "full-width",
+          "label": "t:sections.all.layout.options__4.label"
+        }
+      ]
+    },
+    {
+      "type": "checkbox",
+      "id": "homepage_only",
+      "label": "t:sections.announment-bar.settings.homepage_only.label",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_close",
+      "label": "t:sections.announment-bar.settings.show_close.label",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_mobile",
+      "label": "t:sections.announment-bar.settings.show_mobile.label",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "text_action",
+      "label": "t:sections.announment-bar.settings.text_action.label",
+      "default": "marquee",
+      "options": [
+        {
+          "value": "marquee",
+          "label": "t:sections.announment-bar.settings.text_action.options__1.label"
+        },
+        {
+          "value": "slider",
+          "label": "t:sections.announment-bar.settings.text_action.options__2.label"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "bar_font_size",
+      "min": 12,
+      "max": 18,
+      "step": 1,
+      "label": "t:sections.all.typography.default_size",
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "bar_font_weight",
+      "min": 100,
+      "max": 900,
+      "step": 100,
+      "label": "t:sections.all.typography.default_weight",
+      "default": 500
+    },
+    {
+      "type": "checkbox",
+      "id": "bar_uppercase",
+      "label": "t:sections.announment-bar.settings.bar_uppercase.label",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "s_text_time",
+      "min": 3,
+      "max": 30,
+      "step": 1,
+      "label": "t:sections.announment-bar.settings.s_text_time.label",
+      "unit": "s",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "s_text_spacing",
+      "min": 10,
+      "max": 100,
+      "step": 1,
+      "label": "t:sections.announment-bar.settings.s_text_spacing.label",
+      "unit": "px",
+      "default": 50
+    },
+    {
+      "type": "checkbox",
+      "id": "text_title",
+      "label": "t:sections.scrolling-text.settings.text_title.label",
+      "default": false
+    },
+    {
+      "type": "select",
+      "id": "spacing_icon",
+      "label": "t:sections.scrolling-text.settings.spacing_icon.label",
+      "default": "icon_line",
+      "options": [
+        {
+          "value": "icon_line",
+          "label": "t:sections.scrolling-text.settings.spacing_icon.options__1.label"
+        },
+        {
+          "value": "icon_circle",
+          "label": "t:sections.scrolling-text.settings.spacing_icon.options__2.label"
+        },
+        {
+          "value": "icon_flash",
+          "label": "t:sections.scrolling-text.settings.spacing_icon.options__3.label"
+        }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "t:sections.announment-bar.text_color"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.announment-bar.color_scheme"
+    }
+  ],
+  "max_blocks": 4,
+  "blocks": [
+    {
+      "type": "announcement",
+      "name": "t:sections.announment-bar.blocks.Announcement.name",
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "text",
+          "default": "<p>Welcome to our store</p>",
+          "label": "t:sections.announment-bar.blocks.Announcement.settings.text.label"
+        },
+        {
+          "type": "text",
+          "id": "countdown_deadline",
+          "label": "t:sections.announment-bar.blocks.Announcement.settings.countdown_deadline.label",
+          "info": "t:sections.announment-bar.blocks.Announcement.settings.countdown_deadline.info"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.announment-bar.name",
+      "blocks": [
+        {
+          "type": "announcement"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

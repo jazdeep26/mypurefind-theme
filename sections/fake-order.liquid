@@ -1,0 +1,220 @@
+{%- liquid
+  assign st = section.settings
+  assign list_product_fake = st.fake_product
+  assign product_available = list_product_fake | where: 'available'
+  assign products = product_available.first
+  assign delay_time = st.delay_time
+  assign display_time = st.display_time
+  assign hidden_mobile = st.hidden_mobile_fake_order
+  assign show_fake_order = st.show_fake_order
+  if hidden_mobile == null
+    assign hidden_mobile = hidden_mobile
+  endif
+  if show_fake_order == null
+    assign show_fake_order = show_fake_order
+  endif
+  assign list_user = st.fake_user | replace: ' | ', '|' | replace: ' |', '|' | replace: '| ', '|' | split: '|'
+-%}
+{%- if product_available.size > 0 -%}
+  {{ 'fake-order.css' | asset_url | stylesheet_tag }}
+  <div
+    id="bls__fake-order"
+    class="fake-order animated {% if hidden_mobile != true %}hidden-mobile{% endif %}"
+    style="display: none;"
+    data-section-id="{{ section.id }}"
+    data-time-delay="{{ delay_time }}"
+    data-time-display="{{ display_time }}"
+  >
+    <a role="link" class="absolute fake-order-close icon-x" aria-label="close fake order"
+      ><i class="lnr lnr-cross"></i
+    ></a>
+    <div class="product-fake-order flex">
+      <div class="fake-order-image">
+        {%- if products.featured_image != blank -%}
+          <a data-url href="{{ products.url }}">
+            <img
+              data-img
+              src="{{ products.featured_image | image_url }}"
+              width="60"
+              height="80"
+              alt="{{ products.title }}"
+              loading="lazy"
+            >
+          </a>
+        {%- else -%}
+          <a data-url href="#">
+            {%- render 'responsive-image', cls: 'w-60 h-80' -%}
+          </a>
+        {%- endif -%}
+      </div>
+      <div class="fake-order-info">
+        <div class="flex fake-list">
+          <span data-user class="user-purchase">{{ list_user[0] }}</span>
+          <span style="color: #666666;">{{ 'fake_order.purchased' | t }}</span>
+        </div>
+        <div class="product-order-title">
+          <a data-url data-title-fake href="#">{{ 'general.product_name' | t }}</a>
+        </div>
+        <div class="flex">
+          <div class="minutes-ago">
+            <span><span data-time class="minutes-number">8</span> {{ 'fake_order.time_minutes' | t }}</span>
+          </div>
+          <a data-url href="#" class="text-verify">
+            <span class="lnr lnr-checkmark-circle mr-5"></span>
+            {{ st.text_verify }}
+          </a>
+        </div>
+      </div>
+      <div class="fake-order-progressbar"><span data-progressbar></span></div>
+    </div>
+    <script type="application/json" id="bls__data-title">
+      {{- product_available | map: 'title' | json -}}
+    </script>
+    <script type="application/json" id="bls__data-url">
+      {{- product_available | map: 'url' | json -}}
+    </script>
+    <script type="application/json" id="bls__data-img">
+      {{- product_available | map: 'featured_image' | json -}}
+    </script>
+    <script type="application/json" id="bls__data-user">
+      {{- list_user | json -}}
+    </script>
+    <script>
+      var BlsFakeOrder = (function () {
+        return {
+          init: function () {
+            this.showFakeOrder();
+          },
+          showFakeOrder: function (e) {
+            const prd = document.querySelector('#bls__fake-order');
+            const delayTime = prd?.dataset.timeDelay;
+            const displayTime = prd?.dataset.timeDisplay;
+            var randomNumber = 0;
+            var randomImg = 0;
+            var lastRandomNumber = 0;
+            if (prd != null) {
+              const u = document.querySelector('#bls__data-url').innerHTML;
+              const t = document.querySelector('#bls__data-title').innerHTML;
+              const i = document.querySelector('#bls__data-img').innerHTML;
+              const c = document.querySelector('#bls__data-user').innerHTML;
+              const title = prd.querySelector('[data-title-fake]');
+              const url = prd.querySelectorAll('[data-url]');
+              const image = prd.querySelector('[data-img]');
+              const user = prd.querySelector('[data-user]');
+              const time = prd.querySelector('[data-time]');
+              const prog = prd.querySelector('[data-progressbar]');
+              const j = JSON.parse(u);
+              const k = JSON.parse(t);
+              const l = JSON.parse(i);
+              const m = JSON.parse(c);
+              const close = document.querySelector('.fake-order-close');
+              const invail_fake_data = setInterval(randomData, delayTime);
+              close.addEventListener('click', () => {
+                clearInterval(invail_fake_data);
+                prd.classList.remove('animate__fadeInUp');
+                prd.classList.add('animate__fadeInDown');
+                prog.style.animationDuration = '';
+                prog.style.animationName = '';
+                prog.style.animationFillMode = '';
+                prog.style.background = '';
+                prog.style.animationTimingFunction = '';
+              });
+              function randomData() {
+                if (!prd.classList.contains('animate__fadeInUp')) {
+                  if (j.length > 0) {
+                    prd.style.removeProperty('display');
+                    prd.classList.add('animate__fadeInUp');
+                    prd.classList.remove('animate__fadeInDown');
+                    do {
+                      randomNumber = Math.floor(Math.random() * (m.length - 1) + 0);
+                      randomImg = Math.floor(Math.random() * (l.length - 1) + 0);
+                    } while (randomNumber == lastRandomNumber && randomImg == lastRandomNumber);
+                    title.innerText = k[randomImg];
+                    user.innerText = m[randomNumber];
+                    if (image) {
+                      image.src = l[randomImg];
+                      image.alt = k[randomImg];
+                    }
+                    url.forEach((e) => {
+                      e.href = j[randomImg];
+                    });
+                    var fakeTimeOrder = Math.floor(Math.random() * 60 + randomNumber);
+                    time.innerText = fakeTimeOrder;
+                    prog.style.animationDuration = `${displayTime}ms`;
+                    prog.style.animationName = 'bls-progressbar';
+                    prog.style.animationFillMode = 'forwards';
+                    prog.style.animationTimingFunction = 'linear';
+                    prog.style.background = '#111111';
+                    setTimeout(function () {
+                      prd.classList.remove('animate__fadeInUp');
+                      prd.classList.add('animate__fadeInDown');
+                      prog.style.animationDuration = '';
+                      prog.style.animationName = '';
+                      prog.style.animationFillMode = '';
+                      prog.style.animationTimingFunction = '';
+                      prog.style.background = '';
+                    }, displayTime);
+                  }
+                }
+              }
+            }
+          },
+        };
+      })();
+      BlsFakeOrder.init();
+    </script>
+  </div>
+{%- endif -%}
+{% schema %}
+{
+  "name": "t:settings_schema.fake-order.name",
+  "enabled_on": {
+    "groups": ["custom.overlay"]
+  },
+  "limit": 1,
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "hidden_mobile_fake_order",
+      "label": "t:settings_schema.global.settings.show_on_mobile.label",
+      "default": false
+    },
+    {
+      "type": "product_list",
+      "id": "fake_product",
+      "label": "t:settings_schema.fake-order.settings.fake_product.label"
+    },
+    {
+      "type": "textarea",
+      "id": "fake_user",
+      "label": "t:settings_schema.fake-order.settings.fake_user.label",
+      "default": "Jonson (California) | Tony (Texas) | Bruno (New York) | Eren (Ohio) | Lauren (Washington) | Flortino (California) | Blue (Ohio)"
+    },
+    {
+      "type": "text",
+      "id": "text_verify",
+      "label": "t:settings_schema.fake-order.settings.text_verify.label",
+      "default": "Verify"
+    },
+    {
+      "type": "text",
+      "id": "delay_time",
+      "label": "t:settings_schema.fake-order.settings.delay_time.label",
+      "default": "5000",
+      "info": "t:settings_schema.fake-order.settings.delay_time.info"
+    },
+    {
+      "type": "text",
+      "id": "display_time",
+      "label": "t:settings_schema.fake-order.settings.display_time.label",
+      "default": "6000",
+      "info": "t:settings_schema.fake-order.settings.delay_time.info"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:settings_schema.fake-order.name"
+    }
+  ]
+}
+{% endschema %}

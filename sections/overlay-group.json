@@ -1,0 +1,66 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "name": "t:settings_schema.Overlay_group.name",
+  "type": "custom.overlay",
+  "sections": {
+    "before_you_leave_6BKbPJ": {
+      "type": "before-you-leave",
+      "disabled": true,
+      "settings": {
+        "color_scheme": "scheme-b808185a-cae7-47ba-9fe9-7d81ddf7e485",
+        "bf_show_time": 1,
+        "bf_collection": "dresses",
+        "bf_limit_product": 3,
+        "bf_heading": "Before you leave...",
+        "bf_sub_heading": "<p>Take 20% off your first order 20% OFF</p>",
+        "bf_desc": "<p>Enter the code below at checkout to get 20% off your first order. [discount_code]</p>",
+        "bf_code": "ROKAN2024",
+        "bf_show_bb": true,
+        "bf_label_bb": "",
+        "bf_link_bb": ""
+      }
+    },
+    "fake_order_nmqXKL": {
+      "type": "fake-order",
+      "disabled": true,
+      "settings": {
+        "hidden_mobile_fake_order": false,
+        "fake_product": [
+          "form-armchair-black",
+          "simple-model-chair",
+          "table-lamp-14x29cm",
+          "wooden-lamp-drop"
+        ],
+        "fake_user": "Jonson (California) | Tony (Texas) | Bruno (New York) | Eren (Ohio) | Lauren (Washington) | Flortino (California) | Blue (Ohio)",
+        "text_verify": "Verify",
+        "delay_time": "5000",
+        "display_time": "6000"
+      }
+    },
+    "newsletter_popup_kWKyFH": {
+      "type": "newsletter-popup",
+      "disabled": true,
+      "settings": {
+        "show_newsletter": "show_newsletter_homepage",
+        "newsletter_mailchimp": "",
+        "newsletter_width": 760,
+        "newsletter_title": "Join the our family",
+        "newsletter_sub_title": "<p>Sign up to get all the latest fashion news, website updates, offers and promos.</p>",
+        "disable_mobile": false
+      }
+    }
+  },
+  "order": [
+    "before_you_leave_6BKbPJ",
+    "fake_order_nmqXKL",
+    "newsletter_popup_kWKyFH"
+  ]
+}

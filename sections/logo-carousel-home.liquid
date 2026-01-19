@@ -1,0 +1,92 @@
+<section class="logo-carousel">
+  <div class="logo-track">
+    {% for block in section.blocks %}
+      <div class="logo-item">
+        <img src="{{ block.settings.logo | image_url }}" alt="brand logo">
+      </div>
+    {% endfor %}
+
+    {%- comment -%} DUPLICATE LOGOS FOR INFINITE LOOP {%- endcomment -%}
+    {% for block in section.blocks %}
+      <div class="logo-item">
+        <img src="{{ block.settings.logo | image_url }}" alt="brand logo">
+      </div>
+    {% endfor %}
+  </div>
+</section>
+
+<style>
+/* ================================
+   Infinite Logo Carousel
+================================ */
+
+.logo-carousel {
+  overflow: hidden;
+  width: 100%;
+  padding: 30px 0;
+}
+
+.logo-track {
+  display: flex;
+  align-items: center;
+  width: max-content;
+  animation: logoScroll 25s linear infinite;
+}
+
+.logo-item {
+  flex-shrink: 0;
+  margin: 0 30px;
+}
+
+.logo-item img {
+  max-height: 70px;
+  width: auto;
+  object-fit: contain;
+  opacity: 0.9;
+}
+
+/* ===== Mobile Responsive ===== */
+@media (max-width: 768px) {
+  .logo-item {
+    margin: 0 20px;
+  }
+
+  .logo-item img {
+    max-height: 55px;
+  }
+}
+
+/* ===== Infinite Animation ===== */
+@keyframes logoScroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+</style>
+
+{% schema %}
+{
+  "name": "Infinite Logo Carousel",
+  "blocks": [
+    {
+      "type": "logo",
+      "name": "Logo",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "logo",
+          "label": "Upload Logo"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Infinite Logo Carousel"
+    }
+  ]
+}
+{% endschema %}

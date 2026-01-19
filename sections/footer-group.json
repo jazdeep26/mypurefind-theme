@@ -1,0 +1,75 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "name": "Footer",
+  "type": "footer",
+  "sections": {
+    "footer_2_DeJJBg": {
+      "type": "footer-2",
+      "blocks": {
+        "about_us_i98rPr": {
+          "type": "about_us",
+          "settings": {
+            "title": "",
+            "description": "",
+            "logo_width": 120,
+            "about_description": "<strong>Try before you buy-at home. </strong>Expert-guided, thoughtfully curated beauty and jewellery. Because the right choice is made by experience.",
+            "show_address": true,
+            "show_phone": true,
+            "show_email": true,
+            "show_socials_link": false,
+            "enable_follow_on_shop": true,
+            "width": "33%"
+          }
+        },
+        "newsletter_bQyKBQ": {
+          "type": "newsletter",
+          "settings": {
+            "sub_title": "",
+            "title": "Sign Up To Newsletter",
+            "description": "Sign up for exclusive updates, new arrivals & insider only discounts",
+            "email_placeholder": "Enter your email...",
+            "email_btn_label": "Subscribe",
+            "note": "***By entering the e-mail you accept the terms and conditions and the privacy policy.",
+            "design_newletter": "default",
+            "show_social": true,
+            "style_light": false,
+            "width": "33%"
+          }
+        }
+      },
+      "block_order": [
+        "about_us_i98rPr",
+        "newsletter_bQyKBQ"
+      ],
+      "settings": {
+        "container": "container-fluid",
+        "text_alignment": "text-left",
+        "show_icon": true,
+        "footer_open_collapsing": false,
+        "back_to_top": true,
+        "show_border_top": false,
+        "show_border_top_inner": true,
+        "has_bg": true,
+        "remove_on_homepage": true,
+        "remove_on_inner_page": false,
+        "copyright": "<p>© 2026 My Pure Find. All rights reserved.</p>",
+        "menu": "",
+        "payment_icons_width": 325,
+        "show_social_links": false,
+        "footer-heading-size": 18,
+        "color_scheme": "scheme-b1c1b1d1-803d-47cb-85af-38b35fac6f71"
+      }
+    }
+  },
+  "order": [
+    "footer_2_DeJJBg"
+  ]
+}

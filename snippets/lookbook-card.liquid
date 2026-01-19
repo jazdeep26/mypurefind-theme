@@ -1,0 +1,199 @@
+{%- liquid
+  assign st = section.settings
+  assign h_font_size = st.h_font_size
+  assign h_font_weight = st.h_font_weight
+  assign des_font_size = st.des_font_size
+  assign h_spacing = st.h_spacing
+  assign des_spacing = st.des_spacing
+  assign des_font_weight = st.des_font_weight
+  assign button_font_size = st.button_font_size
+  assign button_font_weight = st.button_font_weight
+  assign bl_st = block.settings
+  assign title = bl_st.title
+  assign content = bl_st.content
+  assign btn_content = bl_st.btn_content
+  assign link = bl_st.link
+  assign open_link = bl_st.open_link
+  assign button_type = bl_st.button_type
+  assign text_align_text = bl_st.text_align
+  assign text_align_on_mobile = bl_st.text_align_on_mobile
+  assign content_box = bl_st.content_box
+  assign show_content_lookbook = bl_st.show_content_lookbook
+  assign text_position = ''
+  if bl_st.text_position == 'top'
+    assign text_position = ' justify-content-start'
+  elsif bl_st.text_position == 'center'
+    assign text_position = ' justify-content-center'
+  elsif bl_st.text_position == 'bottom'
+    assign text_position = ' justify-content-end'
+  endif
+  assign text_horizontal_position = bl_st.text_horizontal_position
+  if text_horizontal_position == 'left'
+    assign text_horizontal_position = 'align-items-start'
+  elsif text_horizontal_position == 'center'
+    assign text_horizontal_position = 'align-items-center'
+  else
+    assign text_horizontal_position = 'align-items-end'
+  endif
+-%}
+<div class="relative">
+  <div class="bls__lookbook-items" id="{{ block.id }}">
+    <a
+      {{ block.shopify_attributes }}
+      aria-label="Link detail"
+      class="h-full"
+      {% if link == blank %}
+        role="link"
+        aria-disabled="true"
+      {% else %}
+        href="{{ link }}"
+      {% endif %}
+      {%- if open_link == '_blank' -%}
+        target="_blank"
+      {%- else -%}
+        target="_self"
+      {%- endif -%}
+    >
+      <div class="bls__lookbook-image {% if settings.image_style != blank and section.settings.container != "full-width" and section.settings.column_gap != 0 %} radius {% endif %}">
+        {%- if bl_st.image != blank -%}
+          {% render 'responsive-image', image: bl_st.image, aspect_ratio: aspect_ratio, custom_ratio: custom_ratio %}
+        {%- else -%}
+          {%- render 'responsive-image', aspect_ratio: aspect_ratio, custom_ratio: custom_ratio -%}
+        {%- endif -%}
+        {%- if type == 'ig_shop' -%}
+          <span class="text-on-hover absolute right-10 top-10 d-flex content-center">
+            <i class="picon-handbag fs-14"></i>
+          </span>
+        {%- endif -%}
+      </div>
+    </a>
+    {%- if type == 'ig_shop' -%}
+      {%- for i in (1..5) -%}
+        {% liquid
+          assign position_top_ = 'position_top_' | append: i
+          assign position_top = bl_st[position_top_]
+          assign position_left_ = 'position_left_' | append: i
+          assign position_left = bl_st[position_left_]
+          assign product_ = 'product_' | append: i
+          assign products = bl_st[product_]
+        %}
+        {%- if products != blank -%}
+          {%- liquid
+            assign product = all_products[products]
+          -%}
+          {%- if request.design_mode -%}
+            <div
+              class="bls__product-item absolute"
+              style="top: {{ position_top }}%; left: {{ position_left }}%;transform: translate(-{{ position_left }}%,-{{ position_top }}%)"
+              data-product-handle="{{ product.handle }}"
+            >
+              <a
+                {% if st.action_click == 'fancybox' %}
+                  data-handle-click="{{ block.id }}-{{ i }}" class="lookbook-items-toggle lookbook-action"
+                {% else %}
+                  href="{{ product.url }}"
+                {% endif %}
+              >
+                <span class="icon-dot icon">
+                  <i class="picon-plus fs-12"></i>
+                </span>
+              </a>
+            </div>
+          {%- endif -%}
+        {%- endif -%}
+      {%- endfor -%}
+    {%- else -%}
+      {%- for i in (1..5) -%}
+        {% liquid
+          assign position_top_ = 'position_top_' | append: i
+          assign position_top = bl_st[position_top_]
+          assign position_left_ = 'position_left_' | append: i
+          assign position_left = bl_st[position_left_]
+          assign product_ = 'product_' | append: i
+          assign products = bl_st[product_]
+        %}
+        {%- if products != blank -%}
+          {%- liquid
+            assign product = all_products[products]
+          -%}
+          <div
+            class="bls__product-item bls__lookbook-click absolute"
+            style="top: {{ position_top }}%; left: {{ position_left }}%;transform: translate(-{{ position_left }}%,-{{ position_top }}%)"
+            data-product-handle="{{ product.handle }}"
+          >
+            <a
+              {% if st.action_click == 'fancybox' %}
+                data-handle-click="{{ block.id }}-{{ i }}" class="lookbook-items-toggle lookbook-action"
+                href="{{ product.url }}"
+              {% else %}
+                href="{{ product.url }}"
+              {% endif %}
+            >
+              <span>{{ product.title }}</span>
+              {%- if st.dot_type == 'icon' -%}
+                <span class="icon-dot icon">
+                  <i class="picon-plus fs-12 icon_show"></i>
+                </span>
+              {%- else -%}
+                <span class="icon-dot number">
+                  <span class="icon_show">{{ i }}</span>
+                  <i class="lnr lnr-cross"></i>
+                </span>
+              {%- endif -%}
+            </a>
+            {% if st.action_click == 'fancybox' %}
+              <div class="lookbook__popup-items items-{{ block.id }}-{{ i }} absolute transition">
+                {%- render 'product-item' | product: product | lookbook: true -%}
+              </div>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    {%- endif -%}
+  </div>
+  {%- if show_content_lookbook -%}
+    <div class="bls__banner-content {{ text_horizontal_position }} {{ content_box }} absolute inset-0 py-30 pointer-events-none flex flex-column z-1 text-{{ text_align_on_mobile }} text-md-{{ text_align_text }} {{ text_position }}">
+      <div>
+        {%- if title != blank -%}
+          <div
+            class="h3 bls__banner-heading {% if h_font_size > 30 %}size-big{% endif %}"
+            style="{% if h_font_weight != 'default' %} --custom-heading-font-weight: {{ h_font_weight }};{% endif %}--heading-font-size: {{ h_font_size }}px; --heading-spacing: {{ h_spacing }}px;"
+          >
+            {{ title }}
+          </div>
+        {%- endif -%}
+        {%- if content != blank -%}
+          <div
+            class="bls__banner-text"
+            style="{% if des_font_weight != 'default' %} --desc-font-weight: {{ des_font_weight }};{% endif %}--desc-font-size: {{ des_font_size }}px;--desc-spacing: {{ des_spacing }}px;"
+          >
+            {{ content }}
+          </div>
+        {%- endif -%}
+        {%- if btn_content != blank -%}
+          <div
+            class="bls__banner-button"
+          >
+            <a
+              {% if link == blank %}
+                role="link"
+                aria-disabled="true"
+              {% else %}
+                href="{{ link }}"
+              {% endif %}
+              {%- if open_link == '_blank' -%}
+                target="_blank"
+              {%- else -%}
+                target="_self"
+              {%- endif -%}
+              class="bls__banner-btn whitespace-nowrap btn-{{ button_type }} "
+              style=" {% if button_font_weight != 'default' %} --button-font-weight: {{ button_font_weight }};{% endif %}--button-font-size: {{ button_font_size }}px;"
+            >
+              {{ btn_content | escape }}
+            </a>
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+  {%- endif -%}
+</div>

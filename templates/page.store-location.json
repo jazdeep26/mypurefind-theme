@@ -1,0 +1,176 @@
+/*
+* ------------------------------------------------------------
+* IMPORTANT: The contents of this file are auto-generated.
+*
+* This file may be updated by the Shopify admin theme editor
+* or related systems. Please exercise caution as any changes
+* made to this file may be overwritten.
+* ------------------------------------------------------------
+*/
+{
+  "sections": {
+    "page-heading": {
+      "type": "page-heading",
+      "settings": {
+        "container": "container",
+        "color_scheme": "",
+        "show_banner": false,
+        "min_height": 200,
+        "parallax": false,
+        "show_overlay": false,
+        "overlay": 54,
+        "design": "text-overlay-image",
+        "text_postion": "text-left"
+      }
+    },
+    "main": {
+      "type": "page-store-location",
+      "blocks": {
+        "0e262e6e-fc4d-4ec5-81d9-9c95e76979a8": {
+          "type": "item",
+          "settings": {
+            "store_lng": "-77.038659",
+            "store_lat": "38.931567",
+            "store_name": "01. NEW YORK",
+            "store_address": "7021 Washington SQ.\nSouth New York, NY 10012",
+            "store_phone": " 703.172.3412",
+            "store_email": "hello@example.com"
+          }
+        },
+        "c06f9d83-8f64-479a-8993-0071fc5d2099": {
+          "type": "item",
+          "settings": {
+            "store_lng": "-77.003168",
+            "store_lat": "38.894651",
+            "store_name": "02. AUSTIN",
+            "store_address": "2972 Collins St.\nVictoria, Austin 8007",
+            "store_phone": "703.172.3412",
+            "store_email": "hello@example.com"
+          }
+        },
+        "21c6c1c9-4d71-4bac-85f5-765d07b31e17": {
+          "type": "item",
+          "settings": {
+            "store_lng": "-77.090372",
+            "store_lat": "38.881189",
+            "store_name": "03. AMSTERDAM",
+            "store_address": "1081 Vansla Spartan,\nSalta Town, Amsterdam 10012",
+            "store_phone": " 703.172.3412",
+            "store_email": "hello@example.com"
+          }
+        },
+        "4c8eb07d-7eb5-4d2d-9e44-8d680d54b096": {
+          "type": "item",
+          "settings": {
+            "store_lng": "-77.111561",
+            "store_lat": "38.882342",
+            "store_name": "04. SAN FRANCICO",
+            "store_address": "4140 Crosscut Rd.\nWaytown, San Francisco 12134",
+            "store_phone": "703.172.3412",
+            "store_email": "hello@example.com"
+          }
+        }
+      },
+      "block_order": [
+        "0e262e6e-fc4d-4ec5-81d9-9c95e76979a8",
+        "c06f9d83-8f64-479a-8993-0071fc5d2099",
+        "21c6c1c9-4d71-4bac-85f5-765d07b31e17",
+        "4c8eb07d-7eb5-4d2d-9e44-8d680d54b096"
+      ],
+      "settings": {
+        "heading": "Our Local Store",
+        "heading_border": false,
+        "description": "<p>Click on your nears store location below to set the road on Google Map.<\/p>",
+        "text_alignment": "text-center",
+        "container": "full-width",
+        "iframe": "<iframe src=\"https:\/\/www.google.com\/maps\/embed?pb=!1m18!1m12!1m3!1d50941.0851952626!2d-95.78197131269138!3d37.06182424549097!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x87b778b9da9b5b1f%3A0x3df3aefa017361ac!2sFawn%20Creek%20Township%2C%20KS%2C%20USA!5e0!3m2!1sen!2s!4v1666059952368!5m2!1sen!2s\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"><\/iframe>"
+      }
+    },
+    "divider_cjtytr": {
+      "type": "divider",
+      "settings": {
+        "container": "container-fluid",
+        "border_height": 1,
+        "border_color": "#ebebeb",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": false
+      }
+    },
+    "banner_with_infor_PCDWTz": {
+      "type": "banner-with-infor",
+      "blocks": {
+        "store_infor_fhgVrH": {
+          "type": "store_infor",
+          "settings": {
+            "show_socials_link": true,
+            "show_phone": true,
+            "show_email": true,
+            "show_address": true,
+            "title": "HEADQUATER",
+            "txt_content": "<p>Contact us for any further questions, possible projects and business partnerships.<\/p>",
+            "heading_fs": 20,
+            "heading_fw": "default",
+            "phone": "+1 248-785-9545",
+            "email": "info@example.com",
+            "address": "9606 North MoPac Expressway Suite 700 Austin",
+            "txt_fs": 18,
+            "txt_fw": "default",
+            "txt_tf": "unset",
+            "txt_mt": 21,
+            "txt_mb": 25
+          }
+        }
+      },
+      "block_order": [
+        "store_infor_fhgVrH"
+      ],
+      "settings": {
+        "container": "container-fluid",
+        "color_scheme": "",
+        "image_behavior": "none",
+        "image": "shopify:\/\/shop_images\/store_banner.jpg",
+        "text_align": "text-left",
+        "text_position": "center",
+        "content_bg_color": "",
+        "background_gradient": "",
+        "content_width": 100,
+        "img_position": "right",
+        "banner_width": "col-md-6",
+        "column_gap": 30,
+        "hover_effect": "zoom",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": false
+      }
+    },
+    "divider_wfcQWk": {
+      "type": "divider",
+      "settings": {
+        "container": "container-fluid",
+        "border_height": 1,
+        "border_color": "#ebebeb",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": false
+      }
+    },
+    "contact_form_WpQ4VW": {
+      "type": "contact-form",
+      "settings": {
+        "heading": "Have an question? Contact us!",
+        "description": "",
+        "text_alignment": "text-center",
+        "container": "container-fluid"
+      }
+    }
+  },
+  "order": [
+    "page-heading",
+    "main",
+    "divider_cjtytr",
+    "banner_with_infor_PCDWTz",
+    "divider_wfcQWk",
+    "contact_form_WpQ4VW"
+  ]
+}

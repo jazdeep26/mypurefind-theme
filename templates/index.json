@@ -1,0 +1,915 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "custom_text_C7HTWM": {
+      "type": "custom-text",
+      "blocks": {
+        "sub_heading_6ycmYi": {
+          "type": "sub_heading",
+          "settings": {
+            "sub_heading": "<p>India’s first try-at-home platform for women</p>",
+            "sub_fs": 18,
+            "sub_fw": "default",
+            "sub_tf": "unset",
+            "sub_mt": 16,
+            "sub_mb": 10
+          }
+        },
+        "heading_LBdAJa": {
+          "type": "heading",
+          "settings": {
+            "heading": "Confident choices, made at home.",
+            "heading_fs": 50,
+            "heading_fw": "700",
+            "heading_tf": "unset",
+            "heading_mt": 0,
+            "heading_mb": 10
+          }
+        },
+        "desc_bHYVUA": {
+          "type": "desc",
+          "settings": {
+            "desc": "<p>We bring curated beauty products as per your wish to your home. Try everything on your own skin, in your own light - buy only what you truly love.</p>",
+            "desc_fs": 16,
+            "desc_fw": "default",
+            "content_width": 60,
+            "desc_tf": "unset",
+            "desc_mt": 0,
+            "desc_mb": 0
+          }
+        },
+        "buttons_4pHrWF": {
+          "type": "buttons",
+          "settings": {
+            "btn_content": "Book Free Demo Now",
+            "button_type": "primary",
+            "button_link": "shopify://pages/demoform",
+            "button_target": false,
+            "b_mt": 10,
+            "b_mb": 5
+          }
+        }
+      },
+      "block_order": [
+        "sub_heading_6ycmYi",
+        "heading_LBdAJa",
+        "desc_bHYVUA",
+        "buttons_4pHrWF"
+      ],
+      "name": "t:sections.custom-content.name",
+      "settings": {
+        "container": "container",
+        "text_align": "text-center",
+        "color_scheme": "default-color-scheme",
+        "custom_class": "",
+        "padding_top": 7,
+        "padding_bottom": 0,
+        "reset_spacing": true
+      }
+    },
+    "0c521c75-5d82-4dd6-aecc-f519d8907411": {
+      "type": "slideshow",
+      "blocks": {
+        "4d89f9ff-8153-4b4a-a089-ccb19f702450": {
+          "type": "slider_item",
+          "settings": {
+            "video_local": "shopify://files/videos/banner video (1).mp4",
+            "content_box": "content_in_container_fluid",
+            "content_custom_width": false,
+            "content_width": 35,
+            "content_background_color": "rgba(0,0,0,0)",
+            "content_opacity": 60,
+            "horizontal_position": "center_position",
+            "vertical_position": "bottom_position",
+            "slider_effect": "effect_fadeinup",
+            "text_alignment": "center",
+            "text_alignment_on_mobile": "center",
+            "subheading": "",
+            "title": "",
+            "description": "",
+            "image_link": "shopify://collections/sofa",
+            "button_text": "",
+            "button_type": "primary"
+          }
+        }
+      },
+      "block_order": [
+        "4d89f9ff-8153-4b4a-a089-ccb19f702450"
+      ],
+      "settings": {
+        "container": "strecth-width",
+        "slide_height": "full_screen",
+        "color_scheme": "scheme-39dc080d-ae96-4cdd-8f57-b11d5217e9de",
+        "image_behavior": "none",
+        "height_dk": 800,
+        "height_tb": 500,
+        "height_mb": 400,
+        "heading_font_size": 60,
+        "heading_font_weight": "default",
+        "heading_spacing": 20,
+        "subheading_font_size": 15,
+        "subheading_font_weight": "400",
+        "subheading_spacing": 0,
+        "description_font_size": 16,
+        "description_font_weight": "default",
+        "description_spacing": 50,
+        "design": "s-text-overlay-image",
+        "reset_color_mb": false,
+        "show_arrow_desktop": false,
+        "show_arrow_mobile": false,
+        "show_bullet_desktop": false,
+        "show_bullet_mobile": false,
+        "autoplay": false,
+        "autorotate_speed": 5,
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": false
+      }
+    },
+    "custom_text_CyAFcQ": {
+      "type": "custom-text",
+      "name": "t:sections.custom-content.name",
+      "settings": {
+        "container": "container",
+        "text_align": "text-center",
+        "color_scheme": "",
+        "custom_class": "",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": false
+      }
+    },
+    "8498460c-0376-40d1-bafc-199edbe0edfc": {
+      "type": "collection-list",
+      "blocks": {
+        "template--16567751475447__8498460c-0376-40d1-bafc-199edbe0edfc-16665857567f9937b1-0": {
+          "type": "collection_item",
+          "settings": {
+            "title_collection": "Makeup",
+            "collection": "makeup",
+            "image": "shopify://shop_images/Gemini_Generated_Image_j5nur4j5nur4j5nu.png"
+          }
+        },
+        "template--16567751475447__8498460c-0376-40d1-bafc-199edbe0edfc-16665857567f9937b1-1": {
+          "type": "collection_item",
+          "settings": {
+            "title_collection": "Fragrances",
+            "collection": "fragrances",
+            "image": "shopify://shop_images/Gemini_Generated_Image_2zrn0a2zrn0a2zrn.png"
+          }
+        },
+        "template--16567751475447__8498460c-0376-40d1-bafc-199edbe0edfc-16665857567f9937b1-2": {
+          "type": "collection_item",
+          "settings": {
+            "title_collection": "Haircare",
+            "collection": "hair-extensions",
+            "image": "shopify://shop_images/Gemini_Generated_Image_g8fifcg8fifcg8fi.png"
+          }
+        },
+        "template--16567751475447__8498460c-0376-40d1-bafc-199edbe0edfc-16665857567f9937b1-3": {
+          "type": "collection_item",
+          "settings": {
+            "title_collection": "Skincare",
+            "collection": "skincare",
+            "image": "shopify://shop_images/Gemini_Generated_Image_1xau3s1xau3s1xau.png"
+          }
+        },
+        "collection_item_V3qKNU": {
+          "type": "collection_item",
+          "settings": {
+            "title_collection": "Jewellery",
+            "collection": "jewellery",
+            "image": "shopify://shop_images/Gemini_Generated_Image_pxrhvvpxrhvvpxrh.png"
+          }
+        }
+      },
+      "block_order": [
+        "template--16567751475447__8498460c-0376-40d1-bafc-199edbe0edfc-16665857567f9937b1-0",
+        "template--16567751475447__8498460c-0376-40d1-bafc-199edbe0edfc-16665857567f9937b1-1",
+        "template--16567751475447__8498460c-0376-40d1-bafc-199edbe0edfc-16665857567f9937b1-2",
+        "template--16567751475447__8498460c-0376-40d1-bafc-199edbe0edfc-16665857567f9937b1-3",
+        "collection_item_V3qKNU"
+      ],
+      "settings": {
+        "heading": "Categories",
+        "heading_border": false,
+        "description": "<h3><strong>Everything beauty, delivered to experience</strong></h3>",
+        "text_alignment": "text-center",
+        "container": "strecth-width",
+        "color_scheme": "scheme-b1c1b1d1-803d-47cb-85af-38b35fac6f71",
+        "design_layout": "carousel",
+        "design_collection": "design-1",
+        "hover_effect": "zoom",
+        "show_count_product": false,
+        "custom_width_images": false,
+        "width_image": 180,
+        "images_style": false,
+        "image_ratio": "custom",
+        "custom_ratio": "516:690",
+        "custom_column": 5,
+        "custom_column_mobile": 2,
+        "custom_column_small_mobile": 2,
+        "column_gap": 30,
+        "collection_font_size": 16,
+        "collection_font_weight": 400,
+        "collection_spacing": 0,
+        "count_font_size": 14,
+        "count_font_weight": 400,
+        "autoplay": false,
+        "loop": false,
+        "show_arrow": true,
+        "carousel_pagination": "carousel_none",
+        "reveal_on_scroll": false,
+        "padding_top": 30,
+        "padding_bottom": 50,
+        "reset_spacing": true
+      }
+    },
+    "collection_tab_TXkknc": {
+      "type": "collection-tab",
+      "blocks": {
+        "collection_ThmKfr": {
+          "type": "collection",
+          "settings": {
+            "title": "Makeup",
+            "collection": "makeup"
+          }
+        },
+        "collection_tEcVLD": {
+          "type": "collection",
+          "settings": {
+            "title": "Skincare",
+            "collection": "skincare"
+          }
+        },
+        "collection_UzQrBe": {
+          "type": "collection",
+          "settings": {
+            "title": "Fragrances",
+            "collection": "fragrances"
+          }
+        },
+        "collection_iGthCH": {
+          "type": "collection",
+          "settings": {
+            "title": "Hair Extensions",
+            "collection": "hair-extensions"
+          }
+        },
+        "collection_pTbrxG": {
+          "type": "collection",
+          "settings": {
+            "title": "Jewellery",
+            "collection": "jewellery"
+          }
+        }
+      },
+      "block_order": [
+        "collection_ThmKfr",
+        "collection_tEcVLD",
+        "collection_UzQrBe",
+        "collection_iGthCH",
+        "collection_pTbrxG"
+      ],
+      "name": "t:sections.collection-tab.name",
+      "settings": {
+        "heading": "Today's Popular Picks",
+        "heading_border": false,
+        "description": "",
+        "text_alignment": "text-center",
+        "container": "container",
+        "color_scheme": "scheme-b808185a-cae7-47ba-9fe9-7d81ddf7e485",
+        "tab_design": "horizontal",
+        "tab_style": "tab_desgin_3",
+        "tab_type": "carousel",
+        "limit_products": 8,
+        "item_desktop": 4,
+        "column_gap": 30,
+        "carousel_autoplay": false,
+        "carousel_loop": false,
+        "carousel_arrows": false,
+        "carousel_pagination": "carousel_none",
+        "number_of_rows": 1,
+        "load_more_button_enable": false,
+        "button_action": "load",
+        "button_label": "Load more",
+        "button_type": "primary",
+        "padding_top": 40,
+        "padding_bottom": 50,
+        "reset_spacing": false
+      }
+    },
+    "scrolling_text_74gPXr": {
+      "type": "scrolling-text",
+      "blocks": {
+        "scrolling_text_FNfyYp": {
+          "type": "scrolling_text",
+          "settings": {
+            "content": "<p>Free Glam Session</p>",
+            "text_link": ""
+          }
+        },
+        "scrolling_text_R9bMFr": {
+          "type": "scrolling_text",
+          "settings": {
+            "content": "<p>Private Beauty 1:1</p>",
+            "text_link": ""
+          }
+        },
+        "scrolling_text_p6KiyW": {
+          "type": "scrolling_text",
+          "settings": {
+            "content": "<p>Exclusively yours</p>",
+            "text_link": ""
+          }
+        },
+        "scrolling_text_rNWrqP": {
+          "type": "scrolling_text",
+          "settings": {
+            "content": "<p>Test Before You Trust</p>",
+            "text_link": ""
+          }
+        },
+        "scrolling_text_bGj3yk": {
+          "type": "scrolling_text",
+          "settings": {
+            "content": "<p>No More Guesswork</p>",
+            "text_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "scrolling_text_FNfyYp",
+        "scrolling_text_R9bMFr",
+        "scrolling_text_p6KiyW",
+        "scrolling_text_rNWrqP",
+        "scrolling_text_bGj3yk"
+      ],
+      "name": "t:sections.scrolling-text.name",
+      "settings": {
+        "container": "container",
+        "color_scheme": "",
+        "text_font_size": 12,
+        "text_font_weight": 500,
+        "text_time": 21,
+        "text_spacing": 50,
+        "text_title": false,
+        "spacing_icon": "icon_line",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": false
+      }
+    },
+    "collection_list_AY7dTF": {
+      "type": "collection-list",
+      "blocks": {
+        "collection_item_8LK6FY": {
+          "type": "collection_item",
+          "settings": {
+            "title_collection": "1. Choose Your Beauty Need",
+            "collection": "",
+            "image": "shopify://shop_images/Gemini_Generated_Image_osqu5aosqu5aosqu.png"
+          }
+        },
+        "collection_item_rMRzDX": {
+          "type": "collection_item",
+          "settings": {
+            "title_collection": "2. We Curate select Products",
+            "collection": "",
+            "image": "shopify://shop_images/Gemini_Generated_Image_50mlia50mlia50ml.png"
+          }
+        },
+        "collection_item_rNFzff": {
+          "type": "collection_item",
+          "settings": {
+            "title_collection": "3. Free 60-Min Home Demo",
+            "collection": "",
+            "image": "shopify://shop_images/Gemini_Generated_Image_b3ifx0b3ifx0b3if.png"
+          }
+        },
+        "collection_item_F86nVt": {
+          "type": "collection_item",
+          "settings": {
+            "title_collection": "4. Buy Only What You Love",
+            "collection": "",
+            "image": "shopify://shop_images/Gemini_Generated_Image_dzig7mdzig7mdzig.png"
+          }
+        }
+      },
+      "block_order": [
+        "collection_item_8LK6FY",
+        "collection_item_rMRzDX",
+        "collection_item_rNFzff",
+        "collection_item_F86nVt"
+      ],
+      "settings": {
+        "heading": "How It Works",
+        "heading_border": false,
+        "description": "<h3><strong>Beauty shopping, reimagined</strong></h3><p>Four simple steps to discover products that actually work for you.<br/></p>",
+        "text_alignment": "text-center",
+        "container": "strecth-width",
+        "color_scheme": "scheme-013ccfbf-beb5-42e6-bc8f-8a36ab634ca7",
+        "design_layout": "grid",
+        "design_collection": "design-2",
+        "hover_effect": "zoom",
+        "show_count_product": false,
+        "custom_width_images": false,
+        "width_image": 200,
+        "images_style": false,
+        "image_ratio": "1/1",
+        "custom_ratio": "21:9",
+        "custom_column": 4,
+        "custom_column_mobile": 1,
+        "custom_column_small_mobile": 1,
+        "column_gap": 30,
+        "collection_font_size": 20,
+        "collection_font_weight": 500,
+        "collection_spacing": 0,
+        "count_font_size": 14,
+        "count_font_weight": 400,
+        "autoplay": false,
+        "loop": false,
+        "show_arrow": true,
+        "carousel_pagination": "carousel_none",
+        "reveal_on_scroll": false,
+        "padding_top": 80,
+        "padding_bottom": 50,
+        "reset_spacing": true
+      }
+    },
+    "spacing_NRqTGq": {
+      "type": "spacing",
+      "settings": {
+        "spacing_desktop": 5,
+        "spacing_moible": 5
+      }
+    },
+    "lookbook_nfjDGh": {
+      "type": "lookbook",
+      "blocks": {
+        "lookbook_8DwtAG": {
+          "type": "lookbook",
+          "settings": {
+            "show_content_lookbook": false,
+            "text_align": "left",
+            "text_align_on_mobile": "center",
+            "text_horizontal_position": "left",
+            "text_position": "top",
+            "content_box": "container",
+            "title": "Heading",
+            "content": "<p>Description</p>",
+            "btn_content": "Shop now",
+            "link": "",
+            "open_link": "_blank",
+            "button_type": "primary",
+            "position_top_1": 78,
+            "position_left_1": 11,
+            "product_1": "track-arm-sofa",
+            "position_top_2": 35,
+            "position_left_2": 48,
+            "product_2": "janis-suspension-lamp",
+            "position_top_3": 61,
+            "position_left_3": 48,
+            "product_3": "",
+            "position_top_4": 0,
+            "position_left_4": 0,
+            "product_4": "",
+            "position_top_5": 20,
+            "position_left_5": 0,
+            "product_5": ""
+          }
+        },
+        "lookbook_fRbzRt": {
+          "type": "lookbook",
+          "settings": {
+            "show_content_lookbook": false,
+            "text_align": "left",
+            "text_align_on_mobile": "center",
+            "text_horizontal_position": "left",
+            "text_position": "top",
+            "content_box": "container",
+            "title": "Heading",
+            "content": "<p>Description</p>",
+            "btn_content": "Shop now",
+            "link": "",
+            "open_link": "_blank",
+            "button_type": "primary",
+            "position_top_1": 71,
+            "position_left_1": 9,
+            "product_1": "laso-leather-accent-chair",
+            "position_top_2": 58,
+            "position_left_2": 73,
+            "product_2": "salone-grey-queen-bed",
+            "position_top_3": 58,
+            "position_left_3": 48,
+            "product_3": "",
+            "position_top_4": 0,
+            "position_left_4": 0,
+            "product_4": "",
+            "position_top_5": 20,
+            "position_left_5": 0,
+            "product_5": ""
+          }
+        }
+      },
+      "block_order": [
+        "lookbook_8DwtAG",
+        "lookbook_fRbzRt"
+      ],
+      "disabled": true,
+      "settings": {
+        "heading": "",
+        "heading_border": false,
+        "description": "",
+        "text_alignment": "text-center",
+        "container": "full-width",
+        "color_scheme": "",
+        "h_font_size": 36,
+        "h_font_weight": "default",
+        "h_spacing": 10,
+        "des_font_size": 16,
+        "des_font_weight": "default",
+        "des_spacing": 30,
+        "button_font_size": 16,
+        "button_font_weight": "default",
+        "design_layout": "grid",
+        "dot_type": "icon",
+        "aspect_ratio": "custom",
+        "custom_ratio": "192:96",
+        "column_gap": 5,
+        "slider_lookbook_items": 2,
+        "action_click": "fancybox",
+        "autoplay": false,
+        "loop": false,
+        "show_arrow": true,
+        "carousel_pagination": "show_bullet_mobile",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": false
+      }
+    },
+    "blog_posts_WCFfjA": {
+      "type": "blog-posts",
+      "disabled": true,
+      "settings": {
+        "heading": "Blog posts",
+        "heading_border": false,
+        "description": "<p>Provide you with useful knowledge about furniture trends</p>",
+        "text_align": "text-center",
+        "container": "container-fluid",
+        "color_scheme": "default-color-scheme",
+        "blog": "furniture",
+        "num_post_show": 4,
+        "post_item_desktop": 3,
+        "column_gap": 30,
+        "autoplay": false,
+        "loop": false,
+        "show_arrow": true,
+        "carousel_pagination": "carousel_none",
+        "aspect_ratio": "16/9",
+        "custom_ratio": "4:3",
+        "hover_effect": "zoom",
+        "post_show_author": true,
+        "post_show_category": true,
+        "post_show_date": true,
+        "post_show_excerpt": true,
+        "post_show_button": true,
+        "post_content_center": false,
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": false
+      }
+    },
+    "gallery_neHGjP": {
+      "type": "gallery",
+      "blocks": {
+        "image_rPQazV": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Screenshot_2026-01-18_at_9.38.06_PM.png",
+            "link": ""
+          }
+        },
+        "image_GhX9mf": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/download_12.png",
+            "link": ""
+          }
+        },
+        "image_GNpw3a": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/download_11.png",
+            "link": ""
+          }
+        },
+        "image_c47FfW": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/download_8.png",
+            "link": ""
+          }
+        },
+        "image_cJ4WD6": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/download_7.png",
+            "link": ""
+          }
+        },
+        "image_wW6tjD": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/download_1.png",
+            "link": ""
+          }
+        },
+        "image_LjXFJC": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/download_3.png",
+            "link": ""
+          }
+        },
+        "image_g8DxLP": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/download_5.png",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "image_rPQazV",
+        "image_GhX9mf",
+        "image_GNpw3a",
+        "image_c47FfW",
+        "image_cJ4WD6",
+        "image_wW6tjD",
+        "image_LjXFJC",
+        "image_g8DxLP"
+      ],
+      "name": "t:sections.gallery.name",
+      "settings": {
+        "heading": "Top Brands",
+        "heading_border": false,
+        "description": "",
+        "text_align": "text-center",
+        "container": "container",
+        "color_scheme": "scheme-d127e173-a562-42f4-a41e-3483b672d918",
+        "layout_type": "grid",
+        "column_gap": 30,
+        "aspect_ratio": "original",
+        "custom_ratio": "21:9",
+        "actions_click": "unset",
+        "custom_column": 4,
+        "grid_image_desktop": 4,
+        "autoplay": false,
+        "loop": false,
+        "show_arrow": false,
+        "carousel_pagination": "carousel_none",
+        "padding_top": 50,
+        "padding_bottom": 50,
+        "reset_spacing": true
+      }
+    },
+    "icon_box_a94hU4": {
+      "type": "icon-box",
+      "blocks": {
+        "iconbox_mD8GGm": {
+          "type": "iconbox",
+          "settings": {
+            "heading": "FREE SHIPPING",
+            "description": "<p>Get complimentary ground shipping on every order.  Don't love it? Send it back, on us.</p>"
+          }
+        },
+        "iconbox_xpjDqD": {
+          "type": "iconbox",
+          "settings": {
+            "heading": "100% PAYMENT SECURE",
+            "description": "<p>Free returns within 10 days, please make sure the items are in undamaged condition.</p>"
+          }
+        },
+        "iconbox_WHfMDK": {
+          "type": "iconbox",
+          "settings": {
+            "heading": "SUPPORT 24/7",
+            "description": "<p>We support customers 24/7, send us questions and we will solve for you immediately.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "iconbox_mD8GGm",
+        "iconbox_xpjDqD",
+        "iconbox_WHfMDK"
+      ],
+      "disabled": true,
+      "settings": {
+        "heading": "",
+        "heading_border": false,
+        "description": "",
+        "text_alignment": "text-center",
+        "container": "container-fluid",
+        "color_scheme": "scheme-013ccfbf-beb5-42e6-bc8f-8a36ab634ca7",
+        "custom_column": 3,
+        "column_gap": 30,
+        "icon_width": 38,
+        "icon_spacing": 15,
+        "carousel_mobile": true,
+        "ib_h_font_size": 14,
+        "ib_h_font_weight": "600",
+        "ib_spacing": 10,
+        "ib_desc_font_size": 16,
+        "ib_img_view": "default",
+        "img_position": "position-top",
+        "content_text_alignment": "text-center",
+        "padding_top": 60,
+        "padding_bottom": 30,
+        "reset_spacing": true
+      }
+    },
+    "spacing_KpLA4g": {
+      "type": "spacing",
+      "settings": {
+        "spacing_desktop": 5,
+        "spacing_moible": 5
+      }
+    },
+    "testimonial_4dyEYw": {
+      "type": "testimonial",
+      "blocks": {
+        "testimonials_BjqXeT": {
+          "type": "testimonials",
+          "settings": {
+            "title_text": "",
+            "description": "<p>I tried MyPureFind and wanted to share my experience.<br/>I’m not really a “makeup person” - I prefer quick, easy-to-use products that help me get ready and start my day without too much effort.</p>",
+            "author": "Madhu",
+            "job": "",
+            "testimonial_width": 100
+          }
+        },
+        "testimonials_rx9Hfa": {
+          "type": "testimonials",
+          "settings": {
+            "title_text": "",
+            "description": "<p>The team at MyPureFind understood my needs perfectly and recommended the right set of products for me. They helped me explore new brands and find options that were closest to my preferences and skin needs.</p>",
+            "author": "Aanya Sharma",
+            "job": "",
+            "testimonial_width": 100
+          }
+        },
+        "testimonials_cizDYD": {
+          "type": "testimonials",
+          "settings": {
+            "title_text": "",
+            "description": "<p>What I loved most is that it didn’t stop at product recommendations - they even have experts who guide you, apply the products, and help you understand what suits you best.</p>",
+            "author": "Devanshi Singh",
+            "job": "",
+            "testimonial_width": 100
+          }
+        }
+      },
+      "block_order": [
+        "testimonials_BjqXeT",
+        "testimonials_rx9Hfa",
+        "testimonials_cizDYD"
+      ],
+      "name": "t:sections.testimonials.name",
+      "settings": {
+        "heading": "What People Are Saying",
+        "heading_border": false,
+        "description": "",
+        "text_align": "text-center",
+        "container": "container",
+        "color_scheme": "scheme-013ccfbf-beb5-42e6-bc8f-8a36ab634ca7",
+        "content_width": 100,
+        "design": "design_1",
+        "testi_text_size": "small",
+        "show_rating": true,
+        "img_view": "default",
+        "img_position": "position-top",
+        "car_gap": 30,
+        "carousel_item_desktop": 3,
+        "autoplay": false,
+        "loop": false,
+        "show_arrow": true,
+        "reveal_on_scroll": false,
+        "pagination_style": "dots",
+        "padding_top": 50,
+        "padding_bottom": 0,
+        "reset_spacing": false
+      }
+    },
+    "instagram_iRTne7": {
+      "type": "instagram",
+      "blocks": {
+        "ig_img_local_x4e66X": {
+          "type": "ig_img_local",
+          "settings": {
+            "ig_link": ""
+          }
+        },
+        "ig_img_local_MkJXQy": {
+          "type": "ig_img_local",
+          "settings": {
+            "ig_link": ""
+          }
+        },
+        "ig_img_local_c8c6zF": {
+          "type": "ig_img_local",
+          "settings": {
+            "ig_link": ""
+          }
+        },
+        "ig_img_local_fNfQ3X": {
+          "type": "ig_img_local",
+          "settings": {
+            "ig_link": ""
+          }
+        },
+        "ig_img_local_mYyfNk": {
+          "type": "ig_img_local",
+          "settings": {
+            "ig_link": ""
+          }
+        },
+        "ig_img_local_DDddgX": {
+          "type": "ig_img_local",
+          "settings": {
+            "ig_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "ig_img_local_x4e66X",
+        "ig_img_local_MkJXQy",
+        "ig_img_local_c8c6zF",
+        "ig_img_local_fNfQ3X",
+        "ig_img_local_mYyfNk",
+        "ig_img_local_DDddgX"
+      ],
+      "disabled": true,
+      "name": "t:sections.instagram.name",
+      "settings": {
+        "heading": "Instagram",
+        "heading_border": false,
+        "show_icon": false,
+        "description": "<p>Follow us in instagram.</p>",
+        "text_alignment": "text-center",
+        "container": "container",
+        "show_instagram_profile": true,
+        "instagram_profile_text": "Follow Us  @Mypurefind",
+        "instagram_profile_link": "",
+        "color_scheme": "scheme-6de5e490-9ebf-4111-bce7-840b2d9c6f4c",
+        "column_gap": 10,
+        "ig_image_show": "ig_type_local",
+        "aspect_ratio": "1/1",
+        "ig_ac": "",
+        "ig_num_imgs": 8,
+        "ig_type": "carousel",
+        "images_per_row_grid_d": 6,
+        "carousel_autoplay": false,
+        "carousel_loop": false,
+        "carousel_arrows": false,
+        "carousel_pagination": "carousel_none",
+        "padding_top": 50,
+        "padding_bottom": 50,
+        "reset_spacing": false
+      }
+    },
+    "spacing_rQbCLX": {
+      "type": "spacing",
+      "settings": {
+        "spacing_desktop": 0,
+        "spacing_moible": 0
+      }
+    }
+  },
+  "order": [
+    "custom_text_C7HTWM",
+    "0c521c75-5d82-4dd6-aecc-f519d8907411",
+    "custom_text_CyAFcQ",
+    "8498460c-0376-40d1-bafc-199edbe0edfc",
+    "collection_tab_TXkknc",
+    "scrolling_text_74gPXr",
+    "collection_list_AY7dTF",
+    "spacing_NRqTGq",
+    "lookbook_nfjDGh",
+    "blog_posts_WCFfjA",
+    "gallery_neHGjP",
+    "icon_box_a94hU4",
+    "spacing_KpLA4g",
+    "testimonial_4dyEYw",
+    "instagram_iRTne7",
+    "spacing_rQbCLX"
+  ]
+}

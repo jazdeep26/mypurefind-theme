@@ -1,0 +1,112 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "name": "Header",
+  "type": "header",
+  "sections": {
+    "announcement_ipGfXw": {
+      "type": "announcement",
+      "blocks": {
+        "announcement_a3BBMm": {
+          "type": "announcement",
+          "settings": {
+            "text": "<p><strong>Try before you buy-at home</strong>🏠</p>",
+            "countdown_deadline": ""
+          }
+        }
+      },
+      "block_order": [
+        "announcement_a3BBMm"
+      ],
+      "disabled": true,
+      "settings": {
+        "container": "full-width",
+        "homepage_only": true,
+        "show_close": true,
+        "show_mobile": true,
+        "text_action": "slider",
+        "bar_font_size": 14,
+        "bar_font_weight": 400,
+        "bar_uppercase": false,
+        "s_text_time": 10,
+        "s_text_spacing": 50,
+        "text_title": false,
+        "spacing_icon": "icon_line",
+        "color_scheme": "scheme-4e2829e1-a162-4726-850f-b9f27dd45db4"
+      }
+    },
+    "header_Uw3rEd": {
+      "type": "header",
+      "blocks": {
+        "menu_promotion_AdUxpt": {
+          "type": "menu_promotion",
+          "settings": {
+            "text": "",
+            "open-link-newtab": true,
+            "item_label": "unset",
+            "promotion_menu_column": 4,
+            "mega_custom_width": 1030,
+            "full_width": true,
+            "promotion_position": "right",
+            "promotion_image_style": "modern",
+            "promotion_image_width": 30,
+            "promotion_link_1": "",
+            "promotion_link_2": ""
+          }
+        }
+      },
+      "block_order": [
+        "menu_promotion_AdUxpt"
+      ],
+      "custom_css": [],
+      "name": "t:sections.header.name",
+      "settings": {
+        "section_width": "container",
+        "color_scheme": "scheme-013ccfbf-beb5-42e6-bc8f-8a36ab634ca7",
+        "logo_position": "center",
+        "logo_position_option": 2,
+        "submenu_center": false,
+        "sticky_header": false,
+        "sticky_header_mobile": false,
+        "transparent_header": false,
+        "transparent_mobile": false,
+        "transparent_text_icon_color": "",
+        "mega_menu": "main-menu",
+        "dropdowns_animation": "up_to_down",
+        "hot": "Hot",
+        "label_color_hot": "#ffffff",
+        "label_background_hot": "#d0473e",
+        "new": "New",
+        "label_color_new": "#ffffff",
+        "label_background_new": "#516cf4",
+        "sale": "Sale",
+        "label_color_sale": "#ffffff",
+        "label_background_sale": "#d73f0f",
+        "menu_mb_action": false,
+        "menu_mb_category": false,
+        "collection_list_all": false,
+        "collection_list_custom": [],
+        "menu_mobile_background": "#fa297d",
+        "menu_mobile_color": "#ffffff",
+        "show_search": true,
+        "show_account_icon": false,
+        "show_wishlist_icon": false,
+        "show_shopping_cart": true,
+        "show_currency": false,
+        "show_language": true,
+        "show_text_account": false
+      }
+    }
+  },
+  "order": [
+    "announcement_ipGfXw",
+    "header_Uw3rEd"
+  ]
+}

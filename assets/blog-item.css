@@ -1,0 +1,165 @@
+.section-blog {
+    --posts-title-color: #212529;
+}
+
+.bls__blog-posts-title a {
+    color: var(--posts-title-color);
+}
+
+.bls__blog-posts-category a {
+    background-color: var(--color-white);
+    color: var(--heading-color);
+    border-radius: 3px;
+    padding: 3px 10px;
+}
+
+.blog-article-contents .bls__blog-posts-category a {
+    border: 1px solid;
+}
+
+.item-desktop-4 .bls__blog-posts-title {
+    font-size: 1.8rem;
+}
+
+.blos__blog-posts-info {
+    padding-top: 2.5rem;
+}
+
+.post-content-center {
+    text-align: center;
+}
+
+.post-content-center .bls__blog-posts-bottom {
+    justify-content: center;
+}
+
+.bls__blog-posts-item .bls__blog-posts-tag {
+    display: block;
+    font-size: 11px;
+    font-weight: 500;
+    line-height: 22px;
+    margin-bottom: 0.25rem;
+    text-transform: uppercase;
+}
+
+.article-metas span:not(.heading-color),
+.bls__blog-posts-date {
+    color: var(--heading-color);
+}
+
+.bls__blog-posts-content {
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
+    overflow: hidden;
+}
+
+.blog-posts-item-list:first-child>* {
+    width: 100%;
+}
+
+#bls__blog-container .bls__blog-posts-item {
+    margin-bottom: 4rem;
+}
+
+.blog-posts-item-list .blos__blog-posts-info {
+    padding-bottom: 3rem;
+}
+
+@media (min-width: 768px) {
+    #bls__blog-container .bls__blog-posts-item {
+        margin-bottom: 6rem;
+    }
+
+    .blog-posts-item-list .blos__blog-posts-info {
+        padding-bottom: 4rem;
+    }
+}
+
+#bls__blog-container .bls__blog-articles-portfolio .bls__blog-posts-item {
+    margin-bottom: 3rem;
+}
+
+.blog-posts-item-list .blos__blog-posts-info::after {
+    content: '';
+    border-bottom: 1px solid var(--border-color-base);
+    position: absolute;
+    bottom: 0;
+    left: calc(var(--bs-gutter-x)* .5);
+    right: calc(var(--bs-gutter-x)* .5);
+}
+
+.blog-posts-item-list:first-child .blog-posts-readmore {
+    background: linear-gradient(to bottom, var(--btn-secondary-bg-hover) 50%, var(--btn-secondary-bg) 50%) no-repeat scroll right bottom / 100% 210% var(--btn-secondary-bg);
+    color: var(--btn-secondary-color);
+    border: 1px solid var(--btn-secondary-border-color);
+    padding: 5px 20px;
+}
+
+.blog-posts-item-list:first-child .blog-posts-readmore:hover {
+    background-position: right top;
+    color: var(--btn-secondary-color-hover);
+    border-color: var(--btn-secondary-bg-hover);
+}
+
+.blog-posts-item-list:first-child .blog-posts-readmore::before,
+.blog-posts-item-list:first-child .blog-posts-readmore::after {
+    display: none;
+}
+
+/* blog portfolio card */
+.bls__blog-articles-portfolio .bls__blog-posts-item,
+.hover-text_overlay .bls__blog-posts-item {
+    position: relative;
+}
+
+.bls__blog-articles-portfolio .bls__blog-posts-item h3,
+.hover-text_overlay .bls__blog-posts-item h3,
+.hover-text_overlay .article-metas span,
+.hover-text_overlay .bls__blog-posts-author,
+.hover-text_overlay .bls__blog-posts-date,
+.hover-text_overlay a {
+    color: var(--color-white);
+}
+
+.bls__blog-articles-portfolio .bls__blog-posts-item:hover .blos__blog-posts-info,
+.hover-text_overlay .bls__blog-posts-item:hover .blos__blog-posts-info {
+    opacity: 1;
+    visibility: visible;
+    transform: translate3d(0, 0, 0);
+    -webkit-transform: translate3d(0, 0, 0);
+}
+
+.bls__blog-articles-portfolio .hover-effect.radius~.blos__blog-posts-info {
+    border-radius: 0 0 var(--base-border-radius) var(--base-border-radius);
+}
+
+.bls__blog-articles-portfolio .blos__blog-posts-info,
+.hover-text_overlay .blos__blog-posts-info {
+    --transition-popup: all 0.3s;
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 3rem 3rem 2.5rem 3rem;
+    background: rgba(0, 0, 0, 0.15);
+    backdrop-filter: blur(5px);
+    transition: var(--transition-popup);
+    -webkit-transition: var(--transition-popup);
+}
+
+.hover-text_overlay .blos__blog-posts-info {
+    padding: 2.5rem;
+}
+
+@media (max-width: 767px) {
+    .blog-previous-next {
+        align-items: baseline;
+    }
+}
+
+.bls__blog-articles-portfolio .blos__blog-posts-info {
+    margin: 0 calc(var(--bs-gutter-x) / 2);
+}

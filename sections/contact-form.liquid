@@ -1,0 +1,162 @@
+{% liquid
+  assign st = section.settings
+  assign container = st.container
+  assign text_align_title = st.text_alignment
+  assign heading = st.heading
+  assign description = st.description
+%}
+<div class="bls__section contact-form">
+  <div class="{{ container }} section-full">
+    <div class=" bls__contact-header bls__contact-form">
+      <div class="contact-header {{ text_align_title }} mb-30">
+        <h3 class=" m-0 fw-400 fs-40">
+          {{ heading }}
+        </h3>
+        <p>{{ description }}</p>
+      </div>
+      <div style="max-width: 925px" class="contact-form mx-auto">
+        {% form 'contact' %}
+          {% if form.posted_successfully? %}
+            <p class="success">
+              {{ 'templates.contact.form.page_contact_successs' | t }}
+            </p>
+          {% else %}
+            {{ form.errors | default_errors }}
+          {% endif %}
+          <div class="form-field form-group row row-cols-md-2" style="--bs-gutter-x: 2rem">
+            <div class="field-contact-name">
+              <input
+                type="text"
+                class="form-input form-input-placeholder w-full"
+                name="contact[name]"
+                value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}"
+                id="inputName"
+                placeholder="{{ 'templates.contact.form.name' | t }}"
+              >
+            </div>
+            <div class="field-contact-email">
+              <input
+                type="email"
+                class="form-input form-input-placeholder w-full"
+                class=""
+                name="contact[email]"
+                required
+                autocorrect="off"
+                autocapitalize="off"
+                value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}"
+                id="inputEmail"
+                placeholder="{{ 'templates.contact.form.email' | t }}"
+              >
+            </div>
+          </div>
+          <div class="form-field form-group mb-20">
+            <input
+              name="contact[subject]"
+              class="form-input form-input-placeholder w-full"
+              id="subject"
+              rows="8"
+              type="text"
+              placeholder="{{ 'templates.contact.form.subject' | t }}"
+            >
+          </div>
+          <div class="form-field form-group">
+            <textarea
+              name="contact[body]"
+              class="form-input form-input-placeholder w-full"
+              id="message"
+              rows="8"
+              placeholder="{{ 'templates.contact.form.comment' | t }}"
+            ></textarea>
+          </div>
+          <div class="form-actions mt-30">
+            <input
+              type="submit"
+              class="button btn btn-primary w-full"
+              value="{{ 'templates.contact.form.send_message' | t }}"
+            >
+          </div>
+        {% endform %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Contact form",
+  "class": "bls-store-location-page",
+  "presets": [
+    {
+      "name": "Contact form"
+    }
+  ],
+  "disabled_on": {
+    "groups": ["custom.overlay", "header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:sections.all.section_header.title_header"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "t:sections.all.section_header.heading"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "t:sections.all.section_header.description",
+      "default": "<p></p>"
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "t:sections.all.horizontal_alignment.text_alignment",
+      "default": "text-center",
+      "options": [
+        {
+          "value": "text-left",
+          "label": "t:sections.all.horizontal_alignment.options__1.label"
+        },
+        {
+          "value": "text-center",
+          "label": "t:sections.all.horizontal_alignment.options__2.label"
+        },
+        {
+          "value": "text-right",
+          "label": "t:sections.all.horizontal_alignment.options__3.label"
+        }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.header.general"
+    },
+    {
+      "type": "select",
+      "id": "container",
+      "label": "t:sections.all.layout.label",
+      "default": "container",
+      "options": [
+        {
+          "value": "container",
+          "label": "t:sections.all.layout.options__1.label"
+        },
+        {
+          "value": "container-fluid",
+          "label": "t:sections.all.layout.options__2.label"
+        },
+        {
+          "value": "strecth-width",
+          "label": "t:sections.all.layout.options__3.label"
+        },
+        {
+          "value": "full-width",
+          "label": "t:sections.all.layout.options__4.label"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,665 @@
+{{ 'testimonial.css' | asset_url | stylesheet_tag }}
+{%- liquid
+  assign st = section.settings
+  assign container = st.container
+  assign color_scheme = st.color_scheme
+  assign heading = st.heading
+  assign description = st.description
+  assign text_align = st.text_align
+  assign img_position = st.ib_img_position
+  assign heading_border = st.heading_border
+  assign autoplay = st.autoplay
+  assign loop = st.loop
+  assign item_desktop = st.carousel_item_desktop
+  assign gap_carousel = st.car_gap
+  assign content_width = st.content_width
+  assign reset_spacing = ''
+  assign enabled_animations = settings.animations_enabled
+  assign pagination_style = st.pagination_style
+  assign reveal_on_scroll = st.reveal_on_scroll
+  assign bg_image = st.bg_image
+  assign design = st.design
+  if st.reset_spacing
+    assign reset_spacing = ' remove_spacing'
+  endif
+
+  assign img_view = ''
+  if st.img_view == 'framed'
+    assign img_view = ' border p-30 p-xl-40 rounded-10'
+  endif
+
+  assign img_position = ''
+  if st.img_position == 'position-left'
+    assign img_position = ' flex-row'
+  elsif st.img_position == 'position-right'
+    assign img_position = ' flex-row-reverse'
+  elsif st.img_position == 'position-top'
+    assign img_position = ' flex-column align-items-center text-center'
+  elsif st.img_position == 'position-bottom'
+    assign img_position = ' flex-column-reverse align-items-center text-center'
+  endif
+
+  assign bls_tes-content = ''
+  if st.img_position == 'position-bottom'
+    assign bls_tes-content = ' flex flex-column mb-15'
+  elsif st.img_position == 'position-right'
+    assign bls_tes-content = ' mr-15 flex-1'
+  elsif st.img_position == 'position-left'
+    assign bls_tes-content = ' ml-15 flex-1'
+  endif
+
+  assign spt_tablet = ''
+  if st.padding_top > 50
+    assign spt_tablet = ' spt-tablet'
+  endif
+  assign spt_mobile = ''
+  if st.padding_top > 30
+    assign spt_mobile = ' spt-mobile'
+  endif
+  assign spb_tablet = ''
+  if st.padding_bottom > 50
+    assign spb_tablet = ' spb-tablet'
+  endif
+  assign spb_mobile = ''
+  if st.padding_bottom > 30
+    assign spb_mobile = ' spb-mobile'
+  endif
+  assign desc_text_size = ''
+  assign title_text_size = ''
+  assign mb_svg = ''
+  assign size_svg = ''
+  if st.testi_text_size == 'smallest'
+    assign title_text_size = 'fs-16'
+    assign desc_text_size = 'fs-14'
+    assign mb_svg = 'mb-15'
+    assign size_svg = 'fs-24'
+  elsif st.testi_text_size == 'small'
+    assign title_text_size = 'fs-18'
+    assign desc_text_size = 'fs-16'
+    assign mb_svg = 'mb-15'
+    assign size_svg = 'fs-24'
+  elsif st.testi_text_size == 'normal'
+    assign title_text_size = 'fs-24 lh-15'
+    assign desc_text_size = 'fs-18 lh-15'
+    assign mb_svg = 'mb-20'
+    assign size_svg = 'fs-40'
+  elsif st.testi_text_size == 'bigger'
+    assign title_text_size = 'fs-32 lh-15'
+    assign desc_text_size = 'fs-28 lh-15 mb-15'
+    assign mb_svg = 'mb-30'
+    assign size_svg = 'fs-40'
+  endif
+-%}
+
+{%- capture style -%}
+ {% if bg_image != null %}
+  --background-image:url( {{ bg_image | image_url }});
+  {% endif %}
+  --section-padding-top: {{ st.padding_top }}px; --section-padding-bottom: {{ st.padding_bottom }}px;
+{%- endcapture -%}
+
+<section
+  class="color-{{ color_scheme }} gradient bls__section {{ spt_tablet }}{{ spb_tablet }}{{ spt_mobile }}{{ spb_mobile }} bls__testimonials {{ reset_spacing }}{{ has_bg }} {% if reveal_on_scroll %}reveal_on_scroll{% endif %}"
+  style="{{ style | strip | strip_newlines }}"
+  data-type="bls_swiper"
+  data-id="{{ section.id }}"
+  id="{{ section.id }}"
+>
+  <div class="{{ container }} section-full">
+    {%- if heading != blank or description != blank -%}
+      <div class="bls__section-header {{ text_align }}">
+        {%- if heading != blank -%}
+          <h2 class="bls__section-heading mb-5 {% if heading_border %}heading-border{% endif %} {% if enabled_animations %}scroll-trigger animate--slide-in{% endif %}">
+            {{ heading }}
+          </h2>
+        {%- endif -%}
+        {%- if description != blank -%}
+          <div class="bls__section-des {% if enabled_animations %}scroll-trigger animate--slide-in{% endif %}">
+            {{ description }}
+          </div>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+    <div class="bls__tes-content {% if enabled_animations %}scroll-trigger animate--slide-in{% endif %} {{ design }}">
+      <div
+        class="swiper bls__swiper  bls__testimonial hover__show-nav {% if reveal_on_scroll %}reveal_on_scroll{% endif %}"
+        id="bls__testimonial-{{ section.id }}"
+        data-section-id="{{ section.id }}"
+        data-autoplay="{{ autoplay }}"
+        data-loop="{{ loop }}"
+        data-mobile="1"
+        data-tablet="{%- if item_desktop > 1 -%}2{%- else -%}1{%- endif -%}"
+        data-desktop="{{ item_desktop }}"
+        data-spacing="{{ gap_carousel }}"
+        data-thumb="{% if pagination_style == 'logo' %}true{% else %}false{% endif %}"
+        data-pagination-progressbar="{% if pagination_style == 'progressbar' %}true{% else %}false{% endif %}"
+      >
+        <div class="swiper-wrapper" style="--perload-gap: {{ gap_carousel }}px;">
+          {%- for block in section.blocks -%}
+            <div
+              {{ block.shopify_attributes }}
+              class="swiper-slide {% if design == 'design_3' %}bls__tes-slide-3{% endif %}"
+            >
+              <div
+                class="bls__tes-item {{ img_view }} flex{{ img_position }}  {% if design == 'design_3' %}flex-wrap  bls__tes-item-3 flex-column{% endif %}"
+                style="--content-width:{{ content_width }}%;"
+              >
+                {% if design == 'design_3' %}
+                  <div
+                    class="bls__tes-content-design3 w-full d-flex align-items-center align-self-start {{ img_position }}"
+                  >
+                {% endif %}
+                {%- if block.settings.image != blank -%}
+                  <div class="bls__tes-img bls_img-ratio mb-15" style="width: {{ block.settings.testimonial_width }}px">
+                    {% render 'responsive-image', image: block.settings.image %}
+                  </div>
+                {%- endif -%}
+                <div class="bls__tes-content {{ bls_tes-content }}  {% if design == 'design_3' %}mb-15{%- endif -%}">
+                  {% if design == 'design_1' %}
+                    <div class="desc-quote-info {{ desc_text_size }}">
+                      {%- if block.settings.image == blank -%}
+                        <i
+                          class="{{ mb_svg }} {{ size_svg }} icon-quote picon-quote-left {% if st.img_view == 'framed' %} mt-10 {% endif %}"
+                        ></i>
+                      {%- endif -%}
+                      {%- if block.settings.title_text != blank -%}
+                        <div class="h4 bls__tes-title title-name heading-color heading-weight mb-10 {{ title_text_size }}">
+                          {{ block.settings.title_text }}
+                        </div>
+                      {%- endif -%}
+                      {{ block.settings.description }}
+                    </div>
+                    <div class="bls__quote-info">
+                      {%- if section.settings.show_rating -%}
+                        <div class="bls__tes-rate stars mb-10 mt-10">
+                          {%- for i in (1..5) -%}
+                            <span class="star inline-flex">
+                              <i class="picon-star-half-filled fs-16"></i>
+                            </span>
+                          {%- endfor -%}
+                        </div>
+                      {%- endif -%}
+                      <p class="bls__tes-author author-name heading-color heading-weight mb-0">
+                        {{ block.settings.author }}
+                      </p>
+                      <div class="bls__tes-job">
+                        <span class="author-job">{{ block.settings.job }}</span>
+                      </div>
+                    </div>
+                  {% elsif design == 'design_2' %}
+                    {%- if section.settings.show_rating -%}
+                      <div class="bls__tes-rate stars mb-10">
+                        {%- for i in (1..5) -%}
+                          <span class="star inline-flex">
+                            <i class="picon-star-half-filled fs-16"></i>
+                          </span>
+                        {%- endfor -%}
+                      </div>
+                    {%- endif -%}
+                    <div class="desc-quote-info {{ desc_text_size }}">
+                      {%- if block.settings.title_text != blank -%}
+                        <div class="h4 bls__tes-title title-name heading-color heading-weight mb-10 {{ title_text_size }}">
+                          {{ block.settings.title_text }}
+                        </div>
+                      {%- endif -%}
+                      {{ block.settings.description }}
+                    </div>
+                    <div class="bls__quote-info d-flex align-items-center {% if st.img_position == 'position-top' or st.img_position == 'position-bottom' %}justify-content-center{% endif %} mt-10">
+                      <p class="bls__tes-author author-name heading-color heading-weight mb-0">
+                        {{ block.settings.author }}
+                      </p>
+                      <span class="mx-10">-</span>
+                      <div class="bls__tes-job">
+                        <span class="author-job">{{ block.settings.job }}</span>
+                      </div>
+                    </div>
+                  {% else %}
+                    {%- if block.settings.title_text != blank -%}
+                      <div class="h4 bls__tes-title title-name heading-color heading-weight mb-0-important {{ title_text_size }}">
+                        {{ block.settings.title_text }}
+                      </div>
+                    {%- endif -%}
+                    {%- if section.settings.show_rating -%}
+                      <div class="bls__tes-rate stars mt-5">
+                        {%- for i in (1..5) -%}
+                          <span class="star inline-flex">
+                            <i class="picon-star-half-filled fs-16"></i>
+                          </span>
+                        {%- endfor -%}
+                      </div>
+                    {%- endif -%}
+                  {% endif %}
+                </div>
+                {% if design == 'design_3' %}</div>{% endif %}
+                {% if design == 'design_3' %}
+                  <div class="bls__tes-content-bottom  d-flex flex-column flex-1">
+                    <div class="desc-quote-info {{ desc_text_size }} flex-1">
+                      {{ block.settings.description }}
+                    </div>
+                    <div class="bls__quote-info d-flex align-items-center border-top justify-content-between  mt-25 pt-20">
+                      <p class="bls__tes-author author-name heading-color heading-weight mb-0">
+                        {{ block.settings.author }}
+                      </p>
+                      <div class="bls__tes-job">
+                        <span class="author-job">{{ block.settings.job }}</span>
+                      </div>
+                    </div>
+                  </div>
+                {% endif %}
+              </div>
+            </div>
+          {%- endfor -%}
+        </div>
+        {%- if st.show_arrow != false -%}
+          <div class="swiper-arrow swiper-prev swiper-button-prev box-shadow"><i class="lnr lnr-chevron-left"></i></div>
+          <div class="swiper-arrow swiper-next swiper-button-next box-shadow">
+            <i class="lnr lnr-chevron-right"></i>
+          </div>
+        {%- endif -%}
+        {%- if pagination_style == 'dots' or pagination_style == 'progressbar' -%}
+          <div class="swiper-pagination"></div>
+        {%- endif -%}
+      </div>
+    </div>
+    {%- if pagination_style == 'logo' -%}
+      <div
+        class="swiper testimonial-thumb testimonial-thumb-{{ section.id }}"
+        data-section-id="{{ section.id }}"
+        data-loop="false"
+        data-mobile="1"
+        data-tablet="{%- if item_desktop > 1 -%}2{%- else -%}1{%- endif -%}"
+        data-desktop="3"
+        data-thumb="{% if pagination_style == 'logo' %}true{% else %}false{% endif %}"
+      >
+        <div class="swiper-wrapper" style="--perload-gap: 10px">
+          {%- for block in section.blocks -%}
+            <div {{ block.shopify_attributes }} class="swiper-slide">
+              <div class="testimonial-thumb-img text-center">
+                <img
+                  data-src="{{ block.settings.logo | image_url }}"
+                  srcset="
+                    {%- if block.settings.logo.width >= 550 -%}{{ block.settings.logo | image_url: width: 550 }} 550w,{%- endif -%}
+                    {%- if block.settings.logo.width >= 1100 -%}{{ block.settings.logo | image_url: width: 1100 }} 1100w,{%- endif -%}
+                    {%- if block.settings.logo.width >= 1445 -%}{{ block.settings.logo | image_url: width: 1445 }} 1445w,{%- endif -%}
+                    {%- if block.settings.logo.width >= 1680 -%}{{ block.settings.logo | image_url: width: 1680 }} 1680w,{%- endif -%}
+                    {%- if block.settings.logo.width >= 2048 -%}{{ block.settings.logo | image_url: width: 2048 }} 2048w,{%- endif -%}
+                    {%- if block.settings.logo.width >= 2200 -%}{{ block.settings.logo | image_url: width: 2200 }} 2200w,{%- endif -%}
+                    {%- if block.settings.logo.width >= 2890 -%}{{ block.settings.logo | image_url: width: 2890 }} 2890w,{%- endif -%}
+                    {%- if block.settings.logo.width >= 4096 -%}{{ block.settings.logo | image_url: width: 4096 }} 4096w,{%- endif -%}
+                    {{ block.settings.logo | image_url }} {{ block.settings.logo.width }}w
+                  "
+                  sizes="100vw"
+                  src="{{ block.settings.logo | image_url }}"
+                  alt="{{ image.alt | escape }}"
+                  loading="lazy"
+                  width="140"
+                  height="{{ 140 | divided_by: block.settings.logo.aspect_ratio | ceil }}"
+                >
+              </div>
+            </div>
+          {%- endfor -%}
+        </div>
+    {%- endif -%}
+  </div>
+</section>
+<script src="{{ 'section-testimonial.js' | asset_url }}" defer="defer"></script>
+{% schema %}
+{
+  "name": "t:sections.testimonials.name",
+  "disabled_on": {
+    "groups": ["header", "footer", "custom.overlay"]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:sections.all.section_header.title_header"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "t:sections.all.content_text.heading",
+      "default": "What People Are Saying"
+    },
+    {
+      "type": "checkbox",
+      "id": "heading_border",
+      "label": "t:sections.all.content_text.heading_border",
+      "default": false
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "t:sections.all.section_header.description",
+      "default": "<p></p>"
+    },
+    {
+      "type": "select",
+      "id": "text_align",
+      "label": "t:sections.all.horizontal_alignment.text_alignment",
+      "default": "text-center",
+      "options": [
+        {
+          "value": "text-left",
+          "label": "t:sections.all.horizontal_alignment.options__1.label"
+        },
+        {
+          "value": "text-center",
+          "label": "t:sections.all.horizontal_alignment.options__2.label"
+        },
+        {
+          "value": "text-right",
+          "label": "t:sections.all.horizontal_alignment.options__3.label"
+        }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.header.general"
+    },
+    {
+      "type": "select",
+      "id": "container",
+      "label": "t:sections.all.layout.label",
+      "default": "container",
+      "options": [
+        {
+          "value": "container",
+          "label": "t:sections.all.layout.options__1.label"
+        },
+        {
+          "value": "container-fluid",
+          "label": "t:sections.all.layout.options__2.label"
+        },
+        {
+          "value": "strecth-width",
+          "label": "t:sections.all.layout.options__3.label"
+        },
+        {
+          "value": "full-width",
+          "label": "t:sections.all.layout.options__4.label"
+        }
+      ]
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label"
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_image",
+      "label": "t:sections.testimonials.settings.bg_image.label"
+    },
+    {
+      "type": "range",
+      "id": "content_width",
+      "label": "t:sections.testimonials.settings.content_width.label",
+      "min": 30,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "default": 100
+    },
+    {
+      "type": "header",
+      "content": "t:sections.testimonials.content"
+    },
+    {
+      "type": "select",
+      "id": "design",
+      "label": "t:sections.testimonials.settings.design.label",
+      "default": "design_1",
+      "options": [
+        {
+          "value": "design_1",
+          "label": "t:sections.testimonials.settings.design.options__1.label"
+        },
+        {
+          "value": "design_2",
+          "label": "t:sections.testimonials.settings.design.options__2.label"
+        },
+        {
+          "value": "design_3",
+          "label": "t:sections.testimonials.settings.design.options__3.label"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "testi_text_size",
+      "label": "t:sections.testimonials.settings.testi_text_size.label",
+      "default": "small",
+      "options": [
+        {
+          "value": "smallest",
+          "label": "t:sections.testimonials.settings.testi_text_size.options__1.label"
+        },
+        {
+          "value": "small",
+          "label": "t:sections.testimonials.settings.testi_text_size.options__2.label"
+        },
+        {
+          "value": "normal",
+          "label": "t:sections.testimonials.settings.testi_text_size.options__3.label"
+        },
+        {
+          "value": "bigger",
+          "label": "t:sections.testimonials.settings.testi_text_size.options__4.label"
+        }
+      ]
+    },
+    {
+      "type": "checkbox",
+      "id": "show_rating",
+      "label": "t:sections.testimonials.settings.show_rating.label",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "img_view",
+      "label": "t:sections.testimonials.settings.img_view.label",
+      "default": "default",
+      "options": [
+        {
+          "value": "default",
+          "label": "t:sections.testimonials.settings.img_view.options__1.label"
+        },
+        {
+          "value": "framed",
+          "label": "t:sections.testimonials.settings.img_view.options__2.label"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "img_position",
+      "label": "t:sections.testimonials.settings.img_position.label",
+      "default": "position-top",
+      "options": [
+        {
+          "value": "position-left",
+          "label": "t:sections.testimonials.settings.img_position.options__1.label"
+        },
+        {
+          "value": "position-top",
+          "label": "t:sections.testimonials.settings.img_position.options__2.label"
+        },
+        {
+          "value": "position-right",
+          "label": "t:sections.testimonials.settings.img_position.options__3.label"
+        },
+        {
+          "value": "position-bottom",
+          "label": "t:sections.testimonials.settings.img_position.options__4.label"
+        }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.setting_carousel.carousel_title"
+    },
+    {
+      "type": "range",
+      "min": 1,
+      "max": 50,
+      "step": 1,
+      "default": 30,
+      "id": "car_gap",
+      "label": "t:sections.testimonials.settings.car_gap.label"
+    },
+    {
+      "type": "range",
+      "min": 1,
+      "max": 4,
+      "step": 1,
+      "id": "carousel_item_desktop",
+      "default": 3,
+      "label": "t:sections.testimonials.settings.carousel_item_desktop.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "autoplay",
+      "label": "t:sections.all.setting_carousel.autoplay",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "loop",
+      "label": "t:sections.all.setting_carousel.loop",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_arrow",
+      "label": "t:sections.testimonials.settings.show_arrow.label",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "reveal_on_scroll",
+      "label": "t:sections.testimonials.settings.reveal_on_scroll.label",
+      "info": "t:sections.testimonials.settings.reveal_on_scroll.info",
+      "default": false
+    },
+    {
+      "type": "select",
+      "id": "pagination_style",
+      "label": "t:sections.testimonials.settings.pagination_style.label",
+      "default": "dots",
+      "options": [
+        {
+          "value": "none",
+          "label": "t:sections.testimonials.settings.pagination_style.options__1.label"
+        },
+        {
+          "value": "dots",
+          "label": "t:sections.testimonials.settings.pagination_style.options__2.label"
+        },
+        {
+          "value": "logo",
+          "label": "t:sections.testimonials.settings.pagination_style.options__3.label"
+        },
+        {
+          "value": "progressbar",
+          "label": "t:sections.testimonials.settings.pagination_style.options__4.label"
+        }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 0,
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 0,
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px"
+    },
+    {
+      "type": "checkbox",
+      "id": "reset_spacing",
+      "label": "t:sections.all.reset_spacing.label",
+      "default": false
+    }
+  ],
+  "blocks": [
+    {
+      "type": "testimonials",
+      "name": "t:sections.testimonials.blocks.Testimonials.name",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title_text",
+          "label": "t:sections.testimonials.blocks.Testimonials.settings.title_text.label"
+        },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "t:sections.testimonials.blocks.Testimonials.settings.description.label",
+          "default": "<p>You can add text content from press comments, reviews, or testimonials here.</p>"
+        },
+        {
+          "type": "text",
+          "id": "author",
+          "label": "t:sections.testimonials.blocks.Testimonials.settings.author.label",
+          "default": "Siarhei Dzenisenka"
+        },
+        {
+          "type": "text",
+          "id": "job",
+          "label": "t:sections.testimonials.blocks.Testimonials.settings.job.label",
+          "default": "Founder/CEO"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "t:sections.testimonials.blocks.Testimonials.settings.image.label",
+          "info": "t:sections.testimonials.blocks.Testimonials.settings.image.info"
+        },
+        {
+          "type": "number",
+          "id": "testimonial_width",
+          "label": "t:sections.testimonials.blocks.Testimonials.settings.testimonial_width.label",
+          "default": 100
+        },
+        {
+          "type": "image_picker",
+          "id": "logo",
+          "label": "t:sections.testimonials.blocks.Testimonials.settings.logo.label",
+          "info": "t:sections.testimonials.blocks.Testimonials.settings.logo.info"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.testimonials.name",
+      "blocks": [
+        {
+          "type": "testimonials"
+        },
+        {
+          "type": "testimonials"
+        },
+        {
+          "type": "testimonials"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,492 @@
+<link rel="stylesheet" href="{{ 'navigation.css' | asset_url }}" media="print" onload="this.media='all'">
+{%- liquid
+  assign section_st = section.settings
+  assign show_my_account = section_st.show_my_account
+  assign section_width = section_st.section_width
+  assign wishlist = section_st.show_wishlist_icon
+  assign show_country = section_st.show_currency
+  assign show_language = section_st.show_language
+  assign transparent = section_st.transparent_header
+  assign logo_position = section_st.logo_position
+  assign logo_position_option = section_st.logo_position_option
+-%}
+{{ arr }}
+<div class="bls_main_menu">
+  <nav
+    class="navigation horizontal main-nav nav-sections bls__canvas-mb-menu bls__canvas-mb-left color-default-color-scheme"
+    data-width-sub-center="{{ section_st.width_sub_menu_center }}"
+    data-action-mobile="{{ section_st.menu_mb_action }}"
+    style="
+      --hot-cl: {{ section_st.label_color_hot }};--hot-bg-cl: {{ section_st.label_background_hot }};
+      --new-cl: {{ section_st.label_color_new }};--new-bg-cl: {{ section_st.label_background_new }};--sale-cl: {{ section_st.label_color_sale }};--sale-bg-cl: {{ section_st.label_background_sale }};
+    "
+  >
+    <div class="close-menu-mobile absolute">
+      <a href="#" class="close-menu">
+        {{- 'main_menu.horizontal.close' | t }}
+        <i class="lnr lnr-cross"></i>
+      </a>
+    </div>
+    <div class="mobile-menu-content color-{% if headerMeagShop %}{{ section_st.color_scheme_middle_bottom }}{% else %}{{ section_st.color_scheme }}{% endif %} reset-color-on-menu">
+      <div class="menu-mobile-title fw-600">
+        <a
+          class="active"
+          data-menu="horizontal-list"
+          href="#"
+        >
+          {{ 'main_menu.horizontal.title' | t }}
+        </a>
+        {% if section_st.menu_mb_category %}
+          <a data-menu="categories-list" href="#">
+            {{ 'main_menu.categories.title' | t }}
+          </a>
+        {% endif %}
+      </div>
+      <ul
+        style="--col-gap: 3.3rem"
+        class="horizontal-list {% if show_language or show_country %}show-localization{% endif %} menu p-0 list-none my-0 {{ section_st.dropdowns_animation }}"
+      >
+        {%- for link in section_st.mega_menu.links -%}
+          {%- liquid
+            assign index = forloop.index0 | plus: 1
+            assign lastBlock = null
+            for block in section.blocks
+              if block.settings.text == link.title
+                assign lastBlock = block
+              endif
+            endfor
+            assign found = false
+            if logo_position == 'in_mega_menu' and logo_position_option == index
+              assign found = true
+            endif
+          -%}
+          {% if found %}
+            <li class="level0 d-none-mb">
+              {%- render 'logo', isTransparent: transparent -%}
+            </li>
+          {% endif %}
+          {% if lastBlock != null %}
+            {%- liquid
+              assign block_st = lastBlock.settings
+              assign has_content = false
+              assign full_width = block_st.full_width
+              assign mega_custom_width = block_st.mega_custom_width
+            -%}
+            {%- case lastBlock.type -%}
+              {%- when 'menu_promotion' -%}
+                {%- for i in (1..2) -%}
+                  {%- capture promotion -%}promotion_image_{{ i }}{%- endcapture -%}
+                  {%- liquid
+                    if block_st[promotion] != blank
+                      assign has_content = true
+                    endif
+                  -%}
+                {%- endfor -%}
+              {%- when 'menu_collection' -%}
+                {%- for i in (1..3) -%}
+                  {%- capture collection -%}collection_{{ i }}{%- endcapture -%}
+                  {%- liquid
+                    if block_st[collection] != blank
+                      assign has_content = true
+                    endif
+                  -%}
+                {%- endfor -%}
+              {%- else -%}
+                {%- for i in (1..3) -%}
+                  {%- capture product -%}product_{{ i }}{%- endcapture -%}
+                  {%- liquid
+                    if block_st[product] != blank
+                      assign has_content = true
+                    endif
+                  -%}
+                {%- endfor -%}
+            {%- endcase -%}
+            {%- capture menuLevel0 -%}
+              {%- liquid
+                assign label = block_st.item_label
+              -%}
+              <a class="relative" href="{{ link.url }}"{% if block_st.open_link != blank %} target="_blank"{% endif %}>
+                <span>{{ link.title }}</span>
+                {%- if label != blank and label != 'unset' -%}
+                  <span class="label {{ label }}">{{ section_st[label] }}</span>
+                {%- endif -%}
+              </a>
+              {%- if link.links.size > 0 -%}
+                <div
+                  class="open-children-toggle"></div>
+              {%- endif -%}
+            {%- endcapture -%}
+            <li
+              {{ block.shopify_attributes }}
+              class="level0{% if link.links.size or has_content %} bls__menu-parent multicolumn_dropdown{% else %} single{% endif %}"
+              {{ block.shopify_attributes }}
+            >
+              {{ menuLevel0 }}
+              {%- if link.links.size > 0 or has_content -%}
+                <div
+                  class="submenu absolute color-default-color-scheme gradient {% if full_width %} menu-width-full-width{% else %}menu-width-custom{% endif %}"
+                  {% if full_width == false %}
+                    style="--submenu-custom-width: {{ mega_custom_width }}px"
+                  {% endif %}
+                >
+                  <div class="{% if full_width == false %}{{ section_width }}{% else %}full-width section-full{% endif %}">
+                    {%- case lastBlock.type -%}
+                      {%- when 'menu_promotion' -%}
+                        {% assign banner_count = 0 %}
+                        {% for i in (1..2) %}
+                          {%- capture promotion_image -%}promotion_image_{{i}}{%- endcapture -%}
+                          {%- if block_st[promotion_image] != blank -%}
+                            {% assign banner_count = banner_count | plus: 1 %}
+                          {%- endif -%}
+                        {% endfor %}
+                        <div
+                          class="d-flex flex-column gap{% if block_st.promotion_position == "left" %} flex-1025-row-reverse{% else %} flex-1025-row{% endif %}"
+                          style="--col-mega-width: {{ block_st.promotion_image_width }}%; --col-gap: 30px"
+                        >
+                          {% if link.links.size > 0 %}
+                            <div
+                              class="menu-list"
+                              style="--row-gap: 40px; --col-desktop:{{ block_st.promotion_menu_column }};"
+                            >
+                              {%- render 'submenu-list' | link: link -%}
+                            </div>
+                          {% endif %}
+                          {%- if block_st.promotion_image_1 != blank or block_st.promotion_image_2 != blank -%}
+                            <div class="col-mega d-none-mb">
+                              <div
+                                class="d-grid grid-cols gap-30"
+                                style="--col-number: {{ banner_count }}"
+                              >
+                                {%- if block_st.promotion_image_1 != blank -%}
+                                  {%- assign banner_alt = block_st.promotion_image_1.alt
+                                    | default: link.title
+                                    | escape
+                                  -%}
+                                  <a
+                                    {% if block_st.promotion_link_1 == blank %}
+                                      role="link" aria-disabled="true"
+                                    {% else %}
+                                      aria-label="{{ link.title }}" href="{{ block_st.promotion_link_1 }}"
+                                    {% endif %}
+                                    class="menu-banner-loaded hover-effect hover-zoom {% if block_st.promotion_image_style == 'modern' %}image-modern{% endif %}"
+                                    data-image-banner="{{ block_st.promotion_image_1 | image_url }}"
+                                    data-width="{{ block_st.promotion_image_1.width }}"
+                                    data-height="{{ block_st.promotion_image_1.height }}"
+                                  >
+                                  </a>
+                                {%- endif -%}
+                                {%- if block_st.promotion_image_2 != blank -%}
+                                  {%- assign banner_alt = block_st.promotion_image_2.alt
+                                    | default: link.title
+                                    | escape
+                                  -%}
+                                  <a
+                                    {% if block_st.promotion_link_2 == blank %}
+                                      role="link" aria-disabled="true"
+                                    {% else %}
+                                      aria-label="{{ link.title }}" href="{{ block_st.promotion_link_2 }}"
+                                    {% endif %}
+                                    class="menu-banner-loaded hover-effect hover-zoom {% if block_st.promotion_image_style == 'modern' %}image-modern{% endif %}"
+                                    data-image-banner="{{ block_st.promotion_image_2 | image_url }}"
+                                    data-width="{{ block_st.promotion_image_2.width }}"
+                                    data-height="{{ block_st.promotion_image_2.height }}"
+                                  >
+                                  </a>
+                                {%- endif -%}
+                              </div>
+                            </div>
+                          {%- endif -%}
+                        </div>
+                      {%- when 'menu_collection' -%}
+                        {% assign collection_count = 0 %}
+                        {% for i in (1..3) %}
+                          {%- capture collection -%}collection_{{i}}{%- endcapture -%}
+                          {%- if block_st[collection] != blank -%}
+                            {% assign collection_count = collection_count | plus: 1 %}
+                          {%- endif -%}
+                        {% endfor %}
+                        <div
+                          class="flex flex-column gap-30 flex-1025-row"
+                          style="--col-mega-width: {{ block_st.collection_width }}%;--col-gap: 30px"
+                        >
+                          {% if link.links.size > 0 %}
+                            <div
+                              class="menu-list"
+                              style="--row-gap: 40px; --col-desktop:{{ block_st.collection_menu_column }};"
+                            >
+                              {%- render 'submenu-list' | link: link -%}
+                            </div>
+                          {% endif %}
+                          {%- if collection_count > 0 -%}
+                            <div class="col-mega d-none-mb">
+                              <div
+                                class="d-grid grid-cols gap-30 design-1"
+                                style="--col-number: {{ collection_count }}"
+                              >
+                                {%- for i in (1..3) -%}
+                                  {%- capture collection -%}collection_{{i}}{%- endcapture -%}
+                                  {%- liquid
+                                    assign collection_value = block_st[collection]
+                                  -%}
+                                  {%- if collection_value != blank -%}
+                                    {%- liquid
+                                      assign p_url = collection_value.url
+                                      assign p_img = collection_value.featured_image
+                                    -%}
+                                    {%- if p_url != blank -%}
+                                      <div class="collection-item menu-collection relative">
+                                        {%- assign banner_alt = p_img.alt | default: collection_value.title | escape -%}
+                                        <a
+                                          role="link"
+                                          aria-label="{{ collection_value.title }}"
+                                          href="{{ p_url }}"
+                                          class="banner__media collection-media p-0 hover-effect hover-zoom"
+                                          style="{{ style_ratio | strip | strip_newlines }}"
+                                        >
+                                          {%- if p_img != blank -%}
+                                            {{
+                                              p_img
+                                              | image_url: width: 600
+                                              | image_tag:
+                                                class: 'menu-collection-img',
+                                                widths: '50, 100, 150, 200, 250, 300, 400, 500, 600, 700',
+                                                width: p_img.width,
+                                                height: p_img.height,
+                                                loading: 'lazy',
+                                                sizes: '100vw',
+                                                alt: banner_alt
+                                            }}
+                                          {%- else -%}
+                                            {% render 'placeholder-render' | type: "collection" %}
+                                          {%- endif -%}
+                                        </a>
+                                        <div class="bls__collection-infor pointer-events-none absolute text-center">
+                                          <div class="bls__collection-title m-0">
+                                            <a
+                                              role="link"
+                                              aria-label="{{ collection_value.title }}"
+                                              href="{{ p_url }}"
+                                              class="d-block"
+                                            >
+                                              {{- collection_value.title -}}
+                                            </a>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    {%- endif -%}
+                                  {%- endif -%}
+                                {%- endfor -%}
+                              </div>
+                            </div>
+                          {%- endif -%}
+                        </div>
+                      {%- else -%}
+                        {% assign product_count = 0 %}
+                        {% for i in (1..3) %}
+                          {%- capture product -%}product_{{ i }}{%- endcapture -%}
+                          {%- if block_st[product] != blank -%}
+                            {% assign product_count = product_count | plus: 1 %}
+                          {%- endif -%}
+                        {% endfor %}
+                        <div
+                          class="flex flex-column gap-30 flex-1025-row"
+                          style="--col-mega-width: {{ block_st.product_width }}%;--col-gap: 30px"
+                        >
+                          {% if link.links.size > 0 %}
+                            <div
+                              class="menu-list"
+                              style="--row-gap: 40px; --col-desktop:{{ block_st.product_menu_column }};"
+                            >
+                              {%- render 'submenu-list' | link: link -%}
+                            </div>
+                          {% endif %}
+                          {%- if product_count > 0 -%}
+                            <div class="col-mega d-none-mb">
+                              <div
+                                class="d-grid grid-cols gap-30"
+                                style="--col-number: {{ product_count }}"
+                              >
+                                {%- for i in (1..3) -%}
+                                  {%- capture product -%}product_{{ i }}{%- endcapture -%}
+                                  {%- liquid
+                                    assign product_value = block_st[product]
+                                  -%}
+                                  {%- if product_value != blank -%}
+                                    <div
+                                      class="bls__product-item "
+                                    >
+                                      <div class="bls__product-img overflow-hidden relative">
+                                        {%- assign img = product_value.media -%}
+
+                                        <a
+                                          class="bls__img-url{% if settings.enable_hover_image %} bls__hover-image{% endif %}"
+                                          href="{{ product_value.url | within: collection }}"
+                                        >
+                                          <div class="bls__product-main-img">
+                                            {%- if product_value.has_only_default_variant -%}
+                                              {%- if img[0] != blank -%}
+                                                {%- render 'responsive-image' | image: img[0] | type: 'product' | cls: 'bls__product-grid bls__product-img-sw' -%}
+                                              {%- else -%}
+                                                {%- render 'responsive-image' | type: 'product' | cls: 'bls__product-grid-plh' -%}
+                                              {%- endif -%}
+                                            {%- else -%}
+                                              {%- assign hasColor = false -%}
+                                              {%- for o in product_value.options_with_values -%}
+                                                {%- for itemColor in option_name -%}
+                                                  {%- if o.name == itemColor -%}
+                                                    {%- assign hasColor = true -%}
+                                                  {%- endif -%}
+                                                {%- endfor -%}
+                                              {%- endfor -%}
+                                              {%- if hasColor -%}
+                                                {%- for variant in product_value.variants limit: 1 -%}
+                                                  {%- if variant.featured_image != blank -%}
+                                                    {%- render 'responsive-image' | image: variant.featured_image | type: 'product' | cls: 'bls__product-grid bls__product-img-sw' -%}
+                                                  {%- else -%}
+                                                    {%- if img[0] != blank -%}
+                                                      {%- render 'responsive-image' | image: img[0] | type: 'product' | cls: 'bls__product-grid bls__product-img-sw' -%}
+                                                    {%- else -%}
+                                                      {%- render 'responsive-image' | type: 'product' | cls: 'bls__product-grid-plh' -%}
+                                                    {%- endif -%}
+                                                  {%- endif -%}
+                                                {%- endfor -%}
+                                              {%- else -%}
+                                                {%- if img[0] != blank -%}
+                                                  {%- render 'responsive-image' | image: img[0] | type: 'product' | cls: 'bls__product-grid bls__product-img-sw' -%}
+                                                {%- else -%}
+                                                  {%- render 'responsive-image' | type: 'product' | cls: 'bls__product-grid-plh' -%}
+                                                {%- endif -%}
+                                              {%- endif -%}
+                                            {%- endif -%}
+                                          </div>
+                                          {%- if settings.enable_hover_image -%}
+                                            {%- if img[1] != blank -%}
+                                              <div class="bls__product-hover-img opacity-0 absolute inset-0">
+                                                {%- render 'responsive-image' | image: img[1] | type: 'product' | cls: 'bls__product-grid' -%}
+                                              </div>
+                                            {%- endif -%}
+                                          {%- endif -%}
+                                        </a>
+                                      </div>
+                                      <div class="bls__product-details pt-15 relative">
+                                        <h3 class="bls__product-name regular mb-5">
+                                          <a
+                                            class="limited-line {{ settings.product_name_t_transfrom }}"
+                                            style="--line-clamp: {{ settings.product_name_line }}"
+                                            href="{{ product_value.url | within: collection }}"
+                                          >
+                                            {{ product_value.title }}
+                                          </a>
+                                        </h3>
+                                        {% if settings.hidden_price == false %}
+                                          <div class="bls__product-price mb-4">
+                                            {%- render 'price',
+                                              product: product_value,
+                                              use_variant: true,
+                                              price_class: 'price--large'
+                                            -%}
+                                          </div>
+                                        {% endif %}
+                                        {%- if settings.color_type != 'radio'
+                                          and settings.color_type != 'dropdown'
+                                          and settings.enable_sw_only_product_detail == false
+                                        -%}
+                                          {%- render 'product-color-swatches' | product: product_value -%}
+                                        {%- endif -%}
+                                      </div>
+                                    </div>
+                                  {%- endif -%}
+                                {%- endfor -%}
+                              </div>
+                            </div>
+                          {%- endif -%}
+                        </div>
+                    {%- endcase -%}
+                  </div>
+                </div>
+              {%- endif -%}
+            </li>
+          {% else %}
+            <li
+              {{ block.shopify_attributes }}
+              class="level0 {% if link.links.size > 0 %} bls__menu-parent default_dropdown{% else %} single{% endif %}"
+              {{ block.shopify_attributes }}
+            >
+              <a
+                class="relative"
+                href="{{ link.url }}"
+                arial-label="{{ link.title }}"
+              >
+                <span>{{ link.title }}</span>
+              </a>
+              {%- if link.links.size > 0 -%}
+                <div
+                  class="open-children-toggle"
+                ></div>
+              {%- endif -%}
+              {%- if link.links.size > 0 -%}
+                <div class="submenu absolute color-default-color-scheme gradient">
+                  <div class="fw-600 submenu-mobile-title justify-content-between">
+                    <a role="link" class="back-main-menu pointer">
+                      <i class="lnr lnr-chevron-left"></i>
+                      {{ link.title }}
+                    </a>
+                    <i class="lnr lnr-cross fs-20 close-menu pointer"></i>
+                  </div>
+                  <ul class="dropdown p-0 list-none my-0">
+                    {%- render 'submenu-list' | link: link | menu_type: 'dropdown' -%}
+                  </ul>
+                </div>
+              {%- endif -%}
+            </li>
+          {% endif %}
+        {%- endfor -%}
+        {%- if wishlist -%}
+          <li class="level0 d-none-desktop">
+            <a href="/pages/wishlist">
+              <i class="picon-heart fs-20"></i>
+              <span>
+                {{ 'templates.wishlist.wishlist' | t }}
+              </span>
+            </a>
+          </li>
+        {% endif %}
+        {%- if show_my_account -%}
+          {% if customer %}
+            <li class="level0 d-none-desktop">
+              <a href="{{ routes.account_url }}" class="account-url">
+                <i class="lnr lnr-user fs-20"></i>
+                <span class="px-10">{{ customer.name }}</span>
+              </a>
+            </li>
+            <li class="level0 d-none-desktop">
+              <a href="{{ routes.account_logout_url }}" class="account-logout">{{ 'customer.log_out' | t }}</a>
+            </li>
+          {% else %}
+            <li class="level0 d-none-desktop">
+              <a href="{{ routes.account_login_url }}" class="account-login">
+                <i class="lnr lnr-user fs-20"></i>
+                <span>
+                  {{ 'customer.login_menu_mobile' | t }}
+                </span>
+              </a>
+            </li>
+          {% endif %}
+        {%- endif -%}
+        {% if show_language %}
+          <li class="level0">
+            {% render 'language-switcher' %}
+          </li>
+        {% endif %}
+        {% if show_country %}
+          <li class="level0">
+            {% render 'country-switcher' %}
+          </li>
+        {% endif %}
+      </ul>
+      {% if section_st.menu_mb_category %}
+        {%- render 'categories-menu-mobile' | st: section_st -%}
+      {% endif %}
+    </div>
+  </nav>
+</div>

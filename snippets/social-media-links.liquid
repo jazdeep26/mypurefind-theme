@@ -1,0 +1,125 @@
+<ul class="bls__social-link m-0 pl-0 list-none flex gap-25">
+  {%- if settings.social_instagram_link != blank -%}
+    <li class="list-social__item d-inline-flex align-items-center">
+      <a
+        href="{{ settings.social_instagram_link }}"
+        target="_blank"
+        class="link list-social__link lh-1 bls_tooltip"
+        aria-label="Link detail"
+      >
+        <i class="picon-instagram"></i>
+        <span class="bls_tooltip-content-bottom">{{ 'general.social.links.instagram' | t }}</span>
+      </a>
+    </li>
+  {%- endif -%}
+  {%- if settings.social_tiktok_link != blank -%}
+    <li class="list-social__item d-inline-flex align-items-center">
+      <a
+        href="{{ settings.social_tiktok_link }}"
+        target="_blank"
+        class="link list-social__link lh-1 bls_tooltip"
+        aria-label="Link detail"
+      >
+        <i class="picon-tik-tok"></i>
+
+        <span class="bls_tooltip-content-bottom">{{ 'general.social.links.tiktok' | t }}</span>
+      </a>
+    </li>
+  {%- endif -%}
+  {%- if settings.social_youtube_link != blank -%}
+    <li class="list-social__item d-inline-flex align-items-center">
+      <a
+        href="{{ settings.social_youtube_link }}"
+        target="_blank"
+        class="link list-social__link lh-1 bls_tooltip"
+        aria-label="Link detail"
+      >
+        <i class="picon-youtube-1"></i>
+        <span class="bls_tooltip-content-bottom">{{ 'general.social.links.youtube' | t }}</span>
+      </a>
+    </li>
+  {%- endif -%}
+  {%- if settings.social_twitter_link != blank -%}
+    <li class="list-social__item d-inline-flex align-items-center">
+      <a
+        href="{{ settings.social_twitter_link }}"
+        target="_blank"
+        class="link list-social__link lh-1 bls_tooltip"
+        aria-label="Link detail"
+      >
+        <i class="picon-x-twitter"></i>
+        <span class="bls_tooltip-content-bottom">{{ 'general.social.links.twitter' | t }}</span>
+      </a>
+    </li>
+  {%- endif -%}
+  {%- if settings.social_facebook_link != blank -%}
+    <li class="list-social__item d-inline-flex align-items-center">
+      <a
+        href="{{ settings.social_facebook_link }}"
+        target="_blank"
+        class="link list-social__link lh-1 bls_tooltip"
+        aria-label="Link detail"
+      >
+        <i class="picon-facebook"></i>
+
+        <span class="bls_tooltip-content-bottom">{{ 'general.social.links.facebook' | t }}</span>
+      </a>
+    </li>
+  {%- endif -%}
+  {%- if settings.social_pinterest_link != blank -%}
+    <li class="list-social__item d-inline-flex align-items-center">
+      <a
+        href="{{ settings.social_pinterest_link }}"
+        target="_blank"
+        class="link list-social__link lh-1 bls_tooltip"
+        aria-label="Link detail"
+      >
+        <i class="picon-pinterest-alt"></i>
+        <span class="bls_tooltip-content-bottom">{{ 'general.social.links.pinterest' | t }}</span>
+      </a>
+    </li>
+  {%- endif -%}
+
+  {%- if settings.social_tumblr_link != blank -%}
+    <li class="list-social__item d-inline-flex align-items-center">
+      <a
+        href="{{ settings.social_tumblr_link }}"
+        target="_blank"
+        class="link list-social__link lh-1 bls_tooltip"
+        aria-label="Link detail"
+      >
+        <i class="picon-tumblr"></i>
+        <span class="bls_tooltip-content-bottom">{{ 'general.social.links.tumblr' | t }}</span>
+      </a>
+    </li>
+  {%- endif -%}
+  {%- if settings.social_snapchat_link != blank -%}
+    <li class="list-social__item d-inline-flex align-items-center">
+      <a
+        href="{{ settings.social_snapchat_link }}"
+        target="_blank"
+        class="link list-social__link lh-1 bls_tooltip"
+        aria-label="Link detail"
+      >
+        <i class="picon-snapchat"></i>
+        <span class="bls_tooltip-content-bottom">{{ 'general.social.links.snapchat' | t }}</span>
+      </a>
+    </li>
+  {%- endif -%}
+  {%- if settings.social_vimeo_link != blank -%}
+    <li class="list-social__item d-inline-flex align-items-center">
+      <a
+        href="{{ settings.social_vimeo_link }}"
+        target="_blank"
+        class="link list-social__link lh-1 bls_tooltip"
+        aria-label="Link detail"
+      >
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M18.8856 15.691C20.2521 14.9077 20.9886 16.0117 20.2881 17.2597C19.5861 18.5127 18.9419 19.3297 18.6081 19.3297C18.2804 19.3297 18.0209 18.4891 17.6369 17.0299C17.2431 15.5184 17.2431 12.7933 15.5962 13.1026C14.0392 13.3962 12 15.7232 12 15.7232L12.4845 16.3325C12.4845 16.3325 13.4895 15.5757 13.824 15.9523C14.163 16.3325 15.4462 20.8977 15.8707 21.7418C16.2412 22.4815 17.2694 23.4574 18.3929 22.7614C19.5268 22.0612 23.27 19.0096 23.9405 15.3988C24.6095 11.7945 19.4286 12.5492 18.8856 15.691Z" fill="currentcolor"/>
+        </svg>
+
+        <span class="bls_tooltip-content-bottom">{{ 'general.social.links.vimeo' | t }}</span>
+      </a>
+    </li>
+  {%- endif -%}
+</ul>

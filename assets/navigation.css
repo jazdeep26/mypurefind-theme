@@ -1,0 +1,48 @@
+@media screen and (min-width: 1025px) {
+  .column-menu {
+    -webkit-column-count: var(--col);
+    -moz-column-count: var(--col);
+    -ms-column-count: var(--col);
+    column-count: var(--col);
+    column-gap: var(--col-gap);
+  }
+
+  .column-menu>li {
+    width: 100%;
+    display: grid;
+    grid-template-rows: 1fr auto;
+    margin-bottom: var(--col-gap);
+    break-inside: avoid;
+  }
+
+  .menu-list {
+    flex: 0 0 auto;
+    width: calc(100% - var(--col-mega-width) - var(--col-gap) * 0.5);
+  }
+
+  .col-mega {
+    flex: 0 0 auto;
+    width: calc(var(--col-mega-width) - var(--col-gap) * 0.5);
+  }
+
+  .mega-menu-custom-width {
+    width: var(--mega_custom_width);
+    max-width: 100vw;
+  }
+
+  .grid-cols {
+    --col: var(--col-desktop, var(--col-number));
+  }
+
+  .d-grid.grid-cols {
+    grid-template-columns: repeat(var(--col), calc((100% - var(--col-gap, 0px) * calc(var(--col) - 1)) / var(--col)));
+  }
+}
+
+.gap {
+  gap: var(--col-gap, 0);
+}
+
+.collection-item.menu-collection {
+  --collection-title-weight: var(--btn-font-weight);
+}

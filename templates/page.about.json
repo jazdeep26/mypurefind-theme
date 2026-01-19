@@ -1,0 +1,551 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "page-about",
+      "settings": {}
+    },
+    "banner_with_text_yMHTEm": {
+      "type": "banner-with-text",
+      "blocks": {
+        "heading_XMgYwY": {
+          "type": "heading",
+          "settings": {
+            "title": "About Us",
+            "heading_fs": 45,
+            "heading_fw": "default",
+            "heading_tf": "unset",
+            "heading_mt": 0,
+            "heading_mb": 15
+          }
+        },
+        "text_pjic44": {
+          "type": "text",
+          "settings": {
+            "txt_content": "<p>MyPureFind brings the Try & Buy at Home experience to categories where choice truly matters — makeup, skincare, fragrances, haircare, and jewellery</p>",
+            "txt_fs": 18,
+            "txt_fw": "default",
+            "txt_tf": "unset",
+            "txt_mt": 0,
+            "txt_mb": 40
+          }
+        },
+        "buttons_7Lti6w": {
+          "type": "buttons",
+          "settings": {
+            "btn_content": "View more",
+            "button_type": "primary",
+            "button_link": "#",
+            "button_target": false,
+            "b_mt": 0,
+            "b_mb": 15
+          }
+        },
+        "buttons_QXWdqH": {
+          "type": "buttons",
+          "settings": {
+            "btn_content": "Contact Us",
+            "button_type": "primary",
+            "button_link": "shopify://pages/contact",
+            "button_target": false,
+            "b_mt": 0,
+            "b_mb": 15
+          }
+        }
+      },
+      "block_order": [
+        "heading_XMgYwY",
+        "text_pjic44",
+        "buttons_7Lti6w",
+        "buttons_QXWdqH"
+      ],
+      "settings": {
+        "container": "full-width",
+        "color_scheme": "scheme-b808185a-cae7-47ba-9fe9-7d81ddf7e485",
+        "image_behavior": "none",
+        "banner_type": "image",
+        "image": "shopify://shop_images/woman-applying-lip-balm.jpg",
+        "video_url": "",
+        "link": "",
+        "open_link": "_blank",
+        "image_position": "left",
+        "bn_design": "text_overlay",
+        "text_align": "text-center",
+        "text_horizontal_position": "center",
+        "text_position": "center",
+        "content_bg_color": "",
+        "background_gradient": "",
+        "content_width": 60,
+        "banner_height": "custom-height",
+        "height_dk": 400,
+        "height_tb": 600,
+        "height_mb": 360,
+        "height_full": false,
+        "content_box": "content_in_container",
+        "bg_opacity": 100,
+        "full_box": false,
+        "text_bellow_mobile": false,
+        "img_position": "left",
+        "banner_width": "col-md-6",
+        "column_gap": 30,
+        "hover_effect": "none",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": false
+      }
+    },
+    "banner_with_text_pVNRar": {
+      "type": "banner-with-text",
+      "blocks": {
+        "subheading_dhDRdK": {
+          "type": "subheading",
+          "settings": {
+            "sub_title": "ABOUT-My Pure Find",
+            "subheading_fs": 14,
+            "subheading_fw": "600",
+            "subheading_tf": "unset",
+            "subheading_mt": 0,
+            "subheading_mb": 15
+          }
+        },
+        "heading_WRpkCB": {
+          "type": "heading",
+          "settings": {
+            "title": "At MyPureFind, we believe the best way to choose is to experience first.",
+            "heading_fs": 40,
+            "heading_fw": "300",
+            "heading_tf": "unset",
+            "heading_mt": 0,
+            "heading_mb": 0
+          }
+        },
+        "text_HrG8nw": {
+          "type": "text",
+          "settings": {
+            "txt_content": "<p>Beauty, personal care, and jewellery are deeply personal — how a shade looks on your skin, how a fragrance feels over time, how a product fits into your routine. Yet most decisions today are made without ever trying.<br/><br/>MyPureFind brings the Try & Buy at Home experience to categories where choice truly matters — makeup, skincare, fragrances, haircare, and jewellery. We let you explore products in the comfort of your home, with expert guidance, so you can decide with clarity and confidence.</p><p><br/><strong>What defines MyPureFind:</strong><br/>\t•\tTry before you buy, at home<br/>\t•\tExpert-led recommendations<br/>\t•\tThoughtfully curated categories<br/>\t•\tZero pressure, complete transparency<br/><br/>Whether you’re discovering your everyday makeup essentials, building a skincare routine, choosing a signature fragrance, finding the right haircare, or selecting jewellery that feels truly yours — MyPureFind ensures every decision is informed, relaxed, and right.<br/><br/>Because the right choice isn’t made online.<br/>It’s made when you experience it.<br/>Our curated selection focuses on quality, suitability, and comfort, not excess. Instead of endless options, we help you find what genuinely works for you — based on your preferences, skin type, lifestyle, and intent.</p>",
+            "txt_fs": 16,
+            "txt_fw": "default",
+            "txt_tf": "unset",
+            "txt_mt": 0,
+            "txt_mb": 25
+          }
+        }
+      },
+      "block_order": [
+        "subheading_dhDRdK",
+        "heading_WRpkCB",
+        "text_HrG8nw"
+      ],
+      "settings": {
+        "container": "container-fluid",
+        "color_scheme": "",
+        "image_behavior": "none",
+        "banner_type": "image",
+        "image": "shopify://shop_images/ChatGPT_Image_Jan_12_2026_11_48_31_AM.png",
+        "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
+        "link": "",
+        "open_link": "_blank",
+        "image_position": "right",
+        "bn_design": "text_column",
+        "text_align": "text-left",
+        "text_horizontal_position": "left",
+        "text_position": "center",
+        "content_bg_color": "",
+        "background_gradient": "",
+        "content_width": 100,
+        "banner_height": "depend-image",
+        "height_dk": 800,
+        "height_tb": 600,
+        "height_mb": 360,
+        "height_full": false,
+        "content_box": "content_in_container",
+        "bg_opacity": 100,
+        "full_box": false,
+        "text_bellow_mobile": false,
+        "img_position": "left",
+        "banner_width": "col-md-4",
+        "column_gap": 30,
+        "hover_effect": "none",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": false
+      }
+    },
+    "banner_image_nk77J8": {
+      "type": "banner-image",
+      "settings": {
+        "heading": "",
+        "heading_border": false,
+        "description": "",
+        "text_alignment": "text-center",
+        "container": "container-fluid",
+        "color_scheme": "default-color-scheme",
+        "show_box_background": false,
+        "color_background": "",
+        "bg_overlay": 100,
+        "column_gap": 30,
+        "layout_on_mobile": false,
+        "design_banner": "text-overlay-image",
+        "text_align": "text-left",
+        "hover_effect": "none",
+        "h_font_size": 36,
+        "h_font_weight": "default",
+        "h_spacing": 10,
+        "sub_font_size": 18,
+        "sub_font_weight": "default",
+        "sub_spacing": 10,
+        "des_font_size": 16,
+        "des_font_weight": "default",
+        "des_spacing": 30,
+        "button_font_size": 16,
+        "button_font_weight": "default",
+        "button_spacing": 0,
+        "image_behavior": "none",
+        "text_position": "top",
+        "content_on_mobile": false,
+        "reset_color_mb": false,
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": true
+      }
+    },
+    "counter_cVYaRA": {
+      "type": "counter",
+      "blocks": {
+        "counter_jrhwHW": {
+          "type": "counter",
+          "settings": {
+            "starting_number": "0",
+            "ending_number": "41",
+            "unit_number": "K+",
+            "heading": "Happy Customer",
+            "description": "<p>Sed ut perspiciatis unde omnis iste natus sit accusantium doloremque laudantium totam.</p>"
+          }
+        },
+        "counter_pNgCE6": {
+          "type": "counter",
+          "settings": {
+            "starting_number": "0",
+            "ending_number": "21",
+            "unit_number": "+",
+            "heading": "Years in Business",
+            "description": "<p>Sed ut perspiciatis unde omnis iste natus sit accusantium doloremque laudantium totam.</p>"
+          }
+        },
+        "counter_whffkq": {
+          "type": "counter",
+          "settings": {
+            "starting_number": "0",
+            "ending_number": "98",
+            "unit_number": "%",
+            "heading": "Return Clients",
+            "description": "<p>Sed ut perspiciatis unde omnis iste natus sit accusantium doloremque laudantium totam.</p>"
+          }
+        },
+        "counter_D8GEmy": {
+          "type": "counter",
+          "settings": {
+            "starting_number": "0",
+            "ending_number": "16",
+            "unit_number": "",
+            "heading": "Awards Won",
+            "description": "<p>Sed ut perspiciatis unde omnis iste natus sit accusantium doloremque laudantium totam.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "counter_jrhwHW",
+        "counter_pNgCE6",
+        "counter_whffkq",
+        "counter_D8GEmy"
+      ],
+      "settings": {
+        "heading": "",
+        "heading_border": false,
+        "description": "",
+        "text_alignment": "text-center",
+        "container": "container-fluid",
+        "color_scheme": "default-color-scheme",
+        "custom_column": 4,
+        "column_gap": 30,
+        "icon_width": 42,
+        "icon_spacing": 20,
+        "img_position": "position-left",
+        "content_text_alignment": "text-left",
+        "ib_h_font_size": 18,
+        "ib_h_font_weight": "500",
+        "ib_spacing": 15,
+        "ib_number_font_size": 40,
+        "ib_number_font_weight": "500",
+        "number_spacing": 0,
+        "ib_desc_font_size": 16,
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": false
+      }
+    },
+    "testimonial_E7MAbr": {
+      "type": "testimonial",
+      "blocks": {
+        "testimonials_ktzgAd": {
+          "type": "testimonials",
+          "settings": {
+            "title_text": "Rokan is my favourite store",
+            "description": "<p>Great products and designs and such great quality, they always</p><p>wash up well no matter how many times I wash them.\t</p>",
+            "author": "Donald Duclk",
+            "job": "",
+            "testimonial_width": 100
+          }
+        },
+        "testimonials_Y3zbC3": {
+          "type": "testimonials",
+          "settings": {
+            "title_text": "Beautiful products",
+            "description": "<p>Beautiful clothes. I always get complements. Good quality and items wash well.</p><p> products and designs and such great.</p>",
+            "author": "Niamh Oxley",
+            "job": "",
+            "testimonial_width": 100
+          }
+        },
+        "testimonials_UtJfWb": {
+          "type": "testimonials",
+          "settings": {
+            "title_text": "Lovely products",
+            "description": "<p>Great products and designs and such great quality, they always </p><p>wash up well no matter how many times I wash them</p>",
+            "author": "Mary Green",
+            "job": "",
+            "testimonial_width": 100
+          }
+        }
+      },
+      "block_order": [
+        "testimonials_ktzgAd",
+        "testimonials_Y3zbC3",
+        "testimonials_UtJfWb"
+      ],
+      "settings": {
+        "heading": "What People Are Saying",
+        "heading_border": false,
+        "description": "<p>Customers love our products and we always strive to please them all.</p>",
+        "text_align": "text-center",
+        "container": "container-fluid",
+        "color_scheme": "scheme-b808185a-cae7-47ba-9fe9-7d81ddf7e485",
+        "content_width": 100,
+        "design": "design_1",
+        "testi_text_size": "normal",
+        "show_rating": true,
+        "img_view": "default",
+        "img_position": "position-top",
+        "car_gap": 30,
+        "carousel_item_desktop": 1,
+        "autoplay": false,
+        "loop": true,
+        "show_arrow": false,
+        "reveal_on_scroll": false,
+        "pagination_style": "dots",
+        "padding_top": 100,
+        "padding_bottom": 100,
+        "reset_spacing": false
+      }
+    },
+    "banner_image_Trtba9": {
+      "type": "banner-image",
+      "blocks": {
+        "image_banner_EC3K8x": {
+          "type": "image_banner",
+          "settings": {
+            "banner_width": "3",
+            "banner_type": "image",
+            "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
+            "link": "",
+            "open_link": "_blank",
+            "content_banner_horizontal": "Bottom",
+            "subtext": "",
+            "title": "Nimrod Barshad",
+            "content": "<p>Founder/CEO</p>",
+            "btn_content": "",
+            "button_type": "primary"
+          }
+        },
+        "image_banner_zBtfgM": {
+          "type": "image_banner",
+          "settings": {
+            "banner_width": "3",
+            "banner_type": "image",
+            "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
+            "link": "",
+            "open_link": "_blank",
+            "content_banner_horizontal": "Bottom",
+            "subtext": "",
+            "title": "Claude K. Amadeo",
+            "content": "<p>Sales Director</p>",
+            "btn_content": "",
+            "button_type": "primary"
+          }
+        },
+        "image_banner_NUgVYF": {
+          "type": "image_banner",
+          "settings": {
+            "banner_width": "3",
+            "banner_type": "image",
+            "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
+            "link": "",
+            "open_link": "_blank",
+            "content_banner_horizontal": "Bottom",
+            "subtext": "",
+            "title": "Linda M. Dugan",
+            "content": "<p>Manager</p>",
+            "btn_content": "",
+            "button_type": "primary"
+          }
+        },
+        "image_banner_AjVfDf": {
+          "type": "image_banner",
+          "settings": {
+            "banner_width": "3",
+            "banner_type": "image",
+            "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
+            "link": "",
+            "open_link": "_blank",
+            "content_banner_horizontal": "Bottom",
+            "subtext": "",
+            "title": "Mark Pocket",
+            "content": "<p>Product Manager</p>",
+            "btn_content": "",
+            "button_type": "primary"
+          }
+        }
+      },
+      "block_order": [
+        "image_banner_EC3K8x",
+        "image_banner_zBtfgM",
+        "image_banner_NUgVYF",
+        "image_banner_AjVfDf"
+      ],
+      "settings": {
+        "heading": "The Leader Board Of Our Company",
+        "heading_border": false,
+        "description": "",
+        "text_alignment": "text-center",
+        "container": "container-fluid",
+        "color_scheme": "",
+        "show_box_background": false,
+        "color_background": "",
+        "bg_overlay": 100,
+        "column_gap": 30,
+        "layout_on_mobile": false,
+        "design_banner": "text-below-image",
+        "text_align": "text-left",
+        "hover_effect": "none",
+        "h_font_size": 20,
+        "h_font_weight": "500",
+        "h_spacing": 3,
+        "sub_font_size": 18,
+        "sub_font_weight": "default",
+        "sub_spacing": 10,
+        "des_font_size": 16,
+        "des_font_weight": "default",
+        "des_spacing": 0,
+        "button_font_size": 16,
+        "button_font_weight": "default",
+        "button_spacing": 0,
+        "image_behavior": "none",
+        "text_position": "top",
+        "content_on_mobile": false,
+        "reset_color_mb": false,
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": false
+      }
+    },
+    "gallery_RJywBH": {
+      "type": "gallery",
+      "blocks": {
+        "image_8D6yL4": {
+          "type": "image",
+          "settings": {
+            "link": ""
+          }
+        },
+        "image_faUQJ8": {
+          "type": "image",
+          "settings": {
+            "link": ""
+          }
+        },
+        "image_AGiDCj": {
+          "type": "image",
+          "settings": {
+            "link": ""
+          }
+        },
+        "image_VQYwLX": {
+          "type": "image",
+          "settings": {
+            "link": ""
+          }
+        },
+        "image_JcWnzp": {
+          "type": "image",
+          "settings": {
+            "link": ""
+          }
+        },
+        "image_wBimNC": {
+          "type": "image",
+          "settings": {
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "image_8D6yL4",
+        "image_faUQJ8",
+        "image_AGiDCj",
+        "image_VQYwLX",
+        "image_JcWnzp",
+        "image_wBimNC"
+      ],
+      "settings": {
+        "heading": "",
+        "heading_border": false,
+        "description": "",
+        "text_align": "text-center",
+        "container": "container-fluid",
+        "color_scheme": "",
+        "layout_type": "carousel",
+        "column_gap": 30,
+        "aspect_ratio": "show_width_height",
+        "custom_ratio": "63:10",
+        "actions_click": "unset",
+        "custom_column": 4,
+        "grid_image_desktop": 6,
+        "autoplay": false,
+        "loop": false,
+        "show_arrow": false,
+        "carousel_pagination": "carousel_none",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": false
+      }
+    }
+  },
+  "order": [
+    "main",
+    "banner_with_text_yMHTEm",
+    "banner_with_text_pVNRar",
+    "banner_image_nk77J8",
+    "counter_cVYaRA",
+    "testimonial_E7MAbr",
+    "banner_image_Trtba9",
+    "gallery_RJywBH"
+  ]
+}

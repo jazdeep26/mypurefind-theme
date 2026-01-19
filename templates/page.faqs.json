@@ -1,0 +1,209 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "page_heading_t36cmw": {
+      "type": "page-heading",
+      "settings": {
+        "container": "container-fluid",
+        "color_scheme": "",
+        "show_banner": false,
+        "min_height": 200,
+        "parallax": false,
+        "show_overlay": false,
+        "overlay": 54,
+        "design": "text-overlay-image",
+        "text_postion": "text-left"
+      }
+    },
+    "custom_text_UndQBE": {
+      "type": "custom-text",
+      "blocks": {
+        "heading_iHkRnR": {
+          "type": "heading",
+          "settings": {
+            "heading": "FAQ",
+            "heading_fs": 40,
+            "heading_fw": "default",
+            "heading_tf": "unset",
+            "heading_mt": 0,
+            "heading_mb": 15
+          }
+        },
+        "desc_K9RawU": {
+          "type": "desc",
+          "settings": {
+            "desc": "<p>If you have other burning questions we weren’t able to address here, feel free to email.<\/p>",
+            "desc_fs": 18,
+            "desc_fw": "default",
+            "content_width": 100,
+            "desc_tf": "unset",
+            "desc_mt": 0,
+            "desc_mb": 0
+          }
+        }
+      },
+      "block_order": [
+        "heading_iHkRnR",
+        "desc_K9RawU"
+      ],
+      "settings": {
+        "container": "container",
+        "text_align": "text-center",
+        "color_scheme": "",
+        "custom_class": "",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": false
+      }
+    },
+    "main": {
+      "type": "page-faqs",
+      "blocks": {
+        "faq_parent_VDJVpG": {
+          "type": "faq_parent",
+          "settings": {
+            "title": "Shopping",
+            "text_alignment": "text-left",
+            "h_font_size": 30,
+            "h_font_weight": "400"
+          }
+        },
+        "faq_AzLBQk": {
+          "type": "faq",
+          "settings": {
+            "title": "What Shipping Methods Are Available?",
+            "content": "<p>Oneself endless holiest society philosophy dept valuation Contradicts gains nobless end lose preju dice battle hope the battle philosophy Gains endless capitalize on low hanging fruit to identify a ballpark value added activity to beta test. Override the digital divide with additional clickthroughs from DevOps<\/p>"
+          }
+        },
+        "faq_TmBKRa": {
+          "type": "faq",
+          "settings": {
+            "title": "Do You Ship Internationally?",
+            "content": "<p>Oneself endless holiest society philosophy dept valuation Contradicts gains nobless end lose preju dice battle hope the battle philosophy Gains endless capitalize on low hanging fruit to identify a ballpark value added activity to beta test. Override the digital divide with additional clickthroughs from DevOps<\/p>"
+          }
+        },
+        "faq_QFydg7": {
+          "type": "faq",
+          "settings": {
+            "title": "How long does it take for home delivery?",
+            "content": "<p>Oneself endless holiest society philosophy dept valuation Contradicts gains nobless end lose preju dice battle hope the battle philosophy Gains endless capitalize on low hanging fruit to identify a ballpark value added activity to beta test. Override the digital divide with additional clickthroughs from DevOps<\/p>"
+          }
+        },
+        "faq_eiRXAX": {
+          "type": "faq",
+          "settings": {
+            "title": "How Long Will It Take To Get My Package?",
+            "content": "<p>Oneself endless holiest society philosophy dept valuation Contradicts gains nobless end lose preju dice battle hope the battle philosophy Gains endless capitalize on low hanging fruit to identify a ballpark value added activity to beta test. Override the digital divide with additional clickthroughs from DevOps<\/p>"
+          }
+        },
+        "faq_parent_UaGdG9": {
+          "type": "faq_parent",
+          "settings": {
+            "title": "Payment",
+            "text_alignment": "text-left",
+            "h_font_size": 30,
+            "h_font_weight": "400"
+          }
+        },
+        "faq_eA9UnH": {
+          "type": "faq",
+          "settings": {
+            "title": "What Payment Methods Are Accepted?",
+            "content": "<p>Swag slow-carb quinoa VHS typewriter pork belly brunch, paleo single-origin coffee Wes Anderson. Flexitarian Pitchfork forage, literally paleo fap pour-over. Wes Anderson Pinterest YOLO fanny pack meggings.<\/p>"
+          }
+        },
+        "faq_qimgz7": {
+          "type": "faq",
+          "settings": {
+            "title": "How Do I Track My Order?",
+            "content": "<p>Swag slow-carb quinoa VHS typewriter pork belly brunch, paleo single-origin coffee Wes Anderson. Flexitarian Pitchfork forage, literally paleo fap pour-over. Wes Anderson Pinterest YOLO fanny pack meggings.<\/p>"
+          }
+        },
+        "faq_HPFz8d": {
+          "type": "faq",
+          "settings": {
+            "title": "Can I use a different payment method?",
+            "content": "<p>Swag slow-carb quinoa VHS typewriter pork belly brunch, paleo single-origin coffee Wes Anderson. Flexitarian Pitchfork forage, literally paleo fap pour-over. Wes Anderson Pinterest YOLO fanny pack meggings.<\/p>"
+          }
+        },
+        "faq_parent_dwM6F7": {
+          "type": "faq_parent",
+          "settings": {
+            "title": "Orders & Returns",
+            "text_alignment": "text-left",
+            "h_font_size": 30,
+            "h_font_weight": "400"
+          }
+        },
+        "faq_9wmf4d": {
+          "type": "faq",
+          "settings": {
+            "title": "How do I place an Order?",
+            "content": "<p>Keytar cray slow-carb, Godard banh mi salvia pour-over. Slow-carb Odd Future seitan normcore. Master cleanse American Apparel gentrify flexitarian beard slow-carb next level. Raw denim polaroid paleo farm-to-table, put a bird on it lo-fi tattooed Wes Anderson Pinterest letterpress. Fingerstache McSweeney’s pour-over, letterpress Schlitz photo booth master cleanse bespoke hashtag chillwave gentrify.<\/p>"
+          }
+        },
+        "faq_J8T48e": {
+          "type": "faq",
+          "settings": {
+            "title": "How Can I Cancel Or Change My Order?",
+            "content": "<p>Keytar cray slow-carb, Godard banh mi salvia pour-over. Slow-carb Odd Future seitan normcore. Master cleanse American Apparel gentrify flexitarian beard slow-carb next level. Raw denim polaroid paleo farm-to-table, put a bird on it lo-fi tattooed Wes Anderson Pinterest letterpress. Fingerstache McSweeney’s pour-over, letterpress Schlitz photo booth master cleanse bespoke hashtag chillwave gentrify.<\/p>"
+          }
+        },
+        "faq_AYDHgy": {
+          "type": "faq",
+          "settings": {
+            "title": "Do I need an account to place an order?",
+            "content": "<p>Keytar cray slow-carb, Godard banh mi salvia pour-over. Slow-carb Odd Future seitan normcore. Master cleanse American Apparel gentrify flexitarian beard slow-carb next level. Raw denim polaroid paleo farm-to-table, put a bird on it lo-fi tattooed Wes Anderson Pinterest letterpress. Fingerstache McSweeney’s pour-over, letterpress Schlitz photo booth master cleanse bespoke hashtag chillwave gentrify.<\/p>"
+          }
+        },
+        "faq_QYxqiX": {
+          "type": "faq",
+          "settings": {
+            "title": "How Can I Return a Product?",
+            "content": "<p>Keytar cray slow-carb, Godard banh mi salvia pour-over. Slow-carb Odd Future seitan normcore. Master cleanse American Apparel gentrify flexitarian beard slow-carb next level. Raw denim polaroid paleo farm-to-table, put a bird on it lo-fi tattooed Wes Anderson Pinterest letterpress. Fingerstache McSweeney’s pour-over, letterpress Schlitz photo booth master cleanse bespoke hashtag chillwave gentrify.<\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "faq_parent_VDJVpG",
+        "faq_AzLBQk",
+        "faq_TmBKRa",
+        "faq_QFydg7",
+        "faq_eiRXAX",
+        "faq_parent_UaGdG9",
+        "faq_eA9UnH",
+        "faq_qimgz7",
+        "faq_HPFz8d",
+        "faq_parent_dwM6F7",
+        "faq_9wmf4d",
+        "faq_J8T48e",
+        "faq_AYDHgy",
+        "faq_QYxqiX"
+      ],
+      "settings": {
+        "heading": "",
+        "heading_border": false,
+        "description": "",
+        "text_alignment": "text-center",
+        "container": "container-fluid",
+        "color_scheme": "",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": false
+      }
+    }
+  },
+  "order": [
+    "page_heading_t36cmw",
+    "custom_text_UndQBE",
+    "main"
+  ]
+}

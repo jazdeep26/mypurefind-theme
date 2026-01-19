@@ -1,0 +1,139 @@
+{%- liquid
+  assign th_st = settings
+  assign gift_wrap_pr = all_products[th_st.gift_wrap]
+  assign gift_pr_id = gift_wrap_pr.id
+  assign gift_wrap = cart.items | where: 'product_id', gift_pr_id
+  if settings.currency_code_enabled
+    assign gift_pr_price = gift_wrap_pr.selected_or_first_available_variant.price | money_with_currency
+  else
+    assign gift_pr_price = gift_wrap_pr.selected_or_first_available_variant.price | money
+  endif
+  assign cart_shipping_rates_calculator = th_st.cart_shipping_rates_calculator
+  assign cart_shipping_rates_days = th_st.cart_shipping_rates_days
+  assign cart_note = th_st.cart_note
+-%}
+
+<div class="bls__cart-addons border-bottom">
+  {%- if cart_note -%}
+    <div data-id="not" class="mini_cart_note">
+      <button type="button" data-open="note" class="mini_cart_addon_btn note bls_tooltip">
+        <img src="{{ 'note.svg' | asset_url }}" loading="lazy" width="15" height="16">
+        <span class="bls_tooltip-content">{{ 'general.cart.note.title' | t }}</span>
+      </button>
+    </div>
+  {%- endif -%}
+  {%- if th_st.cart_gift_wrap and gift_wrap_pr.variants.size == 1 -%}
+    <div data-id="gift" class="mini_cart_gift bls_tooltip{% if gift_wrap != blank %} d-none{% endif %}">
+      <button type="button" data-open="gift" class="mini_cart_addon_btn gift">
+        <img src="{{ 'gift.svg' | asset_url }}" loading="lazy" width="17" height="16">
+        <span class="bls_tooltip-content">{{ 'general.cart.gift.title' | t }}</span>
+      </button>
+    </div>
+  {%- endif -%}
+  {%- if cart_shipping_rates_calculator -%}
+    <div data-id="shipping" class="mini_cart_shipping bls_tooltip">
+      <button type="button" data-open="shipping" class="mini_cart_addon_btn shipping">
+        <img src="{{ 'shipping.svg' | asset_url }}" loading="lazy" width="16" height="16">
+        <span class="bls_tooltip-content">{{ 'general.cart.shipping.title' | t }}</span>
+      </button>
+    </div>
+  {%- endif -%}
+</div>
+{%- if cart_note -%}
+  <div class="bls__addon" id="bls__note">
+    <div class="bls__addon-title mb-10">
+      <img class="mr-10" src="{{ 'note.svg' | asset_url }}" loading="lazy" width="15" height="16">
+      <span>{{ 'general.cart.note.title' | t }}</span>
+    </div>
+    <div class="bls__addon-content mb-20">
+      <textarea
+        name="note"
+        class="bls__cart-note form-control"
+        rows="3"
+        placeholder="{{ 'general.cart.note.title' | t }}"
+      >{{ cart.note }}</textarea>
+    </div>
+    <div class="bls__addon-actions">
+      <button type="button" class="btn-save" data-action="note">{{ 'general.cart.save' | t }}</button>
+      <button type="button" class="btn-cancel btn-secondary">{{ 'general.cart.cancel' | t }}</button>
+    </div>
+  </div>
+{%- endif -%}
+{%- if th_st.cart_gift_wrap and gift_wrap_pr.variants.size == 1 -%}
+  <div class="bls__addon {% if gift_wrap != blank %} d-none{% endif %}" id="bls__gift">
+    <div class="bls__mini_cart-tool">
+      <img src="{{ 'gift.svg' | asset_url }}" loading="lazy" width="30" height="30">
+      <div class="field mt-5">
+        {{ 'general.cart.gift.gift_wrap_html' | t: price: gift_pr_price }}
+      </div>
+      <div class="bls__field">
+        <a
+          href="{{ gift_wrap_pr.url }}"
+          data-variant-id="{{ gift_wrap_pr.selected_or_first_available_variant.id }}"
+          class="bls__add-giftwrap btn w-full relative"
+        >
+          <span>{{ 'general.cart.gift.button_text' | t }}</span>
+          <span class="loader-icon"></span>
+        </a>
+      </div>
+      <div class="bls__addon-actions">
+        <button type="button" class="btn-cancel btn-secondary">{{ 'general.cart.cancel' | t }}</button>
+      </div>
+    </div>
+  </div>
+{%- endif -%}
+{%- if cart_shipping_rates_calculator -%}
+  <div class="bls__addon" id="bls__shipping">
+    <div class="bls__addon-title mb-10">
+      <img class="mr-10" src="{{ 'shipping.svg' | asset_url }}" loading="lazy" width="16" height="16">
+      <span>{{ 'general.cart.shipping.estimate_shipping_title' | t }}</span>
+    </div>
+    <div class="bls__addon-content">
+      <div data-address="root">
+        <div class="form-group mb-15 d-flex flex-column">
+          <label class="mb-5" for="address_country">{{ 'customer.addresses.country' | t }}</label>
+          <select
+            id="address_country"
+            class="form-control"
+            name="address[country]"
+            data-default="{{ settings.default_country_estimate_shipping | default: 'United States' }}"
+          >
+            {{ country_option_tags }}
+          </select>
+        </div>
+        <div id="address_province_container" class="address_province_container form-group mb-15 d-flex flex-column">
+          <label class="mb-5" for="address_province">{{ 'customer.addresses.province' | t }}</label>
+          <select
+            id="address_province"
+            class="form-control"
+            name="address[province]"
+            data-default="{{ form.province }}"
+          ></select>
+        </div>
+        <div class="form-group mb-15 d-flex flex-column">
+          <label class="mb-5" for="AddressZip">{{ 'customer.addresses.zip' | t }}</label>
+          <input
+            type="text"
+            class="form-control"
+            id="AddressZip"
+            name="address[zip]"
+            value="{{ form.zip }}"
+            autocapitalize="characters"
+          >
+        </div>
+      </div>
+    </div>
+    <div class="bls__addon-actions">
+      <button type="button" class="btn-save" data-action="shipping">
+        {{ 'general.cart.shipping.estimate_shipping_button' | t }}
+      </button>
+      <button type="button" class="btn-cancel btn-secondary">{{ 'general.cart.cancel' | t }}</button>
+    </div>
+    <div
+      class="bls__addon-message"
+      data-show-delivery-days="{{ cart_shipping_rates_days }}"
+      data-delivery-day-one="{{ 'general.cart.delivery_days.one' | t }}"
+      data-delivery-days-other="{{ 'general.cart.delivery_days.other' | t }}"
+    ></div>
+  </div>
+{%- endif -%}

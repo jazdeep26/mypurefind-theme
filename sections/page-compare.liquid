@@ -1,0 +1,335 @@
+<script src="{{ 'compare.js' | asset_url }}" defer="defer"></script>
+{{ 'product.css' | asset_url | stylesheet_tag }}
+{{ 'compare.css' | asset_url | stylesheet_tag }}
+{%- liquid
+  assign th_st = settings
+  assign option_name = 'Color'
+  if th_st.option_name_color != blank
+    assign option_name = th_st.option_name_color | split: ','
+  endif
+
+  assign option_name_size = 'Size'
+  if th_st.option_name_size != blank
+    assign option_name_size = th_st.option_name_size | split: ','
+  endif
+
+  assign product_name_t_transfrom = th_st.product_name_t_transfrom
+  assign product_name_line = th_st.product_name_line
+  assign hidden_button_add_to_cart = th_st.hidden_button_add_to_cart
+  assign hidden_price = th_st.hidden_price
+  assign sale_type = th_st.product_label_sale_type
+-%}
+<section
+  class="bls__section bls__compare-page-section"
+  data-section-type="page-compare"
+  data-section-id="{{ section.id }}"
+  data-view="{{ template.name }}"
+>
+  {%- if search.results != blank -%}
+    {% paginate search.results by 50 %}
+      {%- for product in search.results -%}
+        {%- liquid
+          assign compare_at_price = product.compare_at_price
+          assign price = product.price
+          if compare_at_price > price and compare_at_price != blank
+          endif
+          if product.has_only_default_variant
+            assign action_add_cart = 'bls__js-addtocart'
+          else
+            assign action_add_cart = 'bls__js-addtocart bls__js-button-select-option'
+          endif
+        -%}
+        <div class="bls__product-compare">
+          <div class="bls__compare-row-basic">
+            <div
+              class="bls__compare-item-basic-{{ product.id }} bls__product-item bls__compare-value label-depend-on-button"
+              data-product-handle="{{ product.handle }}"
+            >
+              <div class="bls__product-img-compare overflow-hidden relative">
+                <a class="bls__compare-remove d-block bls__compare-remove-js">
+                  <i class="lnr lnr-cross"></i>
+                </a>
+                <a class="bls__img-url" href="{{ product.url | within: collection }}">
+                  <div class="bls__product-main-img">
+                    {%- if product.featured_image != blank -%}
+                      {%- render 'responsive-image' | image: product.featured_image | type: 'product' | cls: 'bls__product-grid bls__product-img-sw' -%}
+                    {%- else -%}
+                      {%- render 'responsive-image' | type: 'product' | cls: 'bls__product-grid-plh' -%}
+                    {%- endif -%}
+                  </div>
+                </a>
+                {%- if compare_at_price > price and compare_at_price != blank -%}
+                  <div class="bls__product-label fs-12 pointer-events-none absolute">
+                    <div class="bls__sale-label">
+                      {%- assign p = compare_at_price | minus: price -%}
+                      {%- if sale_type == 'text' -%}
+                        {{- 'products.product.label.sale' | t -}}
+                      {% elsif sale_type == 'percent' %}
+                        {%- if p > 0 -%}
+                          {%- assign p = p | times: 100.0 | divided_by: compare_at_price | round -%}
+                        {%- endif -%}
+                        -
+                        {{- p -}}
+                        %
+                      {% elsif sale_type == 'price' %}
+                        - {{ p | money }}
+                      {% endif %}
+                    </div>
+                  </div>
+                {%- endif -%}
+              </div>
+              <h3 class="bls__product-name regular mb-0 pt-15">
+                <a
+                  class="limited-line {{ product_name_t_transfrom }}"
+                  style="--line-clamp: {{ product_name_line }}"
+                  href="{{ product.url | within: collection }}"
+                >
+                  {{ product.title }}
+                </a>
+              </h3>
+              {% if hidden_price == false %}
+                <div class="bls__product-price mb-7">
+                  {%- render 'price', product: product, use_variant: true, price_class: 'price--large' -%}
+                </div>
+              {% endif %}
+              <quick-buy
+                class="bls__product-addtocart bls__product-addtocart-js"
+                data-product-variant-id="{{ product.selected_or_first_available_variant.id }}"
+              >
+                {%- if product.metafields.custom.external_affiliate == blank -%}
+                  {%- if hidden_button_add_to_cart == false -%}
+                    <button
+                      class="{{ action_add_cart }} btn-secondary button button--full-width"
+                      type="submit"
+                      {% if product.selected_or_first_available_variant.available == false %}
+                        disabled
+                      {% endif %}
+                    >
+                      <span class="bls_tooltip-content">
+                        {% if product.selected_or_first_available_variant.available == false %}
+                          {{- 'products.product.sold_out' | t -}}
+                        {%- else -%}
+                          {{- 'products.product.add_to_cart' | t -}}
+                        {% endif -%}
+                      </span>
+                      <span class="add-cart bls__button-content hidden-loading">
+                        {% if product.selected_or_first_available_variant.available == false %}
+                          {{- 'products.product.sold_out' | t -}}
+                        {%- else -%}
+                          {{- 'products.product.add_to_cart' | t -}}
+                        {% endif %}
+                      </span>
+                    </button>
+                  {%- endif -%}
+                {%- else -%}
+                  <a
+                    href="{{ product.metafields.custom.external_affiliate.value.external_link }}"
+                    rel="nofollow"
+                    target="_blank"
+                    class="btn-secondary border-none button button--full-width text-center"
+                  >
+                    {{- product.metafields.custom.external_affiliate.value.button_text -}}
+                  </a>
+                {%- endif -%}
+              </quick-buy>
+              {%- unless product.has_only_default_variant -%}
+                <script type="application/json" class="productinfo">
+                  {{ product.variants | json }}
+                </script>
+                <script type="application/json" class="productOptions">
+                  {{ product.options | json }}
+                </script>
+              {%- endunless -%}
+            </div>
+          </div>
+          <div class="bls__compare-row-availability">
+            <div
+              class="bls__compare-item-availability-{{ product.id }} bls__compare-value"
+              data-product-handle="{{ product.handle }}"
+            >
+              {%- if product.available -%}
+                {{ 'products.product.available' | t }}
+              {%- else -%}
+                {{ 'products.product.unavailable' | t }}
+              {%- endif -%}
+            </div>
+          </div>
+          <div class="bls__compare-row-vendor">
+            <div
+              class="bls__compare-item-vendor-{{ product.id }} bls__compare-value"
+              data-product-handle="{{ product.handle }}"
+            >
+              <span>
+                {%- if product.vendor -%}
+                  {{ product.vendor }}
+                {%- else -%}
+                  -
+                {%- endif -%}
+              </span>
+            </div>
+          </div>
+          <div class="bls__compare-row-review">
+            <div
+              class="bls__compare-item-review-{{ product.id }} bls__compare-value"
+              data-product-handle="{{ product.handle }}"
+            >
+              {% render 'product-review' | review_star: true | product: product %}
+            </div>
+          </div>
+          <div class="bls__compare-row-size">
+            <div
+              class="bls__compare-item-size-{{ product.id }} bls__compare-value"
+              data-product-handle="{{ product.handle }}"
+            >
+              {%- if product.has_only_default_variant -%}
+                <span>-</span>
+              {%- else -%}
+                {%- liquid
+                  assign sizeOption = false
+                  for option in product.options_with_values
+                    for sizeItem in option_name_size
+                      if option.name == sizeItem
+                        assign sizeOption = true
+                      endif
+                    endfor
+                  endfor
+                -%}
+                {%- if sizeOption -%}
+                  {%- for option in product.options_with_values -%}
+                    {%- liquid
+                      assign isSizeOption = false
+                      for sizeItem in option_name_size
+                        if option.name == sizeItem
+                          assign isSizeOption = true
+                        endif
+                      endfor
+                    -%}
+                    {%- if isSizeOption -%}
+                      {%- for value in option.values -%}
+                        <span class="bls_size-content">
+                          {{- value -}}
+                        </span>
+                        {%- if forloop.last != true %},{% endif %}
+                      {%- endfor -%}
+                    {%- endif -%}
+                  {%- endfor -%}
+                {%- else -%}
+                  <span>-</span>
+                {%- endif -%}
+              {%- endif -%}
+            </div>
+          </div>
+          <div class="bls__compare-row-color">
+            <div
+              class="bls__compare-item-color-{{ product.id }} bls__compare-value"
+              data-product-handle="{{ product.handle }}"
+            >
+              {%- if product.has_only_default_variant -%}
+                <span>-</span>
+              {%- else -%}
+                {%- for option in product.options_with_values -%}
+                  {%- liquid
+                    assign isColorOption = false
+                    for colorItem in option_name
+                      if option.name == colorItem
+                        assign isColorOption = true
+                      endif
+                    endfor
+                  -%}
+                  {%- if isColorOption -%}
+                    {%- for value in option.values -%}
+                      <span class="bls_color-content">
+                        {{- value -}}
+                      </span>
+                      {%- if forloop.last != true %},{% endif %}
+                    {%- endfor -%}
+                  {%- endif -%}
+                {%- endfor -%}
+              {%- endif -%}
+            </div>
+          </div>
+        </div>
+      {%- endfor -%}
+    {% endpaginate %}
+  {%- endif -%}
+
+  <div class="{{ section.settings.container }} section-full bls__compare-page-main bls__product-preload-js">
+    <div class="bls__compare-table d-none">
+      <div class="bls__compare-row bls__compare-row-basic row-cols-lg-5 row-cols-md-4 row-cols-sm-3">
+        <div class="bls__compare-field">
+          {{ 'products.product.product_title' | t }}
+        </div>
+      </div>
+      <div class="bls__compare-row bls__compare-row-vendor row-cols-lg-5 row-cols-md-4 row-cols-sm-3">
+        <div class="bls__compare-field">
+          {{ 'products.product.vendor' | t }}
+        </div>
+      </div>
+      <div class="bls__compare-row bls__compare-row-availability row-cols-lg-5 row-cols-md-4 row-cols-sm-3">
+        <div class="bls__compare-field">
+          {{ 'products.product.availability' | t }}
+        </div>
+      </div>
+      <div class="bls__compare-row bls__compare-row-size row-cols-lg-5 row-cols-md-4 row-cols-sm-3">
+        <div class="bls__compare-field">
+          {{ 'products.product.size' | t }}
+        </div>
+      </div>
+      <div class="bls__compare-row bls__compare-row-color row-cols-lg-5 row-cols-md-4 row-cols-sm-3">
+        <div class="bls__compare-field">
+          {{ 'products.product.color' | t }}
+        </div>
+      </div>
+      <div class="bls__compare-row bls__compare-row-review row-cols-lg-5 row-cols-md-4 row-cols-sm-3">
+        <div class="bls__compare-field">
+          {{ 'products.product.review' | t }}
+        </div>
+      </div>
+    </div>
+
+    <div class="bls__compare-no-product-js d-none">
+      <h3 class="bls__compare-no-product-text">
+        {{ 'templates.compare.no_product' | t }}
+        <a class="bls__compare-no-product-url" href="{{ routes.all_products_collection_url }}">
+          {{- 'templates.compare.redirect' | t -}}
+        </a>
+      </h3>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "t:sections.page-compare.name",
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:sections.page-compare.content"
+    },
+    {
+      "type": "select",
+      "id": "container",
+      "label": "t:sections.all.layout.label",
+      "default": "container",
+      "options": [
+        {
+          "value": "container",
+          "label": "t:sections.all.layout.options__1.label"
+        },
+        {
+          "value": "container-fluid",
+          "label": "t:sections.all.layout.options__2.label"
+        },
+        {
+          "value": "strecth-width",
+          "label": "t:sections.all.layout.options__3.label"
+        },
+        {
+          "value": "full-width",
+          "label": "t:sections.all.layout.options__4.label"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

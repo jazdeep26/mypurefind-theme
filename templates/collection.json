@@ -1,0 +1,289 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main-collection-heading": {
+      "type": "main-collection-heading",
+      "blocks": {
+        "f06a38ad-a426-42c0-a5ff-48ae0218618e": {
+          "type": "1",
+          "settings": {
+            "text_fs": 40
+          }
+        }
+      },
+      "block_order": [
+        "f06a38ad-a426-42c0-a5ff-48ae0218618e"
+      ],
+      "settings": {
+        "container": "container-fluid",
+        "color_scheme": "default-color-scheme",
+        "show_banner": true,
+        "use_collection_image": false,
+        "min_height": 60,
+        "parallax": false,
+        "show_overlay": true,
+        "overlay": 10,
+        "design": "text-overlay-image",
+        "text_postion": "text-center"
+      }
+    },
+    "custom_text_JMCxa4": {
+      "type": "custom-text",
+      "blocks": {
+        "sub_heading_gKTahy": {
+          "type": "sub_heading",
+          "disabled": true,
+          "settings": {
+            "sub_heading": "<p>Why Choose Us</p>",
+            "sub_fs": 12,
+            "sub_fw": "default",
+            "sub_tf": "unset",
+            "sub_mt": 0,
+            "sub_mb": 0
+          }
+        },
+        "heading_AjGQjx": {
+          "type": "heading",
+          "disabled": true,
+          "settings": {
+            "heading": "Our Unique Things",
+            "heading_fs": 40,
+            "heading_fw": "default",
+            "heading_tf": "unset",
+            "heading_mt": 0,
+            "heading_mb": 0
+          }
+        },
+        "buttons_jMTBaa": {
+          "type": "buttons",
+          "settings": {
+            "btn_content": "Book Free Demo Now",
+            "button_type": "primary",
+            "button_link": "shopify://pages/demoform",
+            "button_target": false,
+            "b_mt": 10,
+            "b_mb": 5
+          }
+        },
+        "desc_CghQk6": {
+          "type": "desc",
+          "disabled": true,
+          "settings": {
+            "desc": "<p>Class aptent taciti sociosqu ad litora torquent per conubia nostra per inceptos vel pretium lectus qua. Nunc id cursus metus ididunt ut labore metus episcing.</p>",
+            "desc_fs": 16,
+            "desc_fw": "default",
+            "content_width": 100,
+            "desc_tf": "unset",
+            "desc_mt": 0,
+            "desc_mb": 0
+          }
+        }
+      },
+      "block_order": [
+        "sub_heading_gKTahy",
+        "heading_AjGQjx",
+        "buttons_jMTBaa",
+        "desc_CghQk6"
+      ],
+      "name": "t:sections.custom-content.name",
+      "settings": {
+        "container": "container",
+        "text_align": "text-center",
+        "color_scheme": "",
+        "custom_class": "",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": true
+      }
+    },
+    "8498460c-0376-40d1-bafc-199edbe0edfc": {
+      "type": "collection-list",
+      "blocks": {
+        "template--16567751475447__8498460c-0376-40d1-bafc-199edbe0edfc-16665857567f9937b1-0": {
+          "type": "collection_item",
+          "settings": {
+            "title_collection": "Makeup",
+            "collection": "makeup",
+            "image": "shopify://shop_images/Gemini_Generated_Image_73vl4w73vl4w73vl.png"
+          }
+        },
+        "template--16567751475447__8498460c-0376-40d1-bafc-199edbe0edfc-16665857567f9937b1-1": {
+          "type": "collection_item",
+          "settings": {
+            "title_collection": "Skincare",
+            "collection": "skincare"
+          }
+        },
+        "template--16567751475447__8498460c-0376-40d1-bafc-199edbe0edfc-16665857567f9937b1-2": {
+          "type": "collection_item",
+          "settings": {
+            "title_collection": "Fragrances",
+            "collection": "fragrances"
+          }
+        },
+        "template--16567751475447__8498460c-0376-40d1-bafc-199edbe0edfc-16665857567f9937b1-3": {
+          "type": "collection_item",
+          "settings": {
+            "title_collection": "Hair Extension",
+            "collection": "hair-extensions"
+          }
+        },
+        "616f3472-abe6-41ef-8d49-4e190d1fc5cc": {
+          "type": "collection_item",
+          "settings": {
+            "title_collection": "Jewellery",
+            "collection": "jewellery"
+          }
+        },
+        "36a53b4a-830c-4660-a410-d73343bf9d7d": {
+          "type": "collection_item",
+          "settings": {
+            "title_collection": "WINTER COAT",
+            "collection": "winter-coat"
+          }
+        }
+      },
+      "block_order": [
+        "template--16567751475447__8498460c-0376-40d1-bafc-199edbe0edfc-16665857567f9937b1-0",
+        "template--16567751475447__8498460c-0376-40d1-bafc-199edbe0edfc-16665857567f9937b1-1",
+        "template--16567751475447__8498460c-0376-40d1-bafc-199edbe0edfc-16665857567f9937b1-2",
+        "template--16567751475447__8498460c-0376-40d1-bafc-199edbe0edfc-16665857567f9937b1-3",
+        "616f3472-abe6-41ef-8d49-4e190d1fc5cc",
+        "36a53b4a-830c-4660-a410-d73343bf9d7d"
+      ],
+      "disabled": true,
+      "settings": {
+        "heading": "",
+        "heading_border": false,
+        "description": "",
+        "text_alignment": "text-center",
+        "container": "container-fluid",
+        "color_scheme": "scheme-013ccfbf-beb5-42e6-bc8f-8a36ab634ca7",
+        "design_layout": "carousel",
+        "design_collection": "design-6",
+        "hover_effect": "zoom",
+        "show_count_product": false,
+        "custom_width_images": false,
+        "width_image": 180,
+        "images_style": false,
+        "image_ratio": "custom",
+        "custom_ratio": "100:118",
+        "custom_column": 5,
+        "custom_column_mobile": 2,
+        "custom_column_small_mobile": 2,
+        "column_gap": 30,
+        "collection_font_size": 16,
+        "collection_font_weight": 400,
+        "collection_spacing": 0,
+        "count_font_size": 14,
+        "count_font_weight": 400,
+        "autoplay": false,
+        "loop": false,
+        "show_arrow": true,
+        "carousel_pagination": "carousel_none",
+        "reveal_on_scroll": false,
+        "padding_top": 0,
+        "padding_bottom": 50,
+        "reset_spacing": false
+      }
+    },
+    "product-grid": {
+      "type": "main-collection-product",
+      "blocks": {
+        "35c81196-1f20-4b1d-98e4-1bea284fe6d7": {
+          "type": "categories",
+          "settings": {
+            "title": "Collections",
+            "menu": ""
+          }
+        },
+        "filter_by_dynamic_3hijwq": {
+          "type": "filter_by_dynamic",
+          "settings": {}
+        },
+        "2039056a-3cc3-4534-a522-d35bdfbaef6c": {
+          "type": "popular_product",
+          "disabled": true,
+          "settings": {
+            "title": "Featured Product",
+            "collection": "skincare",
+            "type_product": "list",
+            "maximum": 3
+          }
+        }
+      },
+      "block_order": [
+        "35c81196-1f20-4b1d-98e4-1bea284fe6d7",
+        "filter_by_dynamic_3hijwq",
+        "2039056a-3cc3-4534-a522-d35bdfbaef6c"
+      ],
+      "settings": {
+        "container": "container-fluid",
+        "enable_list_view": false,
+        "products_column": 3,
+        "number_products_grid": 12,
+        "number_products_list": 4,
+        "pagination": "default",
+        "product_page_count": true,
+        "product_sort_options": true,
+        "progress_bar": true,
+        "enable_sidebar": true,
+        "sidebar_position": "left_sidebar",
+        "show_count": true
+      }
+    },
+    "sub-collection": {
+      "type": "sub-collection",
+      "disabled": true,
+      "settings": {
+        "heading": "",
+        "heading_border": false,
+        "description": "",
+        "text_alignment": "text-center",
+        "container": "container",
+        "color_scheme": "",
+        "design_layout": "carousel",
+        "design_collection": "design-1",
+        "hover_effect": "zoom",
+        "show_count_product": true,
+        "hide_image_collection": false,
+        "collection_center": false,
+        "custom_width_images": false,
+        "width_image": 200,
+        "images_style": "square",
+        "image_ratio": "3/4",
+        "custom_ratio": "21:9",
+        "custom_column": 6,
+        "column_gap": 30,
+        "collection_font_size": 16,
+        "collection_font_weight": 500,
+        "collection_spacing": 0,
+        "count_font_size": 14,
+        "count_font_weight": 400,
+        "autoplay": false,
+        "loop": false,
+        "show_arrow": false,
+        "carousel_pagination": "carousel_none",
+        "reveal_on_scroll": false,
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": false
+      }
+    }
+  },
+  "order": [
+    "main-collection-heading",
+    "custom_text_JMCxa4",
+    "8498460c-0376-40d1-bafc-199edbe0edfc",
+    "product-grid",
+    "sub-collection"
+  ]
+}

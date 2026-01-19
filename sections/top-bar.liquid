@@ -1,0 +1,258 @@
+{%- liquid
+  assign st = section.settings
+  assign container = st.container
+  assign show_mobile = st.show_mobile
+  assign show_border = st.show_border
+  assign show_phone_number = st.show_phone_number
+  assign show_email = st.show_email
+  assign show_social = st.show_social
+  assign show_store_page = st.show_store_page
+  assign show_language = st.show_language
+  assign show_country = st.show_country
+  assign message = st.message
+  assign show_message = st.show_message
+  assign menu = st.menu
+  assign top_bar_font_size = st.top_bar_font_size
+  assign top_bar_font_weight = st.top_bar_font_weight
+  assign top_bar_uppercase = st.top_bar_uppercase
+-%}
+{%- capture style -%}
+  --top-bar-font-size : {{ top_bar_font_size }}px;
+  --top-bar-font-weight : {{ top_bar_font_weight }};
+  --section-padding-top: {{ st.padding_top }}px; 
+  --section-padding-bottom: {{ st.padding_bottom }}px;
+{%- endcapture -%}
+<div
+  class="topbar {% if show_border %}border-bottom{% endif %} color-{{ st.color_scheme }} gradient {% if show_mobile == blank %}d-none-mb{% endif %} {% if top_bar_uppercase %}uppercase{% endif %}"
+  id="top-bar"
+  style="{{ style | strip | strip_newlines }}"
+>
+  <div class="topbar__section">
+    <div class="{{ container }} section-full d-flex flex-wrap justify-content-between align-items-center topbar__section-inner">
+      <div class="col-t col-left d-flex flex-wrap align-items-center">
+        {%- if show_social -%}
+          <div class="py-5">
+            {%- render 'social-media-links' -%}
+          </div>
+        {%- endif -%}
+        {%- if show_phone_number -%}
+          <div class="d-flex align-items-center">
+            <span class="mr-5"> {{ 'sections.top_bar.topbar_need_help' | t }}: </span>
+            <a href="tel:{{ settings.store_phone }}" class="items-contact d-flex align-items-center py-5 fw-400">
+              <span>{{ settings.store_phone }}</span>
+            </a>
+          </div>
+        {%- endif -%}
+        {%- if show_email -%}
+          <a href="mailto:{{ settings.store_email }}" class="items-contact d-flex align-items-center py-5">
+            <span>{{ settings.store_email }}</span>
+          </a>
+        {%- endif -%}
+        {%- if show_message -%}
+          <div class="topbar-message px-6 align-items-center">{{ message }}</div>
+        {%- endif -%}
+      </div>
+      <div class="col-t col-right d-flex flex-wrap align-items-center justify-content-end">
+        {%- if show_store_page and settings.link_store_page and settings.label_location -%}
+          <a
+            href="{{ pages[settings.link_store_page].url | default: '#' }}"
+            aria-label="Link detail"
+            class="py-5"
+          >
+            {%- if settings.label_location != blank -%}
+              <span>{{ settings.label_location }}</span>
+            {%- else -%}
+              <span>{{ pages[settings.link_store_page].title }}</span>
+            {%- endif -%}
+          </a>
+        {%- endif -%}
+        {% if menu != blank %}
+          <ul class="list-none p-0 my-0 d-flex flex-wrap gap-25">
+            {% for link in menu.links %}
+              <li>
+                <a href="{{ link.url }}">
+                  {{ link.title }}
+                </a>
+              </li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+        {%- liquid
+          if show_country
+            render 'country-switcher'
+          endif
+          if show_language
+            render 'language-switcher'
+          endif
+        -%}
+      </div>
+    </div>
+  </div>
+</div>
+{% schema %}
+{
+  "name": "t:sections.top-bar.name",
+  "enabled_on": {
+    "groups": ["header"]
+  },
+  "limit": 1,
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:sections.top-bar.content"
+    },
+    {
+      "type": "select",
+      "id": "container",
+      "label": "t:sections.all.layout.label",
+      "default": "container",
+      "options": [
+        {
+          "value": "container",
+          "label": "t:sections.all.layout.options__1.label"
+        },
+        {
+          "value": "container-fluid",
+          "label": "t:sections.all.layout.options__2.label"
+        },
+        {
+          "value": "strecth-width",
+          "label": "t:sections.all.layout.options__3.label"
+        },
+        {
+          "value": "full-width",
+          "label": "t:sections.all.layout.options__4.label"
+        }
+      ]
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.top-bar.settings.color.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_mobile",
+      "label": "t:sections.top-bar.settings.show_mobile.label",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_border",
+      "label": "t:sections.top-bar.settings.show_border.label",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "top_bar_font_size",
+      "min": 12,
+      "max": 18,
+      "step": 1,
+      "label": "t:sections.all.typography.default_size",
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "top_bar_font_weight",
+      "min": 100,
+      "max": 900,
+      "step": 100,
+      "label": "t:sections.all.typography.default_weight",
+      "default": 400
+    },
+    {
+      "type": "checkbox",
+      "id": "top_bar_uppercase",
+      "label": "t:sections.announment-bar.settings.bar_uppercase.label",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "t:sections.top-bar.Addons"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_phone_number",
+      "label": "t:sections.top-bar.settings.show_phone_number.label",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_email",
+      "label": "t:sections.top-bar.settings.show_email.label",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_social",
+      "label": "t:sections.top-bar.settings.show_social.label",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_country",
+      "label": "t:sections.top-bar.settings.show_country.label",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_language",
+      "label": "t:sections.top-bar.settings.show_language.label",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_store_page",
+      "label": "t:sections.top-bar.settings.show_store_page.label",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_message",
+      "label": "t:sections.top-bar.settings.show_message.label",
+      "default": true
+    },
+    {
+      "type": "richtext",
+      "id": "message",
+      "label": "t:sections.top-bar.settings.message.label",
+      "default": "<p></p>"
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "t:sections.top-bar.settings.menu.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 5,
+      "min": 0,
+      "max": 20,
+      "step": 1,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 5,
+      "min": 0,
+      "max": 20,
+      "step": 1,
+      "unit": "px"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.top-bar.name"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,216 @@
+.mapboxgl-map {
+  height: 450px;
+  max-height: 450px;
+}
+
+.mapboxgl-ctrl-attrib-inner,
+.mapboxgl-ctrl-logo {
+  display: none !important;
+}
+
+.store-infor__address span {
+  color: #111111;
+}
+
+.store-infor__items {
+  border: 2px solid transparent;
+  padding: 1rem 2rem;
+  transition: all 0.2s linear;
+
+}
+
+@media (min-width: 768px) {
+  .store-infor__items {
+    padding: 3rem;
+  }
+}
+
+.store-infor__items:hover {
+  border-color: var(--heading-color);
+}
+
+.store-infor__items.store-active {
+  background-color: var(--light-grey-color);
+}
+
+.contact-form {
+  --bls__section-header-margin: clamp(2.5rem, 4.6vw, 8rem);
+}
+
+.bls__section_subcribe-form-content .bls__subcribe-button {
+  --btn-font-size: 13px;
+}
+
+@media (max-width: 991px) {
+  .store-infor {
+    margin-bottom: 1.5rem;
+  }
+
+  .store-infor,
+  .mapboxgl-canvas-container.mapboxgl-touch-drag-pan .mapboxgl-canvas {
+    border-radius: 10px;
+  }
+}
+
+.bls__location-page .marker {
+  cursor: pointer;
+  display: block;
+  background-image: url(icon_location.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+  width: 21.73px;
+  height: 30px;
+}
+
+.mapboxgl-canvas-container.mapboxgl-touch-drag-pan .mapboxgl-canvas {
+  border-top-right-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+}
+
+.bls__location-page .mapboxgl-popup-content {
+  padding: 0;
+}
+
+.mapboxgl-popup-content h3 {
+  font-weight: 600;
+  font-size: 1.4rem;
+  margin-bottom: 0;
+  background: #111111;
+  padding: 1.2rem 2rem;
+  color: #ffffff;
+  border-radius: 5px 5px 0px 0px;
+}
+
+.mapboxgl-popup-content div {
+  padding: 1.2rem 2rem;
+  font-size: 1.3rem;
+  font-weight: 500;
+}
+
+.mapboxgl-popup-close-button {
+  padding: 0;
+  font-size: 0;
+}
+
+.mapboxgl-popup-close-button::after {
+  color: #999999;
+  content: "\ea29";
+  font-family: "blueskytechco" !important;
+  speak: never;
+  width: 18px;
+  height: 18px;
+  font-size: 18px;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.bls__location-page .mapboxgl-popup-close-button:hover {
+  background-color: transparent;
+  color: #ffffff;
+}
+
+.bls__location-page .mapboxgl-popup-close-button {
+  right: 1.8rem;
+  top: 1.2rem;
+}
+
+.bls__location-page .mapboxgl-popup {
+  padding-bottom: 4rem;
+  max-width: 270px !important;
+  width: 100%;
+}
+
+@media (min-width: 576px) {
+  .bls__location-page .mapboxgl-popup {
+    max-width: 300px !important;
+  }
+}
+
+.bls__location-page .mapboxgl-ctrl-geocoder {
+  box-shadow: none;
+  background-color: transparent;
+}
+
+.bls__location-page .mapboxgl-ctrl-geocoder {
+  width: 300px;
+}
+
+@media (max-width: 475px) {
+  .bls__location-page .mapboxgl-ctrl-geocoder {
+    width: 250px;
+  }
+}
+
+.bls__location-page .mapboxgl-ctrl-geocoder--input {
+  --input-height: 45px;
+  padding-left: 4.5rem;
+  border: none;
+  box-shadow: 0px 5px 30px 0px rgba(0, 0, 0, 0.05);
+}
+
+.bls__location-page .mapboxgl-ctrl-geocoder--icon {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+@media screen and (min-width: 640px) {
+  .bls__location-page .mapboxgl-ctrl-geocoder--icon-search {
+    left: 20px;
+  }
+}
+
+.bls__location-page .mapboxgl-ctrl-geocoder .mapboxgl-ctrl-geocoder--pin-right>* {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.bls__location-page .mapboxgl-ctrl-geocoder .suggestions {
+  box-shadow: 0px 5px 30px 0px rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+}
+
+.bls__location-page .mapboxgl-ctrl-geocoder .suggestions li.active {
+  background-color: #F5F5F5;
+}
+
+.bls__location-page .mapboxgl-ctrl-geocoder .suggestions>li>a {
+  padding: 1.5rem 2rem;
+}
+
+.bls__location-page .mapboxgl-ctrl-geocoder--suggestion-title {
+  font-size: 14px;
+}
+
+.bls__location-page .mapboxgl-ctrl-geocoder--suggestion-address {
+  font-size: 13px;
+  color: rgb(var(--base-color));
+}
+
+.bls__location-page .mapboxgl-ctrl-geocoder--icon-close {
+  margin-top: 1.8rem;
+  margin-right: 1.5rem;
+}
+
+.bls__location-page .mapboxgl-ctrl button:not(:disabled):hover {
+  background-color: transparent;
+}
+
+.bls__location-page .mapboxgl-ctrl button:not(.btn-reset):hover svg path {
+  fill: inherit;
+}
+
+.bls__location-page .mapboxgl-ctrl-geocoder--icon-loading {
+  margin-left: -1.5rem;
+  margin-top: -1.35rem;
+}
+
+.store-infor__information {
+  font-size: calc(var(--base-font-size) + 2px);
+
+}
+
+.store-infor__address span {
+  font-weight: var(--bls__section-heading-weight);
+}

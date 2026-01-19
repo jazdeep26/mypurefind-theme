@@ -1,0 +1,16 @@
+<div class="bls__header-wishlist">
+  <div class="bls-header-wishlist">
+    <a
+      href="/pages/wishlist"
+      class="wishlist-icon-bubble bls_tooltip {% if headerMeagShop %}d-flex flex-column{% endif %}"
+    >
+      {% if headerMeagShop %}
+        <i class="picon-heart fs-28 mb-5 relative"><span class="wishlist-count h-count">0</span></i>
+        <span class="bls_text lh-1">{{ 'templates.wishlist.wishlist' | t }}</span>
+      {% else %}
+        <span class="bls_tooltip-content-bottom">{{ 'templates.wishlist.wishlist' | t }}</span>
+        <i class="picon-heart fs-22 relative"><span class="wishlist-count h-count">0</span></i>
+      {% endif %}
+    </a>
+  </div>
+</div>

@@ -1,0 +1,158 @@
+{%- liquid
+  assign st = section.settings
+  assign show_promotion_mobile = st.show_promotion_mobile
+  assign code = st.promotion_code
+  assign width = st.promotion_width
+  assign heading = st.promotion_title
+  assign sub_title = st.promotion_sub_title
+  assign background_image = st.promotion_banner
+  assign promotion_content = st.promotion_content
+  assign show_promotion_select = st.show_promotion_select
+  if show_promotion_select == 'show_promotion_homepage'
+    if request.page_type == 'index'
+      assign show = 'show-on-homepage'
+    endif
+  else
+    assign show = 'show-on-all-pages'
+  endif
+-%}
+{% style %}
+  .w-36 {
+    width: 360px;
+  }
+  .h-45 {
+    height: 450px;
+  }
+  .btn-promotion {
+    width: 100%;
+    text-align: center;
+  }
+  .promotion-code {
+    padding: 5px 8px;
+    border-radius: 4px;
+    width: 100%;
+    font-size: 18px;
+    border: 1px dashed var(--border-color-base);
+    text-align: center;
+    margin-bottom: 15px;
+  }
+{% endstyle %}
+
+<promotion-popup id="bls__promotion-popup" data-show="{{ show }}" data-show-mb="{{ show_promotion_mobile }}">
+  <div class="promotion-wrapper d-none">
+    <div
+      class="bls__promotion-popup gradient "
+      style="--promotion-width: {{ width }}px;{%- if background_image != blank -%}background-image: url({{ background_image | image_url }});{%- endif -%}"
+    >
+      <div class="promotion__popup-content">
+        <div class="content-promotion text-center">
+          <div class="bls__section-header">
+            {%- if sub_title != blank -%}
+              <div class="bls__section-des mb-10 lh-1 fs-16">
+                {{ sub_title }}
+              </div>
+            {%- endif -%}
+            {%- if heading != blank -%}
+              <h3 class="bls__section-heading mb-15">{{ heading }}</h3>
+            {%- endif -%}
+          </div>
+          {%- if promotion_content != blank -%}
+            <div class="bls__promotion-content">
+              {{ promotion_content | replace: '[promotion_code]', code }}
+            </div>
+          {%- endif -%}
+          <a href="#" class="button button-login btn btn-primary discount btn-promotion mt-20" data-code="{{ code }}">
+            <span class="copied-action" style="display: block;">{{ 'popup.copy' | t }}</span>
+            <span class="copied-success" style="display: none;">{{ 'popup.copied' | t }}</span>
+          </a>
+          <div class="do-not-show-again checkbox clearfix">
+            <input id="doNotShowPromotion" name="do-not-show" type="checkbox" class="doNotShow">
+            <label for="doNotShowPromotion">{{ 'popup.do_not' | t }}</label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</promotion-popup>
+
+{% schema %}
+{
+  "name": "t:settings_schema.promotion-popup.name",
+  "class": "promotion_popup",
+  "enabled_on": {
+    "groups": ["custom.overlay"]
+  },
+  "tag": "section",
+  "limit": 1,
+  "settings": [
+    {
+      "type": "select",
+      "id": "show_promotion_select",
+      "label": "t:settings_schema.newsletter-popup.settings.show_newsletter.label",
+      "default": "show_promotion_homepage",
+      "options": [
+        {
+          "value": "show_promotion_homepage",
+          "label": "t:settings_schema.newsletter-popup.settings.show_newsletter.show_newsletter_homepage.label"
+        },
+        {
+          "value": "show_promotion_all_page",
+          "label": "t:settings_schema.newsletter-popup.settings.show_newsletter.show_newsletter_all_page.label"
+        }
+      ]
+    },
+    {
+      "type": "checkbox",
+      "id": "show_promotion_mobile",
+      "label": "t:settings_schema.global.settings.show_on_mobile.label",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "promotion_code",
+      "label": "t:settings_schema.promotion-popup.settings.promotion_code.label",
+      "default": "Rokan2024"
+    },
+    {
+      "type": "range",
+      "id": "promotion_width",
+      "label": "t:settings_schema.global.settings.width.label",
+      "max": 800,
+      "min": 300,
+      "step": 10,
+      "unit": "px",
+      "default": 550
+    },
+    {
+      "type": "image_picker",
+      "id": "promotion_banner",
+      "label": "t:settings_schema.promotion-popup.settings.promotion_banner.label",
+      "info": "t:settings_schema.promotion-popup.settings.promotion_banner.info"
+    },
+    {
+      "type": "text",
+      "id": "promotion_title",
+      "label": "t:settings_schema.global.settings.heading.label",
+      "default": "Cyber <br/> Monday"
+    },
+    {
+      "type": "richtext",
+      "id": "promotion_sub_title",
+      "label": "t:settings_schema.global.settings.short_description.label",
+      "default": "<p>Special Offer</p>"
+    },
+    {
+      "type": "textarea",
+      "id": "promotion_content",
+      "label": "t:settings_schema.promotion-popup.settings.promotion_content.label",
+      "default": "Up to <span>50% Off</span> when using code [promotion_code]",
+      "info": "t:settings_schema.promotion-popup.settings.promotion_content.info"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:settings_schema.promotion-popup.name"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,55 @@
+<login-popup class="header_account">
+  {% if customer %}
+    <div>
+  {% else -%}
+    <button
+      aria-label="header icon account"
+      class="btn-reset bls_tooltip header__icon header__icon--account {% if customer.email == blank %}action-login{% endif %} {% if headerMeagShop %}d-flex flex-column{% endif %}"
+    >
+  {% endif %}
+  {%- if customer -%}
+    <a
+      href="{{ routes.account_url }}"
+      aria-label="{{ 'customer.account.title' | t }}"
+      class="btn-reset bls_tooltip header__icon header__icon--account {% if show_text_account == false or headerMeagShop == true %}d-flex flex-column{% endif %}"
+    >
+  {%- endif -%}
+  {% if show_text_account == false or headerMeagShop == true %}
+    <i class="picon-user {% if headerMeagShop %}fs-28 mb-5{% else %}fs-22{% endif %}"></i>
+  {% endif %}
+  {% if headerMeagShop %}
+    <span class="bls_text lh-1">
+      {%- liquid
+        if customer
+          echo 'customer.account_fallback' | t
+        else
+          echo 'customer.login_page.sign_in' | t
+        endif
+      -%}
+    </span>
+  {% elsif show_text_account %}
+    <span class="bls_text">
+      {%- liquid
+        if customer
+          echo 'customer.account_fallback' | t
+        else
+          echo 'customer.login_menu_mobile' | t
+        endif
+      -%}
+    </span>
+  {% else %}
+    <span class="bls_tooltip-content-bottom">
+      {%- liquid
+        if customer
+          echo 'customer.account_fallback' | t
+        else
+          echo 'customer.log_in' | t
+        endif
+      -%}
+    </span>
+  {% endif %}
+  {%- if customer -%}
+    </a>
+  {%- endif -%}
+  {%- if customer -%}</div> {%- else -%}</button>{%- endif -%}
+</login-popup>

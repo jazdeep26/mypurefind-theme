@@ -1,0 +1,24 @@
+<div class="page-width page-width--narrow section-{{ section.id }}">
+  <div class="container">
+    
+    <div class="page-title text-center">
+      <h1>{{ page.title | escape }}</h1>
+      {% render 'breadcrumbs' %}
+    </div>
+
+    <div class="rte">
+      {{ page.content }}
+
+      {% if page.template_suffix == 'book-demo' %}
+        {% section 'book-demo-form' %}
+      {% endif %}
+    </div>
+
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Main page"
+}
+{% endschema %}

@@ -1,0 +1,5 @@
+{% if review_star %}
+    {%- if product.metafields.judgeme.badge -%}
+        <div id="jdgm-widget jdgm-preview-badge" data-id="{{ product.id }}">{{ product.metafields.judgeme.badge }}</div>
+    {%- endif -%}
+{% endif %}

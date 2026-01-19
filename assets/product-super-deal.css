@@ -1,0 +1,27 @@
+/* Product deal */
+.bls__super-deal-header,
+.bls__superdeal-countdown {
+  gap: 10px;
+}
+
+.bls__superdeal-countdown .timer-block {
+  min-width: 4.5rem;
+  min-height: 3.8rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #DD3327;
+  color: var(--color-white);
+  border-radius: 3px;
+  font-weight: var(--heading-font-weight);
+  padding: 2px 5px;
+}
+
+.bls__superdeal-countdown .timer-block:not(:last-child) {
+  margin-right: 6px;
+}
+@media (max-width: 767px) {
+  .deal-mobile-center {
+    flex-direction: column;
+  }
+}

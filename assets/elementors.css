@@ -1,0 +1,57 @@
+.elementors .elementors_icon {
+    color: var(--heading-color);
+    font-size: var(--text-font-size);
+}
+
+.elementors {
+    background: var(--background-elementors-image);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.elementors_text {
+    text-transform: var(--text-transform);
+    font-size: var(--text-font-size);
+    font-weight: var(--text-font-weight);
+    color: var(--heading-color);
+    line-height: 1.35;
+}
+
+.elementors_button {
+    --btn-padding: 0.5rem 3rem;
+    border-radius: 0;
+    border-width: 1px;
+    font-weight: var(--heading-font-weight);
+
+}
+
+.elementors_button:hover {
+    border-style: solid !important;
+
+}
+
+.elementors_button.dashed {
+    border-style: dashed;
+}
+
+.elementors_button.double {
+    border-style: double;
+    border-width: 4px;
+}
+
+@media (max-width: 767px) {
+
+    .elementors-content {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .elementors_text {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        align-items: center;
+        text-align: center;
+    }
+}

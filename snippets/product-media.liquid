@@ -1,0 +1,514 @@
+{% liquid
+  assign design = design
+  assign thumbnails = st.thumbnails_mobile
+  assign current_selected = ''
+  assign product_media = product.media
+  assign media_alt = product_media | map: 'alt'
+  if media_alt contains 'image-360'
+    assign image_360 = true
+  else
+    assign image_360 = false
+  endif
+  for option in product.options_with_values
+    for itemColor in option_name
+      if option.name == itemColor
+        assign current_selected = option.selected_value
+      endif
+    endfor
+  endfor
+%}
+
+<media-gallery id="MediaGallery-{{ section.id }}" class="product__media-gallery">
+  <div
+    class="gallery-viewer-{{ section.id }}"
+    {% if st.use_variants_group %}
+      data-variant-group
+    {% endif %}
+    data-product-single-media-group
+    data-variant-selected="{{ current_selected }}"
+  >
+    <div class="product__media-desktop d-none d-lg-block">
+      {% if design == 'grid-1' or design == 'grid-2' %}
+        <div
+          class="product__media-list relative {% if st.image_action == 'show_zoom_hover' %}bls__zoom-hover{% endif %}"
+          data-zoom-option="{{ zoom_option }}"
+        >
+          {%- if product.selected_or_first_available_variant.featured_media != null -%}
+            {%- assign featured_media = product.selected_or_first_available_variant.featured_media -%}
+            <div
+              class="gallery-img {{ featured_media.media_type }}{% if st.image_action == 'show_zoom_button' %} bls__zoom-image{% endif %}"
+              data-position="1"
+              data-alt="{{ featured_media.alt }}"
+              data-pane-container
+            >
+              {%- assign media_position = 1 -%}
+              {% render 'product-thumbnail', media: featured_media, layout: 'desktop', gallery: true, st: st %}
+            </div>
+          {%- endif -%}
+          {%- if image_360 -%}
+            {%- render 'product-image-360', st: st, product: product, design: design, gallery: true, mobile: false -%}
+          {%- endif -%}
+          {%- for media in product.media -%}
+            {%- if media.preview_image and media.preview_image.alt contains 'image-360' -%}
+              {%- continue -%}
+            {%- endif -%}
+            {%- unless media.id == product.selected_or_first_available_variant.featured_media.id -%}
+              {%- liquid
+                assign media_position = media_position | default: 0 | plus: 1
+              -%}
+              <div
+                class="gallery-img {{ media.media_type }}{% if st.image_action == 'show_zoom_button' %} bls__zoom-image{% endif %}"
+                data-position="{{ media_position }}"
+                data-alt="{{ media.alt }}"
+                data-pane-container
+              >
+                {%- render 'product-thumbnail', st: st, media: media, layout: 'desktop', gallery: true -%}
+              </div>
+            {%- endunless -%}
+          {%- endfor -%}
+
+          {%- if st.image_action == 'show_zoom_button' -%}
+            <div class="group_btns absolute top-15 right-15 absolute z-1">
+              <button
+                class="lh-1 width-45 width-lg-50 height-45 height-lg-50 inline-flex content-center p-0 border bg-white heading-color rounded bls__zoom-image capitalize capitalize bls_tooltip"
+                title="{{ 'products.product.zoom_in' | t }}"
+              >
+                <i class="picon-size-fullscreen"></i>
+                <span class="bls_tooltip-content">{{ 'products.product.zoom_in' | t }}</span>
+              </button>
+            </div>
+          {%- endif -%}
+        </div>
+      {% elsif design == 'slide-full' %}
+        <div class="product__media-list relative">
+          <div
+            class="swiper bls__product-gallery hover__show-nav bls__swiper-gallery {{ section.id }}-desktop"
+            data-section-id="{{ section.id }}-desktop"
+            data-mobile="1"
+            data-tablet="3"
+            data-desktop="4"
+            data-autoplay="false"
+            data-loop="false"
+            data-spacing="0"
+          >
+            <div
+              class="swiper-wrapper {% if st.image_action == 'show_zoom_hover' %}bls__zoom-hover{% endif %}"
+              data-zoom-option="{{ zoom_option }}"
+            >
+              {%- if product.selected_or_first_available_variant.featured_media != null -%}
+                {%- assign featured_media = product.selected_or_first_available_variant.featured_media -%}
+                <div
+                  class="swiper-slide"
+                  data-media-id="{{ featured_media.id }}"
+                  data-position="1"
+                  data-pane-container
+                >
+                  <div
+                    class="gallery-img {{ featured_media.media_type }}{% if st.image_action == 'show_zoom_button' %} bls__zoom-image{% endif %}"
+                    data-position="1"
+                  >
+                    {%- assign media_position = 1 -%}
+                    {% render 'product-thumbnail', media: featured_media, layout: 'desktop', gallery: true, st: st %}
+                  </div>
+                  {%- if st.image_action == 'show_zoom_button' and featured_media.media_type == 'image' -%}
+                    <div class="group_btns absolute top-15 right-15 absolute z-1">
+                      <button
+                        class="lh-1 width-45 width-lg-50 height-45 height-lg-50 inline-flex content-center p-0 border bg-white heading-color rounded bls__zoom-image capitalize capitalize bls_tooltip"
+                        title="{{ 'products.product.zoom_in' | t }}"
+                      >
+                        <i class="picon-size-fullscreen"></i>
+                        <span class="bls_tooltip-content">{{ 'products.product.zoom_in' | t }}</span>
+                      </button>
+                    </div>
+                  {%- endif -%}
+                </div>
+              {%- endif -%}
+              {%- if image_360 -%}
+                {%- render 'product-image-360',
+                  st: st,
+                  product: product,
+                  design: design,
+                  gallery: true,
+                  mobile: false
+                -%}
+              {%- endif -%}
+              {%- for media in product.media -%}
+                {%- if media.preview_image and media.preview_image.alt contains 'image-360' -%}
+                  {%- continue -%}
+                {%- endif -%}
+                {%- unless media.id == product.selected_or_first_available_variant.featured_media.id -%}
+                  {%- liquid
+                    assign media_position = media_position | default: 0 | plus: 1
+                  -%}
+                  <div
+                    class="swiper-slide {% if media.media_type == 'model' %}slide-model{% endif %}"
+                    data-media-id="{{ media.id }}"
+                    data-position="{{ media_position }}"
+                    data-pane-container
+                  >
+                    <div
+                      class="gallery-img {{ media.media_type }}{% if st.image_action == 'show_zoom_button' %} bls__zoom-image{% endif %}"
+                      data-position="{{ media_position }}"
+                    >
+                      {%- render 'product-thumbnail', media: media, layout: 'desktop', gallery: true -%}
+                    </div>
+                    {%- if st.image_action == 'show_zoom_button' and media.media_type == 'image' -%}
+                      <div class="group_btns absolute top-15 right-15 absolute z-1">
+                        <button
+                          class="lh-1 width-45 width-lg-50 height-45 height-lg-50 inline-flex content-center p-0 border bg-white heading-color rounded bls__zoom-image capitalize capitalize bls_tooltip"
+                          title="{{ 'products.product.zoom_in' | t }}"
+                        >
+                          <i class="picon-size-fullscreen"></i>
+                          <span class="bls_tooltip-content">{{ 'products.product.zoom_in' | t }}</span>
+                        </button>
+                      </div>
+                    {%- endif -%}
+                  </div>
+                {%- endunless -%}
+              {%- endfor -%}
+            </div>
+            {%- render 'swiper-control', show_bullet: true, show_arrow: true -%}
+          </div>
+        </div>
+      {% else %}
+        <div class="col-lg col_thumb">
+          <div class="product__media-list relative">
+            <div
+              class="swiper bls__product-gallery hover__show-nav bls__swiper-gallery {{ section.id }}-desktop"
+              data-section-id="{{ section.id }}-desktop"
+              data-mobile="1"
+              data-tablet="1"
+              data-desktop="1"
+              data-autoplay="false"
+              data-loop="false"
+              data-spacing="0"
+            >
+              <div
+                class="swiper-wrapper {% if st.image_action == 'show_zoom_hover' %}bls__zoom-hover{% endif %}"
+                data-zoom-option="{{ zoom_option }}"
+                data-thumb-feature
+              >
+                {%- if product.selected_or_first_available_variant.featured_media != null -%}
+                  {%- assign featured_media = product.selected_or_first_available_variant.featured_media -%}
+                  <div
+                    class="swiper-slide"
+                    data-media-id="{{ featured_media.id }}"
+                    data-position="1"
+                    data-pane-container
+                    data-group-thumb
+                    data-alt="{{ featured_media.alt }}"
+                  >
+                    <div
+                      class="gallery-img {{ featured_media.media_type }}{% if st.image_action == 'show_zoom_button' %} bls__zoom-image{% endif %}"
+                      data-position="1"
+                    >
+                      {%- assign media_position = 1 -%}
+                      {% render 'product-thumbnail',
+                        st: st,
+                        media: featured_media,
+                        layout: 'desktop',
+                        gallery: true,
+                        st: st
+                      %}
+                    </div>
+                    {%- if st.image_action == 'show_zoom_button' and featured_media.media_type == 'image' -%}
+                      <div class="group_btns absolute top-15 right-15 absolute z-1">
+                        <button
+                          class="lh-1 width-45 width-lg-50 height-45 height-lg-50 inline-flex content-center p-0 border bg-white heading-color rounded bls__zoom-image capitalize capitalize bls_tooltip"
+                          title="{{ 'products.product.zoom_in' | t }}"
+                        >
+                          <i class="picon-size-fullscreen"></i>
+                          <span class="bls_tooltip-content">{{ 'products.product.zoom_in' | t }}</span>
+                        </button>
+                      </div>
+                    {%- endif -%}
+                  </div>
+                {%- endif -%}
+                {%- if image_360 -%}
+                  {%- render 'product-image-360',
+                    st: st,
+                    product: product,
+                    layout: 'desktop',
+                    design: design,
+                    gallery: true,
+                    mobile: false
+                  -%}
+                {%- endif -%}
+                {%- for media in product.media -%}
+                  {%- if media.preview_image and media.preview_image.alt contains 'image-360' -%}
+                    {%- continue -%}
+                  {%- endif -%}
+                  {%- unless media.id == product.selected_or_first_available_variant.featured_media.id -%}
+                    {%- liquid
+                      assign media_position = media_position | default: 0 | plus: 1
+                    -%}
+
+                    <div
+                      class="swiper-slide {% if media.media_type == 'model' %}slide-model{% endif %}"
+                      data-media-id="{{ media.id }}"
+                      data-position="{{ media_position }}"
+                      data-alt="{{ media.alt }}"
+                      data-group-thumb
+                      data-pane-container
+                    >
+                      <div
+                        class="gallery-img {{ media.media_type }}{% if st.image_action == 'show_zoom_button' %} bls__zoom-image{% endif %}"
+                        data-position="{{ media_position }}"
+                      >
+                        {%- render 'product-thumbnail', st: st, media: media, layout: 'desktop', gallery: true -%}
+                      </div>
+                      {%- if st.image_action == 'show_zoom_button' and media.media_type == 'image' -%}
+                        <div class="group_btns absolute top-15 right-15 absolute z-1">
+                          <button
+                            class="lh-1 width-45 width-lg-50 height-45 height-lg-50 inline-flex content-center p-0 border bg-white heading-color rounded bls__zoom-image capitalize capitalize bls_tooltip"
+                            title="{{ 'products.product.zoom_in' | t }}"
+                          >
+                            <i class="picon-size-fullscreen"></i>
+                            <span class="bls_tooltip-content">{{ 'products.product.zoom_in' | t }}</span>
+                          </button>
+                        </div>
+                      {%- endif -%}
+                    </div>
+                  {%- endunless -%}
+                {%- endfor -%}
+              </div>
+              {%- render 'swiper-control', show_bullet: true, show_arrow: true -%}
+            </div>
+          </div>
+        </div>
+        {% if design == 'thumbnails-bottom' or design == 'thumbnails-left' or design == 'thumbnails-right' %}
+          <div class="col-lg-auto col_nav nav_medium{% if thumbnails == '1' %} thumbnails-moblie{% else %} d-none d-lg-block{% endif %}">
+            <div class="product__media-list relative">
+              <div
+                class="swiper bls__product-gallery hover__show-nav {{ section.id }}-thumbnails-desktop bls__swiper-gallery-thumbnails{% if design != 'thumbnails-bottom' %} bls__swiper-vertical{% endif %}"
+                data-section-id="{{ section.id }}-thumbnails-desktop"
+                data-mobile="5"
+                data-tablet="5"
+                data-desktop="5"
+                data-autoplay="false"
+                data-loop="false"
+                data-spacing="10"
+              >
+                <div
+                  class="swiper-wrapper"
+                  style="--perload-gap: 10px"
+                  data-nav-thumb
+                >
+                  {%- if product.selected_or_first_available_variant.featured_media != null -%}
+                    {%- assign featured_media = product.selected_or_first_available_variant.featured_media -%}
+                    <div
+                      class="swiper-slide"
+                      data-media-id="{{ featured_media.id }}"
+                      data-position="1"
+                      data-group
+                      data-alt="{{ featured_media.alt }}"
+                    >
+                      <div class="gallery-img" data-position="1">
+                        {%- assign media_position = 1 -%}
+                        {% render 'product-thumbnail', media: featured_media, gallery: false %}
+                      </div>
+                    </div>
+                  {%- endif -%}
+                  {%- if image_360 -%}
+                    {%- render 'product-image-360', st: st, product: product, design: design, gallery: false -%}
+                  {%- endif -%}
+                  {%- for media in product.media -%}
+                    {%- if media.preview_image and media.preview_image.alt contains 'image-360' -%}
+                      {%- continue -%}
+                    {%- endif -%}
+                    {%- unless media.id == product.selected_or_first_available_variant.featured_media.id -%}
+                      {%- liquid
+                        assign media_position = media_position | default: 0 | plus: 1
+                      -%}
+                      <div
+                        class="swiper-slide"
+                        data-position="{{ media_position }}"
+                        data-group
+                        data-alt="{{ media.alt }}"
+                      >
+                        <div class="gallery-img" data-position="{{ media_position }}">
+                          {%- render 'product-thumbnail', media: media, gallery: false -%}
+                        </div>
+                      </div>
+                    {%- endunless -%}
+                  {%- endfor -%}
+                </div>
+                {% if design == 'thumbnails-bottom' %}
+                  {%- render 'swiper-control', show_bullet: false, show_arrow: true -%}
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        {%- endif -%}
+      {%- endif -%}
+    </div>
+
+    <div class="product__media-mobile d-blog d-lg-none">
+      <div class="col-lg col_thumb">
+        <div class="product__media-list relative">
+          <div
+            class="swiper bls__product-gallery hover__show-nav bls__swiper-gallery-mobile bls__product-gallery {{ section.id }}-mobile"
+            data-section-id="{{ section.id }}-mobile"
+            data-mobile="1"
+            data-tablet="1"
+            data-desktop="1"
+            data-autoplay="false"
+            data-loop="false"
+            data-spacing="0"
+          >
+            <div class="swiper-wrapper" data-thumb-feature>
+              {%- if product.selected_or_first_available_variant.featured_media != null -%}
+                {%- assign featured_media = product.selected_or_first_available_variant.featured_media -%}
+                <div
+                  class="swiper-slide"
+                  data-media-id="{{ featured_media.id }}"
+                  data-position="1"
+                  data-group-thumb
+                  data-alt="{{ featured_media.alt }}"
+                >
+                  <div
+                    class="gallery-img {{ featured_media.media_type }}{% if st.image_action == 'show_zoom_button' %} bls__zoom-image{% endif %}"
+                    data-position="1"
+                    data-alt="{{ featured_media.alt }}"
+                  >
+                    {%- assign media_position_m = 1 -%}
+                    {% render 'product-thumbnail', media: featured_media, layout: 'mobile', gallery: true %}
+                  </div>
+                  {%- if st.image_action == 'show_zoom_button' and featured_media.media_type == 'image' -%}
+                    <div class="group_btns absolute top-15 right-15 absolute z-1">
+                      <button
+                        class="lh-1 width-45 width-lg-50 height-45 height-lg-50 inline-flex content-center p-0 border bg-white heading-color rounded bls__zoom-image capitalize capitalize bls_tooltip"
+                        title="{{ 'products.product.zoom_in' | t }}"
+                      >
+                        <i class="picon-size-fullscreen"></i>
+                        <span class="bls_tooltip-content">{{ 'products.product.zoom_in' | t }}</span>
+                      </button>
+                    </div>
+                  {%- endif -%}
+                </div>
+              {%- endif -%}
+              {%- if image_360 -%}
+                {%- render 'product-image-360',
+                  st: st,
+                  product: product,
+                  design: design,
+                  gallery: true,
+                  mobile: true
+                -%}
+              {%- endif -%}
+              {%- for media in product.media -%}
+                {%- if media.preview_image and media.preview_image.alt contains 'image-360' -%}
+                  {%- continue -%}
+                {%- endif -%}
+                {%- unless media.id == product.selected_or_first_available_variant.featured_media.id -%}
+                  {%- liquid
+                    assign media_position_m = media_position_m | default: 0 | plus: 1
+                  -%}
+
+                  <div
+                    class="swiper-slide"
+                    data-media-id="{{ media.id }}"
+                    data-group-thumb
+                    data-alt="{{ media.alt }}"
+                    data-position="{{ media_position_m }}"
+                  >
+                    <div
+                      class="gallery-img {{ media.media_type }}{% if st.image_action == 'show_zoom_button' %} bls__zoom-image{% endif %}"
+                      data-position="{{ media_position_m }}"
+                    >
+                      {%- render 'product-thumbnail', media: media, layout: 'mobile', gallery: true -%}
+                    </div>
+                    {%- if st.image_action == 'show_zoom_button' and media.media_type == 'image' -%}
+                      <div class="group_btns absolute top-15 right-15 absolute z-1">
+                        <button
+                          class="lh-1 width-45 width-lg-50 height-45 height-lg-50 inline-flex content-center p-0 border bg-white heading-color rounded bls__zoom-image capitalize capitalize bls_tooltip"
+                          title="{{ 'products.product.zoom_in' | t }}"
+                        >
+                          <i class="picon-size-fullscreen"></i>
+                          <span class="bls_tooltip-content">{{ 'products.product.zoom_in' | t }}</span>
+                        </button>
+                      </div>
+                    {%- endif -%}
+                  </div>
+                {%- endunless -%}
+              {%- endfor -%}
+            </div>
+            {% liquid
+              assign show_bullet_mobile = false
+              if thumbnails == '2'
+                assign show_bullet_mobile = true
+              endif
+            %}
+            {%- render 'swiper-control', show_bullet: show_bullet_mobile, show_arrow: true -%}
+          </div>
+        </div>
+      </div>
+      {% if thumbnails == '1' %}
+        <div class="col-lg-auto col_nav nav_medium">
+          <div class="product__media-list relative">
+            <div
+              class="swiper hover__show-nav{{ section.id }}-thumbnails-mobile bls__swiper-gallery-thumbnails-mobile"
+              data-section-id="{{ section.id }}-thumbnails-mobile"
+              data-mobile="5"
+              data-tablet="5"
+              data-desktop="5"
+              data-autoplay="false"
+              data-loop="false"
+              data-spacing="10"
+            >
+              <div
+                class="swiper-wrapper"
+                data-nav-thumb
+                style="--perload-gap: 10px"
+              >
+                {%- if product.selected_or_first_available_variant.featured_media != null -%}
+                  {%- assign featured_media = product.selected_or_first_available_variant.featured_media -%}
+                  <div
+                    class="swiper-slide"
+                    data-media-id="{{ featured_media.id }}"
+                    data-position="1"
+                    data-group
+                    data-alt="{{ featured_media.alt }}"
+                  >
+                    <div
+                      class="gallery-img"
+                      data-position="1"
+                    >
+                      {%- assign media_position_m = 1 -%}
+                      {% render 'product-thumbnail', media: featured_media, gallery: false %}
+                    </div>
+                  </div>
+                {%- endif -%}
+                {%- if image_360 -%}
+                  {%- render 'product-image-360', st: st, product: product, design: design, gallery: false -%}
+                {%- endif -%}
+                {%- for media in product.media -%}
+                  {%- if media.preview_image and media.preview_image.alt contains 'image-360' -%}
+                    {%- continue -%}
+                  {%- endif -%}
+                  {%- unless media.id == product.selected_or_first_available_variant.featured_media.id -%}
+                    {%- liquid
+                      assign media_position_m = media_position_m | default: 0 | plus: 1
+                    -%}
+                    <div
+                      class="swiper-slide"
+                      data-group
+                      data-alt="{{ media.alt }}"
+                      data-media-id="{{ media.id }}"
+                      data-position="{{ media_position_m }}"
+                    >
+                      <div class="gallery-img" data-position="{{ media_position_m }}">
+                        {%- render 'product-thumbnail', media: media, gallery: false -%}
+                      </div>
+                    </div>
+                  {%- endunless -%}
+                {%- endfor -%}
+              </div>
+              {%- render 'swiper-control', show_bullet: false, show_arrow: true -%}
+            </div>
+          </div>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</media-gallery>

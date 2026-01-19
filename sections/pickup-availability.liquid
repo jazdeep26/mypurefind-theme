@@ -1,0 +1,139 @@
+{% comment %}theme-check-disable UndefinedObject{% endcomment %}
+{%- assign pick_up_availabilities = product_variant.store_availabilities | where: 'pick_up_enabled', true -%}
+{%- assign hidden_price = settings.hidden_price -%}
+{%- if pick_up_availabilities.size > 0 -%}
+  <pickup-availability-preview class="pickup-availability-preview flex">
+    {%- liquid
+      assign closest_location = pick_up_availabilities.first
+    -%}
+    {% if closest_location.available %}
+      <i class="mr-15 mt-5 picon-check"></i>
+    {% endif %}
+    <div class="pickup-availability-info">
+      {%- if closest_location.available -%}
+        <span class="caption-large">
+          {{-
+            'products.product.pickup_availability.pick_up_available_at_html'
+            | t: location_name: closest_location.location.name
+          -}}
+        </span>
+        <span class="caption">{{ closest_location.pick_up_time }}</span>
+        <button
+          id="ShowPickupAvailabilityDrawer"
+          class="btn-reset grey-color underline d-block pickup-availability-button"
+          aria-haspopup="dialog"
+        >
+          {%- if pick_up_availabilities.size == 1 -%}
+            {{ 'products.product.pickup_availability.view_store_info' | t }}
+          {%- else -%}
+            {{ 'products.product.pickup_availability.check_other_stores' | t }}
+          {%- endif -%}
+        </button>
+      {%- else -%}
+        <span class="caption-large">
+          <i class="lnr lnr-cross mt-5 mr-15"></i>
+          {{
+            'products.product.pickup_availability.pick_up_unavailable_at_html'
+            | t: location_name: closest_location.location.name
+          }}
+        </span>
+        {%- if pick_up_availabilities.size > 1 -%}
+          <button
+            id="ShowPickupAvailabilityDrawer"
+            class="btn-reset grey-color underline d-block pickup-availability-button"
+            aria-haspopup="dialog"
+          >
+            {{ 'products.product.pickup_availability.check_other_stores' | t }}
+          </button>
+        {%- endif -%}
+      {%- endif -%}
+    </div>
+  </pickup-availability-preview>
+
+  <pickup-availability-drawer
+    class="gradient bg-white bls__canvas bls__canvas-right pickup-availability-drawer"
+    tabindex="-1"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="PickupAvailabilityHeading"
+  >
+    <div class="pickup-availability-header px-30 py-25 border-bottom">
+      <button class="button-close close-button">
+        <i class="lnr lnr-cross"></i>
+      </button>
+      <div class="bls__product-info">
+        <div class="bls__product-pickup flex">
+          {%- liquid
+            assign image = product_variant.product.featured_image | default: product.featured_image
+          -%}
+          {%- if image != blank -%}
+            <div class="product-pickup-img width-80 mr-15">
+              {%- render 'responsive-image' | image: image | type: 'product' | cls: 'bls__product-grid bls__product-img-sw' -%}
+            </div>
+          {%- endif -%}
+          <div class="bls__product-pickup__infos">
+            <h6 class="pickup-availability-drawer-title mb-0">
+              {{ product_variant.product.title | escape }}
+            </h6>
+            {%- unless product_variant.product.has_only_default_variant -%}
+              <p class="pickup-availability-variant fs-small grey-color">
+                {%- for product_option in product_variant.product.options_with_values -%}
+                  {{ product_option.name | escape }}:&nbsp;
+                  {%- for value in product_option.values -%}
+                    {%- if product_option.selected_value == value -%}
+                      <span>{{ value | escape }}</span>
+                    {%- endif -%}
+                  {%- endfor -%}
+                  {%- unless forloop.last -%},&nbsp;{%- endunless -%}
+                {%- endfor -%}
+              </p>
+            {%- endunless -%}
+            {% if hidden_price == false %}
+              <div class="price mt-10">
+                {%- render 'price', product: product_variant.product, use_variant: true, price_class: 'price--large' -%}
+              </div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+    <ul class="pickup-availability-list list-none py-25 px-30 m-0" role="list" data-store-availability-drawer-content>
+      {%- for availability in pick_up_availabilities -%}
+        <li class="pickup-availability-list__item pb-25 mb-25 border-bottom last-0">
+          <h4 class="fs-16 capitalize">{{ availability.location.name | escape }}</h4>
+          {%- if availability.available -%}
+            <p class="pickup-availability-preview caption-large flex align-items-center">
+              <i class="mr-10 fs-14 picon-check"></i>
+              {{ 'products.product.pickup_availability.pick_up_available' | t }},
+              {{ availability.pick_up_time | downcase }}
+            </p>
+          {%- endif -%}
+          {%- assign address = availability.location.address -%}
+          <address class="pickup-availability-address">
+            <p>
+              <span class="grey-color">{{ 'products.product.pickup_availability.address' | t }}: </span>
+              {{- address.address1 }}
+            </p>
+            <p>
+              <span class="grey-color">{{ 'products.product.pickup_availability.city' | t }}: </span>{{ address.city }}
+            </p>
+            <p>
+              <span class="grey-color">{{ 'products.product.pickup_availability.country' | t }}: </span>
+              {{- address.country }}
+            </p>
+            {%- if address.phone.size > 0 -%}
+              <p>
+                <span class="grey-color">{{ 'products.product.pickup_availability.phone' | t }}: </span>
+                {{- address.phone }}
+              </p>
+            {%- endif -%}
+          </address>
+          <a href="https://maps.google.com?daddr={{ address.street | escape }} {{ address.province_code | escape }} {{ address.zip | escape }} {{ address.country | escape }}">
+            <span class="picon-location-pin fs-18 mr-5"></span>
+            <span class="underline">{{ 'products.product.pickup_availability.pickup_location' | t }}</span>
+          </a>
+        </li>
+      {%- endfor -%}
+    </ul>
+  </pickup-availability-drawer>
+{%- endif -%}

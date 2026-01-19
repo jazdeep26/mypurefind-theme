@@ -1,0 +1,107 @@
+{% assign cart_items = cart.items %}
+
+<div class="demo-wrapper">
+
+  <h2>Book a Demo</h2>
+
+  <!-- Selected Products -->
+  <div class="demo-products">
+    <h4>Selected Product(s)</h4>
+
+    {% if cart_items.size > 0 %}
+      {% for item in cart_items %}
+        <div class="demo-product">
+          <strong>{{ item.product.title }}</strong><br>
+          Variant: {{ item.variant.title }}<br>
+          Qty: {{ item.quantity }}
+        </div>
+      {% endfor %}
+    {% else %}
+      <div class="demo-product">
+        <strong>{{ request.params.product | default: 'Product' }}</strong><br>
+        Variant: {{ request.params.variant | default: 'Default' }}
+      </div>
+    {% endif %}
+  </div>
+
+  {% form 'contact' %}
+
+    <!-- Redirect after submit -->
+    <input type="hidden" name="return_to" value="/pages/demo-thank-you">
+
+    <!-- Selected Products Hidden -->
+    <input type="hidden" name="contact[Selected Products]" value="
+    {% if cart_items.size > 0 %}
+      {% for item in cart_items %}
+        {{ item.product.title }} - {{ item.variant.title }} (Qty {{ item.quantity }}),
+      {% endfor %}
+    {% else %}
+      {{ request.params.product }} - {{ request.params.variant }}
+    {% endif %}
+    ">
+
+    <label>Full Name</label>
+    <input type="text" name="contact[Full Name]" required>
+
+    <label>Email</label>
+    <input type="email" name="contact[email]" required>
+
+    <label>Phone Number</label>
+    <input type="tel" name="contact[Phone]" required>
+
+    <label>Date</label>
+    <input type="date" name="contact[Preferred Date]" required>
+
+    <label>Time</label>
+    <input type="time" name="contact[Preferred Time]" required>
+
+    <label>Address</label>
+    <textarea name="contact[Address]" required></textarea>
+
+    <label>State</label>
+    <input type="text" name="contact[State]" required>
+
+    <label>Pincode</label>
+    <input type="text" name="contact[Pincode]" required>
+
+    <button type="submit">Confirm Demo Booking</button>
+
+  {% endform %}
+
+</div>
+
+<style>
+.demo-wrapper{
+  max-width:600px;
+  margin:40px auto;
+  padding:20px;
+  border:1px solid #ddd;
+}
+.demo-products{
+  background:#f7f7f7;
+  padding:15px;
+  margin-bottom:20px;
+}
+.demo-product{
+  margin-bottom:10px;
+}
+label{
+  display:block;
+  margin-top:10px;
+  font-weight:600;
+}
+input, textarea{
+  width:100%;
+  padding:10px;
+  margin-top:5px;
+}
+button{
+  margin-top:15px;
+  width:100%;
+  padding:12px;
+  background:#000;
+  color:#fff;
+  border:none;
+  font-size:16px;
+}
+</style>

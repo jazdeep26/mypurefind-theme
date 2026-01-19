@@ -1,0 +1,386 @@
+{{ 'elementors.css' | asset_url | stylesheet_tag }}
+{%- liquid
+  assign st = section.settings
+  assign btn_content = st.btn_content
+  assign button_link = st.button_link
+  assign button_type = st.button_type
+  assign button_target = st.button_target
+  assign btn_content = st.btn_content
+  assign color_scheme = st.color_scheme
+  assign text_tf = st.text_tf
+  assign font_weight = st.font_weight
+  assign font_size = st.font_size
+  assign container = st.container
+  assign icon = st.icon
+  assign text = st.text
+  assign elementors_horizontal = st.elementors_horizontal
+  assign custom_ratio_placeholder = '137:16'
+  if elementors_horizontal == 'Left'
+    assign elementors_horizontal = 'justify-content-flex-start'
+  elsif elementors_horizontal == 'Middle'
+    assign elementors_horizontal = 'justify-content-center'
+  else
+    assign elementors_horizontal = 'justify-content-end'
+  endif
+
+  assign show_bg = st.show_bg
+
+  assign spt_tablet = ''
+  if st.padding_top > 50
+    assign spt_tablet = ' spt-tablet'
+  endif
+  assign spt_mobile = ''
+  if st.padding_top > 30
+    assign spt_mobile = ' spt-mobile'
+  endif
+  assign spb_tablet = ''
+  if st.padding_bottom > 50
+    assign spb_tablet = ' spb-tablet'
+  endif
+  assign spb_mobile = ''
+  if st.padding_bottom > 30
+    assign spb_mobile = ' spb-mobile'
+  endif
+
+  assign btn_border = st.btn_border
+%}
+{% capture icon %}  
+    {% if icon == 'home' %}
+      <i aria-hidden="true" class="picon-home"></i>
+   {%  elsif  icon =='tag' %}
+    <i aria-hidden="true" class="picon picon-tag"></i>
+    {% else %}
+
+    {% endif %}
+ 
+ {% endcapture %}
+{%- capture style -%}
+  {%- if show_bg == true -%}
+    --background-elementors-image:url({{ st.image | image_url }});
+    {% else %}
+    --background-elementors-image:var(--gradient-background);
+  {%- endif -%}
+  --section-padding-top: {{ st.padding_top }}px; --section-padding-bottom: {{ st.padding_bottom }}px; 
+{%- endcapture -%}
+
+{% capture button %}
+ {%- if btn_content != blank -%}
+  <a
+    {% if button_link == blank %}
+      role="link"
+      aria-disabled="true"
+    {% else %}
+      href="{{ button_link }}"
+    {% endif %}
+    {% if button_target == true %}
+      target="_blank"
+    {% else %}
+      target="_self"
+    {% endif %}
+    class="elementors_button whitespace-nowrap ml-10 mr-10 {{ btn_border }} btn-{{ button_type }} inline-block"
+  >
+    {{ btn_content | escape }}
+  </a>
+{%- endif -%}
+{% endcapture %}
+<section
+  class="color-{{ color_scheme }}"
+>
+  <div class=" {{ container }} ">
+    <div
+      class="px-20 elementors bls__section {% if show_bg == true %}  {% endif %} flex {{ elementors_horizontal }} flex-wrap align-items-center {{ spt_tablet }}{{ spb_tablet }}{{ spt_mobile }}{{ spb_mobile }}"
+      style="{{ style | strip | strip_newlines }}"
+    >
+      {% if show_bg == true %}
+        <div class="relative">
+          {%- if st.image != blank -%}
+            {% render 'responsive-image', image: st.image | width: "100vw" %}
+
+          {%- else -%}
+            {%- render 'responsive-image', custom_ratio: custom_ratio_placeholder, aspect_ratio: 'custom' -%}
+          {%- endif -%}
+        </div>
+      {% endif %}
+      <div class="elementors-content flex align-items-center  justify-content-center column-gap-15">
+        {% if icon != blank %}
+          <div class="elementors_icon" style="--text-font-size: {{ font_size }}px;">
+            {{ icon }}
+          </div>
+        {% endif %}
+        {% if text != blank %}
+          <div
+            class="elementors_text text-center "
+            style="--text-font-size: {{ font_size }}px; {% if font_weight != 'default' %}--text-font-weight: {{ font_weight }};{% endif %} --text-transform: {{ text_tf }};"
+          >
+            {{ text | replace: '[button]', button }}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "t:sections.elementors_widget.name",
+  "disabled_on": {
+    "groups": ["header", "footer", "custom.overlay"]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:sections.all.header.general"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_bg",
+      "label": "t:sections.elementors_widget.settings.show_bg.label",
+      "default": false
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "t:sections.elementors_widget.settings.image.label"
+    },
+    {
+      "type": "select",
+      "id": "container",
+      "label": "t:sections.all.layout.label",
+      "default": "container",
+      "options": [
+        {
+          "value": "container",
+          "label": "t:sections.all.layout.options__1.label"
+        },
+        {
+          "value": "container-fluid",
+          "label": "t:sections.all.layout.options__2.label"
+        },
+        {
+          "value": "strecth-width",
+          "label": "t:sections.all.layout.options__3.label"
+        },
+        {
+          "value": "full-width",
+          "label": "t:sections.all.layout.options__4.label"
+        }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "t:sections.elementors_widget.settings.header__1.label"
+    },
+    {
+      "type": "select",
+      "id": "elementors_horizontal",
+      "label": "t:sections.all.horizontal_alignment.horizontal_position",
+      "default": "Middle",
+      "options": [
+        {
+          "value": "Left",
+          "label": "t:sections.elementors_widget.settings.elementors_horizontal.options__1.label"
+        },
+        {
+          "value": "Middle",
+          "label": "t:sections.elementors_widget.settings.elementors_horizontal.options__2.label"
+        },
+        {
+          "value": "Right",
+          "label": "t:sections.elementors_widget.settings.elementors_horizontal.options__3.label"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "icon",
+      "label": "t:sections.elementors_widget.settings.icon.label",
+      "options": [
+        {
+          "value": "none",
+          "label": "t:sections.elementors_widget.settings.icon.options__1.label"
+        },
+        {
+          "value": "home",
+          "label": "t:sections.elementors_widget.settings.icon.options__2.label"
+        },
+        {
+          "value": "tag",
+          "label": "t:sections.elementors_widget.settings.icon.options__3.label"
+        }
+      ],
+      "default": "home"
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "t:sections.elementors_widget.settings.text.label",
+      "default": "Super discount for your first purchase [button]"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label"
+    },
+    {
+      "type": "select",
+      "id": "text_tf",
+      "label": "t:sections.all.content_text.text_transform.label",
+      "options": [
+        {
+          "value": "unset",
+          "label": "t:sections.all.content_text.text_transform.unset.label"
+        },
+        {
+          "value": "capitalize",
+          "label": "t:sections.all.content_text.text_transform.capitalize.label"
+        },
+        {
+          "value": "uppercase",
+          "label": "t:sections.all.content_text.text_transform.uppercase.label"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "font_size",
+      "min": 20,
+      "max": 38,
+      "step": 1,
+      "unit": "px",
+      "label": "t:sections.all.typography.default_size",
+      "default": 26
+    },
+    {
+      "type": "select",
+      "id": "font_weight",
+      "label": "t:sections.all.typography.default_weight",
+      "default": "default",
+      "options": [
+        {
+          "label": "t:sections.all.default_text.label",
+          "value": "default"
+        },
+        {
+          "label": "300",
+          "value": "300"
+        },
+        {
+          "label": "400",
+          "value": "400"
+        },
+        {
+          "label": "500",
+          "value": "500"
+        },
+        {
+          "label": "600",
+          "value": "600"
+        },
+        {
+          "label": "700",
+          "value": "700"
+        },
+        {
+          "label": "800",
+          "value": "800"
+        },
+        {
+          "label": "900",
+          "value": "900"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "id": "btn_content",
+      "label": "t:sections.all.content_text.button_text",
+      "default": "Button"
+    },
+    {
+      "type": "select",
+      "id": "btn_border",
+      "label": "t:sections.elementors_widget.settings.border.label",
+      "default": "solid",
+      "options": [
+        {
+          "value": "solid",
+          "label": "t:sections.elementors_widget.settings.border.solid"
+        },
+        {
+          "value": "dashed",
+          "label": "t:sections.elementors_widget.settings.border.dashed"
+        },
+        {
+          "value": "double",
+          "label": "t:sections.elementors_widget.settings.border.double"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "button_type",
+      "label": "t:sections.all.content_text.button_type.label",
+      "default": "primary",
+      "options": [
+        {
+          "value": "primary",
+          "label": "t:sections.all.content_text.button_type.options__1.label"
+        },
+        {
+          "value": "secondary",
+          "label": "t:sections.all.content_text.button_type.options__2.label"
+        },
+        {
+          "value": "link",
+          "label": "t:sections.all.content_text.button_type.options__3.label"
+        }
+      ]
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "t:sections.all.content_text.button_link"
+    },
+    {
+      "type": "checkbox",
+      "id": "button_target",
+      "label": "t:sections.all.content_text.button_target"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 0,
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 0,
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px"
+    },
+    {
+      "type": "checkbox",
+      "id": "reset_spacing",
+      "label": "t:sections.all.reset_spacing.label",
+      "default": false
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.elementors_widget.name"
+    }
+  ]
+}
+{% endschema %}
