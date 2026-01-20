@@ -18,7 +18,7 @@
           </div>
         {%- endif -%}
         <div class="bls__product-name">{{ product.title }}</div>
-        {% if hidden_price == false %}
+        {% if hidden_price == false and product.selected_or_first_available_variant.price > 0 %}
           <div class="price heading-weight fs-small">
             {%- render 'price', product: product, use_variant: true, price_class: 'price--large' -%}
           </div>
@@ -55,12 +55,12 @@
                       selected="true"
                     {% endif %}
                   >
-                    {{ variant.title }} -
+                    {{ variant.title }}{% if variant.price > 0 %} -
                     {% if settings.currency_code_enabled %}
                       {{ variant.price | money_with_currency }}
                     {% else %}
                       {{ variant.price | money }}
-                    {% endif %}
+                    {% endif %}{% endif %}
                   </option>
                 {% endfor %}
               </select>

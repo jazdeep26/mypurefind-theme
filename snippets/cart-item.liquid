@@ -58,7 +58,7 @@
         </li>
       {%- endfor -%}
     </ul>
-    {% if hidden_price == false %}
+    {% if hidden_price == false and item.final_price > 0 %}
       <div class="bls-minicart-item-prices">
         {%- assign current_variant = item.variant -%}
         {%- if item.original_price != item.final_price -%}
