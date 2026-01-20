@@ -1,12 +1,3 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "sections": {
     "breadcrumb": {
@@ -81,13 +72,6 @@
             "show_sold_product": true,
             "sold": "8,10,12,15,17,22",
             "hours": "10,12,15,16,17,18,20,24"
-          }
-        },
-        "custom_liquid_f3YApD": {
-          "type": "custom_liquid",
-          "name": "popupform",
-          "settings": {
-            "content": "<button class=\"continue-btn demo-trigger\" type=\"button\">\n  BOOK DEMO\n</button>"
           }
         },
         "062f7cd6-1265-4c29-a22c-e2bbebc5f2b6": {
@@ -185,7 +169,6 @@
         "3870a5bb-fec0-4b82-9405-e324077ed947",
         "custom_liquid_zFrbbW",
         "836d9723-358d-4023-88a8-2d3b5907093e",
-        "custom_liquid_f3YApD",
         "062f7cd6-1265-4c29-a22c-e2bbebc5f2b6",
         "e5cf937e-e30a-4b9a-93c1-f48c229054f3",
         "b328bd75-b508-4fed-84c2-6727ff481d16",

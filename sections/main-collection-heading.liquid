@@ -108,6 +108,18 @@
       {%- endif -%}
     </div>
   {%- endif -%}
+  {% if collection %}
+    <div class="collection-demo-cta pb-15 text-center">
+      <button
+        type="button"
+        class="btn btn--secondary book-demo-btn collection"
+        data-category="{{ collection.handle }}"
+        data-entry="category"
+      >
+        Book Free Home Demo
+      </button>
+    </div>
+  {% endif %}
 </div>
 {% schema %}
 {

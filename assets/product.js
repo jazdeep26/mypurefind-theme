@@ -2065,7 +2065,7 @@ class VariantRadiosQuickview extends HTMLElement {
     if (!addButton) return;
     if (disable) {
       buttonPayment.style.display = "none";
-      addButton.setAttribute("disabled", "disabled");
+      // addButton.setAttribute("disabled", "disabled");
     } else {
       buttonPayment.style.display = "block";
       addButton.removeAttribute("disabled");
