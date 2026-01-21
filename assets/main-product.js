@@ -616,7 +616,7 @@ class VariantSelects extends HTMLElement {
     const form = document.getElementById(
       `product-form-${this.dataset.section}`
     );
-    const product = form.closest(".bls__product-details-infor");
+    const product = form ? form.closest(".bls__product-details-infor") : this.closest(".bls__product-details-infor");
     this.getVariantQtyData().find((variantQty) => {
       if (variantQty.id === this.currentVariant.id) {
         qty = variantQty.qty;
@@ -756,14 +756,14 @@ class VariantSelects extends HTMLElement {
       this.currentVariant.price,
       cartStrings.money_format
     );
-    if (product.querySelector(".price__regular .price")) {
-      product.querySelector(".price__regular .price").innerHTML = price_format;
+    if (product.querySelector(".price__regular.price")) {
+      product.querySelector(".price__regular.price").innerHTML = price_format;
     }
     const bls__price = product.querySelector(".bls__price");
     if (bls__price) {
       bls__price.classList.remove("price--sold-out", "price--on-sale");
       bls__price
-        .querySelector(".price__regular .price")
+        .querySelector(".price__regular.price")
         ?.classList.remove("special-price");
       if (compare_at_price && compare_at_price > price) {
         const compare_format = Shopify.formatMoney(
@@ -775,7 +775,7 @@ class VariantSelects extends HTMLElement {
         }
         bls__price.classList.add("price--on-sale");
         product
-          .querySelector(".price__regular .price")
+          .querySelector(".price__regular.price")
           .classList.add("special-price");
       } else if (!this.currentVariant.available) {
         bls__price.classList.add("price--sold-out");
@@ -2123,12 +2123,12 @@ var BlsEventMainProductShopify = (function () {
               var info_price = target
                 .closest(".product-bought-together-item")
                 .querySelector(".info-price");
-              info_price.querySelector(".price__regular .price").innerHTML =
+              info_price.querySelector(".price__regular.price").innerHTML =
                 Shopify.formatMoney(price, cartStrings.money_format);
               const bls__price = info_price.querySelector(".bls__price");
               bls__price.classList.remove("price--sold-out", "price--on-sale");
               bls__price
-                .querySelector(".price__regular .price")
+                .querySelector(".price__regular.price")
                 .classList.remove("special-price");
               if (compare_price && compare_price > price) {
                 const compare_format = Shopify.formatMoney(
@@ -2141,7 +2141,7 @@ var BlsEventMainProductShopify = (function () {
                 }
                 bls__price.classList.add("price--on-sale");
                 bls__price
-                  .querySelector(".price__regular .price")
+                  .querySelector(".price__regular.price")
                   .classList.add("special-price");
               }
               target.setAttribute("data-price", price);
@@ -2366,12 +2366,12 @@ var BlsEventMainProductShopify = (function () {
               var info_price = target
                 .closest(".product-group-item")
                 .querySelector(".info-price");
-              info_price.querySelector(".price__regular .price").innerHTML =
+              info_price.querySelector(".price__regular.price").innerHTML =
                 Shopify.formatMoney(price, cartStrings.money_format);
               const bls__price = info_price.querySelector(".bls__price");
               bls__price.classList.remove("price--sold-out", "price--on-sale");
               bls__price
-                .querySelector(".price__regular .price")
+                .querySelector(".price__regular.price")
                 .classList.remove("special-price");
               if (compare_price && compare_price > price) {
                 const compare_format = Shopify.formatMoney(
@@ -2384,7 +2384,7 @@ var BlsEventMainProductShopify = (function () {
                 }
                 bls__price.classList.add("price--on-sale");
                 bls__price
-                  .querySelector(".price__regular .price")
+                  .querySelector(".price__regular.price")
                   .classList.add("special-price");
               }
               target.setAttribute("data-price", price);
