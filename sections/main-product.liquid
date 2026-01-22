@@ -1509,7 +1509,7 @@
               {%- endfor -%}
                     {%- for block in section.blocks -%}
                       {%- if block.type == 'demo_slots' and block.settings.show_demo_slots -%}
-                        <div class="bls__demo-slots-wrapper mb-10">
+                        <div class="bls__demo-slots-wrapper mb-10 d-none-mb">
                           <div
                             class="bls__demo-slots"
                             data-demo-slots="{{ block.settings.slots }}"
