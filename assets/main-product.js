@@ -867,6 +867,7 @@ var BlsEventMainProductShopify = (function () {
     init: function () {
       this.setupEventListeners();
       this.eventFlashSold();
+      this.eventDemoSlots();
       this.eventVisitors();
       this.eventCountdowProduct();
       this.eventProductTabs();
@@ -1839,6 +1840,10 @@ var BlsEventMainProductShopify = (function () {
 
     eventFlashSold: function () {
       Shopify.eventFlashSold();
+    },
+
+    eventDemoSlots: function () {
+      Shopify.eventDemoSlots();
     },
 
     eventVisitors: function () {

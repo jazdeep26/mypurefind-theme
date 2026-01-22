@@ -1960,6 +1960,23 @@
         "id": "message_qv_countdown_timer",
         "label": "t:settings_schema.quickview.settings.message_qv_countdown_timer.label",
         "default": "Hurry Up! Sale ends in:"
+      },
+      {
+        "type": "header",
+        "content": "Demo Slots"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_qv_demo_slots",
+        "label": "Show demo slots message",
+        "default": true
+      },
+      {
+        "type": "textarea",
+        "id": "slots_qv_demo",
+        "label": "Slots count options",
+        "default": "2,3,4,5",
+        "info": "Enter comma-separated numbers for random slot count"
       }
     ]
   },

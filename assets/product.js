@@ -99,6 +99,7 @@ class QuickBuy extends HTMLElement {
             BlsColorSwatchesShopify.init();
             Shopify.swiperSlideQickview();
             Shopify.eventFlashSold("dlg");
+            Shopify.eventDemoSlots("dlg");
             Shopify.eventCountDownTimer("dlg");
             BlsReloadSpr.init();
             Shopify.PaymentButton.init();

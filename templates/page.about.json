@@ -30,7 +30,7 @@
         "text_pjic44": {
           "type": "text",
           "settings": {
-            "txt_content": "<p>MyPureFind brings the Try & Buy at Home experience to categories where choice truly matters — makeup, skincare, fragrances, haircare, and jewellery</p>",
+            "txt_content": "<p>My Pure Find brings the Try & Buy at Home experience to categories where choice truly matters - makeup, skincare, fragrances, haircare, and jewellery</p>",
             "txt_fs": 18,
             "txt_fw": "default",
             "txt_tf": "unset",
@@ -41,9 +41,9 @@
         "buttons_7Lti6w": {
           "type": "buttons",
           "settings": {
-            "btn_content": "View more",
+            "btn_content": "View Collection",
             "button_type": "primary",
-            "button_link": "#",
+            "button_link": "shopify://collections",
             "button_target": false,
             "b_mt": 0,
             "b_mb": 15
@@ -69,11 +69,12 @@
       ],
       "settings": {
         "container": "full-width",
-        "color_scheme": "scheme-b808185a-cae7-47ba-9fe9-7d81ddf7e485",
-        "image_behavior": "none",
-        "banner_type": "image",
+        "color_scheme": "scheme-4e2829e1-a162-4726-850f-b9f27dd45db4",
+        "image_behavior": "ambient",
+        "banner_type": "video",
         "image": "shopify://shop_images/woman-applying-lip-balm.jpg",
         "video_url": "",
+        "video_local": "shopify://files/videos/banner video (1).mp4",
         "link": "",
         "open_link": "_blank",
         "image_position": "left",
@@ -85,7 +86,7 @@
         "background_gradient": "",
         "content_width": 60,
         "banner_height": "custom-height",
-        "height_dk": 400,
+        "height_dk": 700,
         "height_tb": 600,
         "height_mb": 360,
         "height_full": false,
@@ -149,7 +150,7 @@
         "color_scheme": "",
         "image_behavior": "none",
         "banner_type": "image",
-        "image": "shopify://shop_images/ChatGPT_Image_Jan_12_2026_11_48_31_AM.png",
+        "image": "shopify://shop_images/Gemini_Generated_Image_g7jmdpg7jmdpg7jm.png",
         "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
         "link": "",
         "open_link": "_blank",
@@ -217,90 +218,15 @@
         "reset_spacing": true
       }
     },
-    "counter_cVYaRA": {
-      "type": "counter",
-      "blocks": {
-        "counter_jrhwHW": {
-          "type": "counter",
-          "settings": {
-            "starting_number": "0",
-            "ending_number": "41",
-            "unit_number": "K+",
-            "heading": "Happy Customer",
-            "description": "<p>Sed ut perspiciatis unde omnis iste natus sit accusantium doloremque laudantium totam.</p>"
-          }
-        },
-        "counter_pNgCE6": {
-          "type": "counter",
-          "settings": {
-            "starting_number": "0",
-            "ending_number": "21",
-            "unit_number": "+",
-            "heading": "Years in Business",
-            "description": "<p>Sed ut perspiciatis unde omnis iste natus sit accusantium doloremque laudantium totam.</p>"
-          }
-        },
-        "counter_whffkq": {
-          "type": "counter",
-          "settings": {
-            "starting_number": "0",
-            "ending_number": "98",
-            "unit_number": "%",
-            "heading": "Return Clients",
-            "description": "<p>Sed ut perspiciatis unde omnis iste natus sit accusantium doloremque laudantium totam.</p>"
-          }
-        },
-        "counter_D8GEmy": {
-          "type": "counter",
-          "settings": {
-            "starting_number": "0",
-            "ending_number": "16",
-            "unit_number": "",
-            "heading": "Awards Won",
-            "description": "<p>Sed ut perspiciatis unde omnis iste natus sit accusantium doloremque laudantium totam.</p>"
-          }
-        }
-      },
-      "block_order": [
-        "counter_jrhwHW",
-        "counter_pNgCE6",
-        "counter_whffkq",
-        "counter_D8GEmy"
-      ],
-      "settings": {
-        "heading": "",
-        "heading_border": false,
-        "description": "",
-        "text_alignment": "text-center",
-        "container": "container-fluid",
-        "color_scheme": "default-color-scheme",
-        "custom_column": 4,
-        "column_gap": 30,
-        "icon_width": 42,
-        "icon_spacing": 20,
-        "img_position": "position-left",
-        "content_text_alignment": "text-left",
-        "ib_h_font_size": 18,
-        "ib_h_font_weight": "500",
-        "ib_spacing": 15,
-        "ib_number_font_size": 40,
-        "ib_number_font_weight": "500",
-        "number_spacing": 0,
-        "ib_desc_font_size": 16,
-        "padding_top": 0,
-        "padding_bottom": 0,
-        "reset_spacing": false
-      }
-    },
     "testimonial_E7MAbr": {
       "type": "testimonial",
       "blocks": {
         "testimonials_ktzgAd": {
           "type": "testimonials",
           "settings": {
-            "title_text": "Rokan is my favourite store",
-            "description": "<p>Great products and designs and such great quality, they always</p><p>wash up well no matter how many times I wash them.\t</p>",
-            "author": "Donald Duclk",
+            "title_text": "",
+            "description": "<h2></h2><p>I tried MyPureFind and wanted to share my experience.<br/>I’m not really a “makeup person” - I prefer quick, easy-to-use products that help me get ready and start my day without too much effort.</p>",
+            "author": "Madhu",
             "job": "",
             "testimonial_width": 100
           }
@@ -308,9 +234,9 @@
         "testimonials_Y3zbC3": {
           "type": "testimonials",
           "settings": {
-            "title_text": "Beautiful products",
-            "description": "<p>Beautiful clothes. I always get complements. Good quality and items wash well.</p><p> products and designs and such great.</p>",
-            "author": "Niamh Oxley",
+            "title_text": "",
+            "description": "<p>What I loved most is that it didn’t stop at product recommendations - they even have experts who guide you, apply the products, and help you understand what suits you best.</p>",
+            "author": "Devanshi Singh",
             "job": "",
             "testimonial_width": 100
           }
@@ -318,9 +244,9 @@
         "testimonials_UtJfWb": {
           "type": "testimonials",
           "settings": {
-            "title_text": "Lovely products",
-            "description": "<p>Great products and designs and such great quality, they always </p><p>wash up well no matter how many times I wash them</p>",
-            "author": "Mary Green",
+            "title_text": "",
+            "description": "<p>The team at MyPureFind understood my needs perfectly and recommended the right set of products for me. They helped me explore new brands and find options that were closest to my preferences and skin needs.</p>",
+            "author": "Anya Sharma",
             "job": "",
             "testimonial_width": 100
           }
@@ -337,7 +263,7 @@
         "description": "<p>Customers love our products and we always strive to please them all.</p>",
         "text_align": "text-center",
         "container": "container-fluid",
-        "color_scheme": "scheme-b808185a-cae7-47ba-9fe9-7d81ddf7e485",
+        "color_scheme": "scheme-013ccfbf-beb5-42e6-bc8f-8a36ab634ca7",
         "content_width": 100,
         "design": "design_1",
         "testi_text_size": "normal",
@@ -345,7 +271,7 @@
         "img_view": "default",
         "img_position": "position-top",
         "car_gap": 30,
-        "carousel_item_desktop": 1,
+        "carousel_item_desktop": 3,
         "autoplay": false,
         "loop": true,
         "show_arrow": false,
@@ -353,116 +279,6 @@
         "pagination_style": "dots",
         "padding_top": 100,
         "padding_bottom": 100,
-        "reset_spacing": false
-      }
-    },
-    "banner_image_Trtba9": {
-      "type": "banner-image",
-      "blocks": {
-        "image_banner_EC3K8x": {
-          "type": "image_banner",
-          "settings": {
-            "banner_width": "3",
-            "banner_type": "image",
-            "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
-            "link": "",
-            "open_link": "_blank",
-            "content_banner_horizontal": "Bottom",
-            "subtext": "",
-            "title": "Nimrod Barshad",
-            "content": "<p>Founder/CEO</p>",
-            "btn_content": "",
-            "button_type": "primary"
-          }
-        },
-        "image_banner_zBtfgM": {
-          "type": "image_banner",
-          "settings": {
-            "banner_width": "3",
-            "banner_type": "image",
-            "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
-            "link": "",
-            "open_link": "_blank",
-            "content_banner_horizontal": "Bottom",
-            "subtext": "",
-            "title": "Claude K. Amadeo",
-            "content": "<p>Sales Director</p>",
-            "btn_content": "",
-            "button_type": "primary"
-          }
-        },
-        "image_banner_NUgVYF": {
-          "type": "image_banner",
-          "settings": {
-            "banner_width": "3",
-            "banner_type": "image",
-            "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
-            "link": "",
-            "open_link": "_blank",
-            "content_banner_horizontal": "Bottom",
-            "subtext": "",
-            "title": "Linda M. Dugan",
-            "content": "<p>Manager</p>",
-            "btn_content": "",
-            "button_type": "primary"
-          }
-        },
-        "image_banner_AjVfDf": {
-          "type": "image_banner",
-          "settings": {
-            "banner_width": "3",
-            "banner_type": "image",
-            "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
-            "link": "",
-            "open_link": "_blank",
-            "content_banner_horizontal": "Bottom",
-            "subtext": "",
-            "title": "Mark Pocket",
-            "content": "<p>Product Manager</p>",
-            "btn_content": "",
-            "button_type": "primary"
-          }
-        }
-      },
-      "block_order": [
-        "image_banner_EC3K8x",
-        "image_banner_zBtfgM",
-        "image_banner_NUgVYF",
-        "image_banner_AjVfDf"
-      ],
-      "settings": {
-        "heading": "The Leader Board Of Our Company",
-        "heading_border": false,
-        "description": "",
-        "text_alignment": "text-center",
-        "container": "container-fluid",
-        "color_scheme": "",
-        "show_box_background": false,
-        "color_background": "",
-        "bg_overlay": 100,
-        "column_gap": 30,
-        "layout_on_mobile": false,
-        "design_banner": "text-below-image",
-        "text_align": "text-left",
-        "hover_effect": "none",
-        "h_font_size": 20,
-        "h_font_weight": "500",
-        "h_spacing": 3,
-        "sub_font_size": 18,
-        "sub_font_weight": "default",
-        "sub_spacing": 10,
-        "des_font_size": 16,
-        "des_font_weight": "default",
-        "des_spacing": 0,
-        "button_font_size": 16,
-        "button_font_weight": "default",
-        "button_spacing": 0,
-        "image_behavior": "none",
-        "text_position": "top",
-        "content_on_mobile": false,
-        "reset_color_mb": false,
-        "padding_top": 0,
-        "padding_bottom": 0,
         "reset_spacing": false
       }
     },
@@ -543,9 +359,7 @@
     "banner_with_text_yMHTEm",
     "banner_with_text_pVNRar",
     "banner_image_nk77J8",
-    "counter_cVYaRA",
     "testimonial_E7MAbr",
-    "banner_image_Trtba9",
     "gallery_RJywBH"
   ]
 }

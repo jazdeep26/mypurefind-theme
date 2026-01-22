@@ -1505,8 +1505,33 @@
                       </div>
                     {% endif -%}
                 {%- endcase -%}
-                
+
               {%- endfor -%}
+                    {%- for block in section.blocks -%}
+                      {%- if block.type == 'demo_slots' and block.settings.show_demo_slots -%}
+                        <div class="bls__demo-slots-wrapper mb-10">
+                          <div
+                            class="bls__demo-slots"
+                            data-demo-slots="{{ block.settings.slots }}"
+                            style="display:none"
+                          >
+                            <div class="flex align-items-center">
+                              <img
+                                class="mr-5"
+                                src="{{ 'icon_hot.svg' | asset_url }}"
+                                loading="lazy"
+                                width="12"
+                                height="16"
+                              >
+                              <div class="text primary-color">
+                                {%- assign slots = 3 -%}
+                                {{ 'products.product.demo_slots_left_html' | t: slots: slots }}
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      {%- endif -%}
+                    {%- endfor -%}
                     <button
                       type="button"
                       class="button button--secondary book-demo-btn product"
@@ -1871,6 +1896,26 @@
           "label": "t:sections.main-product.blocks.review_sold.settings.hours.label",
           "default": "10,12,15,16,17,18,20,24",
           "info": "t:sections.main-product.blocks.review_sold.settings.hours.info"
+        }
+      ]
+    },
+    {
+      "type": "demo_slots",
+      "name": "Demo Slots",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "show_demo_slots",
+          "label": "Show demo slots message",
+          "default": true
+        },
+        {
+          "type": "textarea",
+          "id": "slots",
+          "label": "Slots count options",
+          "default": "2,3,4,5",
+          "info": "Enter comma-separated numbers for random slot count"
         }
       ]
     },

@@ -155,7 +155,7 @@
           "settings": {
             "title_collection": "Makeup",
             "collection": "makeup",
-            "image": "shopify://shop_images/Gemini_Generated_Image_j5nur4j5nur4j5nu.png"
+            "image": "shopify://shop_images/Gemini_Generated_Image_dzgn4wdzgn4wdzgn.png"
           }
         },
         "template--16567751475447__8498460c-0376-40d1-bafc-199edbe0edfc-16665857567f9937b1-1": {
@@ -163,7 +163,7 @@
           "settings": {
             "title_collection": "Fragrances",
             "collection": "fragrances",
-            "image": "shopify://shop_images/Gemini_Generated_Image_2zrn0a2zrn0a2zrn.png"
+            "image": "shopify://shop_images/Gemini_Generated_Image_9u6fzt9u6fzt9u6f.png"
           }
         },
         "template--16567751475447__8498460c-0376-40d1-bafc-199edbe0edfc-16665857567f9937b1-2": {
@@ -171,7 +171,7 @@
           "settings": {
             "title_collection": "Hair Extensions",
             "collection": "hair-extensions",
-            "image": "shopify://shop_images/Gemini_Generated_Image_g8fifcg8fifcg8fi.png"
+            "image": "shopify://shop_images/ChatGPT_Image_Jan_22_2026_06_52_07_PM.png"
           }
         },
         "template--16567751475447__8498460c-0376-40d1-bafc-199edbe0edfc-16665857567f9937b1-3": {
@@ -179,7 +179,7 @@
           "settings": {
             "title_collection": "Skincare",
             "collection": "skincare",
-            "image": "shopify://shop_images/Gemini_Generated_Image_1xau3s1xau3s1xau.png"
+            "image": "shopify://shop_images/Gemini_Generated_Image_h3upfwh3upfwh3up_1.png"
           }
         },
         "collection_item_V3qKNU": {
@@ -594,56 +594,56 @@
         "image_rPQazV": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/Screenshot_2026-01-18_at_9.38.06_PM.png",
+            "image": "shopify://shop_images/1.png",
             "link": ""
           }
         },
         "image_GhX9mf": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/download_12.png",
+            "image": "shopify://shop_images/2.png",
             "link": ""
           }
         },
         "image_GNpw3a": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/download_11.png",
+            "image": "shopify://shop_images/3_7f199d51-c4b0-4df8-9b7c-b9b1449bbf6c.png",
             "link": ""
           }
         },
         "image_c47FfW": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/download_8.png",
+            "image": "shopify://shop_images/4_70af2d88-4fd6-4ab8-80e8-0f91086dd92d.png",
             "link": ""
           }
         },
         "image_cJ4WD6": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/download_7.png",
+            "image": "shopify://shop_images/5_e539ef7d-68d5-4328-af73-f28d2bd5e0fc.png",
             "link": ""
           }
         },
         "image_wW6tjD": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/download_1.png",
+            "image": "shopify://shop_images/6_d68ebbf8-365d-4136-9bc1-675ec785c0d0.png",
             "link": ""
           }
         },
         "image_LjXFJC": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/download_3.png",
+            "image": "shopify://shop_images/7_0cabf8e0-5de8-4ace-8a63-59e6b1b43a9e.png",
             "link": ""
           }
         },
         "image_g8DxLP": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/download_5.png",
+            "image": "shopify://shop_images/8.png",
             "link": ""
           }
         }
@@ -805,7 +805,7 @@
         "reveal_on_scroll": false,
         "pagination_style": "dots",
         "padding_top": 50,
-        "padding_bottom": 0,
+        "padding_bottom": 50,
         "reset_spacing": false
       }
     },

@@ -58,7 +58,7 @@
       "settings": {
         "container": "container-fluid",
         "title": "All collections",
-        "des_collection": "Posuere in netus a eu varius adipiscing suspendisse elementum vitae tempor suspendisse\nullamcorper aenean taciti morbi potenti.",
+        "des_collection": "",
         "type": "custom",
         "sort": "alphabetical",
         "layout": "layout-1",

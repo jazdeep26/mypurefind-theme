@@ -69,9 +69,16 @@
           "type": "review_sold",
           "settings": {
             "show_review": true,
-            "show_sold_product": true,
+            "show_sold_product": false,
             "sold": "8,10,12,15,17,22",
             "hours": "10,12,15,16,17,18,20,24"
+          }
+        },
+        "demo_slots_block": {
+          "type": "demo_slots",
+          "settings": {
+            "show_demo_slots": true,
+            "slots": "2,3,4,5,6"
           }
         },
         "062f7cd6-1265-4c29-a22c-e2bbebc5f2b6": {
@@ -169,6 +176,7 @@
         "3870a5bb-fec0-4b82-9405-e324077ed947",
         "custom_liquid_zFrbbW",
         "836d9723-358d-4023-88a8-2d3b5907093e",
+        "demo_slots_block",
         "062f7cd6-1265-4c29-a22c-e2bbebc5f2b6",
         "e5cf937e-e30a-4b9a-93c1-f48c229054f3",
         "b328bd75-b508-4fed-84c2-6727ff481d16",

@@ -186,6 +186,31 @@ Shopify.bind = function (fn, scope) {
     element.style.display = "block";
   };
 
+  Shopify.eventDemoSlots = function (dlg = false) {
+    let elements;
+    if (dlg) {
+      elements = document.querySelectorAll(
+        ".bls__quickview-content .bls__demo-slots"
+      );
+    } else {
+      elements = document.querySelectorAll(
+        ".bls__product-details-infor .bls__demo-slots, #bls__sticky-addcart .bls__demo-slots"
+      );
+    }
+    if (!elements.length) return;
+    elements.forEach(function(element) {
+      const demoSlots = element.getAttribute("data-demo-slots");
+      if (!demoSlots) return;
+      const slotsArray = demoSlots.split(",");
+      var slots = slotsArray[Math.floor(Math.random() * slotsArray.length)];
+      const slotsEl = element.querySelector(".demo-slots-count");
+      if (slotsEl) {
+        slotsEl.innerHTML = slots;
+      }
+      element.style.display = "block";
+    });
+  };
+
   Shopify.eventFlashingBrowseTab = function () {
     var enable = window.flashingBrowseTab?.enable,
       myTimer,

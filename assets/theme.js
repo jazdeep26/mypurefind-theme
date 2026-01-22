@@ -1617,6 +1617,7 @@ var BlsSubActionProduct = (function () {
                 BlsColorSwatchesShopify.init();
                 BlsReloadSpr.init();
                 Shopify.eventFlashSold("dlg");
+                Shopify.eventDemoSlots("dlg");
                 Shopify.eventCountDownTimer("dlg");
                 Shopify.swiperSlideQickview();
                 BlsLazyloadImg.init();

@@ -317,6 +317,7 @@
       },
       "product_title": "Product",
       "sold_in_last_html": "<span class=\"product-sold\">{{ sold }}</span> sold in last <span class=\"product-hour\">{{ hour }}</span> hours",
+      "demo_slots_left_html": "Only <span class=\"demo-slots-count\">{{ slots }}</span> Demo slots left for tomorrow.",
       "sold_out": "Sold out",
       "read_more": "Read more",
       "pre_order": "Pre-order",

@@ -20,6 +20,8 @@
   assign show_qv_sold_product = th_st.show_qv_sold_product
   assign sold_qv_product = th_st.sold_qv_product
   assign hours_qv_product = th_st.hours_qv_product
+  assign show_qv_demo_slots = th_st.show_qv_demo_slots
+  assign slots_qv_demo = th_st.slots_qv_demo
   assign sale_type = th_st.product_label_sale_type
   assign message_qv_countdown_timer = th_st.message_qv_countdown_timer
   assign show_qv_countdown_timer = th_st.show_qv_countdown_timer
@@ -682,6 +684,41 @@
               {%- endif -%}
             {%- endform -%}
           </product-form>
+          {%- if show_qv_demo_slots -%}
+            <div class="bls__demo-slots-wrapper mb-10 mt-15">
+              <div
+                class="bls__demo-slots"
+                data-demo-slots="{{ slots_qv_demo }}"
+                style="display:none"
+              >
+                <div class="flex align-items-center">
+                  <img
+                    class="mr-5"
+                    src="{{ 'icon_hot.svg' | asset_url }}"
+                    loading="lazy"
+                    width="12"
+                    height="16"
+                  >
+                  <div class="text primary-color">
+                    {%- assign slots = 3 -%}
+                    {{ 'products.product.demo_slots_left_html' | t: slots: slots }}
+                  </div>
+                </div>
+              </div>
+            </div>
+          {%- endif -%}
+          <button
+            type="button"
+            class="button button--secondary book-demo-btn product w-full"
+            data-entry="product"
+            data-category="{{product.collections.first.handle}}"
+            data-subcategory="{{product.type}}"
+            data-product="{{ product.handle }}"
+            data-variant-id="{{ product.selected_or_first_available_variant.id }}"
+            data-has-only-default-variant="{{ product.has_only_default_variant }}"
+          >
+            Book Free Home Demo
+          </button>
         {%- else -%}
           <a
             href="{{ product.metafields.custom.external_affiliate.value.external_link }}"
