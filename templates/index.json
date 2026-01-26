@@ -747,41 +747,108 @@
     "testimonial_4dyEYw": {
       "type": "testimonial",
       "blocks": {
-        "testimonials_BjqXeT": {
+        "google_review_1": {
           "type": "testimonials",
           "settings": {
             "title_text": "",
-            "description": "<p>I tried MyPureFind and wanted to share my experience.<br/>I’m not really a “makeup person” - I prefer quick, easy-to-use products that help me get ready and start my day without too much effort.</p>",
-            "author": "Madhu",
+            "description": "<p>I loved the service provided by My Pure Find as the Beauty Advisor really understood my skin tone and suggested me apt products. I have been using the suggested products and it’s doing wonder to my skin. The consultation is worth the short.</p>",
+            "author": "Riya Lakhmani",
             "job": "",
             "testimonial_width": 100
           }
         },
-        "testimonials_rx9Hfa": {
+        "google_review_2": {
           "type": "testimonials",
           "settings": {
             "title_text": "",
-            "description": "<p>The team at MyPureFind understood my needs perfectly and recommended the right set of products for me. They helped me explore new brands and find options that were closest to my preferences and skin needs.</p>",
-            "author": "Aanya Sharma",
+            "description": "<p>Thank you, Shaily and team for curating products of my choice and requirement. It’s great for having to do this at the convenience of home. At the retail stores, we’re pushed to try a single brand. Appreciate this novel concept. Best wishes!</p>",
+            "author": "Sangeethaa Padmanabhan",
             "job": "",
             "testimonial_width": 100
           }
         },
-        "testimonials_cizDYD": {
+        "google_review_3": {
           "type": "testimonials",
           "settings": {
             "title_text": "",
-            "description": "<p>What I loved most is that it didn’t stop at product recommendations - they even have experts who guide you, apply the products, and help you understand what suits you best.</p>",
-            "author": "Devanshi Singh",
+            "description": "<p>Such a stress free experience I had with My Pure Find. Trying the lip shades I wanted to try and buy at a comfort of my house. What else could I ask for. Thank you My Pure Find for the great service. Specially the beautician Achal - she understood my taste and showed me products accordingly. Thanks</p>",
+            "author": "Saloni Om",
+            "job": "",
+            "testimonial_width": 100
+          }
+        },
+        "google_review_4": {
+          "type": "testimonials",
+          "settings": {
+            "title_text": "",
+            "description": "<p>I had a wonderful experience with My Pure Find team. They helped me choose the right foundation shade as well as product for me, with the comfort of trial at my home. I could see how the product looked on my skin in natural lighting.</p>",
+            "author": "Ayushi Agrawal",
+            "job": "",
+            "testimonial_width": 100,
+            "rating": 4
+          }
+        },
+        "google_review_5": {
+          "type": "testimonials",
+          "settings": {
+            "title_text": "",
+            "description": "<p>Had a wonderful session with mypurefind mate Poonam. She was wonderful in everything. It was a really good experience with understanding the brands. Overall was really good experience with Poonam.</p>",
+            "author": "Asma Sheikh",
+            "job": "",
+            "testimonial_width": 100
+          }
+        },
+        "google_review_6": {
+          "type": "testimonials",
+          "settings": {
+            "title_text": "",
+            "description": "<p>Poonam it was nice try.</p>",
+            "author": "Thanu Chandrappa",
+            "job": "",
+            "testimonial_width": 100
+          }
+        },
+        "google_review_7": {
+          "type": "testimonials",
+          "settings": {
+            "title_text": "",
+            "description": "<p>The team was super friendly and I appreciate their beauty advisor Poonam who helped me find my right shade after many years of struggle to find my right shade to my skin tone, and her advice to products for skincare was even more useful for me to make my wishlist for my next purchase. Thank you Shely and Avantika as well.</p>",
+            "author": "blendedmuseartistry",
+            "job": "",
+            "testimonial_width": 100
+          }
+        },
+        "google_review_8": {
+          "type": "testimonials",
+          "settings": {
+            "title_text": "",
+            "description": "<p>The people the service is so helpful the range of the products is more than enough loved the service.</p>",
+            "author": "Simran Namdev",
+            "job": "",
+            "testimonial_width": 100
+          }
+        },
+        "google_review_9": {
+          "type": "testimonials",
+          "settings": {
+            "title_text": "",
+            "description": "<p>Great service by Khushi from My Pure Find team. She helped me choose the right pre makeup products according to my skin tone and skin type. They have vast range of products to try from at the comfort of my house. Going to recommend them to everyone.</p>",
+            "author": "Sonam Bhati",
             "job": "",
             "testimonial_width": 100
           }
         }
       },
       "block_order": [
-        "testimonials_BjqXeT",
-        "testimonials_rx9Hfa",
-        "testimonials_cizDYD"
+        "google_review_1",
+        "google_review_2",
+        "google_review_3",
+        "google_review_4",
+        "google_review_5",
+        "google_review_6",
+        "google_review_7",
+        "google_review_8",
+        "google_review_9"
       ],
       "name": "t:sections.testimonials.name",
       "settings": {

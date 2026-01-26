@@ -171,10 +171,15 @@
                     </div>
                     <div class="bls__quote-info">
                       {%- if section.settings.show_rating -%}
+                        {%- assign block_rating = block.settings.rating | default: 5 -%}
                         <div class="bls__tes-rate stars mb-10 mt-10">
                           {%- for i in (1..5) -%}
                             <span class="star inline-flex">
-                              <i class="picon-star-half-filled fs-16"></i>
+                              {%- if i <= block_rating -%}
+                                <i class="picon-star-half-filled fs-16"></i>
+                              {%- else -%}
+                                <i class="picon-star-half-filled fs-16" style="opacity: 0.25"></i>
+                              {%- endif -%}
                             </span>
                           {%- endfor -%}
                         </div>
@@ -188,10 +193,15 @@
                     </div>
                   {% elsif design == 'design_2' %}
                     {%- if section.settings.show_rating -%}
+                      {%- assign block_rating = block.settings.rating | default: 5 -%}
                       <div class="bls__tes-rate stars mb-10">
                         {%- for i in (1..5) -%}
                           <span class="star inline-flex">
-                            <i class="picon-star-half-filled fs-16"></i>
+                            {%- if i <= block_rating -%}
+                              <i class="picon-star-half-filled fs-16"></i>
+                            {%- else -%}
+                              <i class="picon-star-half-filled fs-16" style="opacity: 0.25"></i>
+                            {%- endif -%}
                           </span>
                         {%- endfor -%}
                       </div>
@@ -220,10 +230,15 @@
                       </div>
                     {%- endif -%}
                     {%- if section.settings.show_rating -%}
+                      {%- assign block_rating = block.settings.rating | default: 5 -%}
                       <div class="bls__tes-rate stars mt-5">
                         {%- for i in (1..5) -%}
                           <span class="star inline-flex">
-                            <i class="picon-star-half-filled fs-16"></i>
+                            {%- if i <= block_rating -%}
+                              <i class="picon-star-half-filled fs-16"></i>
+                            {%- else -%}
+                              <i class="picon-star-half-filled fs-16" style="opacity: 0.25"></i>
+                            {%- endif -%}
                           </span>
                         {%- endfor -%}
                       </div>
@@ -617,6 +632,15 @@
           "id": "author",
           "label": "t:sections.testimonials.blocks.Testimonials.settings.author.label",
           "default": "Siarhei Dzenisenka"
+        },
+        {
+          "type": "range",
+          "id": "rating",
+          "label": "Rating",
+          "min": 1,
+          "max": 5,
+          "step": 1,
+          "default": 5
         },
         {
           "type": "text",
