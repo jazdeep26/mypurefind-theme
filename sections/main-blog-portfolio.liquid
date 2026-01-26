@@ -1,5 +1,5 @@
-{{ 'blog-template.css' | asset_url | stylesheet_tag }}
-{{ 'blog-item.css' | asset_url | stylesheet_tag }}
+{{ 'blog-template.min.css' | asset_url | stylesheet_tag }}
+{{ 'blog-item.min.css' | asset_url | stylesheet_tag }}
 {% # theme-check-disable ContentForHeaderModification %}
 {%- capture contentForQuerystring -%}{{ content_for_header }}{%- endcapture -%}
 {% # theme-check-enable ContentForHeaderModification %}
@@ -54,7 +54,7 @@
   endif
 -%}
 <script src="{{ 'masonry.min.js' | asset_url }}" defer></script>
-<script src="{{ 'blog.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'blog.min.js' | asset_url }}" defer="defer"></script>
 <div class="section-{{ section.id }} section-blog-portfolio" data-id="{{ section.id }}">
   <div class="{{ st.container }} section-full">
     <ul class="blog-tags-list p-0 list-unstyled my-0 d-flex flex-wrap flex-1 justify-content-center article-card__info">

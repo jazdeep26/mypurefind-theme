@@ -1,5 +1,5 @@
-{{ 'blog-template.css' | asset_url | stylesheet_tag }}
-{{ 'blog-item.css' | asset_url | stylesheet_tag }}
+{{ 'blog-template.min.css' | asset_url | stylesheet_tag }}
+{{ 'blog-item.min.css' | asset_url | stylesheet_tag }}
 {% # theme-check-disable ContentForHeaderModification %}
 {%- capture contentForQuerystring -%}{{ content_for_header }}{%- endcapture -%}
 {% # theme-check-enable ContentForHeaderModification %}
@@ -68,7 +68,7 @@
     assign blog_column = 'row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-3 row-cols-xl-4'
   endif
 -%}
-<script src="{{ 'blog.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'blog.min.js' | asset_url }}" defer="defer"></script>
 <div class="section-{{ section.id }} section-blog" data-section-id="{{ section.id }}">
   <div class="{{ st.container }} section-full">
     <div class="row">

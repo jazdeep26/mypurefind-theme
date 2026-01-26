@@ -16,7 +16,7 @@
   assign list_user = st.fake_user | replace: ' | ', '|' | replace: ' |', '|' | replace: '| ', '|' | split: '|'
 -%}
 {%- if product_available.size > 0 -%}
-  {{ 'fake-order.css' | asset_url | stylesheet_tag }}
+  {{ 'fake-order.min.css' | asset_url | stylesheet_tag }}
   <div
     id="bls__fake-order"
     class="fake-order animated {% if hidden_mobile != true %}hidden-mobile{% endif %}"

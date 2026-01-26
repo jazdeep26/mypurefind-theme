@@ -1,4 +1,4 @@
-{{ 'instagram.css' | asset_url | stylesheet_tag }}
+{{ 'instagram.min.css' | asset_url | stylesheet_tag }}
 {%- liquid
   assign st = section.settings
   assign container = st.container
@@ -245,7 +245,7 @@
     {% endif %}
   </div>
 </section>
-<script src="{{ 'section-instagram.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'section-instagram.min.js' | asset_url }}" defer="defer"></script>
 
 {% schema %}
 {

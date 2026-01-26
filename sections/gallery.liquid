@@ -60,7 +60,7 @@
   --section-padding-top: {{ st.padding_top }}px; --section-padding-bottom: {{ st.padding_bottom }}px; --bls-gutter-x: {{ column_gap }}px;
 {%- endcapture -%}
 {% if st.actions_click == 'photoswipe' %}
-  {{ 'photoswipe.css' | asset_url | stylesheet_tag }}
+  {{ 'photoswipe.min.css' | asset_url | stylesheet_tag }}
 {% endif %}
 <section
   class="{% if aspect_ratio == 'show_width_height' %}show-width-height{% endif %} bls__section color-{{ color_scheme }} gradient {{ spt_tablet }}{{ spb_tablet }}{{ spt_mobile }}{{ spb_mobile }} bls__gallery {{ reset_spacing }}"

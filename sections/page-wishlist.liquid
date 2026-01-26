@@ -1,7 +1,7 @@
-<script src="{{ 'wishlist.js' | asset_url }}" defer="defer"></script>
-{{ 'product.css' | asset_url | stylesheet_tag }}
-{{ 'wishlist.css' | asset_url | stylesheet_tag }}
-{{ 'skeleton.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'wishlist.min.js' | asset_url }}" defer="defer"></script>
+{{ 'product.min.css' | asset_url | stylesheet_tag }}
+{{ 'wishlist.min.css' | asset_url | stylesheet_tag }}
+{{ 'skeleton.min.css' | asset_url | stylesheet_tag }}
 {%- liquid
   assign th_st = settings
   assign product_style = th_st.product_style

@@ -20,7 +20,7 @@
   assign cart_shipping_rates_days = th_st.cart_shipping_rates_days
   assign cart_countdown = th_st.cart_countdown
 %}
-<script src="{{ 'cart.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'cart.min.js' | asset_url }}" defer="defer"></script>
 {% if cart == empty %}
   <div class="cart__warnings text-center page-heading">
     <div class="page-head page-title">

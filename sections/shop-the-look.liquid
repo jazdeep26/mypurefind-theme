@@ -1,4 +1,4 @@
-{{ 'lookbook.css' | asset_url | stylesheet_tag }}
+{{ 'lookbook.min.css' | asset_url | stylesheet_tag }}
 {%- liquid
   assign st = section.settings
   assign container = st.container
@@ -159,7 +159,7 @@
   </div>
 </shop-the-look>
 
-<script src="{{ 'section-shop-the-look.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'section-shop-the-look.min.js' | asset_url }}" defer="defer"></script>
 {% schema %}
 {
   "name": "t:sections.shop-the-look.name",

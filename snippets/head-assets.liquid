@@ -53,7 +53,7 @@
   {%- liquid
     assign fnt_fm_body = settings.fnt_body_custom
   -%}
-  {{ 'define-custom-font-body.css' | asset_url | stylesheet_tag }}
+  {{ 'define-custom-font-body.min.css' | asset_url | stylesheet_tag }}
 {%- endif -%}
 
 {%- if font_source_heading == '1' -%}
@@ -95,7 +95,7 @@
   {%- liquid
     assign fnt_fm_headings = settings.fnt_headings_custom
   -%}
-  {{ 'define-custom-font-headings.css' | asset_url | stylesheet_tag }}
+  {{ 'define-custom-font-headings.min.css' | asset_url | stylesheet_tag }}
 {%- endif -%}
 
 {%- if font_source_menu == '1' -%}
@@ -137,7 +137,7 @@
   {%- liquid
     assign fnt_fm_menu = settings.fnt_menu_custom
   -%}
-  {{ 'define-custom-font-menu.css' | asset_url | stylesheet_tag }}
+  {{ 'define-custom-font-menu.min.css' | asset_url | stylesheet_tag }}
 {%- endif -%}
 
 {%- style -%}
@@ -359,24 +359,32 @@
     }
   {% endif %}
 {%- endstyle -%}
-{{ 'critical.css' | asset_url | stylesheet_tag: preload: true }}
+{{ 'critical.min.css' | asset_url | stylesheet_tag: preload: true }}
 {%- if enable_rtl -%}
-  {{- 'bootstrap-grid.rtl.css' | asset_url | stylesheet_tag -}}
-  {{ 'utilities-rtl.css' | asset_url | stylesheet_tag }}
+  {{- 'bootstrap-grid.rtl.min.css' | asset_url | stylesheet_tag: preload: true -}}
+  <link rel="stylesheet" href="{{ 'utilities-rtl.min.css' | asset_url }}" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="{{ 'utilities-rtl.min.css' | asset_url }}"></noscript>
 {%- else -%}
-  {{ 'bootstrap-grid.css' | asset_url | stylesheet_tag: preload: true }}
-  {{ 'utilities.css' | asset_url | stylesheet_tag: preload: true }}
+  {{ 'bootstrap-grid.min.css' | asset_url | stylesheet_tag: preload: true }}
+  <link rel="stylesheet" href="{{ 'utilities.min.css' | asset_url }}" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="{{ 'utilities.min.css' | asset_url }}"></noscript>
 {%- endif -%}
-{{ 'vendor.css' | asset_url | stylesheet_tag: preload: true }}
-{{ 'base.css' | asset_url | stylesheet_tag: preload: true }}
-<noscript><link rel="stylesheet" href="{{ 'base.css' | asset_url }}"></noscript>
-<link rel="stylesheet" href="{{ 'animations.css' | asset_url }}" fetchpriority="low">
-<link rel="stylesheet" href="{{ 'judgeme-reviews.css' | asset_url }}" fetchpriority="low">
+<link rel="stylesheet" href="{{ 'vendor.min.css' | asset_url }}" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="{{ 'vendor.min.css' | asset_url }}"></noscript>
+<link rel="stylesheet" href="{{ 'base.min.css' | asset_url }}" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="{{ 'base.min.css' | asset_url }}"></noscript>
+<link rel="stylesheet" href="{{ 'critical-animations.min.css' | asset_url }}" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="{{ 'critical-animations.min.css' | asset_url }}"></noscript>
+<link rel="stylesheet" href="{{ 'animations.min.css' | asset_url }}" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="{{ 'animations.min.css' | asset_url }}"></noscript>
+<link rel="stylesheet" href="{{ 'judgeme-reviews.min.css' | asset_url }}" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="{{ 'judgeme-reviews.min.css' | asset_url }}"></noscript>
 {%- if enable_rtl -%}
-  {{ 'rtl.css' | asset_url | stylesheet_tag }}
+  <link rel="stylesheet" href="{{ 'rtl.min.css' | asset_url }}" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="{{ 'rtl.min.css' | asset_url }}"></noscript>
 {%- endif -%}
 <script src="{{ 'swiper-bundle.min.js' | asset_url }}" defer="defer"></script>
 <script src="{{ 'easydlg.min.js' | asset_url }}" defer="defer"></script>
-<script src="{{ 'shopify.js' | asset_url }}" defer="defer"></script>
-<script src="{{ 'modal.js' | asset_url }}" defer="defer"></script>
-<script src="{{ 'global.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'shopify.min.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'modal.min.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'global.min.js' | asset_url }}" defer="defer"></script>

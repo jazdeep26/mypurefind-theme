@@ -1,5 +1,5 @@
-{{ 'blog-template.css' | asset_url | stylesheet_tag }}
-{{ 'blog-item.css' | asset_url | stylesheet_tag }}
+{{ 'blog-template.min.css' | asset_url | stylesheet_tag }}
+{{ 'blog-item.min.css' | asset_url | stylesheet_tag }}
 {%- liquid
   assign st = section.settings
   assign show_author = st.post_show_author
@@ -10,7 +10,7 @@
   assign custom_ratio = st.custom_ratio
   assign hover_effect = st.hover_effect
 -%}
-<script src="{{ 'blog.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'blog.min.js' | asset_url }}" defer="defer"></script>
 <section id="pageContent">
   <div class="{{ st.container }} section-full clearfix">
     <div class="row">

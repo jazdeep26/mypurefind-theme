@@ -1,6 +1,6 @@
-{{ 'product-details.css' | asset_url | stylesheet_tag }}
-{{ 'product.css' | asset_url | stylesheet_tag }}
-{{ 'photoswipe.css' | asset_url | stylesheet_tag }}
+{{ 'product-details.min.css' | asset_url | stylesheet_tag }}
+{{ 'product.min.css' | asset_url | stylesheet_tag }}
+{{ 'photoswipe.min.css' | asset_url | stylesheet_tag }}
 {%- assign pageUrl = contentForQuerystring
   | split: '"pageurl":"'
   | last
@@ -137,7 +137,7 @@
   endif
 -%}
 {%- if st.product_loading_effect == blank -%}
-  {{ 'skeleton.css' | asset_url | stylesheet_tag }}
+  {{ 'skeleton.min.css' | asset_url | stylesheet_tag }}
 {%- endif -%}
 {%- if hidden_button_add_to_cart == true -%}
   <style>
@@ -1535,7 +1535,7 @@
                       </stock-countdown>
                     {%- endif -%}
                   {%- when 'pickup_availability' %}
-                    {{ 'component-pickup-availability.css' | asset_url | stylesheet_tag }}
+                    {{ 'component-pickup-availability.min.css' | asset_url | stylesheet_tag }}
                     <div class="bls__pickup-availability">
                       <pickup-availability
                         class="product__pickup-availabilities no-js-hidden quick-add-hidden"
@@ -1566,7 +1566,7 @@
                         </template>
                       </pickup-availability>
                     </div>
-                    <script src="{{ 'pickup-availability.js' | asset_url }}" defer="defer"></script>
+                    <script src="{{ 'pickup-availability.min.js' | asset_url }}" defer="defer"></script>
                   {%- when 'custom_html' %}
                     {% if bk_st.content != blank %}
                       <div class="bls__custom-html my-10">

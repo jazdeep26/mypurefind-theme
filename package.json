@@ -1,0 +1,19 @@
+{
+  "name": "mypurefind-theme",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "minify:js": "node scripts/minify-js.js",
+    "minify:css": "node scripts/minify-css.js",
+    "minify": "npm run minify:js && npm run minify:css",
+    "watch:js": "node scripts/watch-js.js",
+    "watch:css": "node scripts/watch-css.js",
+    "watch": "concurrently \"npm run watch:js\" \"npm run watch:css\""
+  },
+  "devDependencies": {
+    "chokidar": "^3.6.0",
+    "clean-css": "^5.3.3",
+    "concurrently": "^8.2.2",
+    "terser": "^5.31.0"
+  }
+}

@@ -1,5 +1,5 @@
-{{ 'collections-list.css' | asset_url | stylesheet_tag }}
-{%- if section.settings.layout == 'layout-1' -%}{{ 'collections-item.css' | asset_url | stylesheet_tag }}{%- endif -%}
+{{ 'collections-list.min.css' | asset_url | stylesheet_tag }}
+{%- if section.settings.layout == 'layout-1' -%}{{ 'collections-item.min.css' | asset_url | stylesheet_tag }}{%- endif -%}
 {%- liquid
   assign st = section.settings
   assign column_gap = st.column_gap

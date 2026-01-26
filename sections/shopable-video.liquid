@@ -1,5 +1,5 @@
-{{ 'photoswipe.css' | asset_url | stylesheet_tag }}
-{{ 'shopable-video.css' | asset_url | stylesheet_tag }}
+{{ 'photoswipe.min.css' | asset_url | stylesheet_tag }}
+{{ 'shopable-video.min.css' | asset_url | stylesheet_tag }}
 {%- liquid
   assign st = section.settings
   assign container = st.container
@@ -322,7 +322,7 @@
   </div>
 </section>
 <script
-  src="{{ 'shopable-video.js' | asset_url }}"
+  src="{{ 'shopable-video.min.js' | asset_url }}"
   defer="defer"
   type="module"
 ></script>
