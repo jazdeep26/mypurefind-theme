@@ -158,6 +158,14 @@
             "image": "shopify://shop_images/Gemini_Generated_Image_dzgn4wdzgn4wdzgn.png"
           }
         },
+        "template--16567751475447__8498460c-0376-40d1-bafc-199edbe0edfc-16665857567f9937b1-3": {
+          "type": "collection_item",
+          "settings": {
+            "title_collection": "Skincare",
+            "collection": "skincare",
+            "image": "shopify://shop_images/Gemini_Generated_Image_h3upfwh3upfwh3up_1.png"
+          }
+        },
         "template--16567751475447__8498460c-0376-40d1-bafc-199edbe0edfc-16665857567f9937b1-1": {
           "type": "collection_item",
           "settings": {
@@ -174,28 +182,20 @@
             "image": "shopify://shop_images/ChatGPT_Image_Jan_22_2026_06_52_07_PM.png"
           }
         },
-        "template--16567751475447__8498460c-0376-40d1-bafc-199edbe0edfc-16665857567f9937b1-3": {
-          "type": "collection_item",
-          "settings": {
-            "title_collection": "Skincare",
-            "collection": "skincare",
-            "image": "shopify://shop_images/Gemini_Generated_Image_h3upfwh3upfwh3up_1.png"
-          }
-        },
         "collection_item_V3qKNU": {
           "type": "collection_item",
           "settings": {
             "title_collection": "Jewellery",
             "collection": "jewellery",
-            "image": "shopify://shop_images/Gemini_Generated_Image_pxrhvvpxrhvvpxrh.png"
+            "image": "shopify://shop_images/jewel_1.png"
           }
         }
       },
       "block_order": [
         "template--16567751475447__8498460c-0376-40d1-bafc-199edbe0edfc-16665857567f9937b1-0",
+        "template--16567751475447__8498460c-0376-40d1-bafc-199edbe0edfc-16665857567f9937b1-3",
         "template--16567751475447__8498460c-0376-40d1-bafc-199edbe0edfc-16665857567f9937b1-1",
         "template--16567751475447__8498460c-0376-40d1-bafc-199edbe0edfc-16665857567f9937b1-2",
-        "template--16567751475447__8498460c-0376-40d1-bafc-199edbe0edfc-16665857567f9937b1-3",
         "collection_item_V3qKNU"
       ],
       "settings": {
@@ -384,7 +384,7 @@
           "settings": {
             "title_collection": "2. We Curate select Products",
             "collection": "",
-            "image": "shopify://shop_images/Gemini_Generated_Image_50mlia50mlia50ml.png"
+            "image": "shopify://shop_images/ChatGPT_Image_Jan_23_2026_12_13_30_PM.png"
           }
         },
         "collection_item_rNFzff": {
@@ -392,7 +392,7 @@
           "settings": {
             "title_collection": "3. Free 60-Min Home Demo",
             "collection": "",
-            "image": "shopify://shop_images/Gemini_Generated_Image_b3ifx0b3ifx0b3if.png"
+            "image": "shopify://shop_images/ChatGPT_Image_Jan_23_2026_12_15_50_PM.png"
           }
         },
         "collection_item_F86nVt": {
@@ -400,7 +400,7 @@
           "settings": {
             "title_collection": "4. Buy Only What You Love",
             "collection": "",
-            "image": "shopify://shop_images/Gemini_Generated_Image_dzig7mdzig7mdzig.png"
+            "image": "shopify://shop_images/ChatGPT_Image_Jan_23_2026_12_40_10_PM.png"
           }
         }
       },

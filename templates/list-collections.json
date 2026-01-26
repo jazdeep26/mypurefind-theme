@@ -16,35 +16,40 @@
           "type": "collection",
           "settings": {
             "title_collection": "Makeup",
-            "collection": "makeup"
+            "collection": "makeup",
+            "image": "shopify://shop_images/Gemini_Generated_Image_dzgn4wdzgn4wdzgn.png"
           }
         },
         "collection_A6NFpH": {
           "type": "collection",
           "settings": {
             "title_collection": "Skincare",
-            "collection": "skincare"
+            "collection": "skincare",
+            "image": "shopify://shop_images/Gemini_Generated_Image_h3upfwh3upfwh3up_1.png"
           }
         },
         "collection_ghBXJ9": {
           "type": "collection",
           "settings": {
             "title_collection": "",
-            "collection": "fragrances"
+            "collection": "fragrances",
+            "image": "shopify://shop_images/Gemini_Generated_Image_9u6fzt9u6fzt9u6f.png"
           }
         },
         "collection_hdUjq7": {
           "type": "collection",
           "settings": {
             "title_collection": "",
-            "collection": "hair-extensions"
+            "collection": "hair-extensions",
+            "image": "shopify://shop_images/ChatGPT_Image_Jan_22_2026_06_52_07_PM.png"
           }
         },
         "collection_gRYneh": {
           "type": "collection",
           "settings": {
-            "title_collection": "Coming Soon",
-            "collection": "jewellery"
+            "title_collection": "Jewellery",
+            "collection": "jewellery",
+            "image": "shopify://shop_images/jewel_1.png"
           }
         }
       },
