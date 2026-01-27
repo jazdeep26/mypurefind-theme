@@ -10,12 +10,12 @@
 .bls__product-type,
 .bls__product-vendor a {
   color: var(--grey-color);
-  font-weight: 400;
+  font-weight: bold;
 }
 
 .bls__product-vendor {
   text-transform: uppercase;
-  font-size: calc(var(--base-font-size) - 3px);
+  font-size: calc(var(--base-font-size) + 3px);
 }
 
 .bls__product-price {
