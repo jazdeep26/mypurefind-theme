@@ -16,7 +16,7 @@
     "logo_svg": "",
     "logo_transparent_image": "shopify://shop_images/WhatsApp_Image_2026-01-07_at_12.06.38_PM.jpg",
     "logo_width_desktop": 300,
-    "logo_width_mobile": 200,
+    "logo_width_mobile": 250,
     "first_notification": "Mypurefind",
     "secondary_notification": "Try before you buy-at home🏠",
     "rtl": false,
@@ -973,8 +973,9 @@
   "platform_customizations": {
     "custom_css": [
       ".threesixty .threesixty_images img {display: none;}",
-      "body {--height-header: 60px !important; /* 90px → 60px */}",
-      ".header img,.logo img {max-height: 50px !important; width: auto !important;}"
+      "body {--height-header: 60px !important;}",
+      ".header img,.logo img {max-height: 55px !important; width: auto !important;}",
+      ".header .bls__header-inner {padding-top: 5px !important; padding-bottom: 5px !important;}"
     ]
   }
 }
