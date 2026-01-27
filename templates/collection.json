@@ -63,7 +63,7 @@
         "template--16567751475447__8498460c-0376-40d1-bafc-199edbe0edfc-16665857567f9937b1-3": {
           "type": "collection_item",
           "settings": {
-            "title_collection": "Hair Extension",
+            "title_collection": "Hair Extensions",
             "collection": "hair-extensions"
           }
         },
@@ -73,22 +73,14 @@
             "title_collection": "Jewellery",
             "collection": "jewellery"
           }
-        },
-        "36a53b4a-830c-4660-a410-d73343bf9d7d": {
-          "type": "collection_item",
-          "settings": {
-            "title_collection": "WINTER COAT",
-            "collection": "winter-coat"
-          }
         }
       },
       "block_order": [
         "template--16567751475447__8498460c-0376-40d1-bafc-199edbe0edfc-16665857567f9937b1-0",
-        "template--16567751475447__8498460c-0376-40d1-bafc-199edbe0edfc-16665857567f9937b1-1",
+        "616f3472-abe6-41ef-8d49-4e190d1fc5cc",
         "template--16567751475447__8498460c-0376-40d1-bafc-199edbe0edfc-16665857567f9937b1-2",
         "template--16567751475447__8498460c-0376-40d1-bafc-199edbe0edfc-16665857567f9937b1-3",
-        "616f3472-abe6-41ef-8d49-4e190d1fc5cc",
-        "36a53b4a-830c-4660-a410-d73343bf9d7d"
+        "template--16567751475447__8498460c-0376-40d1-bafc-199edbe0edfc-16665857567f9937b1-1"
       ],
       "disabled": true,
       "settings": {

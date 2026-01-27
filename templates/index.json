@@ -193,10 +193,10 @@
       },
       "block_order": [
         "template--16567751475447__8498460c-0376-40d1-bafc-199edbe0edfc-16665857567f9937b1-0",
-        "template--16567751475447__8498460c-0376-40d1-bafc-199edbe0edfc-16665857567f9937b1-3",
+        "collection_item_V3qKNU",
         "template--16567751475447__8498460c-0376-40d1-bafc-199edbe0edfc-16665857567f9937b1-1",
         "template--16567751475447__8498460c-0376-40d1-bafc-199edbe0edfc-16665857567f9937b1-2",
-        "collection_item_V3qKNU"
+        "template--16567751475447__8498460c-0376-40d1-bafc-199edbe0edfc-16665857567f9937b1-3"
       ],
       "settings": {
         "heading": "Categories",
@@ -274,10 +274,10 @@
       },
       "block_order": [
         "collection_ThmKfr",
-        "collection_tEcVLD",
+        "collection_pTbrxG",
         "collection_UzQrBe",
         "collection_iGthCH",
-        "collection_pTbrxG"
+        "collection_tEcVLD"
       ],
       "name": "t:sections.collection-tab.name",
       "settings": {
