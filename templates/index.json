@@ -588,95 +588,15 @@
         "reset_spacing": false
       }
     },
-    "gallery_neHGjP": {
-      "type": "gallery",
-      "blocks": {
-        "image_rPQazV": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/1.png",
-            "link": ""
-          }
-        },
-        "image_GhX9mf": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/2.png",
-            "link": ""
-          }
-        },
-        "image_GNpw3a": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/3_7f199d51-c4b0-4df8-9b7c-b9b1449bbf6c.png",
-            "link": ""
-          }
-        },
-        "image_c47FfW": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/4_70af2d88-4fd6-4ab8-80e8-0f91086dd92d.png",
-            "link": ""
-          }
-        },
-        "image_cJ4WD6": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/5_e539ef7d-68d5-4328-af73-f28d2bd5e0fc.png",
-            "link": ""
-          }
-        },
-        "image_wW6tjD": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/6_d68ebbf8-365d-4136-9bc1-675ec785c0d0.png",
-            "link": ""
-          }
-        },
-        "image_LjXFJC": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/7_0cabf8e0-5de8-4ace-8a63-59e6b1b43a9e.png",
-            "link": ""
-          }
-        },
-        "image_g8DxLP": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/8.png",
-            "link": ""
-          }
-        }
-      },
-      "block_order": [
-        "image_rPQazV",
-        "image_GhX9mf",
-        "image_GNpw3a",
-        "image_c47FfW",
-        "image_cJ4WD6",
-        "image_wW6tjD",
-        "image_LjXFJC",
-        "image_g8DxLP"
-      ],
-      "name": "t:sections.gallery.name",
+    "brands_tabbed": {
+      "type": "brands-tabbed",
       "settings": {
         "heading": "Top Brands",
         "heading_border": false,
         "description": "",
-        "text_align": "text-center",
+        "text_alignment": "text-center",
         "container": "container",
         "color_scheme": "scheme-d127e173-a562-42f4-a41e-3483b672d918",
-        "layout_type": "grid",
-        "column_gap": 30,
-        "aspect_ratio": "original",
-        "custom_ratio": "21:9",
-        "actions_click": "unset",
-        "custom_column": 4,
-        "grid_image_desktop": 4,
-        "autoplay": false,
-        "loop": false,
-        "show_arrow": false,
-        "carousel_pagination": "carousel_none",
         "padding_top": 50,
         "padding_bottom": 50,
         "reset_spacing": true
@@ -972,7 +892,7 @@
     "spacing_NRqTGq",
     "lookbook_nfjDGh",
     "blog_posts_WCFfjA",
-    "gallery_neHGjP",
+    "brands_tabbed",
     "icon_box_a94hU4",
     "spacing_KpLA4g",
     "testimonial_4dyEYw",
