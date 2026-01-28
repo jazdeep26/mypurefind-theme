@@ -1599,6 +1599,31 @@
       },
       {
         "type": "checkbox",
+        "id": "hide_discount_show_higher_price",
+        "label": "Hide Discounts and Show Higher Price",
+        "info": "When enabled, shows only the higher price (compare_at_price or price) without discount labels",
+        "default": true
+      },
+      {
+        "type": "header",
+        "content": "Vendor Caveat Message"
+      },
+      {
+        "type": "textarea",
+        "id": "vendor_caveat_list",
+        "label": "Vendors requiring caveat",
+        "info": "Comma-separated list of vendor names that should show the caveat message (e.g., Apple, Samsung, Nike)",
+        "default": "Nish Hair, HairOrignals"
+      },
+      {
+        "type": "text",
+        "id": "vendor_caveat_message",
+        "label": "Caveat message",
+        "default": "*This is not a brand collaboration listing",
+        "info": "Message shown below vendor name for listed vendors"
+      },
+      {
+        "type": "checkbox",
         "id": "enable_sale_label",
         "label": "t:settings_schema.product.settings.enable_sale_label.label",
         "default": true

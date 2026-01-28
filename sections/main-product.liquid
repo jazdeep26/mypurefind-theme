@@ -192,7 +192,7 @@
                       assign price = target.price | default: 1999
                     -%}
                     <div class="bls__product-label-detail {{ sale_type }}" id="{{ block.id }}">
-                      {%- if compare_at_price > price and compare_at_price != blank -%}
+                      {%- if compare_at_price > price and compare_at_price != blank and settings.hide_discount_show_higher_price != true -%}
                         <div id="bls__product-label" class="bls__product-label fs-12 pointer-events-none inline-block">
                           <div class="bls__sale-label">
                             {%- assign p = compare_at_price | minus: price -%}
@@ -269,48 +269,10 @@
                     <h1 class="bls__product-title mb-5" style="--bls__product-title-size:{{ bk_st.font_size }}px;">
                       {{ product.title }}
                     </h1>
-                  {%- when 'review_sold' -%}
-                    <div class="bls__product-review-sold flex flex-wrap align-items-center fs-large">
-                      {%- if bk_st.show_review -%}
-                        {%- if product.metafields.judgeme.badge -%}
-                          <review-scroll class="bls__pro-reviews pointer">
-                            {%- if product.metafields.judgeme.badge -%}
-                              <div id="jdgm-widget jdgm-preview-badge" data-id="{{ product.id }}">
-                                {{ product.metafields.judgeme.badge }}
-                              </div>
-                            {%- endif -%}
-                          </review-scroll>
-                        {%- endif -%}
-                      {%- endif -%}
-                      {%- if bk_st.show_sold_product -%}
-                        <div class="bls__sold-product">
-                          <div
-                            class="bls__flash-sold"
-                            data-flash-sold="{{ bk_st.sold }}"
-                            data-flash-hours="{{ bk_st.hours }}"
-                            style="display:none"
-                          >
-                            <div class="flex align-items-center">
-                              <img
-                                class="mr-5"
-                                src="{{ 'icon_hot.svg' | asset_url }}"
-                                loading="lazy"
-                                width="12"
-                                height="16"
-                              >
-
-                              <div class="text primary-color">
-                                {%- liquid
-                                  assign sold = 8
-                                  assign hour = 12
-                                -%}
-                                {{ 'products.product.sold_in_last_html' | t: sold: sold, hour: hour }}
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      {%- endif -%}
+                    <div class="bls__pro-reviews mb-10">
+                      {% render 'static-rating', product: product %}
                     </div>
+                  {%- when 'review_sold' -%}
                   {%- when 'short_description' -%}
                     {%- if product.metafields.bls.short_description -%}
                       <div class="bls__single-shortdes mb-20" itemprop="description">
@@ -319,7 +281,7 @@
                     {%- endif -%}
                   {%- when 'product_price' -%}
                     {% if hidden_price == false %}
-                      <div id="price-{{ section.id }}" class="bls__product-price biger-price py-10">
+                      <div id="price-{{ section.id }}" class="bls__product-price biger-price pb-10">
                         {%- render 'price', product: product, use_variant: true, price_class: 'price--large' -%}
                       </div>
                     {% endif %}
@@ -1507,6 +1469,25 @@
                 {%- endcase -%}
 
               {%- endfor -%}
+              {%- if settings.vendor_caveat_list != blank -%}
+                {%- liquid
+                  assign caveat_vendors = settings.vendor_caveat_list | split: ','
+                  assign show_caveat = false
+                  for vendor_item in caveat_vendors
+                    assign vendor_check = vendor_item | strip | downcase
+                    assign product_vendor_check = product.vendor | downcase
+                    if product_vendor_check == vendor_check
+                      assign show_caveat = true
+                      break
+                    endif
+                  endfor
+                -%}
+                {%- if show_caveat -%}
+                  <p class="vendor-caveat-message" style="margin: -20px 0 10px 0;">
+                    {{ settings.vendor_caveat_message }}
+                  </p>
+                {%- endif -%}
+              {%- endif -%}
                     {%- for block in section.blocks -%}
                       {%- if block.type == 'demo_slots' and block.settings.show_demo_slots -%}
                         <div class="bls__demo-slots-wrapper mb-10 d-none-mb">

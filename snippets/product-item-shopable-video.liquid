@@ -197,7 +197,7 @@
             {{- 'products.product.label.subscription' | t -}}
           </div>
         {% endif %}
-        {%- if sale -%}
+        {%- if sale and settings.hide_discount_show_higher_price != true -%}
           <div
             class="bls__sale-label"
           >
@@ -243,7 +243,7 @@
         <div
           class="bls__pro-reviews"
         >
-          {% render 'product-review' | review_star: true | product: product %}
+          {% render 'static-rating', product: product %}
         </div>
       </div>
     {%- endif -%}

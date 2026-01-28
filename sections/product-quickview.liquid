@@ -117,7 +117,7 @@
                 {{- 'products.product.label.subscription' | t -}}
               </div>
             {% endif %}
-            {% if sale_label %}
+            {% if sale_label and settings.hide_discount_show_higher_price != true %}
               <div class="bls__sale-label">
                 {%- assign p = compare_at_price | minus: price -%}
                 {%- if sale_type == 'text' -%}
@@ -150,36 +150,11 @@
             {{ product.title }}
           </a>
         </h3>
-        <div class="bls__product-review-sold flex flex-wrap align-items-center fs-large">
-          {%- if enable_product_review -%}
-            <div class="bls__pro-reviews">
-              {% render 'product-review' | review_star: true | product: product %}
-            </div>
-          {%- endif -%}
-          {%- if show_qv_sold_product -%}
-            <div class="bls__sold-product">
-              <div
-                class="bls__flash-sold"
-                data-flash-sold="{{ sold_qv_product }}"
-                data-flash-hours="{{ hours_qv_product }}"
-                style="display:none"
-              >
-                <div class="flex align-items-center">
-                  <img class="mr-5" src="{{ 'icon_hot.svg' | asset_url }}" loading="lazy" width="12" height="16">
-                  <div class="text primary-color">
-                    {%- liquid
-                      assign sold = 8
-                      assign hour = 12
-                    -%}
-                    {{ 'products.product.sold_in_last_html' | t: sold: sold, hour: hour }}
-                  </div>
-                </div>
-              </div>
-            </div>
-          {%- endif -%}
+        <div class="bls__pro-reviews mb-10">
+          {% render 'static-rating', product: product %}
         </div>
         {% if hidden_price == false %}
-          <div class="bls__product-price biger-price py-20">
+          <div class="bls__product-price biger-price pb-10">
             {%- render 'price', product: product, use_variant: true, price_class: 'price--large' -%}
           </div>
         {% endif %}
@@ -598,7 +573,7 @@
                     <button
                       type="submit"
                       name="add"
-                      class="button-add-cart-qv product-form__submit relative flex-1 whitespace-nowrap min-height-48 mb-15 mr-10 animation heading-weight fs-14 uppercase"
+                      class="button-add-cart-qv product-form__submit relative flex-1 whitespace-nowrap min-height-48 mb-15 animation heading-weight fs-14 uppercase"
                       {% if product.selected_or_first_available_variant.available == false %}
                         disabled
                       {% endif %}
@@ -772,6 +747,25 @@
             <li>
               <span class="bls__product-meta-label">{{ 'products.product.vendor' | t }}:</span>
               <span class="bls__product-meta-value grey-color">{{ product.vendor | link_to_vendor }}</span>
+              {%- if settings.vendor_caveat_list != blank -%}
+                {%- liquid
+                  assign caveat_vendors = settings.vendor_caveat_list | split: ','
+                  assign show_caveat = false
+                  for vendor_item in caveat_vendors
+                    assign vendor_check = vendor_item | strip | downcase
+                    assign product_vendor_check = product.vendor | downcase
+                    if product_vendor_check == vendor_check
+                      assign show_caveat = true
+                      break
+                    endif
+                  endfor
+                -%}
+                {%- if show_caveat -%}
+                  <p class="vendor-caveat-message">
+                    {{ settings.vendor_caveat_message }}
+                  </p>
+                {%- endif -%}
+              {%- endif -%}
             </li>
           {%- endif -%}
           {%- if enable_product_type and product.type != blank -%}

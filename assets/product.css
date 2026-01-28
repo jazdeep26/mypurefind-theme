@@ -9,8 +9,9 @@
 
 .bls__product-type,
 .bls__product-vendor a {
-  color: #282828;
-  font-weight: 700;
+  font-size: var(--bls__product-name-size);
+  color: var(--bls__product-name-color);
+  font-weight: var(--bls__product-name-weight);
 }
 
 .bls__product-vendor {
@@ -748,14 +749,17 @@
 .bls__grid.bls__product-style-2 .bls__js-addtocart {
   position: relative;
   line-height: 1.5;
-  font-size: clamp(1.3rem, 1.45vw, 1.6rem);
+  font-size: clamp(1.2rem, 1.45vw, 1.6rem);
   width: 100%;
   background-color: rgba(255, 255, 255, 0.85);
   color: var(--heading-color);
   text-transform: capitalize;
-  padding-left: 10px;
-  padding-right: 10px;
+  padding-left: 5px;
+  padding-right: 5px;
   --btn-border-radius:30px;
+}
+.bls__grid.bls__product-style-2 .bls__js-addtocart > span:not(.picon-bag){
+  vertical-align: 2px;
 }
 
 .bls__grid.bls__product-style-2 .bls__js-addtocart:hover {
@@ -814,7 +818,7 @@
 
 .bls__grid.bls__product-style-2 .bls__product-addtocart {
   position: absolute;
-  left: 10px;
+  left: 40px;
   right: 10px;
   bottom: 10px;
 }

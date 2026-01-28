@@ -215,7 +215,7 @@
             {{- 'products.product.label.subscription' | t -}}
           </div>
         {% endif %}
-        {%- if enable_sale_label and compare_at_price > price and compare_at_price != blank -%}
+        {%- if enable_sale_label and compare_at_price > price and compare_at_price != blank and settings.hide_discount_show_higher_price != true -%}
           <div class="bls__sale-label">
             {%- if sale_type == 'text' -%}
               {{- 'products.product.label.sale' | t -}}
@@ -344,6 +344,7 @@
         {%- endif -%}
       {%- endif -%}
     </a>
+    {% render 'static-rating', product: product, style: 'badge' %}
 
     {%- if show_action or disable_action != true -%}
       {%- if product_style == 'bls__product-style-1'
@@ -561,9 +562,6 @@
         </div>
       {%- endif -%}
       </div>
-    {%- endif -%}
-    {%- if show_review -%}
-      {% render 'product-review' | review_star: true | product: product %}
     {%- endif -%}
     {% if hidden_price == false %}
       <div class="bls__product-price mb-4">

@@ -215,11 +215,6 @@
                   {%- if block.settings.note != blank -%}
                     <div class="newsletter-note mt-15">{{ block.settings.note }}</div>
                   {% endif %}
-                  {%- if block.settings.show_social -%}
-                    <div class="block mx-4 mt-20">
-                      {%- render 'social-media-links' -%}
-                    </div>
-                  {%- endif -%}
                 {%- when 'custom_text' -%}
                   {%- if block.settings.image != blank -%}
                     <div class="" style="max-width: {{ block.settings.image_max }}">

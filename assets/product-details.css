@@ -1,6 +1,7 @@
 .bls__product-vendors a {
-  color: var(--grey-color);
-  text-transform: uppercase;
+  text-transform: capitalize;
+  font-size: 24px;
+  font-weight: 700;
 }
 
 .bls__product-title {

@@ -6287,5 +6287,9 @@ a[href="/checkout"] {
   padding: 0 !important;
 }
 
-
+.vendor-caveat-message{
+  font-size: 11px;
+  color: #999;
+  font-style: italic;
+}
 

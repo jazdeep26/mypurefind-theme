@@ -69,7 +69,7 @@
             {{- 'products.product.label.subscription' | t -}}
           </div>
         {% endif %}
-        {%- if enable_sale_label and compare_at_price > price and compare_at_price != blank -%}
+        {%- if enable_sale_label and compare_at_price > price and compare_at_price != blank and settings.hide_discount_show_higher_price != true -%}
           <div class="bls__sale-label">
             {%- if sale_type == 'text' -%}
               {{- 'products.product.label.sale' | t -}}
@@ -188,6 +188,7 @@
         </div>
       </a>
     {%- endif -%}
+    {% render 'static-rating', product: product, style: 'badge' %}
   </div>
   <div class="bls__product-details pt-15">
     {%- if show_product_type -%}
@@ -209,9 +210,6 @@
         {{ product.title }}
       </a>
     </h3>
-    {%- if show_review -%}
-      {% render 'product-review' | review_star: true | product: product %}
-    {%- endif -%}
     {% if hidden_price == false %}
       <div class="bls__product-price mb-15 mt-5">
         {%- render 'price', product: product, use_variant: true, price_class: 'price--large' -%}

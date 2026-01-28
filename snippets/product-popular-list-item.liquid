@@ -146,6 +146,7 @@
         </div>
       </a>
     {%- endif -%}
+    {% render 'static-rating', product: product, style: 'badge' %}
   </div>
   <div class="bls__product-details flex-1">
     {%- if settings.show_vendors -%}
@@ -158,11 +159,6 @@
         {{ product.title }}
       </a>
     </h3>
-    {%- if show_review -%}
-      <div class="popular-list-review {% if template_cart == true %}d-none{% endif %}">
-        {% render 'product-review' | review_star: true | product: product %}
-      </div>
-    {%- endif -%}
     {% if hidden_price == false %}
       <div class="bls__product-price mb-7 mt-5">
         {%- render 'price', product: product, use_variant: true, price_class: 'price--large' -%}

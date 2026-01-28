@@ -36,6 +36,9 @@
 .skeleton-product-detail .bls__template-product quantity-input::before,
 .skeleton-product-detail .bls__template-product pickup-availability-preview::before,
 .skeleton-product-detail .bls__template-product .shopify-payment-button__button--unbranded::before,
+.skeleton-product-detail .bls__template-product .bls__pro-reviews::before,
+.skeleton-product-detail .bls__template-product .bls__demo-slots-wrapper::before,
+.skeleton-product-detail .bls__template-product .book-demo-btn::before,
 .skeleton-product-detail .bls__template-product .bls__product-review-sold::before,
 .skeleton-product-detail .bls__template-product .product__media-list .gallery-img::before,
 .skeleton-product-detail skeleton-page .bls__product-img::before,
@@ -43,6 +46,7 @@
 .skeleton-product-detail skeleton-page .bls__product-color-swatches::before,
 .skeleton-product-detail .bls__template-product .bls__color-dropdown::before,
 .skeleton-product-detail .bls__template-product .bls__product-vendors a::before,
+.skeleton-product-detail .bls__template-product .vendor-caveat-message::before,
 .skeleton-product-detail .bls__template-product .more-colors .swatch-selected-value::before,
 .skeleton-product-detail .bls__template-product .more-colors .more-colors-product_link::before {
   content: '';
@@ -101,12 +105,16 @@
 .skeleton-product-detail .bls__template-product quantity-input::after,
 .skeleton-product-detail .bls__template-product pickup-availability-preview::after,
 .skeleton-product-detail .bls__template-product .shopify-payment-button__button--unbranded::after,
+.skeleton-product-detail .bls__template-product .bls__pro-reviews::after,
+.skeleton-product-detail .bls__template-product .bls__demo-slots-wrapper::after,
+.skeleton-product-detail .bls__template-product .book-demo-btn::after,
 .skeleton-product-detail .bls__template-product .bls__product-review-sold::after,
 .skeleton-product-detail .bls__template-product .product__media-list .gallery-img::after,
 .skeleton-product-detail skeleton-page .bls__product-img::after,
 .skeleton-product-detail skeleton-page .bls__product-name::after,
 .skeleton-product-detail .bls__template-product .bls__color-dropdown::after,
 .skeleton-product-detail .bls__template-product .bls__product-vendors a:after,
+.skeleton-product-detail .bls__template-product .vendor-caveat-message::after,
 .skeleton-product-detail .bls__template-product .more-colors .swatch-selected-value::after,
 .skeleton-product-detail .bls__template-product .more-colors .more-colors-product_link::after {
   content: '';
@@ -165,8 +173,10 @@
 
 .skeleton-product-detail .bls__template-product quantity-input::after,
 .skeleton-product-detail .bls__template-product .product-form__submit::after,
+.skeleton-product-detail .bls__template-product .book-demo-btn::after,
 .skeleton-product-detail .bls__template-product quantity-input::before,
-.skeleton-product-detail .bls__template-product .product-form__submit::before {
+.skeleton-product-detail .bls__template-product .product-form__submit::before,
+.skeleton-product-detail .bls__template-product .book-demo-btn::before {
   border-radius: var(--btn-border-radius);
 }
 
@@ -189,6 +199,9 @@
 .skeleton-product-detail .bls__template-product .bls__custom-liquid,
 .skeleton-product-detail .bls__template-product .bls__custom-text,
 .skeleton-product-detail .bls__template-product .bls__product-meta li,
+.skeleton-product-detail .bls__template-product .bls__pro-reviews,
+.skeleton-product-detail .bls__template-product .bls__demo-slots-wrapper,
+.skeleton-product-detail .bls__template-product .book-demo-btn,
 .skeleton-product-detail .bls__template-product .bls__product-review-sold,
 .skeleton-product-detail .bls__template-product .shopify-payment-button__button--unbranded,
 .skeleton-product-detail .bls__template-product .bls__product-title,
@@ -221,6 +234,7 @@
 .skeleton-product-detail skeleton-page .bls__product-name,
 .skeleton-product-detail .bls__template-product .bls__color-dropdown,
 .skeleton-product-detail .bls__template-product .bls__product-vendors a,
+.skeleton-product-detail .bls__template-product .vendor-caveat-message,
 .skeleton-product-detail .bls__template-product .more-colors .swatch-selected-value,
 .skeleton-product-detail .bls__template-product .more-colors .more-colors-product_link {
   position: relative;
