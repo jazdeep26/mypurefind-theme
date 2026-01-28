@@ -9,13 +9,15 @@
 
 .bls__product-type,
 .bls__product-vendor a {
-  color: var(--grey-color);
-  font-weight: bold;
+  color: #282828;
+  font-weight: 700;
 }
 
 .bls__product-vendor {
-  text-transform: uppercase;
-  font-size: calc(var(--base-font-size) + 3px);
+  text-transform: capitalize;
+  font-size: 1.3rem;
+  font-weight: 700;
+  letter-spacing: 0;
 }
 
 .bls__product-price {
@@ -94,13 +96,13 @@
 
 .bls__product-item:not(.list-view-item) .bls__product-details,
 .item-center .bls__grid:not(.list) .bls__product-details {
-  text-align: var(--bls__product-details-align);
+  text-align: left;
 }
 
 .item-center .bls__grid:not(.list) .bls__product-action,
 .item-center .bls__grid:not(.list) .bls__product-option,
 .item-center .bls__grid:not(.list) .bls__product-price {
-  justify-content: center;
+  justify-content: flex-start;
 }
 
 .lookbook__popup-items .jdgm-prev-badge__text,
@@ -439,6 +441,48 @@
     width: 3.5rem;
     height: 3.5rem;
     box-shadow: 0 5px 30px #0000000d;
+  }
+}
+
+/* Cleaner, compact product card UI */
+.bls__product-details {
+  padding-top: 0.8rem;
+}
+
+.bls__product-details .mb-5 {
+  margin-bottom: 0.2rem !important;
+}
+
+.bls__product-details .mb-4 {
+  margin-bottom: 0.2rem !important;
+}
+
+.bls__product-name a {
+  font-size: 1.4rem;
+  line-height: 1.3;
+}
+
+.bls__product-price {
+  font-size: 1.4rem;
+}
+
+.bls__product-price .compare-price {
+  font-size: 1.2rem;
+  color: #999;
+}
+
+.bls__product-price .special-price {
+  color: #282828;
+  font-weight: 600;
+}
+
+@media (max-width: 767px) {
+  .bls__product-name a {
+    font-size: 1.3rem;
+  }
+
+  .bls__product-price {
+    font-size: 1.3rem;
   }
 }
 

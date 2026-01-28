@@ -63,7 +63,7 @@
         "copyright": "<p>© 2026 My Pure Find. All rights reserved.</p>",
         "menu": "",
         "payment_icons_width": 325,
-        "show_social_links": false,
+        "show_social_links": true,
         "footer-heading-size": 18,
         "color_scheme": "scheme-b1c1b1d1-803d-47cb-85af-38b35fac6f71"
       }

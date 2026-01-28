@@ -3356,6 +3356,10 @@ minicart-recommendations-heading .button-close-beside {
     transform: translate3d(0, 0, 0);
     -webkit-transform: translate3d(0, 0, 0);
   }
+
+  .bls__opend-popup .bls__canvas-mb {
+    z-index: 12;
+  }
 }
 
 /* overlay
@@ -3375,7 +3379,7 @@ body .dlg.dialog-remove-loadding {
 .bls__overlay {
   content: "";
   position: fixed;
-  z-index: 11;
+  z-index: 10;
   inset: 0;
   top: 0;
   bottom: 0;
