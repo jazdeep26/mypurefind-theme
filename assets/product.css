@@ -819,7 +819,7 @@
 .bls__grid.bls__product-style-2 .bls__product-addtocart {
   position: absolute;
   left: 40px;
-  right: 10px;
+  right: 5px;
   bottom: 10px;
 }
 .bls__grid.bls__product-style-2 .bls__product-text-scrolling ~ .bls__product-addtocart {
