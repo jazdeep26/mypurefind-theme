@@ -126,6 +126,14 @@
   padding: 0;
 }
 
+.bls-minicart-product-vendor {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #282828;
+  text-transform: capitalize;
+  margin-bottom: 0.2rem;
+}
+
 .bls-minicart-product-name {
   font-size: var(--base-font-size);
   font-weight: var(--base-font-weight);
@@ -786,6 +794,18 @@ table.cart-items tbody .cart-item__totals {
 
 .cart-item__details .cart-item__price-wrapper {
   margin-top: 5px;
+}
+
+.cart-item__vendor {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #282828;
+  text-transform: capitalize;
+}
+
+p.cart-item__vendor,
+p.product-option{
+  margin-bottom: 0.2rem;
 }
 
 .cart-item__details a {

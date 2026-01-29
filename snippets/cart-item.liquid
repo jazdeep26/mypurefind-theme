@@ -18,6 +18,9 @@
     </a>
   </div>
   <div class="bls-minicart-product-info flex-1 relative">
+    {%- if item.product.vendor != blank -%}
+      <p class="bls-minicart-product-vendor mb-0">{{ item.product.vendor }}</p>
+    {%- endif -%}
     <h4 class="bls-minicart-product-name">
       <a href="{{- item.url -}}">{{ item.product.title | escape }}</a>
     </h4>
