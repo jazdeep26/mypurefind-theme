@@ -229,6 +229,13 @@ html.js .swiper-initialized .bls-loaded-image {
 }
 
 :root {
+  /* MyPureFind Theme Colors */
+  --mpf-coral: #F92A82;
+  --mpf-peach: #FFDDD2;
+  --mpf-purple: #5E0462;
+  --mpf-mint: #D7FCD4;
+  --mpf-sage: #6A8E7F;
+
   --bls-transition: all 0.4s;
   --btn-line-height: 24px;
   --btn-padding: 0.8rem 3rem;
@@ -273,7 +280,8 @@ html.js .swiper-initialized .bls-loaded-image {
   --bls__product-transition: 0.4s;
 
   --bls_product-item-vertical-space: clamp(3rem, 4.6vw, 4rem);
-  --product-images-style-radius: var(--base-border-radius);
+  /* --product-images-style-radius: var(--base-border-radius); */
+  --product-images-style-radius: 0;
 
   --loader-width: 16px;
   --loader-height: 16px;

@@ -1,13 +1,41 @@
-.bls__product-vendors a {
+/* ============================================
+   UNIFIED PRODUCT INFO STYLES
+   Main Product & Quick View - consistent styling
+   ============================================ */
+
+/* Vendor */
+.bls__product-vendors a,
+.bls__product-quickview .bls__product-vendor a {
   text-transform: capitalize;
-  font-size: 24px;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #282828;
+}
+
+/* Title */
+.bls__product-title,
+.bls__product-quickview .bls__product-title {
+  font-size: 1.6rem;
+  line-height: 1.4;
+  font-weight: 500;
+  color: #282828;
+}
+
+.bls__product-title a,
+.bls__product-quickview .bls__product-title a {
+  color: inherit;
+}
+
+/* Price - override biger-price for consistency */
+.bls__product-details-infor .bls__product-price.biger-price .price,
+.bls__product-quickview .bls__product-price.biger-price .price {
+  font-size: 1.6rem;
   font-weight: 700;
 }
 
-.bls__product-title {
-  font-size: clamp(24px, 4.2vw, var(--bls__product-title-size, 24px));
-  line-height: 1.4;
-  font-weight: var(--bls__section-heading-weight);
+.bls__product-details-infor .bls__product-price.biger-price .compare-price,
+.bls__product-quickview .bls__product-price.biger-price .compare-price {
+  font-size: 1.4rem;
 }
 
 .bls__product-details-infor {
@@ -749,6 +777,210 @@ body.sticky-addcart-show .footer.footer {
   .sticky-addcart-product-form .product-form .product-form__submit {
     padding-left: 1rem;
     padding-right: 1rem;
+  }
+}
+
+/* Sticky Action Buttons - consistent with quick view
+-----------------------------------------------------------------*/
+.bls__sticky-addcart {
+  padding: 10px 16px;
+}
+
+.sticky-actions-wrapper {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.sticky-demo-slots {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  margin-bottom: 8px;
+}
+
+.sticky-demo-slots .slots-text {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.sticky-buttons-row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.sticky-addtocart-btn {
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  border: 1px solid #e0e0e0;
+  background: #fff;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: visible !important;
+}
+
+.sticky-addtocart-btn:hover {
+  border-color: var(--mpf-coral, #F92A82);
+}
+
+.sticky-addtocart-btn:hover .picon-handbag {
+  color: var(--mpf-coral, #F92A82);
+}
+
+.sticky-addtocart-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.sticky-bag-icon {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible !important;
+}
+
+.sticky-bag-icon .picon-handbag {
+  font-size: 18px;
+  color: #282828;
+  transition: color 0.2s ease;
+}
+
+.sticky-plus-badge {
+  position: absolute;
+  top: -6px;
+  right: -8px;
+  width: 16px;
+  height: 16px;
+  background: #03a685;
+  color: #fff;
+  border-radius: 50%;
+  font-size: 12px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+.sticky-demo-btn {
+  flex: 1;
+  height: 44px;
+  background: #fff;
+  border: 1px solid #282828;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #282828;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-transform: none;
+  padding: 0 16px;
+  white-space: nowrap;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.sticky-demo-btn:hover {
+  border-color: var(--mpf-coral, #F92A82);
+  background: var(--mpf-coral, #F92A82);
+  color: #fff;
+}
+
+/* Sticky Book Home Demo button loader */
+.sticky-demo-btn .loader-icon {
+  --loader-width: 16px;
+  --loader-height: 16px;
+  border-top-color: #282828;
+}
+
+.sticky-demo-btn.btn-loading .hidden-loading {
+  visibility: hidden;
+}
+
+.sticky-demo-btn.btn-loading .loader-icon {
+  opacity: 1;
+}
+
+/* Main product Book Home Demo button loader */
+.bls__product-details-infor .book-demo-btn.product {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bls__product-details-infor .book-demo-btn.product .loader-icon {
+  --loader-width: 18px;
+  --loader-height: 18px;
+  border-top-color: #282828;
+}
+
+.bls__product-details-infor .book-demo-btn.product.btn-loading .hidden-loading {
+  visibility: hidden;
+}
+
+.bls__product-details-infor .book-demo-btn.product.btn-loading .loader-icon {
+  opacity: 1;
+}
+
+/* Loading state for sticky add to cart */
+.sticky-addtocart-btn.btn-loading .sticky-bag-icon {
+  opacity: 0;
+}
+
+.sticky-addtocart-btn .loader-icon {
+  display: none;
+}
+
+.sticky-addtocart-btn.btn-loading .loader-icon {
+  display: block;
+  position: absolute;
+}
+
+@media (max-width: 767px) {
+  .bls__sticky-addcart {
+    padding: 10px 16px;
+  }
+
+  .sticky-actions-wrapper {
+    max-width: none;
+  }
+
+  .sticky-demo-slots .slots-text {
+    font-size: 10px;
+  }
+
+  .sticky-addtocart-btn {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+  }
+
+  .sticky-demo-btn {
+    height: 40px;
+    font-size: 12px;
+  }
+
+  .sticky-demo-slots .slots-text {
+    font-size: 10px;
+  }
+}
+
+/* Hide Book Free Home Demo button on product page for mobile (already in sticky) */
+@media (max-width: 991px) {
+  .bls__product-details-infor .book-demo-btn.product {
+    display: none;
   }
 }
 

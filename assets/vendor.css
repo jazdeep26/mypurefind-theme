@@ -3485,6 +3485,78 @@ swiper-container .swiper-notification {
   width: auto;
 }
 
+/* Book Demo button loader styles */
+.book-demo-btn {
+  position: relative;
+}
+
+.book-demo-btn .loader-icon {
+  --loader-width: 16px;
+  --loader-height: 16px;
+}
+
+.book-demo-btn.btn-loading .hidden-loading {
+  visibility: hidden;
+}
+
+.book-demo-btn.btn-loading .loader-icon {
+  opacity: 1;
+}
+
+/* View Cart button loader styles */
+.viewcart {
+  position: relative;
+}
+
+.viewcart .loader-icon {
+  --loader-width: 16px;
+  --loader-height: 16px;
+  border-color: rgba(0, 0, 0, 0.15);
+  border-top-color: var(--mpf-coral, #F92A82);
+}
+
+.viewcart.btn-loading {
+  background-color: var(--btn-secondary-bg, #fff) !important;
+}
+
+.viewcart.btn-loading .hidden-loading {
+  visibility: hidden;
+}
+
+.viewcart.btn-loading .loader-icon {
+  opacity: 1;
+}
+
+/* Home page Book Demo button - consistent with category header */
+.bls__section-custom-text .book-demo-btn {
+  min-width: 200px;
+  width: auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.bls__section-custom-text .book-demo-btn .loader-icon {
+  --loader-width: 16px;
+  --loader-height: 16px;
+  border-color: rgba(0, 0, 0, 0.15);
+  border-top-color: var(--mpf-coral, #F92A82);
+}
+
+.bls__section-custom-text .book-demo-btn.btn-loading .hidden-loading {
+  visibility: hidden;
+}
+
+.bls__section-custom-text .book-demo-btn.btn-loading .loader-icon {
+  opacity: 1;
+}
+
+/* Category header Book Demo button */
+.collection-demo-cta .book-demo-btn {
+  min-width: 200px;
+}
+
 .shopify-app-block #worldphonecallbutton,
 .continue-btn{
   display: none;

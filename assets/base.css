@@ -779,6 +779,7 @@ body:not(.template-index) .page-header {
 
 .quick-search-list {
   font-weight: 400;
+  font-size: 1.3rem;
 }
 
 .quick-search-list li:not(:last-child) a::after {

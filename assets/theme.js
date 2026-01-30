@@ -3508,6 +3508,9 @@ document.addEventListener('click', async function (e) {
   const btn = e.target.closest('.book-demo-btn');
   if (!btn) return;
 
+  // Show loading state
+  btn.classList.add('btn-loading');
+
   // Base URL
   const url = new URL('/pages/demoform', window.location.origin);
 

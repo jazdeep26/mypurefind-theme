@@ -144,6 +144,12 @@
           </div>
         {%- endif -%}
         {%- if block.settings.btn_content != blank -%}
+          {%- liquid
+            assign is_demo_btn = false
+            if block.settings.button_link contains 'demo'
+              assign is_demo_btn = true
+            endif
+          -%}
           <a
             {{ block.shopify_attributes }}
             {% if block.settings.button_link == blank %}
@@ -157,10 +163,16 @@
             {% else %}
               target="_self"
             {% endif %}
-            class="{% if enabled_animations %}scroll-trigger animate--slide-in{% endif %} bls__section-button whitespace-nowrap btn-{{ block.settings.button_type }} inline-block"
+            class="{% if enabled_animations %}scroll-trigger animate--slide-in{% endif %} bls__section-button whitespace-nowrap btn-{{ block.settings.button_type }} inline-block{% if is_demo_btn %} book-demo-btn{% endif %}"
             style=" --b-mt: {{ block.settings.b_mt }}px; --b-mb: {{ block.settings.b_mb }}px;"
+            {% if is_demo_btn %}data-entry="homepage"{% endif %}
           >
-            {{ block.settings.btn_content | escape }}
+            {% if is_demo_btn %}
+              <span class="hidden-loading">{{ block.settings.btn_content | escape }}</span>
+              <span class="loader-icon"></span>
+            {% else %}
+              {{ block.settings.btn_content | escape }}
+            {% endif %}
           </a>
         {%- endif -%}
       {%- endfor -%}

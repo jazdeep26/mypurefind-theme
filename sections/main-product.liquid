@@ -1523,7 +1523,8 @@
                       data-variant-id="{{ product.selected_or_first_available_variant.id }}"
                       data-has-only-default-variant="{{ product.has_only_default_variant }}"
                     >
-                      Book Free Home Demo
+                      <span class="hidden-loading">{{ 'general.book_home_demo' | t }}</span>
+                      <span class="loader-icon"></span>
                     </button>
               <div class="bls__product-tabs-content hidden mt-25">
                 <div class="loading"></div>

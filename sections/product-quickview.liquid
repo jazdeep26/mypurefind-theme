@@ -109,9 +109,9 @@
       </a>
     </div>
     <div class="col-12 col-lg-6 {{ flex_full }} relative bls__quickview-content-wap">
-      <div class="bls__quickview-content {% if product.media.size > 0 %}absolute-lg inset-0{% endif %} p-30 h-full overflow-x-hidden overflow-y-auto mt-lg-0 mt-30 scroll-bar-custom scroll-y">
+      <div class="bls__quickview-content {% if product.media.size > 0 %}absolute-lg inset-0{% endif %} p-30 h-full overflow-x-hidden overflow-y-auto mt-lg-0 scroll-bar-custom scroll-y">
         {%- if sale_label or subscription > 0 -%}
-          <div class="bls__product-label mb-5 fs-12 pointer-events-none inline-block static">
+          <div class="bls__product-label mb-5 fs-12 pointer-events-none static">
             {% if product.selling_plan_groups.size > 0 %}
               <div class="bls__selling_plan-label">
                 {{- 'products.product.label.subscription' | t -}}
@@ -141,7 +141,7 @@
             {{ product.vendor | link_to_vendor }}
           </div>
         {%- endif -%}
-        <h3 class="bls__product-title mb-5 fs-30">
+        <h6 class="bls__product-title mb-5">
           <a
             class="limited-line {{ product_name_t_transfrom }}"
             style="--line-clamp: {{ product_name_line }}"
@@ -178,7 +178,7 @@
             {{ product.metafields.bls.short_description }}
           </div>
         {%- endif -%}
-        <div class="product-variant-quick-view mb-15">
+        <div class="product-variant-quick-view mb-10">
           {%- unless product.has_only_default_variant -%}
             <variant-radios-quickview
               id="variant-radios"
@@ -197,7 +197,7 @@
                     endif
                   endfor
                 -%}
-                <fieldset class="js product-form__input flex mb-25 flex-wrap {% if isColorOption %}color{% endif %}">
+                <fieldset class="js product-form__input flex mb-15 flex-wrap {% if isColorOption %}color{% endif %}">
                   <legend class="form__label mb-8">
                     <span class="swatch-attribute-label heading-color">{{ option.name }}:</span>
                     <span class="swatch-selected-value">
@@ -530,79 +530,46 @@
                 value="{{ product.selected_or_first_available_variant.id }}"
                 disabled
               >
-              <div class="product-form__buttons flex mb-10 flex-wrap-table">
-                {%- if hidden_button_add_to_cart == blank -%}
-                  <div class="bls__product-add-cart flex">
-                    <div class="product-form__input product-form__quantity mb-15">
-                      <label class="form__label visually-hidden" for="Quantity-{{ product.id }}">
-                        {{ 'products.product.quantity.label' | t }}
-                      </label>
-                      <quantity-input class="quantity btn-radius border flex align-items-center text-center mr-10 px-8 bls__product-qty-js">
-                        <button
-                          class="btn-reset flex justify-content-center align-items-center quantity__button no-js-hidden width-35"
-                          name="minus"
-                          type="button"
-                        >
-                          <i class="picon-minus fs-12"></i>
-                        </button>
-                        <input
-                          class="quantity__input bg-unset border-none text-center width-50 appearance-none p-0-important"
-                          type="number"
-                          name="quantity"
-                          id="Quantity-{{ product.id }}"
-                          min="1"
-                          value="1"
-                          form="{{ product_form_id }}"
-                        >
-                        <button
-                          class="btn-reset flex justify-content-center align-items-center quantity__button no-js-hidden width-35"
-                          name="plus"
-                          type="button"
-                        >
-                          <i class="picon-plus fs-12"></i>
-                        </button>
-                      </quantity-input>
-                    </div>
+              {%- comment -%} Quantity selector - moved outside sticky bar {%- endcomment -%}
+              {%- if hidden_button_add_to_cart == blank -%}
+                <div class="bls__product-add-cart flex mb-15">
+                  <div class="product-form__input product-form__quantity">
+                    <label class="form__label visually-hidden" for="Quantity-{{ product.id }}">
+                      {{ 'products.product.quantity.label' | t }}
+                    </label>
+                    <quantity-input class="quantity btn-radius border flex align-items-center text-center mr-10 px-8 bls__product-qty-js">
+                      <button
+                        class="btn-reset flex justify-content-center align-items-center quantity__button no-js-hidden width-35"
+                        name="minus"
+                        type="button"
+                      >
+                        <i class="picon-minus fs-12"></i>
+                      </button>
+                      <input
+                        class="quantity__input bg-unset border-none text-center width-50 appearance-none p-0-important"
+                        type="number"
+                        name="quantity"
+                        id="Quantity-{{ product.id }}"
+                        min="1"
+                        value="1"
+                        form="{{ product_form_id }}"
+                      >
+                      <button
+                        class="btn-reset flex justify-content-center align-items-center quantity__button no-js-hidden width-35"
+                        name="plus"
+                        type="button"
+                      >
+                        <i class="picon-plus fs-12"></i>
+                      </button>
+                    </quantity-input>
                   </div>
-                {%- endif -%}
-                <div
-                  class="bls__product-action-inner flex flex-1 "
-                  style="--bls__product-icon-radius: var(--btn-border-radius);"
-                >
-                  {%- if hidden_button_add_to_cart == blank -%}
-                    <button
-                      type="submit"
-                      name="add"
-                      class="button-add-cart-qv product-form__submit relative flex-1 whitespace-nowrap min-height-48 mb-15 animation heading-weight fs-14 uppercase"
-                      {% if product.selected_or_first_available_variant.available == false %}
-                        disabled
-                      {% endif %}
-                    >
-                      <span class="hidden-loading">
-                        {%- if product.selected_or_first_available_variant.inventory_management != null -%}
-                          {%- if product.selected_or_first_available_variant.available
-                            and product.selected_or_first_available_variant.inventory_quantity < 1
-                          -%}
-                            {{ 'products.product.pre_order' | t }}
-                          {%- elsif product.selected_or_first_available_variant.available -%}
-                            {{ 'products.product.add_to_cart' | t }}
-                          {%- else -%}
-                            {{ 'products.product.sold_out' | t }}
-                          {%- endif -%}
-                        {%- else -%}
-                          {{ 'products.product.add_to_cart' | t }}
-                        {%- endif -%}
-                      </span>
-                      <span class="loader-icon"></span>
-                    </button>
-                  {%- endif -%}
                   {%- if show_wishlist -%}
                     <button
                       type="button"
                       name="add"
                       role="button"
                       aria-label="button"
-                      class="btn-reset bls__product-wishlist bls__product-wishlist-js bls__product-action-btn-js bls_tooltip border mr-10 mb-15 btn-radius"
+                      class="btn-reset bls__product-wishlist bls__product-wishlist-js bls__product-action-btn-js bls_tooltip border mr-10 btn-radius"
                       data-pro-add-wishlist="{{ 'products.product.wishlist' | t }}"
                       data-pro-remove-wishlist="{{ 'products.product.browse_wishlist' | t }}"
                       data-product-handle="{{ product.handle }}"
@@ -621,7 +588,7 @@
                       name="add"
                       role="button"
                       aria-label="button"
-                      class="btn-reset bls__product-compare bls__product-compare-js bls__product-action-btn-js bls_tooltip border mb-15 btn-radius"
+                      class="btn-reset bls__product-compare bls__product-compare-js bls__product-action-btn-js bls_tooltip border btn-radius"
                       data-pro-add-compare="{{ 'products.product.compare' | t }}"
                       data-pro-remove-compare="{{ 'products.product.browse_compare' | t }}"
                       data-product-handle="{{ product.handle }}"
@@ -633,67 +600,79 @@
                     </button>
                   {%- endif -%}
                 </div>
-              </div>
-              {% if product.selected_or_first_available_variant.available and hidden_button_add_to_cart == blank %}
-                <div class="bls__product-dynamic-checkout">
-                  {%- if th_st.enable_quickview_terms_conditions -%}
-                    <div class="bls__terms-conditions flex mb-25">
-                      <div class="checkbox-group relative">
-                        <input
-                          class="input m-0 opacity-0 absolute inset-0 pointer"
-                          type="checkbox"
-                          name="conditions"
-                          id="conditions_form_qickview"
-                        >
-                        <span class="checkmark"></span>
+              {%- endif -%}
+              {%- if show_qv_demo_slots -%}
+                <div class="bls__demo-slots-wrapper mb-10">
+                  <div
+                    class="bls__demo-slots"
+                    data-demo-slots="{{ slots_qv_demo }}"
+                    style="display:none"
+                  >
+                    <div class="flex align-items-center">
+                      <img
+                        class="mr-5"
+                        src="{{ 'icon_hot.svg' | asset_url }}"
+                        loading="lazy"
+                        width="12"
+                        height="16"
+                      >
+                      <div class="text primary-color">
+                        {%- assign slots = 3 -%}
+                        {{ 'products.product.demo_slots_left_html' | t: slots: slots }}
                       </div>
-                      <label class="label form-label pointer" for="conditions_form_qickview">
-                        {{ th_st.content_terms_conditions }}
-                      </label>
                     </div>
-                  {%- endif -%}
-                  <div class="bls__payment-button bls-btn-checkout-qickview{% if th_st.enable_quickview_terms_conditions %} disabled{% endif %}">
-                    {{ form | payment_button }}
                   </div>
                 </div>
               {%- endif -%}
-            {%- endform -%}
-          </product-form>
-          {%- if show_qv_demo_slots -%}
-            <div class="bls__demo-slots-wrapper mb-10 mt-15">
-              <div
-                class="bls__demo-slots"
-                data-demo-slots="{{ slots_qv_demo }}"
-                style="display:none"
-              >
-                <div class="flex align-items-center">
-                  <img
-                    class="mr-5"
-                    src="{{ 'icon_hot.svg' | asset_url }}"
-                    loading="lazy"
-                    width="12"
-                    height="16"
-                  >
-                  <div class="text primary-color">
-                    {%- assign slots = 3 -%}
-                    {{ 'products.product.demo_slots_left_html' | t: slots: slots }}
+              {%- comment -%} Sticky Action Buttons - Inside form for JS compatibility {%- endcomment -%}
+              <div class="qv-sticky-actions">
+                {%- if show_qv_demo_slots -%}
+                  <div class="qv-demo-slots">
+                    <img
+                      src="{{ 'icon_hot.svg' | asset_url }}"
+                      loading="lazy"
+                      width="12"
+                      height="16"
+                    >
+                    <span class="slots-text primary-color">
+                      {%- assign slots = 3 -%}
+                      {{ 'products.product.demo_slots_left_html' | t: slots: slots }}
+                    </span>
                   </div>
+                {%- endif -%}
+                <div class="qv-buttons-row">
+                  {%- if hidden_button_add_to_cart == blank and product.selected_or_first_available_variant.available -%}
+                    <button
+                      type="submit"
+                      name="add"
+                      class="qv-addtocart-btn"
+                      {% if product.selected_or_first_available_variant.available == false %}disabled{% endif %}
+                    >
+                      <span class="qv-bag-icon hidden-loading">
+                        <i class="picon-handbag"></i>
+                        <span class="qv-plus-badge">+</span>
+                      </span>
+                      <span class="visually-hidden">{{ 'products.product.add_to_cart' | t }}</span>
+                      <span class="loader-icon"></span>
+                    </button>
+                  {%- endif -%}
+                  <button
+                    type="button"
+                    class="qv-demo-btn book-demo-btn"
+                    data-entry="product"
+                    data-category="{{ product.collections.first.handle }}"
+                    data-subcategory="{{ product.type }}"
+                    data-product="{{ product.handle }}"
+                    data-variant-id="{{ product.selected_or_first_available_variant.id }}"
+                    data-has-only-default-variant="{{ product.has_only_default_variant }}"
+                  >
+                    <span class="hidden-loading">{{ 'general.book_home_demo' | t }}</span>
+                    <span class="loader-icon"></span>
+                  </button>
                 </div>
               </div>
-            </div>
-          {%- endif -%}
-          <button
-            type="button"
-            class="button button--secondary book-demo-btn product w-full"
-            data-entry="product"
-            data-category="{{product.collections.first.handle}}"
-            data-subcategory="{{product.type}}"
-            data-product="{{ product.handle }}"
-            data-variant-id="{{ product.selected_or_first_available_variant.id }}"
-            data-has-only-default-variant="{{ product.has_only_default_variant }}"
-          >
-            Book Free Home Demo
-          </button>
+            {%- endform -%}
+          </product-form>
         {%- else -%}
           <a
             href="{{ product.metafields.custom.external_affiliate.value.external_link }}"

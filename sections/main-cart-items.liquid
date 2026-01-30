@@ -589,10 +589,11 @@
                       </button>
                       <button
                         type="button"
-                        class="button button--primary book-demo-btn"
+                        class="button button--primary book-demo-btn cart"
                         data-entry="cart"
                       >
-                        Book Free Home Demo
+                        <span class="hidden-loading">{{ 'general.book_home_demo' | t }}</span>
+                        <span class="loader-icon"></span>
                       </button>
                     </div>
                     {%- if additional_checkout_buttons -%}

@@ -351,45 +351,6 @@
         or product_style == 'bls__product-style-3'
         or product_style == 'bls__product-style-2'
       %}
-        {%- if product_style == 'bls__product-style-2' %}
-          {%- if show_add_to_cart -%}
-            {%- if product.metafields.custom.external_affiliate == blank -%}
-              {%- if show_add_to_cart and sold_out == false and tpl == blank and hidden_button_add_to_cart == false -%}
-                <quick-buy
-                  class="bls__product-addtocart bls__product-addtocart-js {{ d_none }}"
-                  data-product-variant-id="{{ product.selected_or_first_available_variant.id }}"
-                >
-                  <button
-                    class="bls__js-addtocart btn-secondary border-none button bls_tooltip button--full-width"
-                    type="button"
-                    name="add"
-                    role="button"
-                    aria-label="
-                      {%- if pre_order -%}
-                          {{- 'products.product.pre_order' | t -}}
-                      {%- else -%}
-                          {{- 'products.product.add_to_cart' | t -}}
-                      {%- endif -%}
-                    "
-                  >
-                    <span class="fs-18 picon-bag hidden-loading"></span>
-                    {%- if pre_order -%}
-                      <span class="bls_tooltip-content">{{ 'products.product.pre_order' | t }}</span>
-                      <span class="add-cart bls__button-content hidden-loading">
-                        {{- 'products.product.pre_order' | t -}}
-                      </span>
-                    {%- else -%}
-                      <span class="bls_tooltip-content">{{ 'products.product.add_to_cart' | t }}</span>
-                      <span class="add-cart bls__button-content hidden-loading">
-                        {{- 'products.product.add_to_cart' | t -}}
-                      </span>
-                    {%- endif -%}
-                  </button>
-                </quick-buy>
-              {%- endif -%}
-            {%- endif -%}
-          {%- endif -%}
-        {%- endif -%}
         <div class="bls__product-action d-flex {% if enable_text_sale_scrolling and compare_at_price > price and compare_at_price != blank %} spacing-bottom{% endif %}">
           {%- if show_wishlist or show_compare or show_quick_view or show_add_to_cart- %}
             <div class="bls__product-action-inner flex">
@@ -568,6 +529,43 @@
         {%- render 'price', product: product, use_variant: true, price_class: 'price--large' -%}
       </div>
     {% endif %}
+    {%- comment -%} Mobile Action Buttons - shown only on mobile {%- endcomment -%}
+    {%- if product.metafields.custom.external_affiliate == blank -%}
+      {%- if sold_out == false and tpl == blank -%}
+        <div class="bls__mobile-actions-wrapper">
+          {%- if show_add_to_cart and hidden_button_add_to_cart == false -%}
+            <quick-buy
+              class="bls__product-addtocart bls__product-addtocart-js"
+              data-product-variant-id="{{ product.selected_or_first_available_variant.id }}"
+            >
+              <button
+                class="bls__js-addtocart bls__mobile-addtocart btn-reset"
+                type="button"
+                name="add"
+                role="button"
+                aria-label="Add to cart"
+              >
+                <span class="mobile-bag-icon hidden-loading">
+                  <i class="picon-handbag"></i>
+                  <span class="mobile-plus-badge">+</span>
+                </span>
+              </button>
+            </quick-buy>
+          {%- endif -%}
+          {%- if product.has_only_default_variant -%}
+            <a href="/pages/demoform?entry=product&variant={{ product.selected_or_first_available_variant.id }}&product={{ product.handle }}" class="bls__mobile-demo-btn book-demo-btn">
+              <span class="hidden-loading">{{ 'general.book_home_demo' | t }}</span>
+              <span class="loader-icon"></span>
+            </a>
+          {%- else -%}
+            <button type="button" class="bls__mobile-demo-btn bls__product-quickview">
+              {{ 'general.book_home_demo' | t }}
+              <span class="loader-icon"></span>
+            </button>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+    {%- endif -%}
     {% if product_style == 'bls__product-style-4' %}
       <div class="bls__product-action d-flex  {% if enable_text_sale_scrolling and compare_at_price > price and compare_at_price != blank %}spacing-bottom{% endif %}">
         {%- if show_add_to_cart and sold_out == false and tpl == blank -%}
@@ -588,6 +586,8 @@
                 {%- endif -%}
               "
             >
+              <span class="picon-handbag hidden-loading"></span>
+              <span class="mobile-add-text hidden-loading">Add</span>
               {%- if pre_order -%}
                 <span class="add-cart bls__button-content hidden-loading">
                   {{- 'products.product.pre_order' | t -}}
@@ -625,6 +625,8 @@
                 {%- endif -%}
               "
             >
+              <span class="picon-handbag hidden-loading"></span>
+              <span class="mobile-add-text hidden-loading">Add</span>
               {%- if pre_order -%}
                 <span class="add-cart bls__button-content hidden-loading">
                   {{- 'products.product.pre_order' | t -}}
