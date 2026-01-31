@@ -1923,8 +1923,14 @@ table.custom-table-detail-product::after {
 
 .bls__grid .bls__product-item .bls__product-price .compare-price {
   font-size: 1.2rem;
+  line-height: 1rem;
   color: #999;
   margin-left: 6px;
+}
+
+/* Ensure price--on-sale has consistent height with regular price */
+.bls__grid .bls__product-item .bls__price.price--on-sale {
+  line-height: 1rem;
 }
 
 

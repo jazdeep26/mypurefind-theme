@@ -1461,10 +1461,31 @@
                       <div class="bls__custom-html my-10">
                         {{ bk_st.content }}
                       </div>
-                      <button type="button" class="bls__read-more-btn" onclick="this.previousElementSibling.classList.toggle('expanded')">
+                      <button type="button" class="bls__read-more-btn" style="display: none;" onclick="this.previousElementSibling.classList.toggle('expanded')">
                         <span class="read-more-text">{{ 'general.read_more' | t | default: 'Read more' }}</span>
                         <span class="read-less-text">{{ 'general.read_less' | t | default: 'Read less' }}</span>
                       </button>
+                      <script>
+                        (function() {
+                          var btn = document.currentScript.previousElementSibling;
+                          var content = btn.previousElementSibling;
+                          function checkClamp() {
+                            if (content.scrollHeight > content.clientHeight + 1) {
+                              btn.style.display = '';
+                            } else {
+                              btn.style.display = 'none';
+                            }
+                          }
+                          if (document.readyState === 'complete') {
+                            requestAnimationFrame(checkClamp);
+                          } else {
+                            window.addEventListener('load', function() {
+                              requestAnimationFrame(checkClamp);
+                            });
+                          }
+                          window.addEventListener('resize', checkClamp);
+                        })();
+                      </script>
                     {% endif -%}
                   {%- when 'custom_text' %}
                     {% if bk_st.content != blank and product.gift_card? == false %}

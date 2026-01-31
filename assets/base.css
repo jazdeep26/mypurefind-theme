@@ -298,6 +298,7 @@ body:not(.template-index) .page-header {
 
 .header-middle {
   background-color: var(--header-bg);
+  /* background-color: white; */
 }
 
 .header-middle .col-header-right>* {
@@ -2639,11 +2640,11 @@ body.template-index .show_border_top {
   --bls__section-header-margin: clamp(2.5rem, 4.6vw, 4rem);
   padding-top: var(--section-padding-top);
   padding-bottom: var(--section-padding-bottom);
-  margin-bottom: calc(var(--space_between_section) - var(--bls-gutter-x, 0px));
+  /* margin-bottom: calc(var(--space_between_section) - var(--bls-gutter-x, 0px)); */
 }
 
 .bls__section.has-bg {
-  margin-bottom: var(--space_between_section);
+  /* margin-bottom: var(--space_between_section); */
 }
 
 .bls__section.reveal_on_scroll {

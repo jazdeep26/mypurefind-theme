@@ -367,7 +367,7 @@
         "description": "<p>Here's some of our most similar products people are buying. Click to discover trending style.</p>",
         "text_alignment": "text-center",
         "container": "container-fluid",
-        "color_scheme": "scheme-013ccfbf-beb5-42e6-bc8f-8a36ab634ca7",
+        "color_scheme": "default-color-scheme",
         "product_recommendations_background_color": "#ffffff",
         "limit_products": 4,
         "item_desktop": 4,

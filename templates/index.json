@@ -286,7 +286,7 @@
         "description": "",
         "text_alignment": "text-center",
         "container": "container todays_popular",
-        "color_scheme": "scheme-013ccfbf-beb5-42e6-bc8f-8a36ab634ca7",
+        "color_scheme": "default-color-scheme",
         "tab_design": "horizontal",
         "tab_style": "tab_desgin_3",
         "tab_type": "carousel",
@@ -356,15 +356,15 @@
       "name": "t:sections.scrolling-text.name",
       "settings": {
         "container": "container",
-        "color_scheme": "",
+        "color_scheme": "scheme-d127e173-a562-42f4-a41e-3483b672d918",
         "text_font_size": 12,
         "text_font_weight": 500,
         "text_time": 21,
         "text_spacing": 50,
         "text_title": false,
         "spacing_icon": "icon_line",
-        "padding_top": 0,
-        "padding_bottom": 0,
+        "padding_top": 50,
+        "padding_bottom": 50,
         "reset_spacing": false
       }
     },
@@ -416,7 +416,7 @@
         "description": "<h3><strong>Beauty shopping, reimagined</strong></h3><p>Four simple steps to discover products that actually work for you.<br/></p>",
         "text_alignment": "text-center",
         "container": "strecth-width",
-        "color_scheme": "scheme-013ccfbf-beb5-42e6-bc8f-8a36ab634ca7",
+        "color_scheme": "default-color-scheme",
         "design_layout": "grid",
         "design_collection": "design-2",
         "hover_effect": "zoom",
@@ -440,8 +440,8 @@
         "show_arrow": true,
         "carousel_pagination": "carousel_none",
         "reveal_on_scroll": false,
-        "padding_top": 80,
-        "padding_bottom": 50,
+        "padding_top": 50,
+        "padding_bottom": 10,
         "reset_spacing": true
       }
     },
