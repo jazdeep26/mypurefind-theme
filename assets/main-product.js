@@ -548,6 +548,10 @@ class VariantSelects extends HTMLElement {
       document.querySelector(".sticky-addcart-opstion").value =
         this.currentVariant.id;
     }
+    const bookDemoBtn = document.querySelector('.book-demo-btn.product');
+    if (bookDemoBtn) {
+      bookDemoBtn.dataset.variantId = this.currentVariant.id;
+    }
     if (document.querySelector(".product-bought-together-item.main-product")) {
       document.querySelector(".product-bought-together-item.main-product .product-variant-option").value =
         this.currentVariant.id;

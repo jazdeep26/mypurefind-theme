@@ -1883,6 +1883,11 @@ class VariantRadiosQuickview extends HTMLElement {
         input.dispatchEvent(new Event("change", { bubbles: true }));
       }
     });
+    const quickviewContainer = this.closest('.product-quickview') || document;
+    const bookDemoBtn = quickviewContainer.querySelector('.book-demo-btn');
+    if (bookDemoBtn) {
+      bookDemoBtn.dataset.variantId = this.currentVariant.id;
+    }
   }
 
   renderProductInfo() {

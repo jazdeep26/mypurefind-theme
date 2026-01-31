@@ -129,7 +129,7 @@
 .bls-minicart-product-vendor {
   font-size: 1.2rem;
   font-weight: 700;
-  color: #282828;
+  color: var(--heading-color, #282828);
   text-transform: capitalize;
   margin-bottom: 0.2rem;
 }
@@ -799,7 +799,7 @@ table.cart-items tbody .cart-item__totals {
 .cart-item__vendor {
   font-size: 1.2rem;
   font-weight: 700;
-  color: #282828;
+  color: var(--heading-color, #282828);
   text-transform: capitalize;
 }
 

@@ -3512,7 +3512,7 @@ swiper-container .swiper-notification {
   --loader-width: 16px;
   --loader-height: 16px;
   border-color: rgba(0, 0, 0, 0.15);
-  border-top-color: var(--mpf-coral, #F92A82);
+  border-top-color: var(--mpf-btn-accent, var(--mpf-purple, #5E0462));
 }
 
 .viewcart.btn-loading {
@@ -3535,13 +3535,6 @@ swiper-container .swiper-notification {
   align-items: center;
   justify-content: center;
   position: relative;
-}
-
-.bls__section-custom-text .book-demo-btn .loader-icon {
-  --loader-width: 16px;
-  --loader-height: 16px;
-  border-color: rgba(0, 0, 0, 0.15);
-  border-top-color: var(--mpf-coral, #F92A82);
 }
 
 .bls__section-custom-text .book-demo-btn.btn-loading .hidden-loading {

@@ -39,19 +39,19 @@
             <button
               type="submit"
               name="add"
-              class="sticky-addtocart-btn"
+              class="sticky-addtocart-btn mpf-atc-icon-btn"
               {% if product.selected_or_first_available_variant.available == false %}disabled{% endif %}
             >
-              <span class="sticky-bag-icon">
+              <span class="mpf-bag-icon hidden-loading">
                 <i class="picon-handbag"></i>
-                <span class="sticky-plus-badge">+</span>
               </span>
+              <i class="picon-plus mpf-plus-badge"></i>
               <span class="visually-hidden">{{ 'products.product.add_to_cart' | t }}</span>
               <span class="loader-icon"></span>
             </button>
             <button
               type="button"
-              class="sticky-demo-btn book-demo-btn"
+              class="sticky-demo-btn mpf-demo-btn book-demo-btn"
               data-entry="product"
               data-category="{{ product.collections.first.handle }}"
               data-subcategory="{{ product.type }}"

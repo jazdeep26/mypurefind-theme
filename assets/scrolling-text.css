@@ -9,9 +9,9 @@
     display: flex;
     align-items: center;
     white-space: nowrap;
-    color: var(--heading-color);
+    color: var(--mpf-purple, --heading-color);
     font-weight: var(--text-font-weight);
-    font-size: var(--text-font-size);
+    font-size: calc(var(--text-font-size) * 1.3);
 }
 
 .bls__product-text-scrolling .bls__product-text-scrolling-content {
@@ -47,7 +47,7 @@
     height: 1.2px;
     width: 30px;
     display: block;
-    background-color: var(--heading-color);
+    background-color: var(--mpf-purple, --heading-color);
 }
 
 .bls__page-scrolling-content:hover>* {

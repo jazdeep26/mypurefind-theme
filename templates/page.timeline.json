@@ -65,7 +65,7 @@
       ],
       "settings": {
         "container": "full-width",
-        "color_scheme": "scheme-b808185a-cae7-47ba-9fe9-7d81ddf7e485",
+        "color_scheme": "default-color-scheme",
         "image_behavior": "fixed",
         "banner_type": "image",
         "image": "shopify:\/\/shop_images\/banner-about-testi.jpg",

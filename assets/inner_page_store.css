@@ -9,7 +9,7 @@
 }
 
 .store-infor__address span {
-  color: #111111;
+  color: var(--heading-color, #111111);
 }
 
 .store-infor__items {
@@ -76,7 +76,7 @@
   font-weight: 600;
   font-size: 1.4rem;
   margin-bottom: 0;
-  background: #111111;
+  background: var(--heading-color, #111111);
   padding: 1.2rem 2rem;
   color: #ffffff;
   border-radius: 5px 5px 0px 0px;

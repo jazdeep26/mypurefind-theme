@@ -235,6 +235,32 @@ html.js .swiper-initialized .bls-loaded-image {
   --mpf-purple: #5E0462;
   --mpf-mint: #D7FCD4;
   --mpf-sage: #6A8E7F;
+  --mpf-success: #03a685;
+}
+
+/* Hide sale label globally */
+.bls__sale-label {
+  display: none !important;
+}
+
+/* Demo button loader - purple default, white when loading */
+.mpf-demo-btn .loader-icon {
+  border-top-color: var(--mpf-purple, #5E0462);
+}
+
+.mpf-demo-btn.btn-loading .loader-icon {
+  border-top-color: #fff;
+  border: 2px solid #f3f3f3;
+}
+
+:root {
+  /* Unified button accent color - change this one variable to update all buttons */
+  --mpf-btn-accent: var(--mpf-purple);
+
+  /* MPF Add to Cart Icon Button sizing */
+  --mpf-atc-btn-size: 44px;
+  --mpf-atc-btn-size-mobile: 32px;
+  --mpf-atc-badge-size: 14px;
 
   --bls-transition: all 0.4s;
   --btn-line-height: 24px;
@@ -784,7 +810,7 @@ button.d-none,
 
 .btn-small.bg-grey {
   background-color: var(--light-grey-color);
-  border-color: #ebebeb;
+  border-color: var(--border-color-base, #ebebeb);
 }
 
 button,
@@ -2236,4 +2262,114 @@ input[type="checkbox"]:checked+.checkmark:before {
   100% {
     background-color: #ffffff;
   }
+}
+
+/* ==========================================================================
+   MPF Add to Cart Icon Button - Shared Styles
+   Used by: product cards, quick view modal, sticky bar
+   ========================================================================== */
+
+/* Icon button base */
+.mpf-atc-icon-btn {
+  width: var(--mpf-atc-btn-size, 44px);
+  height: var(--mpf-atc-btn-size, 44px);
+  /* min-width: var(--mpf-atc-btn-size, px); */
+  border: 1px solid var(--mpf-btn-accent, var(--mpf-purple, #5E0462));
+  background: #fff;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: visible !important;
+}
+
+.mpf-atc-icon-btn:hover {
+  border-color: var(--mpf-btn-accent, var(--mpf-purple, #5E0462)) !important;
+  background: var(--mpf-btn-accent, var(--mpf-purple, #5E0462)) !important;
+}
+
+.mpf-atc-icon-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Bag icon wrapper */
+.mpf-atc-icon-btn .mpf-bag-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Bag icon */
+.mpf-atc-icon-btn .picon-handbag {
+  font-size: 18px;
+  color: var(--mpf-btn-accent, var(--mpf-purple, #5E0462));
+  transition: color 0.2s ease;
+}
+
+.mpf-atc-icon-btn:hover .picon-handbag {
+  color: #fff !important;
+}
+
+/* Plus badge */
+.mpf-plus-badge {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  width: var(--mpf-atc-badge-size, 14px);
+  height: var(--mpf-atc-badge-size, 14px);
+  background: var(--mpf-success, #03a685);
+  color: #fff;
+  border-radius: 50%;
+  font-size: 8px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Demo/CTA button base */
+.mpf-demo-btn {
+  flex: 1;
+  height: var(--mpf-atc-btn-size, 44px);
+  background: #fff;
+  border: 1px solid var(--mpf-btn-accent, var(--mpf-purple, #5E0462));
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--mpf-btn-accent, var(--mpf-purple, #5E0462));
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-transform: none;
+  padding: 0 16px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.mpf-demo-btn:hover {
+  border-color: var(--mpf-btn-accent, var(--mpf-purple, #5E0462));
+  background: var(--mpf-btn-accent, var(--mpf-purple, #5E0462));
+  color: #fff;
+}
+
+/* Button row container */
+.mpf-buttons-row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+/* Today's Popular Picks - purple border on product items */
+.todays_popular .bls__grid .swiper-slide .bls__product-item {
+  border: 1px solid var(--mpf-purple, #5E0462);
+}
+
+.todays_popular .swiper-slide:first-child{
+  margin-left: 1.5rem;
 }

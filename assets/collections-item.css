@@ -3,6 +3,16 @@
     --collection-count-color: var(--base-color);
 }
 
+/* Fix collection title color on white info box backgrounds */
+.design-1 .bls__collection-infor.show-count .bls__collection-title,
+.design-1 .bls__collection-infor.show-count .bls__collection-title a,
+.design-4 .bls__collection-infor.show-count .bls__collection-title,
+.design-4 .bls__collection-infor.show-count .bls__collection-title a,
+.design-1 .bls__collection-infor:not(.show-count) .bls__collection-title,
+.design-1 .bls__collection-infor:not(.show-count) .bls__collection-title a {
+    color: #111111;
+}
+
 .bls__collection-title {
     font-size: var(--collection-title-size);
     font-weight: var(--collection-title-weight, var(--heading-font-weight));

@@ -2294,7 +2294,7 @@ localization-form .disclosure-menu-link span::before {
   --footer-middle-padding-bottom: 4rem;
   background-color: var(--footer-background-color);
   color: var(--footer-text-color);
-  margin-top: var(--space_between_section);
+  /* margin-top: var(--space_between_section); */
   background-position: top center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -3098,7 +3098,7 @@ minicart-recommendations-heading .button-close-beside {
 .button-close:hover,
 .button-close-beside:hover {
   background: none;
-  color: #111111;
+  color: var(--heading-color, #111111);
 }
 
 .errors,
@@ -5750,7 +5750,7 @@ html.js .animate--ambient>.bls-loaded-image,
 
 .timeline-main::before {
   content: "";
-  background: #111111;
+  background: var(--heading-color, #111111);
   width: 2px;
   height: 100%;
   position: absolute;
@@ -5917,12 +5917,12 @@ html.js .animate--ambient>.bls-loaded-image,
 
 .banner-sale-items:nth-child(even) .banner-sale-label {
   background-color: #ffffff;
-  color: #111111;
+  color: var(--heading-color, #111111);
 }
 
 .banner-sale-code {
   background-color: #ffffff;
-  color: #111111;
+  color: var(--heading-color, #111111);
   text-transform: uppercase;
   font-weight: 600;
   padding-top: 2.2rem;
@@ -6068,7 +6068,7 @@ html.js .animate--ambient>.bls-loaded-image,
 }
 
 .page-detail-carrer ul:nth-of-type(1) li {
-  color: #111111;
+  color: var(--heading-color, #111111);
 }
 
 @media (max-width: 767px) {

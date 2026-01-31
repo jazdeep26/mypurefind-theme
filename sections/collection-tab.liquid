@@ -96,7 +96,7 @@
                 </div>
               {%- endif -%}
           {% endif %}
-          <div class="bls__section-header tab-header text-center whitespace-nowrap overflow-y-hidden {{ design_class }} {% if enabled_animations %}scroll-trigger animate--slide-in{% endif %}">
+          <div class="bls__section-header tab-header text-center px-15 whitespace-nowrap overflow-y-hidden {{ design_class }} {% if enabled_animations %}scroll-trigger animate--slide-in{% endif %}">
             {%- for block in blocks -%}
               {%- liquid
                 assign tab_name = block.settings.title

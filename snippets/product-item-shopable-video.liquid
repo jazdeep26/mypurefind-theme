@@ -197,7 +197,7 @@
             {{- 'products.product.label.subscription' | t -}}
           </div>
         {% endif %}
-        {%- if sale and settings.hide_discount_show_higher_price != true -%}
+        {%- if sale -%}
           <div
             class="bls__sale-label"
           >

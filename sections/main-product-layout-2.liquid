@@ -192,7 +192,7 @@
                       assign price = target.price | default: 1999
                     -%}
                     <div class="bls__product-label-detail" id="{{ block.id }}">
-                      {%- if compare_at_price > price and compare_at_price != blank and settings.hide_discount_show_higher_price != true -%}
+                      {%- if compare_at_price > price and compare_at_price != blank -%}
                         <div id="bls__product-label" class="bls__product-label fs-12 pointer-events-none inline-block">
                           <div class="bls__sale-label">
                             {%- assign p = compare_at_price | minus: price -%}

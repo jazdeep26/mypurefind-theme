@@ -7,29 +7,12 @@
   assign compare_at_price = target.compare_at_price
   assign price = target.price | default: 1999
   assign available = target.available | default: false
-
-  # Apply config: show higher price if enabled
-  if settings.hide_discount_show_higher_price
-    if compare_at_price > price and compare_at_price != blank
-      assign display_price = compare_at_price
-    else
-      assign display_price = price
-    endif
-    assign money_price = display_price | money
-    if settings.currency_code_enabled
-      assign money_price = display_price | money_with_currency
-    endif
-    if target == product and product.price_varies
-      assign money_price = 'products.product.price.from_price_html' | t: price: money_price
-    endif
-  else
-    assign money_price = price | money
-    if settings.currency_code_enabled
-      assign money_price = price | money_with_currency
-    endif
-    if target == product and product.price_varies
-      assign money_price = 'products.product.price.from_price_html' | t: price: money_price
-    endif
+  assign money_price = price | money
+  if settings.currency_code_enabled
+    assign money_price = price | money_with_currency
+  endif
+  if target == product and product.price_varies
+    assign money_price = 'products.product.price.from_price_html' | t: price: money_price
   endif
 -%}
 {%- if price > 0 -%}
@@ -37,30 +20,26 @@
     class="
       bls__price
       {%- if available == false %} price--sold-out {% endif -%}
-      {%- unless settings.hide_discount_show_higher_price -%}
-        {%- if compare_at_price > price %} price--on-sale {% endif -%}
-        {%- if product.price_varies == false and product.compare_at_price_varies %} price--no-compare{% endif -%}
-      {%- endunless -%}
+      {%- if compare_at_price > price %} price--on-sale {% endif -%}
+      {%- if product.price_varies == false and product.compare_at_price_varies %} price--no-compare{% endif -%}
     "
   >
     <div class="bls__product-price flex flex-wrap align-items-center">
-        <span class="price__regular price">
+        <span class="price__regular price{%- if compare_at_price > price %} special-price {% endif -%}">
           {{ money_price }}
         </span>
-      {%- unless settings.hide_discount_show_higher_price -%}
-        {%- if compare_at_price > price %}
-          {%- unless product.price_varies == false and product.compare_at_price_varies %}
-            <div class="price__sale grey-color">
-                  <s class="price-item compare-price">
-                    {% if settings.currency_code_enabled %}
-                      {{ compare_at_price | money_with_currency }}
-                    {% else %}
-                      {{ compare_at_price | money }}
-                    {% endif %}
-                  </s>
-            </div>
-          {%- endunless -%}
-        {%- endif -%}
+      {%- unless product.price_varies == false and product.compare_at_price_varies %}
+        <div class="price__sale grey-color">
+          {%- if compare_at_price > price %}
+            <s class="price-item compare-price">
+              {% if settings.currency_code_enabled %}
+                {{ compare_at_price | money_with_currency }}
+              {% else %}
+                {{ compare_at_price | money }}
+              {% endif %}
+            </s>
+          {%- endif -%}
+        </div>
       {%- endunless -%}
       {% if product.selected_or_first_available_variant.unit_price_measurement != null %}
         <small class="unit-price caption">

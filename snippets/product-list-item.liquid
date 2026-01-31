@@ -69,7 +69,7 @@
             {{- 'products.product.label.subscription' | t -}}
           </div>
         {% endif %}
-        {%- if enable_sale_label and compare_at_price > price and compare_at_price != blank and settings.hide_discount_show_higher_price != true -%}
+        {%- if enable_sale_label and compare_at_price > price and compare_at_price != blank -%}
           <div class="bls__sale-label">
             {%- if sale_type == 'text' -%}
               {{- 'products.product.label.sale' | t -}}

@@ -215,7 +215,7 @@
             {{- 'products.product.label.subscription' | t -}}
           </div>
         {% endif %}
-        {%- if enable_sale_label and compare_at_price > price and compare_at_price != blank and settings.hide_discount_show_higher_price != true -%}
+        {%- if enable_sale_label and compare_at_price > price and compare_at_price != blank -%}
           <div class="bls__sale-label">
             {%- if sale_type == 'text' -%}
               {{- 'products.product.label.sale' | t -}}
@@ -539,27 +539,27 @@
               data-product-variant-id="{{ product.selected_or_first_available_variant.id }}"
             >
               <button
-                class="bls__js-addtocart bls__mobile-addtocart btn-reset"
+                class="bls__js-addtocart bls__mobile-addtocart mpf-atc-icon-btn btn-reset"
                 type="button"
                 name="add"
                 role="button"
                 aria-label="Add to cart"
               >
-                <span class="mobile-bag-icon hidden-loading">
+                <span class="mpf-bag-icon hidden-loading">
                   <i class="picon-handbag"></i>
-                  <span class="mobile-plus-badge">+</span>
                 </span>
+                <i class="picon-plus mpf-plus-badge"></i>
               </button>
             </quick-buy>
           {%- endif -%}
           {%- if product.has_only_default_variant -%}
-            <a href="/pages/demoform?entry=product&variant={{ product.selected_or_first_available_variant.id }}&product={{ product.handle }}" class="bls__mobile-demo-btn book-demo-btn">
-              <span class="hidden-loading">{{ 'general.book_home_demo' | t }}</span>
+            <a href="/pages/demoform?entry=product&variant={{ product.selected_or_first_available_variant.id }}&product={{ product.handle }}" class="bls__mobile-demo-btn mpf-demo-btn book-demo-btn">
+              <span class="hidden-loading">{% if template.name == 'collection' %}{{ 'general.book_home_demo' | t }}{% else %}{{ 'general.book_home_demo' | t }}{% endif %}</span>
               <span class="loader-icon"></span>
             </a>
           {%- else -%}
-            <button type="button" class="bls__mobile-demo-btn bls__product-quickview">
-              {{ 'general.book_home_demo' | t }}
+            <button type="button" class="bls__mobile-demo-btn mpf-demo-btn bls__product-quickview">
+              {% if template.name == 'collection' %}{{ 'general.book_home_demo' | t }}{% else %}{{ 'general.book_home_demo' | t }}{% endif %}
               <span class="loader-icon"></span>
             </button>
           {%- endif -%}

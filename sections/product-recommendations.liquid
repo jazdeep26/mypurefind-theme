@@ -4,6 +4,7 @@
   assign product_style = th_st.product_style
   assign st = section.settings
   assign container = st.container
+  assign color_scheme = st.color_scheme
   assign bg_color = st.product_recommendations_background_color
   assign text_align = st.text_alignment
   assign heading = st.heading
@@ -28,7 +29,7 @@
 {%- endcapture -%}
 
 <section
-  class="bls__product-recommendations-section bls__section bls__product{{ reset_spacing }}"
+  class="color-{{ color_scheme }} gradient bls__product-recommendations-section bls__section bls__product{{ reset_spacing }}"
   style="{{ style | strip | strip_newlines }}"
   id="{{ section.id }}"
   data-id="{{ section.id }}"
@@ -230,6 +231,12 @@
           "label": "t:sections.all.layout.options__4.label"
         }
       ]
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-013ccfbf-beb5-42e6-bc8f-8a36ab634ca7"
     },
     {
       "type": "color",

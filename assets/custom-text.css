@@ -68,7 +68,7 @@
     height: 8rem;
 }
 .bls__section-image text {
-    color: #111111;
+    color: var(--heading-color, #111111);
 }
 
 svg.circle-text {

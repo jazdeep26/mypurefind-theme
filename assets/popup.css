@@ -804,7 +804,7 @@ body .shopify-payment-button__more-options {
   width: 44px;
   height: 44px;
   min-width: 44px;
-  border: 1px solid #e0e0e0;
+  border: 1px solid var(--mpf-btn-accent, var(--mpf-purple, #5E0462));
   background: #fff;
   border-radius: 4px;
   display: flex;
@@ -817,53 +817,26 @@ body .shopify-payment-button__more-options {
 }
 
 .qv-addtocart-btn:hover {
-  border-color: var(--mpf-coral, #F92A82);
+  border-color: var(--mpf-btn-accent, var(--mpf-purple, #5E0462)) !important;
+  background: var(--mpf-btn-accent, var(--mpf-purple, #5E0462)) !important;
+  background-color: var(--mpf-btn-accent, var(--mpf-purple, #5E0462)) !important;
 }
 
 .qv-addtocart-btn:hover .picon-handbag {
-  color: var(--mpf-coral, #F92A82);
+  color: #fff !important;
 }
 
-.qv-bag-icon {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: visible !important;
-}
-
-.qv-bag-icon .picon-handbag {
-  font-size: 18px;
-  color: #282828;
-  transition: color 0.2s ease;
-}
-
-.qv-plus-badge {
-  position: absolute;
-  top: -6px;
-  right: -8px;
-  width: 16px;
-  height: 16px;
-  background: #03a685;
-  color: #fff;
-  border-radius: 50%;
-  font-size: 12px;
-  font-weight: 600;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  line-height: 1;
-}
+/* Uses shared .mpf-bag-icon and .mpf-plus-badge from critical.css */
 
 .qv-demo-btn {
   flex: 1;
   height: 44px;
   background: #fff;
-  border: 1px solid #282828;
+  border: 1px solid var(--mpf-btn-accent, var(--mpf-purple, #5E0462));
   border-radius: 4px;
   font-size: 13px;
   font-weight: 600;
-  color: #282828;
+  color: var(--mpf-btn-accent, var(--mpf-purple, #5E0462));
   cursor: pointer;
   transition: all 0.2s ease;
   text-transform: none;
@@ -871,8 +844,8 @@ body .shopify-payment-button__more-options {
 }
 
 .qv-demo-btn:hover {
-  border-color: var(--mpf-coral, #F92A82);
-  background: var(--mpf-coral, #F92A82);
+  border-color: var(--mpf-btn-accent, var(--mpf-purple, #5E0462));
+  background: var(--mpf-btn-accent, var(--mpf-purple, #5E0462));
   color: #fff;
 }
 
@@ -880,7 +853,7 @@ body .shopify-payment-button__more-options {
 .qv-addtocart-btn .loader-icon {
   --loader-width: 16px;
   --loader-height: 16px;
-  border-top-color: #282828;
+  border-top-color: var(--heading-color, #282828);
 }
 
 .qv-addtocart-btn.btn-loading .hidden-loading {
@@ -902,7 +875,7 @@ body .shopify-payment-button__more-options {
 .qv-demo-btn .loader-icon {
   --loader-width: 16px;
   --loader-height: 16px;
-  border-top-color: #282828;
+  border-top-color: var(--heading-color, #282828);
 }
 
 .qv-demo-btn.btn-loading .hidden-loading {
@@ -989,6 +962,7 @@ body .shopify-payment-button__more-options {
     width: 40px;
     height: 40px;
     min-width: 40px;
+    padding: 0;
   }
 
   .qv-demo-btn {

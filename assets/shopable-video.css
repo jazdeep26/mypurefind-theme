@@ -204,7 +204,7 @@
 
 .pswp--shopable-video .pswp__button--arrow:hover {
   background-color: #ffffff;
-  color: #111111;
+  color: var(--heading-color, #111111);
 }
 
 .pswp--shopable-video .pswp__button--arrow i {

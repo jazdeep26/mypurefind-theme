@@ -57,7 +57,7 @@
 }
 
 .user-purchase {
-  color: #111111;
+  color: var(--heading-color, #111111);
 }
 
 .fake-list {

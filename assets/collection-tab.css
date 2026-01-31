@@ -16,7 +16,7 @@
 }
 
 .tab-desgin-3 .bls__collection-tab-item {
-  padding: 0.95rem 3.5rem;
+  padding: 1rem 2rem;
 }
 
 .tab-desgin-1 .bls__collection-tab-item.active,
@@ -127,3 +127,19 @@ html:not(.body-rtl) .bls__collection-tab-item:last-child {
 .tab-design-with-heading .bls__section-header.tab-header {
   margin-bottom: 2.5rem;
 }
+
+/* Tab styling for peach/light backgrounds */
+.tab-desgin-3 .bls__collection-tab-item {
+  background-color: transparent;
+  color: var(--mpf-purple, #5E0462);
+  border: 1px solid var(--mpf-purple, #5E0462);
+}
+
+.tab-desgin-3 .bls__collection-tab-item.active,
+.tab-desgin-3 .bls__collection-tab-item:hover {
+  background-color: var(--mpf-purple, #5E0462);
+  color: #fff;
+  border-color: var(--mpf-purple, #5E0462);
+}
+
+

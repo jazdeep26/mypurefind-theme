@@ -48,7 +48,6 @@
 }
 
 .bls__product-price .special-price {
-  color: var(--primary-color);
   font-weight: var(--bls__product-price-weight, var(--heading-font-weight));
 }
 
@@ -277,7 +276,7 @@
 }
 
 .bls__product-color-swatches[data-disabled]::before {
-  background: linear-gradient(to bottom right, transparent calc(50% - 1px), #ebebeb, transparent calc(50% + 1px)) no-repeat;
+  background: linear-gradient(to bottom right, transparent calc(50% - 1px), var(--border-color-base, #ebebeb), transparent calc(50% + 1px)) no-repeat;
   z-index: 1;
   position: absolute;
   width: 100%;
@@ -320,7 +319,7 @@
 
 /* Product have more row */
 .bls__section.bls__product {
-  margin-bottom: calc(var(--space_between_section) - var(--bls_product-item-vertical-space, 0px));
+  /* margin-bottom: calc(var(--space_between_section) - var(--bls_product-item-vertical-space, 0px)); */
 }
 
 .bls__section .bls__grid .bls__product-item {
@@ -473,7 +472,6 @@
 }
 
 .bls__product-price .special-price {
-  color: #282828;
   font-weight: 600;
 }
 
@@ -1435,7 +1433,7 @@ quantity-input {
 }
 
 .bls__product-color-swatches-dropdown:hover .bls__product-swatches-dropdown {
-  color: #111111;
+  color: var(--heading-color, #111111);
 }
 
 .bls__product-swatches-dropdown {
@@ -1463,12 +1461,12 @@ quantity-input {
 }
 
 .bls__product-type-swatches-radio .bls__product-swatches-radio {
-  color: #111111;
+  color: var(--heading-color, #111111);
   cursor: pointer;
 }
 
 .bls__product-type-swatches-radio.active .bls__product-swatches-radio::before {
-  background-color: #111111;
+  background-color: var(--heading-color, #111111);
 }
 
 .bls__product-swatches-radio::before {
@@ -1484,8 +1482,8 @@ quantity-input {
 }
 
 .bls__product-color-swatches-radio.active .bls__product-swatches-radio::before {
-  background: #111111;
-  border-color: #111111;
+  background: var(--heading-color, #111111);
+  border-color: var(--heading-color, #111111);
 }
 
 .bls__quickview-content .product-form__buttons .product-form__submit {
@@ -1929,6 +1927,7 @@ table.custom-table-detail-product::after {
   margin-left: 6px;
 }
 
+
 /* Hide color swatches on cards */
 .bls__grid .bls__product-item .bls__product-option {
   display: none;
@@ -1992,97 +1991,103 @@ table.custom-table-detail-product::after {
   pointer-events: auto !important;
 }
 
-.bls__grid .bls__product-item .bls__mobile-addtocart {
+/* ============================================
+   PRODUCT CARD ACTION BUTTONS
+   Add to Cart & Book Home Demo
+   Uses --mpf-btn-accent from critical.css
+   ============================================ */
+
+/* Shared base styles for both buttons - !important to override generic button styles */
+.bls__grid .bls__product-item .bls__mobile-addtocart,
+.bls__grid .bls__product-item .bls__mobile-demo-btn,
+.bls__grid .bls__product-item button.bls__mobile-addtocart,
+.bls__grid .bls__product-item .bls__js-addtocart.bls__mobile-addtocart,
+.bls__grid .bls__product-item .btn-reset.bls__mobile-addtocart {
   display: inline-block;
   vertical-align: middle;
-  width: 32px;
   height: 32px;
-  background: #fff;
-  border: 1px solid #d4d5d9;
-  color: #282828;
-  padding: 0;
+  width: 32px;
+  background: #fff !important;
+  background-color: #fff !important;
+  border: 1px solid var(--mpf-btn-accent, var(--mpf-purple, #5E0462)) !important;
+  color: var(--mpf-btn-accent, var(--mpf-purple, #5E0462)) !important;
   border-radius: 4px;
   cursor: pointer;
-  position: relative;
   text-align: center;
-  line-height: 32px;
-  overflow: visible !important;
+  box-sizing: border-box;
   transition: all 0.2s ease;
 }
 
-.bls__grid .bls__product-item .bls__mobile-addtocart .mobile-bag-icon {
+/* Shared hover state - !important to override generic button:hover and btn-reset:hover */
+.bls__grid .bls__product-item .bls__mobile-addtocart:hover,
+.bls__grid .bls__product-item .bls__mobile-demo-btn:hover,
+.bls__grid .bls__product-item button.bls__mobile-addtocart:hover,
+.bls__grid .bls__product-item .bls__js-addtocart.bls__mobile-addtocart:hover,
+.bls__grid .bls__product-item .btn-reset.bls__mobile-addtocart:hover {
+  border-color: var(--mpf-btn-accent, var(--mpf-purple, #5E0462)) !important;
+  background: var(--mpf-btn-accent, var(--mpf-purple, #5E0462)) !important;
+  background-color: var(--mpf-btn-accent, var(--mpf-purple, #5E0462)) !important;
+  color: #fff !important;
+}
+
+/* Add to Cart button specifics */
+.bls__grid .bls__product-item .bls__mobile-addtocart {
+  width: 32px;
+  padding: 0;
+  position: relative;
+  line-height: 32px;
+  overflow: visible !important;
+}
+
+.bls__grid .bls__product-item .bls__mobile-addtocart .mpf-bag-icon {
   display: inline-block;
   position: relative;
   overflow: visible !important;
 }
 
-.bls__grid .bls__product-item .bls__mobile-addtocart .mobile-bag-icon .picon-handbag {
+.bls__grid .bls__product-item .bls__mobile-addtocart .mpf-bag-icon .picon-handbag {
   font-size: 1.4rem;
   display: inline !important;
   vertical-align: middle;
+  color: inherit;
+  transition: color 0.2s ease;
 }
 
-.bls__grid .bls__product-item .bls__mobile-addtocart .mobile-plus-badge {
+/* Plus badge positioned at button's top-right corner */
+.bls__grid .bls__product-item .bls__mobile-addtocart .mpf-plus-badge {
   position: absolute;
-  top: -6px;
-  right: -8px;
-  font-size: 1.2rem;
+  top: -5px;
+  right: -5px;
+  font-size: 8px;
   font-weight: 700;
   color: #fff;
-  background: #03a685;
+  background: var(--mpf-success, #03a685);
   width: 14px;
   height: 14px;
-  line-height: 14px;
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border-radius: 50%;
 }
 
+/* Book Home Demo button specifics */
 .bls__grid .bls__product-item .bls__mobile-demo-btn {
-  display: inline-block;
-  vertical-align: middle;
   width: calc(100% - 40px);
-  height: 32px;
-  background: #fff;
-  border: 1px solid #d4d5d9;
-  color: #282828;
   font-size: 1.1rem;
   font-weight: 600;
   text-transform: uppercase;
-  padding: 0 8px;
-  border-radius: 4px;
-  cursor: pointer;
+  padding: 0 4px;
   text-decoration: none;
-  text-align: center;
   margin-left: 8px;
-  box-sizing: border-box;
   line-height: 30px;
-  transition: all 0.2s ease;
-}
-
-/* Hover states for action buttons */
-.bls__grid .bls__product-item .bls__mobile-addtocart:hover {
-  border-color: var(--mpf-coral);
-}
-
-.bls__grid .bls__product-item .bls__mobile-addtocart:hover .picon-handbag {
-  color: var(--mpf-coral);
-}
-
-.bls__grid .bls__product-item .bls__mobile-demo-btn:hover {
-  border-color: var(--mpf-coral);
-  background: var(--mpf-coral);
-  color: #fff;
-}
-
-/* Book Home Demo button loader on product cards */
-.bls__grid .bls__product-item .bls__mobile-demo-btn {
   position: relative;
 }
 
+/* Loader styles */
 .bls__grid .bls__product-item .bls__mobile-demo-btn .loader-icon {
   --loader-width: 14px;
   --loader-height: 14px;
-  border-top-color: #282828;
+  border-top-color: var(--mpf-btn-accent, var(--mpf-purple, #5E0462));
 }
 
 .bls__grid .bls__product-item .bls__mobile-demo-btn.btn-loading .hidden-loading {
@@ -2091,6 +2096,7 @@ table.custom-table-detail-product::after {
 
 .bls__grid .bls__product-item .bls__mobile-demo-btn.btn-loading .loader-icon {
   opacity: 1;
+  border-top-color: #fff;
 }
 
 /* ============================================

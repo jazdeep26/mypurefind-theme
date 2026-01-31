@@ -324,7 +324,7 @@
         "description": "<p>Don't forget! The products that you viewed. Add it to cart now.</p>",
         "text_alignment": "text-center",
         "container": "container-fluid",
-        "color_scheme": "",
+        "color_scheme": "scheme-d127e173-a562-42f4-a41e-3483b672d918",
         "limit_products": 6,
         "item_desktop": 4,
         "column_gap": 30,
@@ -332,8 +332,8 @@
         "carousel_loop": false,
         "carousel_arrows": true,
         "carousel_pagination": "carousel_none",
-        "padding_top": 0,
-        "padding_bottom": 0,
+        "padding_top": 50,
+        "padding_bottom": 50,
         "reset_spacing": false
       }
     },
@@ -364,9 +364,10 @@
       "settings": {
         "heading": "People Also Bought",
         "heading_border": false,
-        "description": "<p>Here’s some of our most similar products people are buying. Click to discover trending style.</p>",
+        "description": "<p>Here's some of our most similar products people are buying. Click to discover trending style.</p>",
         "text_alignment": "text-center",
         "container": "container-fluid",
+        "color_scheme": "scheme-013ccfbf-beb5-42e6-bc8f-8a36ab634ca7",
         "product_recommendations_background_color": "#ffffff",
         "limit_products": 4,
         "item_desktop": 4,
@@ -375,8 +376,8 @@
         "carousel_loop": false,
         "carousel_arrows": true,
         "carousel_pagination": "carousel_none",
-        "padding_top": 0,
-        "padding_bottom": 0,
+        "padding_top": 30,
+        "padding_bottom": 50,
         "reset_spacing": false
       }
     }

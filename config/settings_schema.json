@@ -1598,13 +1598,6 @@
         "content": "t:settings_schema.product.settings.header.product_badges"
       },
       {
-        "type": "checkbox",
-        "id": "hide_discount_show_higher_price",
-        "label": "Hide Discounts and Show Higher Price",
-        "info": "When enabled, shows only the higher price (compare_at_price or price) without discount labels",
-        "default": true
-      },
-      {
         "type": "header",
         "content": "Vendor Caveat Message"
       },

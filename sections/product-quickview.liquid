@@ -117,7 +117,7 @@
                 {{- 'products.product.label.subscription' | t -}}
               </div>
             {% endif %}
-            {% if sale_label and settings.hide_discount_show_higher_price != true %}
+            {% if sale_label %}
               <div class="bls__sale-label">
                 {%- assign p = compare_at_price | minus: price -%}
                 {%- if sale_type == 'text' -%}
@@ -640,25 +640,25 @@
                     </span>
                   </div>
                 {%- endif -%}
-                <div class="qv-buttons-row">
+                <div class="qv-buttons-row mpf-buttons-row">
                   {%- if hidden_button_add_to_cart == blank and product.selected_or_first_available_variant.available -%}
                     <button
                       type="submit"
                       name="add"
-                      class="qv-addtocart-btn"
+                      class="qv-addtocart-btn mpf-atc-icon-btn"
                       {% if product.selected_or_first_available_variant.available == false %}disabled{% endif %}
                     >
-                      <span class="qv-bag-icon hidden-loading">
+                      <span class="mpf-bag-icon hidden-loading">
                         <i class="picon-handbag"></i>
-                        <span class="qv-plus-badge">+</span>
                       </span>
+                      <i class="picon-plus mpf-plus-badge"></i>
                       <span class="visually-hidden">{{ 'products.product.add_to_cart' | t }}</span>
                       <span class="loader-icon"></span>
                     </button>
                   {%- endif -%}
                   <button
                     type="button"
-                    class="qv-demo-btn book-demo-btn"
+                    class="qv-demo-btn mpf-demo-btn book-demo-btn"
                     data-entry="product"
                     data-category="{{ product.collections.first.handle }}"
                     data-subcategory="{{ product.type }}"
