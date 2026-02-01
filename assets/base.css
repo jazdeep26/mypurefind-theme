@@ -4412,7 +4412,7 @@ body .glightbox-clean .gprev {
 
 @media (max-width: 767px) {
   footer.footer.enable_menu-bottom {
-    padding-bottom: 7.2rem;
+    /* padding-bottom: 7.2rem; */
   }
 
   .sticky-addtocart-show footer.footer {

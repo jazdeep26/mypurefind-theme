@@ -32,6 +32,18 @@
               ></span>
             </li>
           {%- endif -%}
+          {%- if product.type != blank and collection.handle == 'makeup' -%}
+            <li class="bls__breadcrumb-item d-inline-flex">
+              {%- if collection.url -%}
+                <a class="bls__breadcrumb-link" href="/search?q={{ product.type | url_encode }}&type=product&options%5Bfields%5D=product_type">{{ product.type }}</a>
+              {%- else -%}
+                <a class="bls__breadcrumb-link" href="{{ product.type | url_for_type }}">{{ product.type }}</a>
+              {%- endif -%}
+              <span aria-hidden="true" class="bls__breadcrumb-separator px-6"
+                ><i class="lnr lnr-chevron-right fs-10"></i
+              ></span>
+            </li>
+          {%- endif -%}
           <li class="bls__breadcrumb-item d-inline-flex">
             <span class="bls__breadcrumb-link" aria-current="page">{{ product.title }}</span>
           </li>
