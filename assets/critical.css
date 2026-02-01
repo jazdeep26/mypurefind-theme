@@ -2366,10 +2366,11 @@ input[type="checkbox"]:checked+.checkmark:before {
 }
 
 /* Today's Popular Picks - purple border on product items */
-.todays_popular .bls__grid .swiper-slide .bls__product-item {
-  border: 1px solid var(--mpf-purple, #5E0462);
+.todays_popular{
+  max-width: none;
+  padding: 0 1.5rem;
 }
 
-.todays_popular .swiper-slide:first-child{
-  margin-left: 1.5rem;
+.todays_popular .bls__grid .swiper-slide .bls__product-item {
+  border: 1px solid var(--mpf-purple, #5E0462);
 }
