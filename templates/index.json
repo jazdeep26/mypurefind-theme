@@ -49,7 +49,7 @@
         "buttons_4pHrWF": {
           "type": "buttons",
           "settings": {
-            "btn_content": "Book Home Demo",
+            "btn_content": "TRY & BUY AT HOME",
             "button_type": "primary",
             "button_link": "shopify://pages/demoform",
             "button_target": false,
