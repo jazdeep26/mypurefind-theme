@@ -46,11 +46,11 @@
             "image": "shopify://shop_images/Gemini_Generated_Image_73vl4w73vl4w73vl.png"
           }
         },
-        "template--16567751475447__8498460c-0376-40d1-bafc-199edbe0edfc-16665857567f9937b1-1": {
+        "616f3472-abe6-41ef-8d49-4e190d1fc5cc": {
           "type": "collection_item",
           "settings": {
-            "title_collection": "Skincare",
-            "collection": "skincare"
+            "title_collection": "Jewellery",
+            "collection": "jewellery"
           }
         },
         "template--16567751475447__8498460c-0376-40d1-bafc-199edbe0edfc-16665857567f9937b1-2": {
@@ -67,11 +67,11 @@
             "collection": "hair-extensions"
           }
         },
-        "616f3472-abe6-41ef-8d49-4e190d1fc5cc": {
+        "template--16567751475447__8498460c-0376-40d1-bafc-199edbe0edfc-16665857567f9937b1-1": {
           "type": "collection_item",
           "settings": {
-            "title_collection": "Jewellery",
-            "collection": "jewellery"
+            "title_collection": "Skincare",
+            "collection": "skincare"
           }
         }
       },
@@ -154,7 +154,7 @@
         "products_column": 3,
         "number_products_grid": 12,
         "number_products_list": 4,
-        "pagination": "default",
+        "pagination": "infinit_scrolling",
         "product_page_count": true,
         "product_sort_options": true,
         "progress_bar": true,

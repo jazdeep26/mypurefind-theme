@@ -12,7 +12,8 @@
     "main": {
       "type": "main-search",
       "settings": {
-        "results_per_page": 12
+        "results_per_page": 48,
+        "container": "container"
       }
     }
   },
