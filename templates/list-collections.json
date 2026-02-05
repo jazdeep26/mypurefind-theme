@@ -20,12 +20,12 @@
             "image": "shopify://shop_images/Gemini_Generated_Image_dzgn4wdzgn4wdzgn.png"
           }
         },
-        "collection_A6NFpH": {
+        "collection_gRYneh": {
           "type": "collection",
           "settings": {
-            "title_collection": "Skincare",
-            "collection": "skincare",
-            "image": "shopify://shop_images/Gemini_Generated_Image_h3upfwh3upfwh3up_1.png"
+            "title_collection": "Jewellery",
+            "collection": "jewellery",
+            "image": "shopify://shop_images/jewel_1.png"
           }
         },
         "collection_ghBXJ9": {
@@ -44,12 +44,20 @@
             "image": "shopify://shop_images/ChatGPT_Image_Jan_22_2026_06_52_07_PM.png"
           }
         },
-        "collection_gRYneh": {
+        "collection_A6NFpH": {
           "type": "collection",
           "settings": {
-            "title_collection": "Jewellery",
-            "collection": "jewellery",
-            "image": "shopify://shop_images/jewel_1.png"
+            "title_collection": "Skincare",
+            "collection": "skincare",
+            "image": "shopify://shop_images/Gemini_Generated_Image_h3upfwh3upfwh3up_1.png"
+          }
+        },
+        "collection_DbTLpX": {
+          "type": "collection",
+          "settings": {
+            "title_collection": "Wellness",
+            "collection": "wellness",
+            "image": "shopify://shop_images/PRODUCT-IMAGES_02_1.jpg"
           }
         }
       },
@@ -58,7 +66,8 @@
         "collection_gRYneh",
         "collection_ghBXJ9",
         "collection_hdUjq7",
-        "collection_A6NFpH"
+        "collection_A6NFpH",
+        "collection_DbTLpX"
       ],
       "settings": {
         "container": "container-fluid",

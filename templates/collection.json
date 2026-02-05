@@ -73,6 +73,13 @@
             "title_collection": "Skincare",
             "collection": "skincare"
           }
+        },
+        "collection_item_wellness": {
+          "type": "collection_item",
+          "settings": {
+            "title_collection": "Wellness",
+            "collection": "wellness"
+          }
         }
       },
       "block_order": [
@@ -80,7 +87,8 @@
         "616f3472-abe6-41ef-8d49-4e190d1fc5cc",
         "template--16567751475447__8498460c-0376-40d1-bafc-199edbe0edfc-16665857567f9937b1-2",
         "template--16567751475447__8498460c-0376-40d1-bafc-199edbe0edfc-16665857567f9937b1-3",
-        "template--16567751475447__8498460c-0376-40d1-bafc-199edbe0edfc-16665857567f9937b1-1"
+        "template--16567751475447__8498460c-0376-40d1-bafc-199edbe0edfc-16665857567f9937b1-1",
+        "collection_item_wellness"
       ],
       "disabled": true,
       "settings": {

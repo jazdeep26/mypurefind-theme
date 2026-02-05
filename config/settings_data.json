@@ -72,7 +72,7 @@
     "predictive_search": true,
     "enable_text_suggest": true,
     "search_for": "search_for_all",
-    "quick_search": "Makeup, Skincare, Fragrances, Hair Extensions, Jewellery",
+    "quick_search": "Makeup, Jewellery, Fragrances, Hair Extensions, Skincare, Wellness",
     "search_suggest": "sofa",
     "enable_search_input": true,
     "free_shipping_progress_bar": false,

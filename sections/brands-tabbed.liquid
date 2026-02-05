@@ -71,8 +71,8 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        flex: 0 0 20%;
-        width: 20%;
+        flex: 0 0 16.66%;
+        width: 16.66%;
         padding: 0 10px;
         box-sizing: border-box;
       }
@@ -120,6 +120,17 @@
       .bc__item--lg { width: 130px; height: 130px; }
       .bc__item--md { width: 105px; height: 105px; }
       .bc__item--sm { width: 85px; height: 85px; }
+
+      @media (max-width: 992px) {
+        .bc__strip {
+          flex-wrap: wrap;
+        }
+        .bc__group {
+          flex: 0 0 33.33%;
+          width: 33.33%;
+          padding: 10px;
+        }
+      }
 
       @media (max-width: 749px) {
         .bc__strip {
@@ -237,6 +248,16 @@
             </div>
             <div class="bc__item bc__item--sm">
               <img src="{{ 'brandimg-soyu.png' | file_img_url: '170x170' }}" alt="Soyu" loading="lazy">
+            </div>
+          </div>
+        </div>
+
+        {%- comment -%} ── WELLNESS (1 brand) ── {%- endcomment -%}
+        <div class="bc__group">
+          <div class="bc__label">Wellness</div>
+          <div class="bc__items">
+            <div class="bc__item bc__item--lg">
+              <img src="{{ 'brandimg-welme.png' | file_img_url: '260x260' }}" alt="Welme" loading="lazy">
             </div>
           </div>
         </div>

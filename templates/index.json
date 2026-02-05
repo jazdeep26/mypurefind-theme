@@ -189,6 +189,14 @@
             "collection": "jewellery",
             "image": "shopify://shop_images/jewel_1.png"
           }
+        },
+        "collection_item_wellness": {
+          "type": "collection_item",
+          "settings": {
+            "title_collection": "Wellness",
+            "collection": "wellness",
+            "image": "shopify://shop_images/PRODUCT-IMAGES_02_1.jpg"
+          }
         }
       },
       "block_order": [
@@ -196,7 +204,8 @@
         "collection_item_V3qKNU",
         "template--16567751475447__8498460c-0376-40d1-bafc-199edbe0edfc-16665857567f9937b1-1",
         "template--16567751475447__8498460c-0376-40d1-bafc-199edbe0edfc-16665857567f9937b1-2",
-        "template--16567751475447__8498460c-0376-40d1-bafc-199edbe0edfc-16665857567f9937b1-3"
+        "template--16567751475447__8498460c-0376-40d1-bafc-199edbe0edfc-16665857567f9937b1-3",
+        "collection_item_wellness"
       ],
       "settings": {
         "heading": "Categories",
@@ -270,6 +279,13 @@
             "title": "Jewellery",
             "collection": "jewellery"
           }
+        },
+        "collection_wellness": {
+          "type": "collection",
+          "settings": {
+            "title": "Wellness",
+            "collection": "wellness"
+          }
         }
       },
       "block_order": [
@@ -277,7 +293,8 @@
         "collection_pTbrxG",
         "collection_UzQrBe",
         "collection_iGthCH",
-        "collection_tEcVLD"
+        "collection_tEcVLD",
+        "collection_wellness"
       ],
       "name": "t:sections.collection-tab.name",
       "settings": {
