@@ -552,7 +552,7 @@
               </button>
             </quick-buy>
           {%- endif -%}
-          {%- if product.has_only_default_variant -%}
+          {%- if product.variants.size == 1 -%}
             <a href="/pages/demoform?entry=product&variant={{ product.selected_or_first_available_variant.id }}&product={{ product.handle }}" class="bls__mobile-demo-btn mpf-demo-btn book-demo-btn">
               <span class="hidden-loading">{% if template.name == 'collection' %}{{ 'general.book_home_demo' | t }}{% else %}{{ 'general.book_home_demo' | t }}{% endif %}</span>
               <span class="loader-icon"></span>
@@ -645,7 +645,7 @@
   {%- if product_style == 'bls__product-style-3' %}
     </div>
   {%- endif -%}
-  {%- unless product.has_only_default_variant -%}
+  {%- if product.variants.size > 1 -%}
     <script type="application/json" class="productinfo">
       {{ product.variants | json }}
     </script>
@@ -664,5 +664,5 @@
       {%- endfor -%}
       ]
     </script>
-  {%- endunless -%}
+  {%- endif -%}
 </div>

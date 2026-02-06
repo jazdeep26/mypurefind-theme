@@ -937,12 +937,120 @@ body.sticky-addcart-show .footer.footer {
   opacity: 1;
 }
 
+/* Product CTA Buttons wrapper (Add to Cart + Book Demo) */
+.product-cta-buttons {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 15px;
+}
+
+/* Shared styles for both CTA buttons - white with purple border, purple fill on hover */
+.product-cta-buttons .product-atc-btn,
+.product-cta-buttons .book-demo-btn.product {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 48px;
+  border-radius: 6px;
+  background: #fff;
+  border: 1px solid var(--mpf-btn-accent, var(--mpf-purple, #5E0462));
+  color: var(--mpf-btn-accent, var(--mpf-purple, #5E0462));
+  cursor: pointer;
+  transition: all 0.2s ease;
+  padding: 0 20px;
+}
+
+.product-cta-buttons .product-atc-btn:hover,
+.product-cta-buttons .book-demo-btn.product:hover {
+  background: var(--mpf-btn-accent, var(--mpf-purple, #5E0462));
+  border-color: var(--mpf-btn-accent, var(--mpf-purple, #5E0462));
+  color: #fff;
+}
+
+.product-cta-buttons .product-atc-btn:disabled,
+.product-cta-buttons .book-demo-btn.product:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Add to Cart button specific styles */
+.product-cta-buttons .product-atc-btn {
+  width: 48px;
+  min-width: 48px;
+  padding: 0;
+  flex-shrink: 0;
+  position: relative;
+  overflow: visible;
+}
+
+.product-atc-btn .mpf-bag-icon {
+  display: inline-block;
+  position: relative;
+  overflow: visible;
+}
+
+.product-atc-btn .mpf-bag-icon .picon-handbag {
+  font-size: 1.6rem;
+  display: inline;
+  vertical-align: middle;
+  color: inherit;
+  transition: color 0.2s ease;
+}
+
+.product-atc-btn .mpf-plus-badge {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  font-size: 9px;
+  font-weight: 700;
+  color: #fff;
+  background: var(--mpf-success, #03a685);
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  transition: all 0.2s ease;
+}
+
+.product-cta-buttons .product-atc-btn:hover .mpf-plus-badge {
+  color: #fff;
+  background: var(--mpf-success, #03a685);
+}
+
+/* Book Demo button specific styles */
+.product-cta-buttons .book-demo-btn.product {
+  flex: 1;
+  position: relative;
+}
+
+/* Product ATC button loader */
+.product-atc-btn .loader-icon {
+  display: none;
+  --loader-width: 20px;
+  --loader-height: 20px;
+}
+
+.product-atc-btn.btn-loading .mpf-bag-icon,
+.product-atc-btn.btn-loading .mpf-plus-badge {
+  opacity: 0;
+}
+
+.product-atc-btn.btn-loading .loader-icon {
+  display: block;
+  position: absolute;
+}
+
 /* Main product Book Home Demo button loader */
 .bls__product-details-infor .book-demo-btn.product {
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
+  flex: 1;
 }
 
 .bls__product-details-infor .book-demo-btn.product .loader-icon {
@@ -957,6 +1065,13 @@ body.sticky-addcart-show .footer.footer {
 
 .bls__product-details-infor .book-demo-btn.product.btn-loading .loader-icon {
   opacity: 1;
+}
+
+/* Hide product CTA buttons on mobile (sticky bar handles it) */
+@media (max-width: 767px) {
+  .product-cta-buttons {
+    display: none;
+  }
 }
 
 /* Loading state for sticky add to cart */
@@ -1000,13 +1115,6 @@ body.sticky-addcart-show .footer.footer {
 
   .sticky-demo-slots .slots-text {
     font-size: 10px;
-  }
-}
-
-/* Hide Book Free Home Demo button on product page for mobile (already in sticky) */
-@media (max-width: 991px) {
-  .bls__product-details-infor .book-demo-btn.product {
-    display: none;
   }
 }
 

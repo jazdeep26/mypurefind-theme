@@ -897,6 +897,34 @@
                                   </a>
                                 </div>
                               {%- endif -%}
+                              <div class="product-cta-buttons">
+                                <button
+                                  type="submit"
+                                  name="add"
+                                  class="product-atc-btn mpf-atc-icon-btn"
+                                  {% if product.selected_or_first_available_variant.available == false %}disabled{% endif %}
+                                >
+                                  <span class="mpf-bag-icon hidden-loading">
+                                    <i class="picon-handbag"></i>
+                                  </span>
+                                  <i class="picon-plus mpf-plus-badge"></i>
+                                  <span class="visually-hidden">{{ 'products.product.add_to_cart' | t }}</span>
+                                  <span class="loader-icon"></span>
+                                </button>
+                                <button
+                                  type="button"
+                                  class="button button--secondary book-demo-btn product"
+                                  data-entry="product"
+                                  data-category="{{product.collections.first.handle}}"
+                                  data-subcategory="{{product.type}}"
+                                  data-product="{{ product.handle }}"
+                                  data-variant-id="{{ product.selected_or_first_available_variant.id }}"
+                                  data-has-only-default-variant="{{ product.has_only_default_variant }}"
+                                >
+                                  <span class="hidden-loading">{{ 'general.book_home_demo' | t }}</span>
+                                  <span class="loader-icon"></span>
+                                </button>
+                              </div>
                             {%- endform -%}
                           </product-form>
                         </div>
@@ -1517,7 +1545,7 @@
               {%- endif -%}
                     {%- for block in section.blocks -%}
                       {%- if block.type == 'demo_slots' and block.settings.show_demo_slots -%}
-                        <div class="bls__demo-slots-wrapper mb-10 d-none-mb">
+                        <div class="bls__demo-slots-wrapper mb-10 d-none-mobile">
                           <div
                             class="bls__demo-slots"
                             data-demo-slots="{{ block.settings.slots }}"
@@ -1540,19 +1568,37 @@
                         </div>
                       {%- endif -%}
                     {%- endfor -%}
-                    <button
-                      type="button"
-                      class="button button--secondary book-demo-btn product"
-                      data-entry="product"
-                      data-category="{{product.collections.first.handle}}"
-                      data-subcategory="{{product.type}}"
-                      data-product="{{ product.handle }}"
-                      data-variant-id="{{ product.selected_or_first_available_variant.id }}"
-                      data-has-only-default-variant="{{ product.has_only_default_variant }}"
-                    >
-                      <span class="hidden-loading">{{ 'general.book_home_demo' | t }}</span>
-                      <span class="loader-icon"></span>
-                    </button>
+                    {%- if product.metafields.custom.external_affiliate == blank and products_group == blank -%}
+                      <div class="product-cta-buttons">
+                        <button
+                          type="submit"
+                          name="add"
+                          form="product-form-{{ section.id }}"
+                          class="product-atc-btn mpf-atc-icon-btn"
+                          {% if product.selected_or_first_available_variant.available == false %}disabled{% endif %}
+                        >
+                          <span class="mpf-bag-icon hidden-loading">
+                            <i class="picon-handbag"></i>
+                          </span>
+                          <i class="picon-plus mpf-plus-badge"></i>
+                          <span class="visually-hidden">{{ 'products.product.add_to_cart' | t }}</span>
+                          <span class="loader-icon"></span>
+                        </button>
+                        <button
+                          type="button"
+                          class="button button--secondary book-demo-btn product"
+                          data-entry="product"
+                          data-category="{{product.collections.first.handle}}"
+                          data-subcategory="{{product.type}}"
+                          data-product="{{ product.handle }}"
+                          data-variant-id="{{ product.selected_or_first_available_variant.id }}"
+                          data-has-only-default-variant="{{ product.has_only_default_variant }}"
+                        >
+                          <span class="hidden-loading">{{ 'general.book_home_demo' | t }}</span>
+                          <span class="loader-icon"></span>
+                        </button>
+                      </div>
+                    {%- endif -%}
               <div class="bls__product-tabs-content hidden mt-25">
                 <div class="loading"></div>
               </div>

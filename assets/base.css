@@ -6247,29 +6247,6 @@ html.js .animate--ambient>.bls-loaded-image,
   display: none !important;
 }
 
-/* Hide checkout button only (keep subtotal visible) */
-.cart__checkout,
-.cart__footer .button.cart__checkout-button,
-button[name="checkout"],
-a[href="/checkout"] {
-  display: none !important;
-}
-
-/* ===== Hide Checkout button from Cart Drawer / Slide Cart ===== */
-
-/* Checkout button */
-.cart-drawer button[name="checkout"],
-.cart-drawer .checkout,
-.cart-drawer a[href="/checkout"],
-.cart-drawer .btn-checkout {
-  display: none !important;
-}
-
-/* Sticky mobile checkout bar */
-.mobile-stickybar a[href="/checkout"],
-.mobile-stickybar .checkout {
-  display: none !important;
-}
 /* Reduce sticky header height */
 #sticky-header {
   min-height: auto !important;

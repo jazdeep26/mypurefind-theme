@@ -226,8 +226,9 @@
           </div>
         {%- endif -%}
         {%- if hidden_button_add_to_cart == false -%}
-          <a class="action btn btn-secondary viewcart" href="{{ routes.cart_url }}">
-            <span>{{ 'general.cart.viewcart' | t }}</span>
+          <a class="action btn btn-secondary viewcart" href="{{ routes.cart_url }}" onclick="this.classList.add('btn-loading')">
+            <span class="hidden-loading">{{ 'general.cart.viewcart' | t }}</span>
+            <span class="loader-icon"></span>
           </a>
           <button
             type="submit"
@@ -238,6 +239,15 @@
             {% endif %}
           >
             <span>{{ 'general.cart.checkout' | t }}</span>
+          </button>
+
+          <button
+            type="button"
+            class="button button--primary book-demo-btn cart"
+            data-entry="cart"
+          >
+            <span class="hidden-loading">{{ 'general.book_home_demo' | t }}</span>
+            <span class="loader-icon"></span>
           </button>
         {%- endif -%}
       </div>

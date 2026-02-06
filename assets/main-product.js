@@ -548,9 +548,21 @@ class VariantSelects extends HTMLElement {
       document.querySelector(".sticky-addcart-opstion").value =
         this.currentVariant.id;
     }
-    const bookDemoBtn = document.querySelector('.book-demo-btn.product');
-    if (bookDemoBtn) {
-      bookDemoBtn.dataset.variantId = this.currentVariant.id;
+    // Update ALL book-demo buttons on the page (including sticky bar)
+    const bookDemoBtns = document.querySelectorAll('.book-demo-btn');
+    bookDemoBtns.forEach((btn) => {
+      btn.dataset.variantId = this.currentVariant.id;
+    });
+    // Update ALL add-to-cart buttons on the page (including sticky bar)
+    const productAtcBtns = document.querySelectorAll('.product-cta-buttons .product-atc-btn, .sticky-addtocart-btn');
+    productAtcBtns.forEach((btn) => {
+      btn.dataset.variantId = this.currentVariant.id;
+      btn.disabled = !this.currentVariant.available;
+    });
+    // Update sticky bar variant input
+    const stickyVariantInput = document.querySelector('.sticky-variant-input');
+    if (stickyVariantInput) {
+      stickyVariantInput.value = this.currentVariant.id;
     }
     if (document.querySelector(".product-bought-together-item.main-product")) {
       document.querySelector(".product-bought-together-item.main-product .product-variant-option").value =

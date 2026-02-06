@@ -265,6 +265,89 @@ class QuickBuy extends HTMLElement {
 
 customElements.define("quick-buy", QuickBuy);
 
+// Handle product-atc-btn clicks using event delegation (more reliable than DOMContentLoaded)
+document.addEventListener('click', (e) => {
+  const btn = e.target.closest('.product-atc-btn');
+  if (!btn) return;
+
+  // Only handle buttons that are NOT inside a product-form (those are handled by ProductForm class)
+  if (btn.closest('product-form')) return;
+
+  e.preventDefault();
+  e.stopPropagation();
+
+  // Prevent double-clicks
+  if (btn.disabled || btn.classList.contains('btn-loading')) return;
+
+  const formId = btn.getAttribute('form');
+  let form = formId ? document.getElementById(formId) : null;
+
+  // If form not found by ID, use sticky form as fallback
+  if (!form) {
+    form = document.querySelector('#bls__sticky-addcart form[data-type="add-to-cart-form"]');
+  }
+
+  if (form) {
+    // Add loading state
+    btn.disabled = true;
+    btn.classList.add('btn-loading');
+
+    // Submit the form via fetch (similar to ProductForm)
+    const config = fetchConfig("json");
+    config.headers["X-Requested-With"] = "XMLHttpRequest";
+    delete config.headers["Content-Type"];
+
+    const formData = new FormData(form);
+    const cart = document.querySelector("cart-notification") || document.querySelector("cart-drawer");
+
+    if (cart) {
+      formData.append("sections", cart.getSectionsToRender().map((section) => section.id));
+      formData.append("sections_url", window.location.pathname);
+    }
+    config.body = formData;
+
+    fetch(`${routes?.cart_add_url}`, config)
+      .then((response) => response.text())
+      .then((state) => {
+        const parsedState = JSON.parse(state);
+
+        // Update cart count
+        fetch("/cart.json")
+          .then((res) => res.json())
+          .then((cartData) => {
+            if (cartData.item_count != undefined) {
+              document.querySelectorAll(".cart-count").forEach((el) => {
+                if (el.classList.contains("cart-count-drawer")) {
+                  el.innerHTML = `(${cartData.item_count})`;
+                } else {
+                  el.innerHTML = cartData.item_count;
+                }
+              });
+            }
+          });
+
+        if (!parsedState.errors && cart) {
+          cart.getSectionsToRender().forEach((section) => {
+            const elementToReplace = document.getElementById(section.id);
+            const html = new DOMParser().parseFromString(parsedState.sections[section.id], "text/html");
+            if (elementToReplace && html.querySelector("#form-mini-cart")) {
+              elementToReplace.innerHTML = html.querySelector("#form-mini-cart").innerHTML;
+            }
+          });
+          cart.cartAction();
+          cart.open();
+        }
+      })
+      .catch((error) => {
+        console.error('Add to cart error:', error);
+      })
+      .finally(() => {
+        btn.disabled = false;
+        btn.classList.remove('btn-loading');
+      });
+  }
+});
+
 if (!customElements.get("product-form")) {
   customElements.define(
     "product-form",
@@ -272,21 +355,36 @@ if (!customElements.get("product-form")) {
       constructor() {
         super();
         this.form = this.querySelector("form");
-        this.form.querySelector("[name=id]").disabled = false;
+        if (!this.form) return;
+
+        const idInput = this.form.querySelector("[name=id]");
+        if (idInput) idInput.disabled = false;
+
         this.form.addEventListener("submit", this.onSubmitHandler.bind(this));
         this.cart =
           document.querySelector("cart-notification") ||
           document.querySelector("cart-drawer");
         this.submitButton = this.querySelector('[type="submit"]');
-        if (document.querySelector("cart-drawer"))
+        this.submitButtons = this.querySelectorAll('[type="submit"]');
+        if (document.querySelector("cart-drawer") && this.submitButton)
           this.submitButton.setAttribute("aria-haspopup", "dialog");
         this.hideErrors = this.dataset.hideErrors === "true";
+
+        // Track which button was clicked for proper loading state
+        this.submitButtons.forEach((button) => {
+          button.addEventListener("click", (e) => {
+            this.activeSubmitButton = e.currentTarget;
+          });
+        });
       }
 
       onSubmitHandler(evt) {
         evt.preventDefault();
 
         this.handleErrorMessage();
+
+        // Use the clicked button, fallback to first submit button
+        this.currentSubmitButton = this.activeSubmitButton || this.submitButton;
 
         const config = fetchConfig("json");
         config.headers["X-Requested-With"] = "XMLHttpRequest";
@@ -304,8 +402,8 @@ if (!customElements.get("product-form")) {
             }
           });
         }
-        this.submitButton.setAttribute("disabled", true);
-        this.submitButton.classList.add("btn-loading");
+        this.currentSubmitButton.setAttribute("disabled", true);
+        this.currentSubmitButton.classList.add("btn-loading");
         if (this.cart) {
           formData.append(
             "sections",
@@ -320,8 +418,9 @@ if (!customElements.get("product-form")) {
             return response.text();
           })
           .then((state) => {
-            this.submitButton.setAttribute("disabled", true);
-            this.submitButton.querySelector("span").classList.add("hidden");
+            this.currentSubmitButton.setAttribute("disabled", true);
+            const spanEl = this.currentSubmitButton.querySelector("span");
+            if (spanEl) spanEl.classList.add("hidden");
             fetch("/cart.json")
               .then((res) => res.json())
               .then((cart) => {
@@ -352,54 +451,56 @@ if (!customElements.get("product-form")) {
             const parsedState = JSON.parse(state);
             const pswp = document.querySelector(".pswp__button--bls--close");
             if (!parsedState.errors) {
-              this.cart.getSectionsToRender().forEach((section) => {
-                const elementToReplace = document.getElementById(section.id);
-                const html = new DOMParser().parseFromString(
-                  parsedState.sections[section.id],
-                  "text/html"
-                );
-                elementToReplace.innerHTML =
-                  html.querySelector("#form-mini-cart").innerHTML;
+              if (this.cart) {
+                this.cart.getSectionsToRender().forEach((section) => {
+                  const elementToReplace = document.getElementById(section.id);
+                  const html = new DOMParser().parseFromString(
+                    parsedState.sections[section.id],
+                    "text/html"
+                  );
+                  elementToReplace.innerHTML =
+                    html.querySelector("#form-mini-cart").innerHTML;
 
-                const countdown = this.cart.querySelector(
-                  ".cart-countdown-time"
-                );
-                const html_countdown = html.querySelector(
-                  ".cart-countdown-time"
-                );
-                if (countdown && html_countdown) {
-                  countdown.innerHTML = html_countdown.innerHTML;
-                  this.cart.countdownTimer();
-                }
-                const cartUpsell = this.cart.querySelector(
-                  ".bls-recommendations-beside"
-                );
-                const html_cartUpsell = html.querySelector(
-                  ".bls-recommendations-beside"
-                );
-                const html_cartUpselSelected = html.querySelector(
-                  ".bls-recommendations-beside-selected"
-                );
-                var counteSelect;
-                if (cartUpsell && html_cartUpsell) {
-                  if (html_cartUpselSelected) {
-                    counteSelect = Array.from(
-                      html_cartUpselSelected.getElementsByClassName(
-                        "bls-cart-upsell-item"
-                      )
-                    );
-                    if (counteSelect.length == 0) {
-                      cartUpsell.classList.remove("is-opend");
+                  const countdown = this.cart.querySelector(
+                    ".cart-countdown-time"
+                  );
+                  const html_countdown = html.querySelector(
+                    ".cart-countdown-time"
+                  );
+                  if (countdown && html_countdown) {
+                    countdown.innerHTML = html_countdown.innerHTML;
+                    this.cart.countdownTimer();
+                  }
+                  const cartUpsell = this.cart.querySelector(
+                    ".bls-recommendations-beside"
+                  );
+                  const html_cartUpsell = html.querySelector(
+                    ".bls-recommendations-beside"
+                  );
+                  const html_cartUpselSelected = html.querySelector(
+                    ".bls-recommendations-beside-selected"
+                  );
+                  var counteSelect;
+                  if (cartUpsell && html_cartUpsell) {
+                    if (html_cartUpselSelected) {
+                      counteSelect = Array.from(
+                        html_cartUpselSelected.getElementsByClassName(
+                          "bls-cart-upsell-item"
+                        )
+                      );
+                      if (counteSelect.length == 0) {
+                        cartUpsell.classList.remove("is-opend");
+                      }
                     }
+                    if (!counteSelect || counteSelect.length != 0) {
+                      setTimeout(() => {
+                        cartUpsell.classList.add("is-opend");
+                      }, 1500);
+                    }
+                    cartUpsell.innerHTML = html_cartUpsell.innerHTML;
                   }
-                  if (!counteSelect || counteSelect.length != 0) {
-                    setTimeout(() => {
-                      cartUpsell.classList.add("is-opend");
-                    }, 1500);
-                  }
-                  cartUpsell.innerHTML = html_cartUpsell.innerHTML;
-                }
-              });
+                });
+              }
               const quantity = parsedState.quantity;
               if (document.querySelector(".quantity__label") && quantity > 0) {
                 document.querySelector(".quantity-cart").innerHTML = quantity;
@@ -410,8 +511,10 @@ if (!customElements.get("product-form")) {
               if (this.closest(".dlg")) {
                 document.querySelector(".dlg-close-x").click();
               }
-              this.cart.cartAction();
-              this.cart.open();
+              if (this.cart) {
+                this.cart.cartAction();
+                this.cart.open();
+              }
               if (pswp) {
                 pswp.click();
               }
@@ -474,11 +577,14 @@ if (!customElements.get("product-form")) {
             throw e;
           })
           .finally(() => {
-            this.submitButton.classList.remove("btn-loading");
+            this.currentSubmitButton.classList.remove("btn-loading");
             if (this.cart && this.cart.classList.contains("is-empty"))
               this.cart.classList.remove("is-empty");
-            if (!this.error) this.submitButton.removeAttribute("disabled");
-            this.submitButton.querySelector("span").classList.remove("hidden");
+            if (!this.error) this.currentSubmitButton.removeAttribute("disabled");
+            const spanEl = this.currentSubmitButton.querySelector("span");
+            if (spanEl) spanEl.classList.remove("hidden");
+            // Reset active submit button
+            this.activeSubmitButton = null;
             Shopify.termsConditionsAction();
             BlsLazyloadImg.init();
             BlsSettingsSwiper.init();

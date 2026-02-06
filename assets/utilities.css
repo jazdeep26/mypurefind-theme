@@ -426,6 +426,10 @@
 }
 
 @media (max-width: 767px) {
+    .d-none-mobile {
+        display: none !important;
+    }
+
     .text-center-mb {
         text-align: center;
     }

@@ -1276,3 +1276,28 @@ label[for="gift_form_minicart"] span {
 .cart__contents .cart-recomment {
   padding-top: 3.5rem;
 }
+
+/* Hide checkout button only (keep subtotal visible) */
+/* .cart__checkout,
+.cart__footer .button.cart__checkout-button,
+button[name="checkout"],
+a[href="/checkout"] {
+  display: none !important;
+} */
+
+/* ===== Hide Checkout button from Cart Drawer / Slide Cart =====  */
+/* .cart-drawer button[name="checkout"],
+.cart-drawer .checkout,
+.cart-drawer a[href="/checkout"],
+.cart-drawer .btn-checkout {
+  display: none !important;
+}
+
+.mobile-stickybar a[href="/checkout"],
+.mobile-stickybar .checkout {
+  display: none !important;
+}  */
+
+.bls-btn-checkout{
+  margin-bottom: 1rem;
+}

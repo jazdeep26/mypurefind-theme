@@ -92,7 +92,7 @@
       "form-chair-brass-base",
       "simple-model-chair"
     ],
-    "show_message_add_to_wishlist": true,
+    "show_message_add_to_wishlist": false,
     "show_quick_view": true,
     "show_add_to_cart": true,
     "show_wishlist": false,
