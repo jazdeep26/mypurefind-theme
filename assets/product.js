@@ -2104,7 +2104,7 @@ class VariantRadiosQuickview extends HTMLElement {
         upu.innerHTML = price_unit;
       }
     }
-    const upp = quickview.querySelector(".price__regular .price");
+    const upp = quickview.querySelector(".price__regular.price");
     if (upp) {
       upp.innerHTML = price_format;
     }
@@ -2127,34 +2127,26 @@ class VariantRadiosQuickview extends HTMLElement {
     }
 
     const bls__price = quickview.querySelector(".bls__price");
-    bls__price.classList.remove("price--sold-out", "price--on-sale");
-    bls__price
-      .querySelector(".price__regular .price")
-      .classList.remove("special-price");
-    if (compare_at_price && compare_at_price > price) {
-      const compare_format = Shopify.formatMoney(
-        compare_at_price,
-        cartStrings?.money_format
-      );
-      if (!bls__price.querySelector(".compare-price")) {
-        var ps = bls__price.querySelector(".price__sale");
-        var sp = document.createElement("span");
-        var cp = document.createElement("s");
-        cp.classList.add("price-item", "compare-price");
-        sp.appendChild(cp);
-        if (ps) {
-          ps.appendChild(sp);
-        }
-      }
-      if (bls__price.querySelector(".compare-price")) {
-        bls__price.querySelector(".compare-price").innerHTML = compare_format;
-      }
-      bls__price.classList.add("price--on-sale");
+    if (bls__price) {
+      bls__price.classList.remove("price--sold-out", "price--on-sale");
       bls__price
-        .querySelector(".price__regular .price")
-        .classList.add("special-price");
-    } else if (!this.currentVariant.available) {
-      bls__price.classList.add("price--sold-out");
+        .querySelector(".price__regular.price")
+        ?.classList.remove("special-price");
+      if (compare_at_price && compare_at_price > price) {
+        const compare_format = Shopify.formatMoney(
+          compare_at_price,
+          cartStrings?.money_format
+        );
+        if (bls__price.querySelector(".compare-price")) {
+          bls__price.querySelector(".compare-price").innerHTML = compare_format;
+        }
+        bls__price.classList.add("price--on-sale");
+        bls__price
+          .querySelector(".price__regular.price")
+          ?.classList.add("special-price");
+      } else if (!this.currentVariant.available) {
+        bls__price.classList.add("price--sold-out");
+      }
     }
     this.toggleAddButton(!this.currentVariant.available, variantStrings);
   }

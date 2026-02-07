@@ -239,6 +239,7 @@ html.js .swiper-initialized .bls-loaded-image {
 }
 
 /* Hide sale label globally */
+.bls__product-label,
 .bls__sale-label {
   display: none !important;
 }
